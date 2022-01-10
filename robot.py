@@ -5,13 +5,13 @@ import rev
 class UnnamedToaster(wpilib.TimedRobot):
     
     def robotInit(self):
-        self.leftMotorOne = rev.CANSparkMax(self, 2, rev.MotorType.kBrushless)
-        self.leftMotorTwo = rev.CANSparkMax(self, 1, rev.MotorType.kBrushless)
-        self.rightMotorOne = rev.CANSparkMax(self, 4, rev.MotorType.kBrushless)
-        self.rightMotorTwo = rev.CANSparkMax(self, 3, rev.MotorType.kBrushless)
+        self.leftMotorOne = rev.CANSparkMax(2, rev.MotorType.kBrushless)
+        self.leftMotorTwo = rev.CANSparkMax(1, rev.MotorType.kBrushless)
+        self.rightMotorOne = rev.CANSparkMax(4, rev.MotorType.kBrushless)
+        self.rightMotorTwo = rev.CANSparkMax(3, rev.MotorType.kBrushless)
 
         self.leftMotorTwo.follow(self.leftMotorOne)
-        self.rightMotorTwo.follow(self.RightMotorOne)
+        self.rightMotorTwo.follow(self.rightMotorOne)
 
         self.driveTrain = wpilib.drive.DifferentialDrive(
             self.leftMotorOne, self.rightMotorOne)
@@ -19,7 +19,7 @@ class UnnamedToaster(wpilib.TimedRobot):
         self.joy = wpilib.Joystick(0)
 
     def teleopPeriodic(self):
-        self.driveTrain.arcadeDrive(self.joy.getX, self.joy.getY)
+       self.driveTrain.arcadeDrive(self.joy.getX, self.joy.getY, false)
 
 
 if __name__ == "__main__":
