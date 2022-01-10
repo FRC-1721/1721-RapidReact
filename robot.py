@@ -19,7 +19,7 @@ class UnnamedToaster(wpilib.TimedRobot):
         self.joy = wpilib.Joystick(0)
 
     def teleopPeriodic(self):
-       self.driveTrain.arcadeDrive(self.joy.getX, self.joy.getY, false)
+       self.driveTrain.arcadeDrive(self.joy.getRawAxis(1), -self.joy.getRawAxis(2))
 
 
 if __name__ == "__main__":
