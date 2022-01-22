@@ -1,0 +1,21 @@
+name: PyFRC Tests
+on: pull_request
+
+jobs:
+  make_docs:
+    runs-on: ubuntu-latest
+    name: Excecute PyFRC Tests
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install pipenv
+      run: pipx install pipenv
+
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+        cache: 'pipenv'
+
+    - run: cd src && pipenv install
+
+    - run: cd src && pipenv run python robot.py test
