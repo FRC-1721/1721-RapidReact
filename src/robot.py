@@ -18,9 +18,7 @@ class UnnamedToaster(wpilib.TimedRobot):
         self.portMotorFollower.follow(self.portMotorLeader)
         self.starboardMotorTwo.follow(self.starboardMotorOne)
 
-        self.driveTrain = wpilib.drive.DifferentialDrive(
-            self.portMotorLeader, self.starboardMotorOne
-        )
+        self.driveTrain = wpilib.drive.DifferentialDrive(self.portMotorLeader, self.starboardMotorOne)
 
         self.joy = wpilib.Joystick(0)
 
