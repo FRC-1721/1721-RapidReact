@@ -16,6 +16,6 @@ jobs:
         python-version: '3.8'
         cache: 'pipenv'
 
-    - run: cd src && pipenv install
+    - run: cd rio && pipenv install
 
-    - run: cd src && pipenv run python robot.py test
+    - run: cd rio && pipenv run python robot.py test
