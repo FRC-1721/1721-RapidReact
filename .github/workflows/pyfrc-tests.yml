@@ -12,16 +12,14 @@ jobs:
     name: Excecute PyFRC Tests
     steps:
     - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    
+
+    - name: Install pipenv
+      run: pipx install pipenv
+
     - uses: actions/setup-python@v2
       with:
         python-version: '3.8'
-
-    - run: sudo apt update
-
-    - run: sudo apt install python3 pipenv
+        cache: 'pipenv'
 
     - run: cd src && pipenv install
 
