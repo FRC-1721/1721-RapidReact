@@ -1,10 +1,5 @@
 name: PyFRC Tests
-on:
-  push:
-    paths:
-      - 'src/**'
-    tags:
-  release:
+on: pull_request
 
 jobs:
   make_docs:
