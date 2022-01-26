@@ -6,5 +6,6 @@ name = "pypi"
 [packages]
 robotpy = {extras = ["rev"], version = "*"}
 wpilib = {extras = ["all"], version = "*"}
+pyyaml = "*"
 
 [dev-packages]

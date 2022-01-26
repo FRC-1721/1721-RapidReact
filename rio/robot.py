@@ -1,7 +1,10 @@
-import wpilib
-import wpilib.drive
-import wpimath
 import rev
+import wpilib
+import wpimath
+import wpilib.drive
+
+
+import config.yamlTools as yamlTools
 
 
 class UnnamedToaster(wpilib.TimedRobot):
@@ -51,6 +54,8 @@ class UnnamedToaster(wpilib.TimedRobot):
 
         self.joy = wpilib.Joystick(0)
 
+        self.config = yamlTools.RobotConfiguration()
+
     # Initalizes joystick to control the drivetrain
     def teleopPeriodic(self):
         self.driveTrain.arcadeDrive(self.joy.getRawAxis(1), -self.joy.getRawAxis(2))
@@ -75,6 +80,8 @@ class UnnamedToaster(wpilib.TimedRobot):
         {br.speed}
         {br.angle}"""
         )
+
+        # print(self.config.dimms)
 
 
 if __name__ == "__main__":
