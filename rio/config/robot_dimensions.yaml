@@ -1,0 +1,18 @@
+# This file defines the robot and
+# its physical dimensions. Things like
+# Motor placement, max and min extensions
+# of arms, and similar should go here.
+
+swerve_drive:
+  fore_starboard_translation:
+    x: 0.5
+    y: -0.5
+  aft_starboard_translation:
+    x: -0.5
+    y: -0.5
+  fore_port_translation:
+    x: 0.5
+    y: 0.5
+  aft_port_translation:
+    x: 0.5
+    y: -0.5
