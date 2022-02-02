@@ -7,4 +7,11 @@ To get started, activate this project
 ```shell
 $ cd src
 $ pipenv install
+$ pipenv shell
+```
+
+Make sure you can run the simulator
+
+```shell
+$ python robot.py sim
 ```

@@ -2,7 +2,7 @@ name: black-action
 on: pull_request
 
 jobs:
-  linter_name:
+  formatblack:
     name: runner / black
     runs-on: ubuntu-latest
     steps:
@@ -12,7 +12,6 @@ jobs:
         id: action_black
         with:
           black_args: "."
-          fail_on_error: true
       - name: Annotate diff changes using reviewdog
         if: steps.action_black.outputs.is_formatted == 'true'
         uses: reviewdog/action-suggester@v1

@@ -1,0 +1,42 @@
+# This file defines the robot's
+# physical dimensions. Things like
+# Motor placement, max and min extensions
+# of arms, and similar should go here.
+
+drivetrain:
+  # All pose coordinates are in meters.
+  fp_module: # Fore Port
+    pose_x: 0.5   # Updated 2/1/22 by Joe
+    pose_y: 0.5   # Updated 2/1/22 by Joe
+    drive_id: 5   # Updated never by Joe
+    steer_id: 6   # Updated never by Joe
+
+  fs_module: # Fore Starboard
+    pose_x: 0.5   # Updated 2/1/22 by Joe
+    pose_y: -0.5  # Updated 2/1/22 by Joe
+    drive_id: 1   # Updated never by Joe
+    steer_id: 2   # Updated never by Joe
+
+  ap_module: # Aft Port
+    pose_x: -0.5  # Updated 2/1/22 by Joe
+    pose_y: 0.5   # Updated 2/1/22 by Joe
+    drive_id: 7   # Updated never by Joe
+    steer_id: 8   # Updated never by Joe
+
+  as_module: # Aft Starboard
+    pose_x: -0.5  # Updated 2/1/22 by Joe
+    pose_y: -0.5  # Updated 2/1/22 by Joe
+    drive_id: 3   # Updated never by Joe
+    steer_id: 4   # Updated never by Joe
+  
+  pid: # PID and position constants
+    drive:
+      pulses_per_meter: 1000    # Updated never by Joe
+      kp: 1                     # Updated never by Joe
+      ki: 1                     # Updated never by Joe
+      kd: 1                     # Updated never by Joe
+    steer:
+      pulses_per_radian: 1000   # Updated never by Joe
+      kp: 1                     # Updated never by Joe
+      ki: 1                     # Updated never by Joe
+      kd: 1                     # Updated never by Joe

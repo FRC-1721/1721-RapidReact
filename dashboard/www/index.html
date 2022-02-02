@@ -2,91 +2,228 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
 </head>
 
-<body>
+<body style="background-color:rgb(78, 78, 78);">
 
-	<!-- This starts the NetworkTables websocket, it can be accessed from multiple
+    <!-- This starts the NetworkTables websocket, it can be accessed from multiple
      pages simultaneously -->
-	<script src="/networktables/networktables.js"></script>
+    <script src="/networktables/networktables.js"></script>
 
-	<!-- Obviously, you will want to copy this file locally in a real 
+    <!-- Obviously, you will want to copy this file locally in a real 
      dashboard, as the Driver Station won't have internet access -->
-	<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
 
-	<!-- uncomment this is you want to use included utility functions that
+    <!-- uncomment this is you want to use included utility functions that
      implement common functionality that you might find useful. Requires
      that d3.js and jQuery are included first -->
-	<!-- <script src="/networktables/utils.js"></script> -->
+    <!-- <script src="/networktables/utils.js"></script> -->
 
-	<div>
-		NetworkTables websocket: <span id="connectstate">Unknown state</span><br />
-		Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
-	</div>
-	<hr />
+    <!-- utility functions to attach to a camera -->
+    <script src="/networktables/camera.js"></script>
 
-	<table id="nt" border=1>
-		<tbody></tbody>
-	</table>
+    <div>
+        NetworkTables websocket: <span id="connectstate">Unknown state</span><br>
+        Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
+    </div>
+    <hr>
+    <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+            <tr>
+                <td style="vertical-align: top; height: 500px; width: 500px;"><canvas id="SwerveCanvas" width="500"
+                        height="500"></canvas><br>
+                </td>
+                <td style="vertical-align: top;">
+                    <div id="camera_container" , style="height: 500px; width: 500px;">
+                        <!-- this element should be empty, an img tag will be added here -->
+                    </div><br>
+                </td>
+                <td style="vertical-align: top;">Camera 2<br>
+                </td>
+                <td style="vertical-align: top;">Something else<br>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">
+                    <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+                        <tbody>
+                            <tr>
+                                <td style="vertical-align: top;">Key<br>
+                                </td>
+                                <td style="vertical-align: top;">Value?<br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: top;">Key<br>
+                                </td>
+                                <td style="vertical-align: top;">Val<br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: top;">Keee<br>
+                                </td>
+                                <td style="vertical-align: top;">Mhh idk<br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: top;"><br>
+                                </td>
+                                <td style="vertical-align: top;"><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: top;"><br>
+                                </td>
+                                <td style="vertical-align: top;"><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: top;"><br>
+                                </td>
+                                <td style="vertical-align: top;"><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><br>
+                </td>
+                <td style="vertical-align: top;">Make sure to not leave this blank<br>
+                </td>
+                <td style="vertical-align: top;">This one too<br>
+                </td>
+                <td style="vertical-align: top;">bot4<br>
+                </td>
 
 
-	<script type="text/javascript">
-		"use strict";
-
-		$(document).ready(function () {
-
-			// sets a function that will be called when the websocket connects/disconnects
-			NetworkTables.addWsConnectionListener(onNetworkTablesConnection, true);
-
-			// sets a function that will be called when the robot connects/disconnects
-			NetworkTables.addRobotConnectionListener(onRobotConnection, true);
-
-			// sets a function that will be called when any NetworkTables key/value changes
-			NetworkTables.addGlobalListener(onValueChanged, true);
-		});
+            </tr>
+        </tbody>
+    </table>
 
 
-		function onRobotConnection(connected) {
-			$('#robotstate').text(connected ? "Connected!" : "Disconnected");
-			$('#robotAddress').text(connected ? NetworkTables.getRobotAddress() : "disconnected");
-		}
 
-		function onNetworkTablesConnection(connected) {
 
-			if (connected) {
-				$("#connectstate").text("Connected!");
 
-				// clear the table
-				$("#nt tbody > tr").remove();
+    <script type="text/javascript">
+        "use strict";
 
-			} else {
-				$("#connectstate").text("Disconnected!");
-			}
-		}
+        $(document).ready(function () {
 
-		function onValueChanged(key, value, isNew) {
+            // sets a function that will be called when the websocket connects/disconnects
+            NetworkTables.addWsConnectionListener(onNetworkTablesConnection, true);
 
-			// key thing here: we're using the various NetworkTable keys as
-			// the id of the elements that we're appending, for simplicity. However,
-			// the key names aren't always valid HTML identifiers, so we use
-			// the NetworkTables.keyToId() function to convert them appropriately
+            // sets a function that will be called when the robot connects/disconnects
+            NetworkTables.addRobotConnectionListener(onRobotConnection, true);
 
-			if (isNew) {
-				var tr = $('<tr></tr>').appendTo($('#nt > tbody:last'));
-				$('<td></td>').text(key).appendTo(tr);
-				$('<td></td>').attr('id', NetworkTables.keyToId(key))
-					.text(value)
-					.appendTo(tr);
-			} else {
+            NetworkTables.addGlobalListener(swerveListener, true);
+            console.log("Started")
 
-				// similarly, use keySelector to convert the key to a valid jQuery
-				// selector. This should work for class names also, not just for ids
-				$('#' + NetworkTables.keySelector(key)).text(value);
-			}
-		}
+            // will load a camera from the robot's IP address on port 5800
+            loadCameraOnConnect({
+                container: '#camera_container', // where to put the img tag
+                proto: null,                    // optional, defaults to http://
+                host: null,                     // optional, if null will use robot's autodetected IP address
+                port: 5800,                     // webserver port
+                image_url: '/?action=stream',   // mjpg stream of camera
+                data_url: '/program.json',      // used to test if connection is up
+                wait_img: null,                 // optional img to show when not connected, can use SVG instead
+                error_img: null,                // optional img to show when error connecting, can use SVG instead
+                attrs: {                        // optional: attributes set on svg or img element
+                    width: 640,                     // optional, stretches image to this width
+                    height: 480,                    // optional, stretches image to this width
+                }
+            });
+        });
 
-	</script>
+        function swerveListener(key, value, isNew) {
+            //console.log(key)
+
+            var canvas = document.getElementById('SwerveCanvas');
+            if (canvas.getContext) {
+                var lf = canvas.getContext('2d');
+                var swerveDriveImage = new Image();
+                swerveDriveImage.src = 'resources/swerveModule.png'
+
+                //console.log(key, value)
+                if (key == "/SmartDashboard/SwerveDrive/fp_actual") {
+                    lf.clearRect(0, 0, 150, 150);
+                    //save the untranslated/unrotated context
+                    lf.save();
+                    lf.beginPath();
+                    //move the rotation point to the center of the rect
+                    lf.translate(25 + 50 / 2, 25 + 75 / 2);
+                    //rotate the rect
+                    lf.rotate(value);
+                    //draw the rect on the transformed context
+                    //Note: after transforming [0,0] is visually [x,y]
+                    //so the rect needs to be offset accordingly when drawn
+                    lf.drawImage(swerveDriveImage, -39 / 2, -48 / 2);
+                    lf.fill();
+                    //restore the context to its untranslated/unrotated state
+                    lf.restore();
+                }
+
+
+                if (key == "/SmartDashboard/SwerveDrive/fs_actual") {
+                    lf.clearRect(150, 0, canvas.width, 150);
+                    lf.save();
+                    lf.beginPath();
+                    lf.translate(200 + 50 / 2, 25 + 75 / 2);
+                    lf.rotate(value);
+                    lf.drawImage(swerveDriveImage, -39 / 2, -48 / 2);
+                    lf.fill();
+                    lf.restore();
+                }
+
+                if (key == "/SmartDashboard/SwerveDrive/ap_actual") {
+                    lf.clearRect(0, 150, 150, canvas.height);
+                    lf.save();
+                    lf.beginPath();
+                    lf.translate(50, 300 + 75);
+                    lf.rotate(value);
+                    lf.drawImage(swerveDriveImage, -39 / 2, -48 / 2);
+                    lf.fill();
+                    lf.restore();
+                }
+
+                if (key == "/SmartDashboard/SwerveDrive/as_actual") {
+                    lf.clearRect(150, 150, canvas.width, canvas.height);
+                    lf.save();
+                    lf.beginPath();
+                    lf.translate(175 + 50, 300 + 75);
+                    lf.rotate(value);
+                    lf.drawImage(swerveDriveImage, -39 / 2, -48 / 2);
+                    lf.fill();
+                    lf.restore();
+                }
+
+
+            }
+        }
+
+        function onRobotConnection(connected) {
+            $('#robotstate').text(connected ? "Connected!" : "Disconnected");
+            $('#robotAddress').text(connected ? NetworkTables.getRobotAddress() : "disconnected");
+        }
+
+        function onNetworkTablesConnection(connected) {
+
+            if (connected) {
+                $("#connectstate").text("Connected!");
+
+                // clear the table
+                $("#nt tbody > tr").remove();
+
+                console.log(NetworkTables.getKeys())
+
+            } else {
+                $("#connectstate").text("Disconnected!");
+            }
+        }
+
+    </script><br>
+
+    <br>
+
 
 </body>
 

@@ -1,0 +1,11 @@
+# This file defines the input
+# and control scheme of the robot, 
+# Arranged into operating "modes"
+
+mode_a:
+  # Mode A is a driver-centric control mode
+  driver:
+    driverstation_port: 0
+    forward_axis: 0
+    steer_axis: 2
+    strafe_axis: 1
