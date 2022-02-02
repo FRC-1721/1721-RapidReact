@@ -12,6 +12,9 @@ from subsystems.drivetrain import Drivetrain
 # Constants
 from constants.constants import getConstants
 
+# Auto
+from commands.nullauto import NullAuto
+
 
 class RobotContainer:
     """
@@ -31,7 +34,11 @@ class RobotContainer:
         # The robot's subsystems
         self.drivetrain = Drivetrain()
 
+        # Configure button bindings
         self.configureButtonBindings()
+
+        # Setup all autonomous routines
+        self.configureAutonomous()
 
         # set up default drive command
         self.drivetrain.setDefaultCommand(
@@ -51,5 +58,15 @@ class RobotContainer:
         """
         pass
 
+    def configureAutonomous(self):
+        # Create a sendable chooser
+        self.autoChooser = wpilib.SendableChooser()
+
+        # Add options for chooser
+        self.autoChooser.setDefaultOption("Null Auto", NullAuto(self.drivetrain))
+
+        # Put the chooser on the dashboard
+        wpilib.SmartDashboard.putData("Autonomous", self.autoChooser)
+
     def getAutonomousCommand(self) -> commands2.Command:
-        return self.chooser.getSelected()
+        return self.autoChooser.getSelected()

@@ -11,14 +11,14 @@
      pages simultaneously -->
     <script src="/networktables/networktables.js"></script>
 
+
     <!-- Obviously, you will want to copy this file locally in a real 
      dashboard, as the Driver Station won't have internet access -->
     <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.14/d3.min.js"></script>
 
-    <!-- uncomment this is you want to use included utility functions that
-     implement common functionality that you might find useful. Requires
-     that d3.js and jQuery are included first -->
-    <!-- <script src="/networktables/utils.js"></script> -->
+    <!-- utility functions to attach to a sendable chooser -->
+    <script src="/networktables/utils.js"></script>
 
     <!-- utility functions to attach to a camera -->
     <script src="/networktables/camera.js"></script>
@@ -41,7 +41,7 @@
                 </td>
                 <td style="vertical-align: top;">Camera 2<br>
                 </td>
-                <td style="vertical-align: top;">Something else<br>
+                <td style="vertical-align: top;">Autonomous Selector<select id="autonomous"></select><br>
                 </td>
             </tr>
             <tr>
@@ -116,6 +116,9 @@
 
             NetworkTables.addGlobalListener(swerveListener, true);
             console.log("Started")
+
+            // attaches the select element to a SendableChooser object
+            attachSelectToSendableChooser("#autonomous", "Autonomous");
 
             // will load a camera from the robot's IP address on port 5800
             loadCameraOnConnect({

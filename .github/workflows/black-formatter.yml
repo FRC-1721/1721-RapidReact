@@ -17,3 +17,6 @@ jobs:
         uses: reviewdog/action-suggester@v1
         with:
           tool_name: blackfmt
+      - name: Fail if actions taken
+        if: steps.action_black.outputs.is_formatted == 'true'
+        run: exit 1
