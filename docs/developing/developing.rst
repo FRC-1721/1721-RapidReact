@@ -1,13 +1,15 @@
 Developing
 ##########
 
-Configuration
-=============
+Configuration Files
+===================
 
 .. warning::
    Make sure this manual's revision hash and the robot hash match!
 
-This is literally the robot hardware configuration.
+This is literally the robot hardware configuration written in yaml.
+
+These are provided as reference for use by pit crew.
 
 Use this to confirm/reconfigure motor controller addresses or examine
 if pose x/y cords match actual.
@@ -16,31 +18,33 @@ if pose x/y cords match actual.
   :language: YAML
 
 
-Editing and Making Docs
-========================
+Getting started modifying these docs
+====================================
 
-you will need
+Requirements for building the docs
+----------------------------------
+
+You'll need to install several packages to build these docs
 
 .. code-block:: shell
    
-   # Ubuntu.Debian users
+   # Ubuntu/Debian users
    sudo apt install texlive-latex-recommended texlive-latex-extra texlive-pictures pandoc rename latexmk
 
-Making Docs
------------
+Making the docs
+---------------
 
-Go into the ``Docs`` in ``pre2022season``, once there you can run
+Under the ``Docs`` directory in ``pre2022season``, setup a pipenv using the 
+provided files and invoke the ``make latexpdf`` command to build the docs.
 
 .. code-block:: shell
 
-   pipenv install # this step may take a while
+   pipenv install # May take a while
    pipenv shell
-   make latexpdf # this makes a pdf of the manuel
+   make latexpdf # Builds the manual
 
-Seeing pdfs
------------
+Find the generated ``.pdf`` under ``docs/_build/latex/``
 
-You should then open ``rio`` within your file manager, within ``rio`` there will be a ``_build`` in there is the pdf you just made.
 
 Robot Simulator
 ===============
@@ -49,15 +53,16 @@ Robot Simulator
 Requirements
 ------------
 
-Go to directory ``rio`` then run
+Under the ``rio`` directory run
 
 .. code-block:: shell
 
-   pipenv install # this step may take some time
+   pipenv install # May take a while
    pipenv shell
-   make sim # this run the command python3 robot.py sim
+   make sim # Alternatively run: python3 robot.py sim
 
-This will make a simulation of the robot
+This will start the robot simulator. See :ref:`Using the Simulator` for more info.
+
 
 Using the Simulator
 -------------------
