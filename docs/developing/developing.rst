@@ -108,4 +108,6 @@ Activating the dashboard doesn't automaticaly start. To start the Web Station wi
 Within this you will see one called local host, you will need to copy that link and put it in a web browser.
 It is recommened that you use this in incognito due to network cache causing issues with not updating.
 In the top left there will display a simulation of the swerve drive wheels.
-To see the simulation of the swerve drive you first must turn the wheels.\
+To see the simulation of the swerve drive you first must turn the wheels.
+In the top right there is an autonomous selector where autonomous may be selected.
+There is also a camera that are on the bot.
