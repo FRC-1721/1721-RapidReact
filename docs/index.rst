@@ -6,4 +6,5 @@
    :caption: Contents:
 
    introduction/introduction
+   usage/operating
    developing/developing
