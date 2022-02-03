@@ -98,11 +98,11 @@ Activating the dashboard doesn't automaticaly start. To start the Web Station wi
 .. code-block::
 
    cd www && python -m pynetworktables2js
-   16:32:28:683 INFO    : dashboard           : Connecting to NetworkTables at 127.0.0.1
+   16:32:28:683 INFO    : dashboard           : Connecting to NetworkTables at Ip address
    16:32:28:683 INFO    : nt                  : NetworkTables initialized in client mode
    16:32:28:683 INFO    : dashboard           : NetworkTables Initialized
    16:32:28:684 INFO    : dashboard           : Listening on http://localhost:8888/
-   16:32:28:978 INFO    : tornado.access      : 101 GET /networktables/ws (127.0.0.1) 0.89ms
+   16:32:28:978 INFO    : tornado.access      : 101 GET /networktables/ws (Ip address) 0.89ms
    16:32:28:978 INFO    : net2js              : NetworkTables websocket opened
 
 Within this you will see one called local host, you will need to copy that link and put it in a web browser.
