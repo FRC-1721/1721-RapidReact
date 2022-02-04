@@ -14,6 +14,7 @@ is running*
 ```shell
 pipenv install
 pipenv shell
+make build
 make run
 ```
 

@@ -5,3 +5,8 @@ simgui*
 __pycache__
 _build
 *.*~
+
+# dashboard build files
+dashboard/www/main.js*
+#dashboard packages
+node_modules

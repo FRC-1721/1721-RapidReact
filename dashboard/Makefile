@@ -12,7 +12,15 @@ help:
 	@echo "Targets:"
 	@echo "   run           Shortcut for python -m pynetworktables2js."
 	@echo "   clean         Shortucut for git clean -fdX"
+	@echo "   build         Shortucut for npx webpack, which builds the javascript dist files"
+	@echo "   build-dev     Shortucut for npx webpack --watch, which builds the javascript dist files and autorecompiles on change"
 	@echo
+
+build:
+	npx webpack
+
+build-dev:
+	npx webpack --watch
 
 run:
 	cd www && python -m pynetworktables2js
