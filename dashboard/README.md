@@ -1,5 +1,9 @@
 How to simulate the webgui.
 
+Note that you need to have both pipenv and node.js installed. To install node.js:
+- Follow the instructions to install NVM [here](https://github.com/creationix/nvm#install-script)
+- Install the correct version of node (probably the current LTS version using `nvm install --lts` but check the `package.json` file in this directory for the version listed under `engines`)
+
 Start by opening a shell in `rio/`
 
 ```shell
