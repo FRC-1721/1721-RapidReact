@@ -45,6 +45,7 @@ provided files and invoke the ``make latexpdf`` command to build the docs.
 
 Find the generated ``.pdf`` under ``docs/_build/latex/``
 it is recommended that you also have a restructured text interperter such as reStructuredText.
+Documentation can be found at (https://sublime-and-sphinx-guide.readthedocs.io/en/latest/setup.html)
 
 Git
 ---
