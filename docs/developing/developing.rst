@@ -44,7 +44,7 @@ provided files and invoke the ``make latexpdf`` command to build the docs.
    make latexpdf # Builds the manual
 
 Find the generated ``.pdf`` under ``docs/_build/latex/``
-
+it is recommended that you also have a restructured text interperter such as reStructuredText.
 
 Robot Simulator
 ===============
@@ -53,7 +53,8 @@ Robot Simulator
 Requirements
 ------------
 
-Under the ``rio`` directory run
+Under the ``rio`` directory setup a pipenv using the provided files
+and invoke the ``make sim`` command to run the simulator.
 
 .. code-block:: shell
    
@@ -80,7 +81,8 @@ Web Station
 Requirements
 ------------
 
-under the ``dashboard`` directory run
+under the ``dashboard`` directory setup a pipenv using the provided files
+and invoke the ``make run`` command to start the Web Station's local host.
 
 .. code-block:: shell
 
@@ -107,7 +109,37 @@ Activating the dashboard doesn't automaticaly start. To start the Web Station wi
 
 Within this you will see one called local host, you will need to copy that link and put it in a web browser.
 It is recommened that you use this in incognito due to network cache causing issues with not updating.
+This will auto conntect to the simulation if one is running, if you start one after remember to refresh the page.
+For this station to active things such as the swerve drive wheels, the simulation must be set to Teleoperated see :ref:`Using the Simulator`.
 In the top left there will display a simulation of the swerve drive wheels.
 To see the simulation of the swerve drive you first must turn the wheels.
 In the top right there is an autonomous selector where autonomous may be selected.
 There is also a camera that are on the bot.
+
+Robot code
+==========
+
+Deploying code
+--------------
+
+First remember to have the :ref:`FRC Driver Station` open first otherwise this won't work properly.
+To deploy robot code first go to the ``rio`` setup a pipenv
+and invoke the ``make deploy``
+
+.. code-block:: shell
+
+   pipenv install # this may take some time
+   pipenv shell
+   make deploy # this run python3 robot.py deploy
+
+First time running it will ask for a team number (1721). After the first time it will know the team number deploy the code.
+
+FRC Driver Station
+------------------
+
+The FRC Driver Station is made for windows, but there is a linux version Q Driver Station.
+This will assume your using the windows version but they both should be the same.
+While most of this will be not in your control during competitions but this will go over it all.
+The base mode is Teleoperated but you can also set it to Autonomous.
+You can enable the robot after a joystick is detected, make sure to plug one in it had robot code and has communications with the robot.
+You may also change which Team Station your at, this changing nothing, unless something like the candle changes color based on team.
