@@ -46,6 +46,35 @@ provided files and invoke the ``make latexpdf`` command to build the docs.
 Find the generated ``.pdf`` under ``docs/_build/latex/``
 it is recommended that you also have a restructured text interperter such as reStructuredText.
 
+Git
+---
+While most git commands are in git documentation (https://git-scm.com/doc), here are a few basic commands you should know. 
+Git clone (https), git add -A, git status, git commit -m "message", git push, git pull, git checkout (hash), git stash.
+Git clone (https) clones a repository for you to use yourself, the https you can find by going to a github repository and clicking
+code the first option should be https. Copy that and then run the command.
+Git add -A adds all changes to the version you would commit. 
+Git status tells you what files are changed and not yet added with git add
+git commit -m "message" puts all changes added into a commit with a message that you made.
+git push makes all commits a new version, git push -m "message" adds a message that you made.
+git pull changes your code to be with the most recent version.
+git checkout lets you change branches.
+git stash lets you stash current changes within the git add -A
+Some other useful stash commands are git stash apply, applying your stashed changes, git stash drop clears the current stash.
+Examples for each in order are
+
+.. code-block:: shell
+
+   git clone https://github.com/FRC-1721/pre2022season.git
+   git add -A
+   git status
+   git commit -m "added git"
+   git push
+   git pull
+   git checkout 73058d0
+   git stash
+   git stash apply
+   git stash drop
+
 Robot Simulator
 ===============
 
@@ -143,3 +172,4 @@ While most of this will be not in your control during competitions but this will
 The base mode is Teleoperated but you can also set it to Autonomous.
 You can enable the robot after a joystick is detected, make sure to plug one in it had robot code and has communications with the robot.
 You may also change which Team Station your at, this changing nothing, unless something like the candle changes color based on team.
+Also see :ref:`Web Station` for a dashboard.
