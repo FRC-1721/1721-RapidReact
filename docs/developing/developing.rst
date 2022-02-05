@@ -48,6 +48,7 @@ it is recommended that you also have a restructured text interperter such as reS
 
 Git
 ---
+
 While most git commands are in git documentation (https://git-scm.com/doc), here are a few basic commands you should know. 
 Git clone (https), git add -A, git status, git commit -m "message", git push, git pull, git checkout (hash), git stash.
 Git clone (https) clones a repository for you to use yourself, the https you can find by going to a github repository and clicking
@@ -96,6 +97,10 @@ This will start the robot simulator. See :ref:`Using the Simulator` for more inf
 Using the Simulator
 -------------------
 
+.. image:: resources/simulation.png
+  :width: 600
+  :alt: Alternative text
+
 To be able to "operate" the robot while any mode will work it is recommended that under robot state, Teleoperated is enabled.
 Under the Joysticks there will be Joysticks 1-5 all grayed out, to select one go to System Joysticks and drag on over.
 When starting up the program there will be no input method selected under System Joysticks there may be Joysticks, Xbox controllers, or Keyboards 0-3.
@@ -126,7 +131,7 @@ Using the Web Station
 
 Activating the dashboard doesn't automaticaly start. To start the Web Station within your terminal it will print
 
-.. code-block::
+.. code-block:: shell
 
    cd www && python -m pynetworktables2js
    16:32:28:683 INFO    : dashboard           : Connecting to NetworkTables at Ip address
@@ -138,6 +143,11 @@ Activating the dashboard doesn't automaticaly start. To start the Web Station wi
 
 Within this you will see one called local host, you will need to copy that link and put it in a web browser.
 It is recommened that you use this in incognito due to network cache causing issues with not updating.
+
+.. image:: resources/WebStation.png
+  :width: 600
+  :alt: Alternative text
+
 This will auto conntect to the simulation if one is running, if you start one after remember to refresh the page.
 For this station to active things such as the swerve drive wheels, the simulation must be set to Teleoperated see :ref:`Using the Simulator`.
 In the top left there will display a simulation of the swerve drive wheels.
