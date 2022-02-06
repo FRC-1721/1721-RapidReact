@@ -50,19 +50,35 @@ Documentation can be found at (https://sublime-and-sphinx-guide.readthedocs.io/e
 Git
 ---
 
-While most git commands are in git documentation (https://git-scm.com/doc), here are a few basic commands you should know. 
-Git clone (https), git add -A, git status, git commit -m "message", git push, git pull, git checkout (hash), git stash.
-Git clone (https) clones a repository for you to use yourself, the https you can find by going to a github repository and clicking
+While most git commands are in git documentation (https://git-scm.com/doc),
+here are a few basic commands you should know.
+
+Git clone (https), git add -A, git status, git commit -m "message",
+git push, git pull, git checkout (hash), git stash.
+
+Git clone (https) clones a repository for you to use yourself, the https
+you can find by going to a github repository and clicking
+
 code the first option should be https. Copy that and then run the command.
-Git add -A adds all changes to the version you would commit. 
+
+Git add -A adds all changes to the version you would commit.
+
 Git status tells you what files are changed and not yet added with git add
+
 git commit -m "message" puts all changes added into a commit with a message that you made.
+
 git push makes all commits a new version, git push -m "message" adds a message that you made.
+
 git pull changes your code to be with the most recent version.
+
 git checkout lets you change branches.
+
 git stash lets you stash current changes within the git add -A
-Some other useful stash commands are git stash apply, applying your stashed changes, git stash drop clears the current stash.
-Examples for each in order are
+
+Some other useful stash commands are git stash apply, applying your
+stashed changes, git stash drop clears the current stash.
+
+Examples for each in order are:
 
 .. code-block:: shell
 
@@ -95,6 +111,7 @@ and invoke the ``make sim`` command to run the simulator.
 
 This will start the robot simulator. See :ref:`Using the Simulator` for more info.
 
+
 Using the Simulator
 -------------------
 
@@ -102,22 +119,35 @@ Using the Simulator
   :width: 600
   :alt: Alternative text
 
-To be able to "operate" the robot while any mode will work it is recommended that under robot state, Teleoperated is enabled.
-Under the Joysticks there will be Joysticks 1-5 all grayed out, to select one go to System Joysticks and drag on over.
-When starting up the program there will be no input method selected under System Joysticks there may be Joysticks, Xbox controllers, or Keyboards 0-3.
+To be able to "operate" the robot while any mode will work it 
+is recommended that under robot state, Teleoperated is enabled.
+
+Under the Joysticks there will be Joysticks 1-5 all grayed out,
+to select one go to System Joysticks and drag on over.
+
+When starting up the program there will be no input method
+selected under System Joysticks there may be Joysticks,
+Xbox controllers, or Keyboards 0-3.
+
 Joysticks and Xbox controllers work as if piloting an actual robot.
+
 Keyboard 0 is the WASD keys to move and E and R to rotate the controller.
-Keyboards 1-3 are differing controller schemes that are useless for the purposes of testing due to lack of movement.
-Keyboard inputs require you to have the active window be the simulator while, Joysticks and xbox controllers don't.
 
-Web Station
-===========
+Keyboards 1-3 are differing controller schemes that are useless for 
+the purposes of testing due to lack of movement.
 
-Requirements
-------------
+Keyboard inputs require you to have the active window be the simulator 
+while, Joysticks and xbox controllers don't.
+
+
+Dashboard
+=========
+
+Dashboard Requirements
+----------------------
 
 under the ``dashboard`` directory setup a pipenv using the provided files
-and invoke the ``make run`` command to start the Web Station's local host.
+and invoke the ``make run`` command to start the Dashboard's local host.
 
 .. code-block:: shell
 
@@ -125,12 +155,12 @@ and invoke the ``make run`` command to start the Web Station's local host.
    pipenv shell
    make run # makes a local hosted website dashboard
 
-This will start the website dashboard. See :ref:`Using the Web Station` for more info.
+This will start the website dashboard. See :ref:`Using the Dashboard` for more info.
 
-Using the Web Station
----------------------
+Using the Dashboard
+-------------------
 
-Activating the dashboard doesn't automaticaly start. To start the Web Station within your terminal it will print
+Activating the dashboard doesn't automatically start. To start the Dashboard within your terminal it will print
 
 .. code-block:: shell
 
@@ -149,12 +179,20 @@ It is recommened that you use this in incognito due to network cache causing iss
   :width: 600
   :alt: Alternative text
 
-This will auto conntect to the simulation if one is running, if you start one after remember to refresh the page.
-For this station to active things such as the swerve drive wheels, the simulation must be set to Teleoperated see :ref:`Using the Simulator`.
+This will auto conntect to the simulation if one is running, if
+you start one after remember to refresh the page.
+
+For this station to active things such as the swerve drive wheels,
+the simulation must be set to Teleoperated see :ref:`Using the Simulator`.
+
 In the top left there will display a simulation of the swerve drive wheels.
+
 To see the simulation of the swerve drive you first must turn the wheels.
+
 In the top right there is an autonomous selector where autonomous may be selected.
+
 There is also a camera that are on the bot.
+
 
 Robot code
 ==========
@@ -163,6 +201,7 @@ Deploying code
 --------------
 
 First remember to have the :ref:`FRC Driver Station` open first otherwise this won't work properly.
+
 To deploy robot code first go to the ``rio`` setup a pipenv
 and invoke the ``make deploy``
 
@@ -177,10 +216,20 @@ First time running it will ask for a team number (1721). After the first time it
 FRC Driver Station
 ------------------
 
-The FRC Driver Station is made for windows, but there is a linux version Q Driver Station.
+The FRC Driver Station is made for windows, but there is a linux version 
+Q Driver Station.
+
 This will assume your using the windows version but they both should be the same.
-While most of this will be not in your control during competitions but this will go over it all.
+
+While most of this will be not in your control during competitions but this 
+will go over it all.
+
 The base mode is Teleoperated but you can also set it to Autonomous.
-You can enable the robot after a joystick is detected, make sure to plug one in it had robot code and has communications with the robot.
-You may also change which Team Station your at, this changing nothing, unless something like the candle changes color based on team.
-Also see :ref:`Web Station` for a dashboard.
+
+You can enable the robot after a joystick is detected, make sure to plug one 
+in it had robot code and has communications with the robot.
+
+You may also change which Team Station your at, this changing nothing, unless
+something like the candle changes color based on team.
+
+Also see :ref:`Dashboard` for a dashboard.
