@@ -6,5 +6,6 @@
    :caption: Contents:
 
    introduction/introduction
+   wiring/network
    usage/operating
    developing/developing
