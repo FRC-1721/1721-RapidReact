@@ -4,6 +4,14 @@ Introduction
 .. warning::
    Make sure this manual's revision hash and the robot hash match!
 
-This is the code manual for team 1721 of First Robotics.
-This Manual will have everything need for outreach and competition events.
-It is recommended to at least read the :ref:`Robot code` and :ref:`Web Station` sections.
+Welcome and thanks for reading!
+
+This manual details everything about **Unnamed Toaster** from the
+prototyping and testing to the grity technical details that make our
+bot tick!
+
+If you're reading to get an idea of how our bot works, check out technical
+chapters like :ref:`Robot Network Architecture` or :ref:`Developing`.
+
+If you're reading to get an idea of how our team operates on a technical level
+check out chapters like :ref:`Critical Design Review` and :ref:`Prototyping`.
