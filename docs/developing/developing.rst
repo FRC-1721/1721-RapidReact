@@ -1,8 +1,12 @@
 Developing
 ##########
 
+.. include:: ../resources/resources.rst
+
 Configuration Files
 ===================
+
+|pitcrew| |software|
 
 .. warning::
    Make sure this manual's revision hash and the robot hash match!
@@ -20,6 +24,8 @@ if pose x/y cords match actual.
 
 Getting started modifying these docs
 ====================================
+
+|software|
 
 Requirements for building the docs
 ----------------------------------
@@ -93,9 +99,11 @@ Examples for each in order are:
    git stash apply
    git stash drop
 
+
 Robot Simulator
 ===============
 
+|software|
 
 Requirements
 ------------
@@ -142,6 +150,8 @@ while, Joysticks and xbox controllers don't.
 
 Dashboard
 =========
+
+|software| |driveteam|
 
 Dashboard Requirements
 ----------------------
@@ -196,6 +206,8 @@ There is also a camera that are on the bot.
 
 Robot code
 ==========
+
+|software|
 
 Deploying code
 --------------
