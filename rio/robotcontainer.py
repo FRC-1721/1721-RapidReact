@@ -8,6 +8,7 @@ from commands.flybywire import FlyByWire
 
 # Subsystens
 from subsystems.drivetrain import Drivetrain
+from subsystems.lighting import Lighting
 
 # Constants
 from constants.constants import getConstants
@@ -33,6 +34,7 @@ class RobotContainer:
 
         # The robot's subsystems
         self.drivetrain = Drivetrain()
+        self.lighting = Lighting()
 
         # Configure button bindings
         self.configureButtonBindings()

@@ -1,4 +1,4 @@
-name: black-action
+name: Black Formatter
 on: pull_request
 
 jobs:
@@ -20,3 +20,10 @@ jobs:
       - name: Fail if actions taken
         if: steps.action_black.outputs.is_formatted == 'true'
         run: exit 1
+      - name: Discord notification
+        if: ${{ failure() }}
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'Black formatter reported errors in {{ EVENT_PAYLOAD.pull_request.html_url }} !'

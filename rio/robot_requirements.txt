@@ -1,0 +1,13 @@
+# These are not for you!
+# Use pipenv install
+# for developing. These
+# requirements are only for
+# the ROBOT
+
+PyYAML
+robotpy
+robotpy-commands-v2
+robotpy-ctre
+robotpy-hal
+robotpy-rev
+wpilib
