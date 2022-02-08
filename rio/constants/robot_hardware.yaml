@@ -40,3 +40,10 @@ drivetrain:
       kp: 1                     # Updated never by Joe
       ki: 1                     # Updated never by Joe
       kd: 1                     # Updated never by Joe
+
+misc:
+  # Misc hardware settings
+  CANdle:
+    can_id: 0           # Updated 2/3/22 by Joe
+    strip_type: RGB     # Updated 2/3/22 by Joe
+    brightness: 0.5     # Updated 2/4/22 by Joe

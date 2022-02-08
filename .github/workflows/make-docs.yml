@@ -1,5 +1,4 @@
-name: Make Docs
-
+name: Robot Manual
 on: push
 
 jobs:
@@ -31,4 +30,12 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: Tidal_Force_Robot_Manual
-        path: docs/_build/latex/Unnamed_Toaster_Robot_Manual.pdf
+        path: docs/_build/latex/FRC1721_Robot_Manual.pdf
+    
+    - name: Discord notification
+      if: ${{ failure() }}
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'Simulator failed in {{ EVENT_PAYLOAD.pull_request.html_url }} !'
