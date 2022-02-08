@@ -59,30 +59,30 @@ Git
 While most git commands are in git documentation (https://git-scm.com/doc),
 here are a few basic commands you should know.
 
-Git clone (https), git add -A, git status, git commit -m "message",
-git push, git pull, git checkout (hash), git stash.
+#. Git clone (https)
+#. git add -A
+#. git status
+#. git commit -m "message"
+#. git push
+#. git pull
+#. git checkout (hash)
+#. git stash.
 
-Git clone (https) clones a repository for you to use yourself, the https
-you can find by going to a github repository and clicking
+.. this is need to separate the lines ..
 
-code the first option should be https. Copy that and then run the command.
-
-Git add -A adds all changes to the version you would commit.
-
-Git status tells you what files are changed and not yet added with git add
-
-git commit -m "message" puts all changes added into a commit with a message that you made.
-
-git push makes all commits a new version, git push -m "message" adds a message that you made.
-
-git pull changes your code to be with the most recent version.
-
-git checkout lets you change branches.
-
-git stash lets you stash current changes within the git add -A
-
-Some other useful stash commands are git stash apply, applying your
-stashed changes, git stash drop clears the current stash.
+#. Git clone (https) clones a repository for you to use yourself, the https you can find by going to a github repository and clicking
+#. code the first option should be https. Copy that and then run the command.
+#. Git add -A adds all changes to the version you would commit.
+#. Git status tells you what files are changed and not yet added with git add
+#. git commit -m "message" puts all changes added into a commit with a message that you made.
+#. git push makes all commits a new version, git push -m "message" adds a message that you made.
+#. git pull changes your code to be with the most recent version.
+#. git checkout lets you change branches.
+#. git stash lets you stash current changes within the git add -A
+#. git stash commands
+   * git stash, stashes you current changes
+   * git stash apply, apply your stashed changed
+   * git stash drop, clears the current stashed changes
 
 Examples for each in order are:
 
