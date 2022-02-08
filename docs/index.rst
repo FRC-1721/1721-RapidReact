@@ -6,4 +6,9 @@
    :caption: Contents:
 
    introduction/introduction
+   subsystems/shooter
+   subsystems/swervedrive
+   subsystems/navigation
+   wiring/network
+   usage/operating
    developing/developing
