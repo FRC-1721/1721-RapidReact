@@ -5,33 +5,41 @@ jobs:
   make_instructions:
     runs-on: ubuntu-latest
     name: Build Docs
+
     steps:
+      # Setup python
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.10'
         architecture: x64
     
+      # Checkout
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
 
+      # Update and install all requirements
     - run: sudo apt update
-
     - run: sudo apt install texlive-latex-recommended texlive-latex-extra texlive-pictures pandoc rename latexmk
 
+      # Install python requirements
     - name: Install requirements
       run: pip install -r docs/requirements.txt
 
+      # Make latexpdf
     - run: cd docs && make latexpdf
 
+      # Copy the generated pdfs to the manual name
     - run: mv docs/_build/latex/*.pdf docs/_build/latex/Unnamed_Toaster_Robot_Manual.pdf
 
+      # Upload the manual as an artifact
     - uses: actions/upload-artifact@v2
       with:
         name: Tidal_Force_Robot_Manual
         path: docs/_build/latex/FRC1721_Robot_Manual.pdf
     
+      # If this failed, alert everyone!
     - name: Discord notification
       if: ${{ failure() }}
       env:
