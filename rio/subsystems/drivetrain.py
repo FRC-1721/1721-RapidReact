@@ -5,7 +5,7 @@ import logging
 
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
-from rev import CANSparkMax, CANSparkMaxLowLevel, SparkMaxPIDController
+from rev import CANSparkMax, CANSparkMaxLowLevel
 from networktables import NetworkTables
 from constants.constants import getConstants
 
@@ -137,16 +137,27 @@ class SwerveModule:
             constants["pose_x"], constants["pose_y"]
         )
 
-        # Construct the PID object from the steer motor object
+        # Reset both motor controllers to factory defaults
+        self.drive_motor.restoreFactoryDefaults()
+        self.steer_motor.restoreFactoryDefaults()
+
+        # Construct the PID controllers
         self.steer_PID = self.steer_motor.getPIDController()
 
-        # PID Values
+        # Assign PID Values
         self.steer_PID.setD(0.01)
         self.steer_PID.setI(0.0001)
         self.steer_PID.setP(0.1)
         self.steer_PID.setFF(1)
         self.steer_PID.setIMaxAccum(1)
         self.steer_PID.setOutputRange(-0.5, 0.5)
+
+        # Save all settings to flash
+        self.drive_motor.burnFlash()
+        self.steer_motor.burnFlash()
+
+        # Other sensors
+        self.steer_motor_encoder = self.steer_motor.getEncoder()
 
         # Current state variables
         self.is_zeroed = False
@@ -164,16 +175,11 @@ class SwerveModule:
         of a module.
         """
         # self.steer_motor.set(0.5)
-        if newState.angle.radians() < 0:
-            self.steer_PID.setReference(
-                newState.angle.radians() + 6, CANSparkMaxLowLevel.ControlType.kPosition
-            )
-        elif newState.angle.radians() >= 0:
-            self.steer_PID.setReference(
-                newState.angle.radians(), CANSparkMaxLowLevel.ControlType.kPosition
-            )
+        self.steer_PID.setReference(
+            newState.angle.radians(), CANSparkMaxLowLevel.ControlType.kPosition
+        )
 
-        print(newState.angle.radians(), self.steer_motor.getEncoder().getPosition())
+        print(newState.angle.radians(), self.steer_motor_encoder.getPosition())
 
         # TODO: Use optimization at some point
         self.state = newState

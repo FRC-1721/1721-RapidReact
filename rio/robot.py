@@ -61,6 +61,9 @@ class MyRobot(commands2.TimedCommandRobot):
     def _simulationPeriodic(self) -> None:
         """Called during simulation after the rest of the code has excecuted."""
 
+    def testPeriodic(self) -> None:
+        """Called every time during test mode"""
+
 
 if __name__ == "__main__":
     wpilib.run(MyRobot)
