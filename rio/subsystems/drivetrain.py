@@ -2,6 +2,7 @@
 # 2022
 
 import logging
+import math
 
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
@@ -87,8 +88,8 @@ class Drivetrain(SubsystemBase):
             arcade_chassis_speeds
         )
 
-        # TODO: These modules should NOT be swapped! This is still a bug, see #9
-        # https://github.com/FRC-1721/pre2022season/issues/9
+        # TODO: These modules should NOT be swapped! This is still a bug, see #1
+        # https://github.com/FRC-1721/1721-RapidReact/issues/1
         self.fp_module.setModuleState(_fs)
         self.fs_module.setModuleState(_fp)
         self.ap_module.setModuleState(_as)
@@ -117,10 +118,8 @@ class Drivetrain(SubsystemBase):
 
 class SwerveModule:
     """
-    Normally we inherit 'components'
-    from vendors. Ex: CANSparkMax, Pneumatics,
-    etc. But i think this may make it easier
-    to organize.
+    A custom class representing a single
+    real swerve module.
     """
 
     def __init__(self, constants):
@@ -153,8 +152,8 @@ class SwerveModule:
         # Assign PID Values
         self.steer_PID.setD(0.01)
         self.steer_PID.setI(0.0001)
-        self.steer_PID.setP(0.1)
-        self.steer_PID.setFF(1)
+        self.steer_PID.setP(0.6)
+        # self.steer_PID.setFF(1)
         self.steer_PID.setIMaxAccum(1)
         self.steer_PID.setOutputRange(-0.5, 0.5)
 
@@ -186,28 +185,32 @@ class SwerveModule:
         # TODO: Use optimization at some point
         self.state = newState
 
+        currentRef = (self.state.angle.radians() / (2 * math.pi)) * 30
+
         # self.steer_motor.set(0.5)
         self.steer_PID.setReference(
-            self.state.angle.radians(), CANSparkMaxLowLevel.ControlType.kPosition
+            currentRef, CANSparkMaxLowLevel.ControlType.kPosition
         )
 
-        currentRef = self.state.angle.radians()
         currentHeading = self.steer_motor_encoder.getPosition()
 
         if self.constants["steer_id"] == 1:
-            print(f"Module {self.constants['steer_id']} has ref {currentRef} actual heading {currentHeading}.")
+            print(
+                f"Module {self.constants['steer_id']} has ref {currentRef} actual heading {currentHeading}."
+            )
 
     def getModuleState(self):
         """
         Returns the current module state,
         useful for odom.
         """
+
         return self.state
 
     def getHeading(self):
         """
         Returns the current heading of
-        this module
+        this module.
         """
 
         return self.state.angle.radians()
