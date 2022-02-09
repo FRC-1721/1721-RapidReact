@@ -21,20 +21,33 @@ class Drivetrain(SubsystemBase):
         super().__init__()
 
         # Get hardware constants
-        self.constants = getConstants("robot_hardware")
+        constants = getConstants("robot_hardware")
+        self.drive_const = constants["drivetrain"]
 
         # Configure networktables
         self.configureNetworkTables()
 
         # Create swerve drive modules
         # Fore port module
-        self.fp_module = SwerveModule(self.constants["drivetrain"]["fp_module"])
+        self.fp_module = SwerveModule(
+            self.drive_const["fp_module"],
+            self.drive_const["pid"],
+        )
         # Fore starboard module
-        self.fs_module = SwerveModule(self.constants["drivetrain"]["fs_module"])
+        self.fs_module = SwerveModule(
+            self.drive_const["fs_module"],
+            self.drive_const["pid"],
+        )
         # Aft port module
-        self.ap_module = SwerveModule(self.constants["drivetrain"]["ap_module"])
+        self.ap_module = SwerveModule(
+            self.drive_const["ap_module"],
+            self.drive_const["pid"],
+        )
         # Aft starboard module
-        self.as_module = SwerveModule(self.constants["drivetrain"]["as_module"])
+        self.as_module = SwerveModule(
+            self.drive_const["as_module"],
+            self.drive_const["pid"],
+        )
 
         # Create kinematics model
         # TODO: Flesh this out later...
@@ -122,9 +135,10 @@ class SwerveModule:
     real swerve module.
     """
 
-    def __init__(self, constants):
+    def __init__(self, constants, pid):
         # Import constants
         self.constants = constants
+        self.pid = pid
 
         # Setup one drive and one steer motor each.
         self.drive_motor = CANSparkMax(
@@ -150,12 +164,15 @@ class SwerveModule:
         self.steer_PID = self.steer_motor.getPIDController()
 
         # Assign PID Values
-        self.steer_PID.setD(0.01)
-        self.steer_PID.setI(0.0001)
-        self.steer_PID.setP(0.6)
+        self.steer_PID.setD(self.pid["steer"]["kd"])
+        self.steer_PID.setI(self.pid["steer"]["ki"])
+        self.steer_PID.setP(self.pid["steer"]["kp"])
         # self.steer_PID.setFF(1)
-        self.steer_PID.setIMaxAccum(1)
-        self.steer_PID.setOutputRange(-0.5, 0.5)
+        self.steer_PID.setIMaxAccum(self.pid["steer"]["maxi"])
+        self.steer_PID.setOutputRange(
+            self.pid["steer"]["min_power"],
+            self.pid["steer"]["max_power"],
+        )
 
         # Assign ratios
         # self.steer_motor_encoder.setPositionConversionFactor()
