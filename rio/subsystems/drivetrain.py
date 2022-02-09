@@ -195,9 +195,7 @@ class SwerveModule:
         currentHeading = self.steer_motor_encoder.getPosition()
 
         if self.constants["steer_id"] == 1:
-            print(
-                f"Module {self.constants['steer_id']} has ref {currentRef} actual heading {currentHeading}."
-            )
+            print(f"Module {self.constants['steer_id']} has ref {currentRef} actual heading {currentHeading}.")
 
     def getModuleState(self):
         """
