@@ -4,4 +4,4 @@
 
 # 1721 Rapid React
 
-This is not the pre-season code.
+See the releases https://github.com/FRC-1721/1721-RapidReact/releases for the latest code and **Instruction Manual**.
