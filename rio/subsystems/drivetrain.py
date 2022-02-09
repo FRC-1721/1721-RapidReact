@@ -124,17 +124,23 @@ class SwerveModule:
     """
 
     def __init__(self, constants):
+        # Import constants
+        self.constants = constants
+
         # Setup one drive and one steer motor each.
         self.drive_motor = CANSparkMax(
-            constants["drive_id"], CANSparkMaxLowLevel.MotorType.kBrushless
+            self.constants["drive_id"],
+            CANSparkMaxLowLevel.MotorType.kBrushless,
         )
         self.steer_motor = CANSparkMax(
-            constants["steer_id"], CANSparkMaxLowLevel.MotorType.kBrushless
+            self.constants["steer_id"],
+            CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
         # Construct the pose of this module
         self.module_pose = geometry.Translation2d(
-            constants["pose_x"], constants["pose_y"]
+            self.constants["pose_x"],
+            self.constants["pose_y"],
         )
 
         # Reset both motor controllers to factory defaults
@@ -151,6 +157,9 @@ class SwerveModule:
         self.steer_PID.setFF(1)
         self.steer_PID.setIMaxAccum(1)
         self.steer_PID.setOutputRange(-0.5, 0.5)
+
+        # Assign ratios
+        # self.steer_motor_encoder.setPositionConversionFactor()
 
         # Save all settings to flash
         self.drive_motor.burnFlash()
@@ -174,15 +183,19 @@ class SwerveModule:
         the "state" (steering and speed)
         of a module.
         """
-        # self.steer_motor.set(0.5)
-        self.steer_PID.setReference(
-            newState.angle.radians(), CANSparkMaxLowLevel.ControlType.kPosition
-        )
-
-        print(newState.angle.radians(), self.steer_motor_encoder.getPosition())
-
         # TODO: Use optimization at some point
         self.state = newState
+
+        # self.steer_motor.set(0.5)
+        self.steer_PID.setReference(
+            self.state.angle.radians(), CANSparkMaxLowLevel.ControlType.kPosition
+        )
+
+        currentRef = self.state.angle.radians()
+        currentHeading = self.steer_motor_encoder.getPosition()
+
+        if self.constants["steer_id"] == 1:
+            print(f"Module {self.constants['steer_id']} has ref {currentRef} actual heading {currentHeading}.")
 
     def getModuleState(self):
         """
