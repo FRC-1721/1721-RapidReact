@@ -59,31 +59,17 @@ Git
 While most git commands are in git documentation (https://git-scm.com/doc),
 here are a few basic commands you should know.
 
-#. Git clone (https)
-#. git add -A
-#. git status
-#. git commit -m "message"
-#. git push
-#. git pull
-#. git checkout (hash)
-#. git stash
-#. git branch ""new branch name"
-
-Explanations:
-
-#. git clone (https) clones a repository for you to use yourself, the https you can find by going to a github repository and clicking code the first option should be https. Copy that and then run the command.
-#. git add -A adds all changes to the version you would commit.
-#. git status tells you what files are changed and not yet added with git add
-#. git commit -m "message" puts all changes added into a commit with a message that you made.
-#. git push makes all commits a new version, git push -m "message" adds a message that you made.
-#. git pull changes your code to be with the most recent version.
-#. git checkout lets you change branches.
-#. git stash commands
-
-   * git stash, stashes you current changes
-   * git stash apply, apply your stashed changed
-   * git stash drop, clears the current stashed changes
-#. git branch "new branch name", is how to add a new branch using git
+#. ``git clone <url>`` (clones a repository for you to use yourself, the https you can find by going to a github repository and clicking code the first option should be https. Copy that and then run the command.)
+#. ``git add -A`` (adds all changes to the version you would commit.)
+#. ``git status`` (tells you what files are changed and not yet added with git add)
+#. ``git commit -m "message"`` (puts all changes added into a commit with a message that you made.)
+#. ``git push`` (Push to upstream)
+#. ``git pull`` (Pull from upstream)
+#. ``git checkout <hash/branch name/tag>`` (Checkout a specific revision or branch)
+#. ``git stash`` (Stow your current changes for later)
+   * ``git stash apply`` (apply your stashed changed)
+   * ``git stash drop`` (clears the current stashed changes)
+#. ``git branch "new branch name"`` (Checkout to a new branch)
 
 Examples for each in order are:
 
