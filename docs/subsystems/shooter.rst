@@ -12,10 +12,13 @@ Introduction
 While yoke shooters have been done in the past,
 ours is a bit different.
 
-Ours is different because instead of the typical one ball
-system is instead can hold and fire two balls
+Our yoke is different from previous yoke due to the,
+two ball compacity.
 
-This works because we have a holding area for the yoke.
+This is possible because we have a yoke and a
+hand to hold another ball.
+
+For and indepth explanation see :ref:`Prototyping`.
 
 Prototyping
 ===========

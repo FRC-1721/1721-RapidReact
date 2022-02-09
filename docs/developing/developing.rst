@@ -66,23 +66,24 @@ here are a few basic commands you should know.
 #. git push
 #. git pull
 #. git checkout (hash)
-#. git stash.
+#. git stash
+#. git branch ""new branch name"
 
-.. this is need to separate the lines ..
+Explanations:
 
-#. Git clone (https) clones a repository for you to use yourself, the https you can find by going to a github repository and clicking
-#. code the first option should be https. Copy that and then run the command.
-#. Git add -A adds all changes to the version you would commit.
-#. Git status tells you what files are changed and not yet added with git add
+#. git clone (https) clones a repository for you to use yourself, the https you can find by going to a github repository and clicking code the first option should be https. Copy that and then run the command.
+#. git add -A adds all changes to the version you would commit.
+#. git status tells you what files are changed and not yet added with git add
 #. git commit -m "message" puts all changes added into a commit with a message that you made.
 #. git push makes all commits a new version, git push -m "message" adds a message that you made.
 #. git pull changes your code to be with the most recent version.
 #. git checkout lets you change branches.
-#. git stash lets you stash current changes within the git add -A
 #. git stash commands
+
    * git stash, stashes you current changes
    * git stash apply, apply your stashed changed
    * git stash drop, clears the current stashed changes
+#. git branch "new branch name", is how to add a new branch using git
 
 Examples for each in order are:
 
@@ -91,13 +92,14 @@ Examples for each in order are:
    git clone https://github.com/FRC-1721/pre2022season.git
    git add -A
    git status
-   git commit -m "added git"
+   git commit -m "added git subsection"
    git push
    git pull
-   git checkout 73058d0
+   git checkout 13020ab
    git stash
    git stash apply
    git stash drop
+   git branch "DevDocs"
 
 
 Robot Simulator
@@ -185,6 +187,7 @@ Activating the dashboard doesn't automatically start. To start the Dashboard wit
 Within this you will see one called local host, you will need to copy that link and put it in a web browser.
 It is recommened that you use this in incognito due to network cache causing issues with not updating.
 
+.. remember to update png as software is updated ..
 .. image:: resources/WebStation.png
   :width: 600
   :alt: Alternative text
