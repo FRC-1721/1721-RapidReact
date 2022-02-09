@@ -6,6 +6,6 @@ mode_a:
   # Mode A is a driver-centric control mode
   driver:
     driverstation_port: 0  # What usb port the driver controller is on
-    forward_axis: 0        # "Forward" Axis
-    steer_axis: 2          # "Steering" Axis
-    strafe_axis: 1         # "Strafe" Axis
+    forward_axis: 1        # "Forward" Axis
+    steer_axis: 5          # "Steering" Axis
+    strafe_axis: 0         # "Strafe" Axis

@@ -96,7 +96,6 @@ class Drivetrain(SubsystemBase):
         it can always be replaced!
         """
 
-
         arcade_chassis_speeds = kinematics.ChassisSpeeds(fwd, srf, rot)
         _fp, _fs, _ap, _as = self.swerveKinematics.toSwerveModuleStates(
             arcade_chassis_speeds
@@ -201,28 +200,27 @@ class SwerveModule:
         of a module.
         """
         # TODO: Use optimization at some point
-        
 
-        #print(newState)
-        self.newState = kinematics.SwerveModuleState.optimize(newState,
-            self.getModuleState().angle
+        optimizedState = kinematics.SwerveModuleState.optimize(
+            newState, self.getModuleState().angle
         )
-        #print(self.newState)
 
-        currentRef = (self.newState.angle.radians() / (2 * math.pi)) * 30
+        currentRef = (optimizedState.angle.radians() / (2 * math.pi)) * 60
 
         # self.steer_motor.set(0.5)
         self.steer_PID.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
         )
 
-        currentHeading = self.steer_motor_encoder.getPosition()
+        # currentHeading = self.steer_motor_encoder.getPosition()
 
         if self.constants["steer_id"] == 1:
-            logging.info(
-                f"Module {self.constants['steer_id']} has ref {currentRef} actual heading {currentHeading}."
-            )
-        
+            logging.info(f"old state:{self.getModuleState().angle.radians()}")
+            logging.info(f"new state:{optimizedState.angle.radians()}")
+            # logging.info(
+            #    f"Module {self.constants['steer_id']} has ref {currentRef} actual heading {currentHeading}."
+            # )
+
         self.state = newState
 
     def getModuleState(self):
@@ -237,9 +235,8 @@ class SwerveModule:
         encoder = self.steer_motor_encoder.getPosition()
 
         radians = encoder / (math.pi * 2)
-        overall_angle = radians / 30
+        overall_angle = radians / 60
         rot = geometry.Rotation2d(overall_angle)
-
 
         current_state = kinematics.SwerveModuleState(0, rot)
 

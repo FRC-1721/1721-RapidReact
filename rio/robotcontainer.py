@@ -46,9 +46,15 @@ class RobotContainer:
         self.drivetrain.setDefaultCommand(
             FlyByWire(
                 self.drivetrain,
-                lambda: -self.driverController.getRawAxis(1),
-                lambda: self.driverController.getRawAxis(2),
-                lambda: self.driverController.getRawAxis(0),
+                lambda: -self.driverController.getRawAxis(
+                    self.constants["mode_a"]["driver"]["forward_axis"]
+                ),
+                lambda: self.driverController.getRawAxis(
+                    self.constants["mode_a"]["driver"]["steer_axis"]
+                ),
+                lambda: self.driverController.getRawAxis(
+                    self.constants["mode_a"]["driver"]["strafe_axis"]
+                ),
             )
         )
 
