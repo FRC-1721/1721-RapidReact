@@ -4,30 +4,38 @@
 # of arms, and similar should go here.
 
 drivetrain:
+
+  ratios: # Prototype turn ratio, 1 to ##
+    steer_ratio: 30 # Updated 2/8/22 by Khan
+
   # All pose coordinates are in meters.
   fp_module: # Fore Port
     pose_x: 0.5   # Updated 2/1/22 by Joe
     pose_y: 0.5   # Updated 2/1/22 by Joe
     drive_id: 5   # Updated never by Joe
     steer_id: 6   # Updated never by Joe
+    steer_ratio: 30 # Updated 2/8/22 by Khan
 
   fs_module: # Fore Starboard
     pose_x: 0.5   # Updated 2/1/22 by Joe
     pose_y: -0.5  # Updated 2/1/22 by Joe
-    drive_id: 1   # Updated never by Joe
-    steer_id: 2   # Updated never by Joe
+    drive_id: 2   # Updated never by Joe
+    steer_id: 1   # Updated never by Joe
+    steer_ratio: 30 # Updated 2/8/22 by Khan
 
   ap_module: # Aft Port
     pose_x: -0.5  # Updated 2/1/22 by Joe
     pose_y: 0.5   # Updated 2/1/22 by Joe
     drive_id: 7   # Updated never by Joe
-    steer_id: 8   # Updated never by Joe
+    steer_id: 8   # Updated never by Joe   
+    steer_ratio: 30 # Updated 2/8/22 by Khan
 
   as_module: # Aft Starboard
     pose_x: -0.5  # Updated 2/1/22 by Joe
     pose_y: -0.5  # Updated 2/1/22 by Joe
     drive_id: 3   # Updated never by Joe
     steer_id: 4   # Updated never by Joe
+    steer_ratio: 30 # Updated 2/8/22 by Khan
   
   pid: # PID and position constants
     drive:

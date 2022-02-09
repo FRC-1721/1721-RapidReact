@@ -5,7 +5,7 @@ import logging
 
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
-from rev import CANSparkMax, CANSparkMaxLowLevel
+from rev import CANSparkMax, CANSparkMaxLowLevel, SparkMaxPIDController
 from networktables import NetworkTables
 from constants.constants import getConstants
 
@@ -137,6 +137,17 @@ class SwerveModule:
             constants["pose_x"], constants["pose_y"]
         )
 
+        # Construct the PID object from the steer motor object
+        self.steer_PID = self.steer_motor.getPIDController()
+
+        # PID Values
+        self.steer_PID.setD(0.01)
+        self.steer_PID.setI(0.0001)
+        self.steer_PID.setP(0.1)
+        self.steer_PID.setFF(1)
+        self.steer_PID.setIMaxAccum(1)
+        self.steer_PID.setOutputRange(-.5, .5)
+
         # Current state variables
         self.is_zeroed = False
         self.state = kinematics.SwerveModuleState(
@@ -152,6 +163,15 @@ class SwerveModule:
         the "state" (steering and speed)
         of a module.
         """
+        #self.steer_motor.set(0.5)
+        if newState.angle.radians() < 0:
+            self.steer_PID.setReference(newState.angle.radians()+6, CANSparkMaxLowLevel.ControlType.kPosition)
+        elif newState.angle.radians() >=0:
+            self.steer_PID.setReference(newState.angle.radians(), CANSparkMaxLowLevel.ControlType.kPosition)
+
+
+
+        print(newState.angle.radians(), self.steer_motor.getEncoder().getPosition())
 
         # TODO: Use optimization at some point
         self.state = newState
