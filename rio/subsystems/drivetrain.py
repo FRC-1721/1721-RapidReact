@@ -146,7 +146,7 @@ class SwerveModule:
         self.steer_PID.setP(0.1)
         self.steer_PID.setFF(1)
         self.steer_PID.setIMaxAccum(1)
-        self.steer_PID.setOutputRange(-.5, .5)
+        self.steer_PID.setOutputRange(-0.5, 0.5)
 
         # Current state variables
         self.is_zeroed = False
@@ -163,13 +163,15 @@ class SwerveModule:
         the "state" (steering and speed)
         of a module.
         """
-        #self.steer_motor.set(0.5)
+        # self.steer_motor.set(0.5)
         if newState.angle.radians() < 0:
-            self.steer_PID.setReference(newState.angle.radians()+6, CANSparkMaxLowLevel.ControlType.kPosition)
-        elif newState.angle.radians() >=0:
-            self.steer_PID.setReference(newState.angle.radians(), CANSparkMaxLowLevel.ControlType.kPosition)
-
-
+            self.steer_PID.setReference(
+                newState.angle.radians() + 6, CANSparkMaxLowLevel.ControlType.kPosition
+            )
+        elif newState.angle.radians() >= 0:
+            self.steer_PID.setReference(
+                newState.angle.radians(), CANSparkMaxLowLevel.ControlType.kPosition
+            )
 
         print(newState.angle.radians(), self.steer_motor.getEncoder().getPosition())
 
