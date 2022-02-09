@@ -42,9 +42,9 @@ drivetrain:
       # Ratio of motor rotations to meters traveled
       ratio: 1                  # Updated never by Joe
     steer:
-      kp: 1                   # Updated 2/8/22 by Joe
+      kp: 0.25                   # Updated 2/8/22 by Joe
       ki: 0.0001                # Updated 2/8/22 by Joe
-      kd: 0.01                  # Updated 2/8/22 by Joe
+      kd: 0.8                  # Updated 2/8/22 by Joe
       # Max amount of I that can accumulate
       maxi: 1                   # Updated 2/8/22 by Joe
       # Max and min values the PID can assign to the motor

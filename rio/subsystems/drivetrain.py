@@ -235,7 +235,7 @@ class SwerveModule:
         encoder = self.steer_motor_encoder.getPosition()
 
         radians = encoder / (math.pi * 2)
-        overall_angle = radians / 60
+        overall_angle = radians
         rot = geometry.Rotation2d(overall_angle)
 
         current_state = kinematics.SwerveModuleState(0, rot)
