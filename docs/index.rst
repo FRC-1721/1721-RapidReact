@@ -7,6 +7,7 @@
 
    introduction/introduction
    subsystems/shooter
+   subsystems/climber
    subsystems/swervedrive
    subsystems/navigation
    wiring/network

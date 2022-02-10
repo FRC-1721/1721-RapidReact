@@ -37,6 +37,8 @@ You'll need to install several packages to build these docs
    # Ubuntu/Debian users
    sudo apt install texlive-latex-recommended texlive-latex-extra texlive-pictures pandoc rename latexmk
 
+if any issue occur during the installation proccess first try googling the issue, then asking Khan or Joe.
+
 Making the docs
 ---------------
 
@@ -71,7 +73,7 @@ here are a few basic commands you should know.
 
 Explanations:
 
-#. git clone (https) clones a repository for you to use yourself, the https you can find by going to a github repository and clicking code the first option should be https. Copy that and then run the command.
+#. git clone (https) clones a repository on your laptop, the https you can find by going to a github repository and clicking code the first option should be https. Copy that and then run the command.
 #. git add -A adds all changes to the version you would commit.
 #. git status tells you what files are changed and not yet added with git add
 #. git commit -m "message" puts all changes added into a commit with a message that you made.
@@ -231,20 +233,30 @@ First time running it will ask for a team number (1721). After the first time it
 FRC Driver Station
 ------------------
 
+.. figure:: resources/Qdriverstation.png
+  :width: 600
+  :alt: Alternative text
+
+  Q driver Station
+
 The FRC Driver Station is made for windows, but there is a linux version 
 Q Driver Station.
 
-This will assume your using the windows version but they both should be the same.
+This will assume your using the windows version but they both mostly the same.
 
-While most of this will be not in your control during competitions but this 
+Most of this won't be in your control during competitions, but this 
 will go over it all.
 
-The base mode is Teleoperated but you can also set it to Autonomous.
+The base mode is Teleoperated but you can also set it to Autonomous, practice, and test.
+
+Autonomous will simulate code that would be run in Autonomous.
+Practice is a mostly useless mode that you need to have written code for, for testing use Teleoperated or :ref:`Robot Simulator`.
+Test tests the code, a better way to test is :ref:`Robot Simulator`.
 
 You can enable the robot after a joystick is detected, make sure to plug one 
-in it had robot code and has communications with the robot.
+in, it has robot code, and has communications with the robot.
 
 You may also change which Team Station your at, this changing nothing, unless
-something like the candle changes color based on team.
+using something like the CANdle that changes color based on team.
 
 Also see :ref:`Dashboard` for a dashboard.
