@@ -80,14 +80,14 @@ class Drivetrain(SubsystemBase):
         )
 
         # Networktables/dashboard
-        self.fs_actual.setDouble(self.fs_module.getHeading())
-        # self.fs_target.setDouble(self.fs_module.getHeading())
-        self.as_actual.setDouble(self.as_module.getHeading())
-        # self.as_target.setDouble(self.as_module.getHeading())
-        self.fp_actual.setDouble(self.fp_module.getHeading())
-        # self.fp_target.setDouble(self.fp_module.getHeading())
-        self.ap_actual.setDouble(self.ap_module.getHeading())
-        # self.ap_target.setDouble(self.ap_module.getHeading())
+        self.fs_actual.setDouble(self.fs_module.getModuleState().angle.radians())
+        self.fs_target.setDouble(self.fs_module.getTargetHeading())
+        self.as_actual.setDouble(self.as_module.getModuleState().angle.radians())
+        self.as_target.setDouble(self.as_module.getTargetHeading())
+        self.fp_actual.setDouble(self.fp_module.getModuleState().angle.radians())
+        self.fp_target.setDouble(self.fp_module.getTargetHeading())
+        self.ap_actual.setDouble(self.ap_module.getModuleState().angle.radians())
+        self.ap_target.setDouble(self.ap_module.getTargetHeading())
 
     def arcadeDrive(self, fwd, srf, rot):
         """
@@ -119,12 +119,13 @@ class Drivetrain(SubsystemBase):
 
         # Setup all of the networktable entries
         self.fs_actual = self.swerve_table.getEntry("fs_actual")
-        # self.fs_target = self.swerve_table.getEntry("fs_target")
+        self.fs_target = self.swerve_table.getEntry("fs_target")
         self.as_actual = self.swerve_table.getEntry("as_actual")
-        # self.as_target = self.swerve_table.getEntry("as_target")
+        self.as_target = self.swerve_table.getEntry("as_target")
         self.fp_actual = self.swerve_table.getEntry("fp_actual")
-        # self.fp_target = self.swerve_table.getEntry("fp_target")
+        self.fp_target = self.swerve_table.getEntry("fp_target")
         self.ap_actual = self.swerve_table.getEntry("ap_actual")
+        self.ap_target = self.swerve_table.getEntry("ap_target")
 
     # self.ap_target = self.swerve_table.getEntry("ap_target")
 
@@ -186,7 +187,7 @@ class SwerveModule:
 
         # Current state variables
         self.is_zeroed = False
-        self.state = kinematics.SwerveModuleState(
+        self.targetState = kinematics.SwerveModuleState(
             0, geometry.Rotation2d(0)
         )  # This module state is default 0 speed, and 0 rotation
 
@@ -205,23 +206,17 @@ class SwerveModule:
             newState, self.getModuleState().angle
         )
 
-        currentRef = (optimizedState.angle.radians() / (2 * math.pi)) * 60
+        if optimizedState.angle.radians() != newState.angle.radians():
+            print("Optimized!")
+
+        currentRef = (optimizedState.angle.radians() / (2 * math.pi)) * 30
 
         # self.steer_motor.set(0.5)
         self.steer_PID.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
         )
 
-        # currentHeading = self.steer_motor_encoder.getPosition()
-
-        if self.constants["steer_id"] == 1:
-            logging.info(f"old state:{self.getModuleState().angle.radians()}")
-            logging.info(f"new state:{optimizedState.angle.radians()}")
-            # logging.info(
-            #    f"Module {self.constants['steer_id']} has ref {currentRef} actual heading {currentHeading}."
-            # )
-
-        self.state = newState
+        self.targetState = newState
 
     def getModuleState(self):
         """
@@ -234,18 +229,18 @@ class SwerveModule:
 
         encoder = self.steer_motor_encoder.getPosition()
 
-        radians = encoder / (math.pi * 2)
-        overall_angle = radians
-        rot = geometry.Rotation2d(overall_angle)
+        radians = (encoder / 30) * (math.pi * 2)
+
+        rot = geometry.Rotation2d(radians)
 
         current_state = kinematics.SwerveModuleState(0, rot)
 
         return current_state
 
-    def getHeading(self):
+    def getTargetHeading(self):
         """
         Returns the current heading of
         this module.
         """
 
-        return self.state.angle.radians()
+        return self.targetState.angle.radians()
