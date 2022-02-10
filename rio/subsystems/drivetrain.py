@@ -209,7 +209,9 @@ class SwerveModule:
         if optimizedState.angle.radians() != newState.angle.radians():
             print("Optimized!")
 
-        currentRef = (optimizedState.angle.radians() / (2 * math.pi)) * 30
+        currentRef = (optimizedState.angle.radians() / (2 * math.pi)) * self.pid[
+            "steer"
+        ]["ratio"]
 
         # self.steer_motor.set(0.5)
         self.steer_PID.setReference(
@@ -229,7 +231,7 @@ class SwerveModule:
 
         encoder = self.steer_motor_encoder.getPosition()
 
-        radians = (encoder / 30) * (math.pi * 2)
+        radians = (encoder / self.pid["steer"]["ratio"]) * (math.pi * 2)
 
         rot = geometry.Rotation2d(radians)
 
