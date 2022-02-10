@@ -179,6 +179,7 @@ class SwerveModule:
         # self.steer_motor_encoder.setPositionConversionFactor()
 
         # Save all settings to flash
+        # TODO: Is it a good idea to do this **every** reboot?
         self.drive_motor.burnFlash()
         self.steer_motor.burnFlash()
 
@@ -225,18 +226,20 @@ class SwerveModule:
         Returns the current module state,
         useful for odom.
         """
-
-        """ get rev rotations"""
-        """ convert to radians"""
-
+        # Current position of the motor encoder (in rotations)
         encoder = self.steer_motor_encoder.getPosition()
 
+        # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
         radians = (encoder / self.pid["steer"]["ratio"]) * (math.pi * 2)
 
+        # Construct a rotation2d object
         rot = geometry.Rotation2d(radians)
 
+        # The current state is constructed
+        # TODO: Measure speed
         current_state = kinematics.SwerveModuleState(0, rot)
 
+        # Return
         return current_state
 
     def getTargetHeading(self):
