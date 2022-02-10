@@ -96,6 +96,7 @@ class Drivetrain(SubsystemBase):
         it can always be replaced!
         """
 
+        # Get wheel speeds and angles from Kinematics, given desired chassis speed and angle
         arcade_chassis_speeds = kinematics.ChassisSpeeds(fwd, srf, rot)
         _fp, _fs, _ap, _as = self.swerveKinematics.toSwerveModuleStates(
             arcade_chassis_speeds
@@ -203,17 +204,22 @@ class SwerveModule:
         """
         # TODO: Use optimization at some point
 
+        # Get the optimized (reduces unneeded movement) swerve movement from the current
+        # position of the swerve module and the desired position of the swerve module
         optimizedState = kinematics.SwerveModuleState.optimize(
             newState, self.getModuleState().angle
         )
 
+        # debug
         if optimizedState.angle.radians() != newState.angle.radians():
             print("Optimized!")
 
+        # Get the desired position (in neo rotations) given by the optimized module state
         currentRef = (optimizedState.angle.radians() / (2 * math.pi)) * self.pid[
             "steer"
         ]["ratio"]
 
+        # Set the position of the neo to the desired position
         # self.steer_motor.set(0.5)
         self.steer_PID.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
