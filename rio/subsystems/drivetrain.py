@@ -52,10 +52,10 @@ class Drivetrain(SubsystemBase):
         # Create kinematics model
         # TODO: Flesh this out later...
         self.swerveKinematics = kinematics.SwerveDrive4Kinematics(
-            self.fp_module.getTranslation(),
-            self.fs_module.getTranslation(),
-            self.ap_module.getTranslation(),
-            self.as_module.getTranslation(),
+            self.fp_module.getPose(),
+            self.fs_module.getPose(),
+            self.ap_module.getPose(),
+            self.as_module.getPose(),
         )
 
         # Swerve drive odometry (needs gyro.. at some point)
@@ -73,20 +73,20 @@ class Drivetrain(SubsystemBase):
         # Update robot odometry using ModuleStates
         self.odometry.update(
             geometry.Rotation2d(0),  # This needs to be replaced with a gyro.
-            self.fp_module.getModuleState(),
-            self.fs_module.getModuleState(),
-            self.ap_module.getModuleState(),
-            self.as_module.getModuleState(),
+            self.fp_module.getState(),
+            self.fs_module.getState(),
+            self.ap_module.getState(),
+            self.as_module.getState(),
         )
 
         # Networktables/dashboard
-        self.fs_actual.setDouble(self.fs_module.getModuleState().angle.radians())
+        self.fs_actual.setDouble(self.fs_module.getState().angle.radians())
         self.fs_target.setDouble(self.fs_module.getTargetHeading())
-        self.as_actual.setDouble(self.as_module.getModuleState().angle.radians())
+        self.as_actual.setDouble(self.as_module.getState().angle.radians())
         self.as_target.setDouble(self.as_module.getTargetHeading())
-        self.fp_actual.setDouble(self.fp_module.getModuleState().angle.radians())
+        self.fp_actual.setDouble(self.fp_module.getState().angle.radians())
         self.fp_target.setDouble(self.fp_module.getTargetHeading())
-        self.ap_actual.setDouble(self.ap_module.getModuleState().angle.radians())
+        self.ap_actual.setDouble(self.ap_module.getState().angle.radians())
         self.ap_target.setDouble(self.ap_module.getTargetHeading())
 
     def arcadeDrive(self, fwd, srf, rot):
@@ -104,10 +104,10 @@ class Drivetrain(SubsystemBase):
 
         # TODO: These modules should NOT be swapped! This is still a bug, see #1
         # https://github.com/FRC-1721/1721-RapidReact/issues/1
-        self.fp_module.setModuleState(_fs)
-        self.fs_module.setModuleState(_fp)
-        self.ap_module.setModuleState(_as)
-        self.as_module.setModuleState(_ap)
+        self.fp_module.setDesiredState(_fs)
+        self.fs_module.setDesiredState(_fp)
+        self.ap_module.setDesiredState(_as)
+        self.as_module.setDesiredState(_ap)
 
     def configureNetworkTables(self):
         # Get an instance of networktables
@@ -166,6 +166,7 @@ class SwerveModule:
         self.steer_PID = self.steer_motor.getPIDController()
 
         # Assign PID Values
+        # TODO: Drive motor too
         self.steer_PID.setD(self.pid["steer"]["kd"])
         self.steer_PID.setI(self.pid["steer"]["ki"])
         self.steer_PID.setP(self.pid["steer"]["kp"])
@@ -177,6 +178,7 @@ class SwerveModule:
         )
 
         # Assign ratios
+        # TODO: Drive motor too
         # self.steer_motor_encoder.setPositionConversionFactor()
 
         # Save all settings to flash
@@ -188,31 +190,22 @@ class SwerveModule:
         self.steer_motor_encoder = self.steer_motor.getEncoder()
 
         # Current state variables
-        self.is_zeroed = False
-        self.targetState = kinematics.SwerveModuleState(
-            0, geometry.Rotation2d(0)
-        )  # This module state is default 0 speed, and 0 rotation
+        self.isZeroed = False
+        # By default: 0 speed, and 0 rotation
+        self.desiredState = kinematics.SwerveModuleState(0, geometry.Rotation2d(0))
 
-    def getTranslation(self):
+    def getPose(self):
         return self.module_pose
 
-    def setModuleState(self, newState):
+    def setDesiredState(self, newState):
         """
-        Important method that updates
-        the "state" (steering and speed)
-        of a module.
+        Updates the current desired state,
+        where we want this module to now point.
         """
-        # TODO: Use optimization at some point
-
-        # Get the optimized (reduces unneeded movement) swerve movement from the current
-        # position of the swerve module and the desired position of the swerve module
+        # Optimize the input command to reduce unneeded motion.
         optimizedState = kinematics.SwerveModuleState.optimize(
-            newState, self.getModuleState().angle
+            newState, self.getState().angle
         )
-
-        # debug
-        if optimizedState.angle.radians() != newState.angle.radians():
-            print("Optimized!")
 
         # Get the desired position (in neo rotations) given by the optimized module state
         currentRef = (optimizedState.angle.radians() / (2 * math.pi)) * self.pid[
@@ -225,12 +218,11 @@ class SwerveModule:
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
         )
 
-        self.targetState = newState
+        self.desiredState = newState
 
-    def getModuleState(self):
+    def getState(self):
         """
-        Returns the current module state,
-        useful for odom.
+        Returns the current state of this module.
         """
         # Current position of the motor encoder (in rotations)
         encoder = self.steer_motor_encoder.getPosition()
@@ -254,4 +246,4 @@ class SwerveModule:
         this module.
         """
 
-        return self.targetState.angle.radians()
+        return self.desiredState.angle.radians()
