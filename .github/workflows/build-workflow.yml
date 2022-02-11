@@ -1,4 +1,4 @@
-name: Test and Clean
+name: Style and Build
 on: pull_request
 
 jobs:
