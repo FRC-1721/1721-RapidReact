@@ -4,4 +4,6 @@
 
 # 1721 RapidReact
 
-This is the 1721 RapidReact code.
+Our robot [documentation](https://1721-rapidreact.readthedocs.io/en/latest/).
+
+Our [website](https://www.frc1721.org/).
