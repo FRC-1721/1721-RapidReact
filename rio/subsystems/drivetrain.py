@@ -1,9 +1,14 @@
 # FRC 1721
 # 2022
 
+from asyncio import constants
 import logging
 import math
+import time
 
+import wpilib
+
+from wpilib import RobotBase
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
 from rev import CANSparkMax, CANSparkMaxLowLevel
@@ -73,28 +78,35 @@ class Drivetrain(SubsystemBase):
         # Update robot odometry using ModuleStates
         self.odometry.update(
             geometry.Rotation2d(0),  # This needs to be replaced with a gyro.
-            self.fp_module.getModuleState(),
-            self.fs_module.getModuleState(),
-            self.ap_module.getModuleState(),
-            self.as_module.getModuleState(),
+            self.fp_module.getActualHeading(),
+            self.fs_module.getActualHeading(),
+            self.ap_module.getActualHeading(),
+            self.as_module.getActualHeading(),
         )
 
         # Networktables/dashboard
-        self.fs_actual.setDouble(self.fs_module.getModuleState().angle.radians())
+        self.fs_actual.setDouble(self.fs_module.getActualHeading().angle.radians())
         self.fs_target.setDouble(self.fs_module.getTargetHeading())
-        self.as_actual.setDouble(self.as_module.getModuleState().angle.radians())
+        self.as_actual.setDouble(self.as_module.getActualHeading().angle.radians())
         self.as_target.setDouble(self.as_module.getTargetHeading())
-        self.fp_actual.setDouble(self.fp_module.getModuleState().angle.radians())
+        self.fp_actual.setDouble(self.fp_module.getActualHeading().angle.radians())
         self.fp_target.setDouble(self.fp_module.getTargetHeading())
-        self.ap_actual.setDouble(self.ap_module.getModuleState().angle.radians())
+        self.ap_actual.setDouble(self.ap_module.getActualHeading().angle.radians())
         self.ap_target.setDouble(self.ap_module.getTargetHeading())
 
-    def arcadeDrive(self, fwd, srf, rot):
+    def arcadeDrive(
+        self, fwd, srf, rot
+    ):  # TODO: Change scaler joystick values to set units
         """
         Generates a chassis speeds using the joystick commands
         im not sure if this is the best way to do it, but
         it can always be replaced!
         """
+
+        # Set joystick values for later use
+        self.fwd = fwd
+        self.srf = srf
+        self.rot = rot
 
         # Get wheel speeds and angles from Kinematics, given desired chassis speed and angle
         arcade_chassis_speeds = kinematics.ChassisSpeeds(fwd, srf, rot)
@@ -193,6 +205,9 @@ class SwerveModule:
             0, geometry.Rotation2d(0)
         )  # This module state is default 0 speed, and 0 rotation
 
+        # Simulated wheel position, only used if running the robot sim
+        self.sim_encoder_pos = 0
+
     def getTranslation(self):
         return self.module_pose
 
@@ -207,12 +222,13 @@ class SwerveModule:
         # Get the optimized (reduces unneeded movement) swerve movement from the current
         # position of the swerve module and the desired position of the swerve module
         optimizedState = kinematics.SwerveModuleState.optimize(
-            newState, self.getModuleState().angle
+            newState, self.getActualHeading().angle
         )
 
         # debug
         if optimizedState.angle.radians() != newState.angle.radians():
-            print("Optimized!")
+            # print("Optimized!")
+            pass
 
         # Get the desired position (in neo rotations) given by the optimized module state
         currentRef = (optimizedState.angle.radians() / (2 * math.pi)) * self.pid[
@@ -227,26 +243,91 @@ class SwerveModule:
 
         self.targetState = newState
 
-    def getModuleState(self):
+    def updateSimEncoder(self):
+        """
+        Updates the position of the simulated encoder,
+        this function should be run periodicly for
+        the simulated encoder to function
+        """
+
+        target = self.getTargetHeading()
+        sim_fp_encoder = 0
+
+        id = self.steer_motor.getDeviceId()  # Id's: 1,4,6,8
+
+        # TODO: This is a bad way of doing this
+
+        # if the current steer motor is the fp motor
+        if id == self.constants["steer_id"]:
+
+            # start a clock
+            self.this_time_check = time.perf_counter()
+
+            # try statement because one of the variables used wont exist until after this code
+            try:
+
+                # If it has been at least 0.1 secconds since the last update, update the sim encoder
+                if self.this_time_check - self.last_time_check >= 0.1:
+
+                    # if the sim encodder is less than the target, increase it at 0.3 of max speed (no PID at all)
+                    if sim_fp_encoder < target:
+                        sim_fp_encoder = sim_fp_encoder + (8.3 * 0.05)
+
+                    # if the sim encodder is greater than the target, increase it at 0.3 of max speed (no PID at all)
+                    else:
+                        sim_fp_encoder = sim_fp_encoder - (8.3 * 0.05)
+                    self.last_time_check = self.this_time_check
+            except:
+                self.last_time_check = self.this_time_check
+            # Stopwatch check
+
+        # Get the speed that the neo would be set to ouside of the sim
+        print(sim_fp_encoder)
+        return sim_fp_encoder
+
+    def getActualHeading(self):
         """
         Returns the current module state,
         useful for odom.
+
+        If USING_SIM is true then encoders
+        are faked with simulated values
+        (Not very accurate)
         """
-        # Current position of the motor encoder (in rotations)
-        encoder = self.steer_motor_encoder.getPosition()
 
-        # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
-        radians = (encoder / self.pid["steer"]["ratio"]) * (math.pi * 2)
+        if not RobotBase.isReal():
 
-        # Construct a rotation2d object
-        rot = geometry.Rotation2d(radians)
+            # Collect the simulated encoder position
+            sim_encoder_pos = self.updateSimEncoder()
 
-        # The current state is constructed
-        # TODO: Measure speed
-        current_state = kinematics.SwerveModuleState(0, rot)
+            # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
+            radians = (sim_encoder_pos / self.pid["steer"]["ratio"]) * (math.pi * 2)
 
-        # Return
-        return current_state
+            # Construct a rotation2d object
+            rot = geometry.Rotation2d(radians)
+
+            # The current state is constructed
+            # TODO: Measure speed
+            current_state = kinematics.SwerveModuleState(0, rot)
+
+            return current_state
+
+        else:
+            # Current position of the motor encoder (in rotations)
+            encoder = self.steer_motor_encoder.getPosition()
+
+            # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
+            radians = (encoder / self.pid["steer"]["ratio"]) * (math.pi * 2)
+
+            # Construct a rotation2d object
+            rot = geometry.Rotation2d(radians)
+
+            # The current state is constructed
+            # TODO: Measure speed
+            current_state = kinematics.SwerveModuleState(0, rot)
+
+            # Return
+            return current_state
 
     def getTargetHeading(self):
         """

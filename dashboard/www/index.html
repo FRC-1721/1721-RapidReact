@@ -147,7 +147,7 @@
                 swerveDriveImage.src = 'resources/swerveModule.png'
 
                 //console.log(key, value)
-                if (key == "/SmartDashboard/SwerveDrive/fp_actual") {
+                if (key == "/SmartDashboard/SwerveDrive/fp_target") {
                     lf.clearRect(0, 0, 150, 150);
                     //save the untranslated/unrotated context
                     lf.save();
@@ -166,7 +166,7 @@
                 }
 
 
-                if (key == "/SmartDashboard/SwerveDrive/fs_actual") {
+                if (key == "/SmartDashboard/SwerveDrive/fs_target") {
                     lf.clearRect(150, 0, canvas.width, 150);
                     lf.save();
                     lf.beginPath();
@@ -177,7 +177,7 @@
                     lf.restore();
                 }
 
-                if (key == "/SmartDashboard/SwerveDrive/ap_actual") {
+                if (key == "/SmartDashboard/SwerveDrive/ap_target") {
                     lf.clearRect(0, 150, 150, canvas.height);
                     lf.save();
                     lf.beginPath();
@@ -188,7 +188,7 @@
                     lf.restore();
                 }
 
-                if (key == "/SmartDashboard/SwerveDrive/as_actual") {
+                if (key == "/SmartDashboard/SwerveDrive/as_target") {
                     lf.clearRect(150, 150, canvas.width, canvas.height);
                     lf.save();
                     lf.beginPath();
