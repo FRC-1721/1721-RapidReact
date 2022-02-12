@@ -25,12 +25,17 @@ class RobotContainer:
 
     def __init__(self) -> None:
         # Setup constants
-        self.constants = getConstants("robot_controls")
+        controlConsts = getConstants("robot_controls")
+
+        # Configure simulated controls, replacing real controls for alternative
+        # mappings when in sim mode.
+        self.controlMode = controlConsts["mode_a"]["driver"]
+        if not wpilib.RobotBase.isReal():
+            # Override the controlMode with simulated controls if we're in the matrix
+            self.controlMode = controlConsts["mode_a"]["sim"]
 
         # The driver's controller
-        self.driverController = wpilib.Joystick(
-            self.constants["mode_a"]["driver"]["driverstation_port"]
-        )
+        self.driverController = wpilib.Joystick(self.controlMode["controller_port"])
 
         # The robot's subsystems
         self.drivetrain = Drivetrain()
@@ -47,13 +52,13 @@ class RobotContainer:
             FlyByWire(
                 self.drivetrain,
                 lambda: -self.driverController.getRawAxis(
-                    self.constants["mode_a"]["driver"]["forward_axis"]
+                    self.controlMode["forward_axis"]
                 ),
                 lambda: self.driverController.getRawAxis(
-                    self.constants["mode_a"]["driver"]["steer_axis"]
+                    self.controlMode["steer_axis"]
                 ),
                 lambda: self.driverController.getRawAxis(
-                    self.constants["mode_a"]["driver"]["strafe_axis"]
+                    self.controlMode["strafe_axis"]
                 ),
             )
         )

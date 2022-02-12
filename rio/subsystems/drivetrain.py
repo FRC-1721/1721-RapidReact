@@ -1,6 +1,8 @@
 # FRC 1721
 # 2022
 
+from asyncio.format_helpers import extract_stack
+from base64 import encode
 import logging
 import math
 
@@ -177,10 +179,6 @@ class SwerveModule:
             self.pid["steer"]["max_power"],
         )
 
-        # Assign ratios
-        # TODO: Drive motor too
-        # self.steer_motor_encoder.setPositionConversionFactor()
-
         # Save all settings to flash
         # TODO: Is it a good idea to do this **every** reboot?
         self.drive_motor.burnFlash()
@@ -188,11 +186,15 @@ class SwerveModule:
 
         # Other sensors
         self.steer_motor_encoder = self.steer_motor.getEncoder()
+        self.steer_motor_encoder.setPositionConversionFactor(self.pid["steer"]["ratio"])
+        self.steer_motor_encoder.setPosition(0)
 
         # Current state variables
         self.isZeroed = False
         # By default: 0 speed, and 0 rotation
         self.desiredState = kinematics.SwerveModuleState(0, geometry.Rotation2d(0))
+
+        self.angleSum = 0  # Delete me
 
     def getPose(self):
         return self.module_pose
@@ -207,10 +209,17 @@ class SwerveModule:
             newState, self.getState().angle
         )
 
-        # Get the desired position (in neo rotations) given by the optimized module state
-        currentRef = (optimizedState.angle.radians() / (2 * math.pi)) * self.pid[
-            "steer"
-        ]["ratio"]
+        deltaAngle = (
+            newState.angle - self.desiredState.angle
+        )  # The change from the old angle, to the new angle
+
+        self.angleSum = (
+            self.angleSum + deltaAngle.radians()
+        )  # The sum of all the previous movements up to this point
+
+        currentRef = self.angleSum / (
+            2 * math.pi
+        )  # The sum (radians) converted to rotations (of the steer wheel)
 
         # Set the position of the neo to the desired position
         # self.steer_motor.set(0.5)
@@ -227,8 +236,11 @@ class SwerveModule:
         # Current position of the motor encoder (in rotations)
         encoder = self.steer_motor_encoder.getPosition()
 
+        if self.constants["steer_id"] == 1:
+            print(encoder)
+
         # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
-        radians = (encoder / self.pid["steer"]["ratio"]) * (math.pi * 2)
+        radians = encoder * (math.pi * 2)
 
         # Construct a rotation2d object
         rot = geometry.Rotation2d(radians)
