@@ -1,5 +1,5 @@
 # This file defines the input
-# and control scheme of the robot, 
+# and control scheme of the robot,
 # Arranged into operating "modes"
 
 mode_a:
