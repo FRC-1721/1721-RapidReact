@@ -208,6 +208,9 @@ class SwerveModule:
         # Simulated wheel position, only used if running the robot sim
         self.sim_encoder_pos = 0
         self.sim_fp_encoder = 0
+        self.sim_ap_encoder = 0
+        self.sim_fs_encoder = 0
+        self.sim_as_encoder = 0
 
     def getTranslation(self):
         return self.module_pose
@@ -251,35 +254,114 @@ class SwerveModule:
         the simulated encoder to function
         """
 
+        # Get the current target of the swerve module
         target = self.getTargetHeading()
-        # print(target)
 
-        id = self.steer_motor.getDeviceId()  # Id's: 1,4,6,8
+        # Get the current swerve module ID
+        id = self.steer_motor.getDeviceId()
 
-        # TODO: This is a bad way of doing this
+        # Id's: 1,4,6,8
+        # 1 = fs
+        # 4 = as
+        # 6 = fp
+        # 8 = ap
 
-        # if the current steer motor is the fp motor
+        # TODO: This function currently just moves the encoder towards the
+        # target instead of doing any math to simulate a motor, this
+        # can most likely be done more accuratly, and there is currently
+        # no room for PID of any form
+
+        # If the current swerve module is the fp module then move the fp encoder
         if id == 6:
+
+            # If the encoder is close enough to the target, dont move the encoder
+            # NOTE: Doesent work very well
             if (
                 self.sim_fp_encoder > target - 0.1
                 and self.sim_fp_encoder < target + 0.1
             ):
                 pass
-            elif self.sim_fp_encoder < target:
 
+            # If the encoder is below the target, move the encoder value up
+            elif self.sim_fp_encoder < target:
                 self.sim_fp_encoder = self.sim_fp_encoder + (8.3 * 0.05)
 
+            # If the encoder is above the target, move the encoder value down
             else:
-
                 self.sim_fp_encoder = self.sim_fp_encoder - (8.3 * 0.05)
 
-            # Stopwatch check
+            # Return the encoder value
+            return self.sim_fp_encoder
+
+        # If the current swerve module is the fs module then move the fs encoder
+        elif id == 1:
+
+            # If the encoder is close enough to the target, dont move the encoder
+            # NOTE: Doesent work very well
+            if (
+                self.sim_fs_encoder > target - 0.1
+                and self.sim_fs_encoder < target + 0.1
+            ):
+                pass
+
+            # If the encoder is below the target, move the encoder value up
+            elif self.sim_fs_encoder < target:
+                self.sim_fs_encoder = self.sim_fs_encoder + (8.3 * 0.05)
+
+            # If the encoder is above the target, move the encoder value down
+            else:
+                self.sim_fs_encoder = self.sim_fs_encoder - (8.3 * 0.05)
+
+            # Return the encoder value
+            return self.sim_fs_encoder
+
+        # If the current swerve module is the as module then move the as encoder
+        elif id == 4:
+
+            # If the encoder is close enough to the target, dont move the encoder
+            # NOTE: Doesent work very well
+            if (
+                self.sim_as_encoder > target - 0.1
+                and self.sim_as_encoder < target + 0.1
+            ):
+                pass
+
+            # If the encoder is below the target, move the encoder value up
+            elif self.sim_as_encoder < target:
+                self.sim_as_encoder = self.sim_as_encoder + (8.3 * 0.05)
+
+            # If the encoder is above the target, move the encoder value down
+            else:
+                self.sim_as_encoder = self.sim_as_encoder - (8.3 * 0.05)
+
+            # Return the encoder value
+            return self.sim_as_encoder
+
+        # If the current swerve module is the ap module then move the ap encoder
+        elif id == 8:
+
+            # If the encoder is close enough to the target, dont move the encoder
+            # NOTE: Doesent work very well
+            if (
+                self.sim_ap_encoder > target - 0.1
+                and self.sim_ap_encoder < target + 0.1
+            ):
+                pass
+
+            # If the encoder is below the target, move the encoder value up
+            elif self.sim_ap_encoder < target:
+                self.sim_ap_encoder = self.sim_ap_encoder + (8.3 * 0.05)
+
+            # If the encoder is above the target, move the encoder value down
+            else:
+                self.sim_ap_encoder = self.sim_ap_encoder - (8.3 * 0.05)
+
+            # Return the encoder value
+            return self.sim_ap_encoder
+
+        # If the id of the swerve module is unknown return 0
         else:
             return 0
-
-        # Get the speed that the neo would be set to ouside of the sim
-        # print(sim_fp_encoder)
-        return self.sim_fp_encoder
 
     def getActualHeading(self):
         """
