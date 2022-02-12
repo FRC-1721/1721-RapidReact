@@ -202,23 +202,34 @@ class SwerveModule:
         Updates the current desired state,
         where we want this module to now point.
         """
-        # Optimize the input command to reduce unneeded motion.
-        optimizedState = kinematics.SwerveModuleState.optimize(
-            newState, self.getState().angle
-        )
 
-        # Get the desired position (in neo rotations) given by the optimized module state
-        currentRef = (optimizedState.angle.radians() / (2 * math.pi)) * self.pid[
-            "steer"
-        ]["ratio"]
+        def __init__(self):
 
-        # Set the position of the neo to the desired position
-        # self.steer_motor.set(0.5)
-        self.steer_PID.setReference(
-            currentRef, CANSparkMaxLowLevel.ControlType.kPosition
-        )
+            # Optimize the input command to reduce unneeded motion.
+            optimizedState = kinematics.SwerveModuleState.optimize(
+                newState, self.getState().angle
+            )
 
-        self.desiredState = newState
+            # Get the desired position (in neo rotations) given by the optimized module state
+            currentRef = (optimizedState.angle.radians() / (2 * math.pi)) * self.pid[
+                "steer"
+            ]["ratio"]
+
+            # this checks if the desiredState is more than 349 and currentRef is 59 then adds 2 pi to currentRef
+            if (
+                self.desiredState >= currentRef
+                and self.desiredState.angle.radians() >= 6.3490912
+                and currentRef.angle.radians() <= 1.0297
+            ):
+                currentRef = currentRef.angle.radians() + math.pi + math.pi
+
+            # Set the position of the neo to the desired position
+            # self.steer_motor.set(0.5)
+            self.steer_PID.setReference(
+                currentRef, CANSparkMaxLowLevel.ControlType.kPosition
+            )
+
+            self.desiredState = newState
 
     def getState(self):
         """
