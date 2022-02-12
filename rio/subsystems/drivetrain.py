@@ -57,7 +57,7 @@ class Drivetrain(SubsystemBase):
 
         # Setup Pigeon
         # Docs: https://docs.ctre-phoenix.com/en/stable/ch11_BringUpPigeon.html?highlight=pigeon#pigeon-api
-        imuConst = self.constants["drivetrain"]["imu"]  # IMU constants
+        imuConst = constants["drivetrain"]["imu"]  # IMU constants
         self.imu = Pigeon2(imuConst["can_id"])  # Create object
 
         # Setup Pigeon pose
@@ -92,20 +92,20 @@ class Drivetrain(SubsystemBase):
         # Update robot odometry using ModuleStates
         self.odometry.update(
             self.getGyroHeading(),
-            self.fp_module.getModuleState(),
-            self.fs_module.getModuleState(),
-            self.ap_module.getModuleState(),
-            self.as_module.getModuleState(),
+            self.fp_module.getCurrentState(),
+            self.fs_module.getCurrentState(),
+            self.ap_module.getCurrentState(),
+            self.as_module.getCurrentState(),
         )
 
         # Networktables/dashboard
-        self.fs_actual.setDouble(self.fs_module.getState().angle.radians())
+        self.fs_actual.setDouble(self.fs_module.getCurrentState().angle.radians())
         self.fs_target.setDouble(self.fs_module.getTargetHeading())
-        self.as_actual.setDouble(self.as_module.getState().angle.radians())
+        self.as_actual.setDouble(self.as_module.getCurrentState().angle.radians())
         self.as_target.setDouble(self.as_module.getTargetHeading())
-        self.fp_actual.setDouble(self.fp_module.getState().angle.radians())
+        self.fp_actual.setDouble(self.fp_module.getCurrentState().angle.radians())
         self.fp_target.setDouble(self.fp_module.getTargetHeading())
-        self.ap_actual.setDouble(self.ap_module.getState().angle.radians())
+        self.ap_actual.setDouble(self.ap_module.getCurrentState().angle.radians())
         self.ap_target.setDouble(self.ap_module.getTargetHeading())
 
     def arcadeDrive(self, fwd, srf, rot):
@@ -228,7 +228,7 @@ class SwerveModule:
         """
         # Optimize the input command to reduce unneeded motion.
         optimizedState = kinematics.SwerveModuleState.optimize(
-            newState, self.getState().angle
+            newState, self.getCurrentState().angle
         )
 
         deltaAngle = (
@@ -251,7 +251,7 @@ class SwerveModule:
 
         self.desiredState = newState
 
-    def getState(self):
+    def getCurrentState(self):
         """
         Returns the current state of this module.
         """
