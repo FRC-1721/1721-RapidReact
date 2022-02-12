@@ -29,6 +29,12 @@ drivetrain:
     drive_id: 3   # Updated never by Joe
     steer_id: 4   # Updated never by Joe
   
+  imu: # IMU Sensor
+    can_id: 0
+    yaw: 0
+    pitch: 0
+    roll: 0
+  
   pid: # PID and position constants
     drive:
       kp: 1                     # Updated never by Joe

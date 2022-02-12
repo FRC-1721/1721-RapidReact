@@ -8,8 +8,12 @@ import math
 
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
+
 from rev import CANSparkMax, CANSparkMaxLowLevel
+from ctre import Pigeon2, Pigeon2Configuration
+
 from networktables import NetworkTables
+
 from constants.constants import getConstants
 
 
@@ -51,6 +55,18 @@ class Drivetrain(SubsystemBase):
             self.drive_const["pid"],
         )
 
+        # Setup Pigeon
+        # Docs: https://docs.ctre-phoenix.com/en/stable/ch11_BringUpPigeon.html?highlight=pigeon#pigeon-api
+        imuConst = self.constants["drivetrain"]["imu"]  # IMU constants
+        self.imu = Pigeon2(imuConst["can_id"])  # Create object
+
+        # Setup Pigeon pose
+        self.imu.configMountPose(
+            imuConst["yaw"],
+            imuConst["pitch"],
+            imuConst["roll"],
+        )
+
         # Create kinematics model
         # TODO: Flesh this out later...
         self.swerveKinematics = kinematics.SwerveDrive4Kinematics(
@@ -63,7 +79,8 @@ class Drivetrain(SubsystemBase):
         # Swerve drive odometry (needs gyro.. at some point)
         # starting_pose = geometry.Pose2d(5.0, 13, geometry.Rotation2d())
         self.odometry = kinematics.SwerveDrive4Odometry(
-            self.swerveKinematics, geometry.Rotation2d(0)
+            self.swerveKinematics,
+            self.getGyroHeading(),
         )
 
     def periodic(self):
@@ -74,11 +91,11 @@ class Drivetrain(SubsystemBase):
         """
         # Update robot odometry using ModuleStates
         self.odometry.update(
-            geometry.Rotation2d(0),  # This needs to be replaced with a gyro.
-            self.fp_module.getState(),
-            self.fs_module.getState(),
-            self.ap_module.getState(),
-            self.as_module.getState(),
+            self.getGyroHeading(),
+            self.fp_module.getModuleState(),
+            self.fs_module.getModuleState(),
+            self.ap_module.getModuleState(),
+            self.as_module.getModuleState(),
         )
 
         # Networktables/dashboard
@@ -130,7 +147,12 @@ class Drivetrain(SubsystemBase):
         self.ap_actual = self.swerve_table.getEntry("ap_actual")
         self.ap_target = self.swerve_table.getEntry("ap_target")
 
-    # self.ap_target = self.swerve_table.getEntry("ap_target")
+    def getGyroHeading(self):
+        """
+        Returns the gyro heading.
+        """
+
+        return geometry.Rotation2d.fromDegrees(self.imu.getYaw())
 
 
 class SwerveModule:
