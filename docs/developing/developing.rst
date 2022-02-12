@@ -3,6 +3,12 @@ Developing
 
 .. include:: ../resources/resources.rst
 
+.. figure:: resources/AProgrammer.jpg
+  :width: 80%
+  :alt: Figure of a programmer
+
+  A programmer in his natural habitat.
+
 Configuration Files
 ===================
 
