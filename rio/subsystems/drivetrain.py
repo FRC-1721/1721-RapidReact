@@ -207,6 +207,7 @@ class SwerveModule:
 
         # Simulated wheel position, only used if running the robot sim
         self.sim_encoder_pos = 0
+        self.sim_fp_encoder = 0
 
     def getTranslation(self):
         return self.module_pose
@@ -251,39 +252,34 @@ class SwerveModule:
         """
 
         target = self.getTargetHeading()
-        sim_fp_encoder = 0
+        # print(target)
 
         id = self.steer_motor.getDeviceId()  # Id's: 1,4,6,8
 
         # TODO: This is a bad way of doing this
 
         # if the current steer motor is the fp motor
-        if id == self.constants["steer_id"]:
+        if id == 6:
+            if (
+                self.sim_fp_encoder > target - 0.1
+                and self.sim_fp_encoder < target + 0.1
+            ):
+                pass
+            elif self.sim_fp_encoder < target:
 
-            # start a clock
-            self.this_time_check = time.perf_counter()
+                self.sim_fp_encoder = self.sim_fp_encoder + (8.3 * 0.05)
 
-            # try statement because one of the variables used wont exist until after this code
-            try:
+            else:
 
-                # If it has been at least 0.1 secconds since the last update, update the sim encoder
-                if self.this_time_check - self.last_time_check >= 0.1:
+                self.sim_fp_encoder = self.sim_fp_encoder - (8.3 * 0.05)
 
-                    # if the sim encodder is less than the target, increase it at 0.3 of max speed (no PID at all)
-                    if sim_fp_encoder < target:
-                        sim_fp_encoder = sim_fp_encoder + (8.3 * 0.05)
-
-                    # if the sim encodder is greater than the target, increase it at 0.3 of max speed (no PID at all)
-                    else:
-                        sim_fp_encoder = sim_fp_encoder - (8.3 * 0.05)
-                    self.last_time_check = self.this_time_check
-            except:
-                self.last_time_check = self.this_time_check
             # Stopwatch check
+        else:
+            return 0
 
         # Get the speed that the neo would be set to ouside of the sim
-        print(sim_fp_encoder)
-        return sim_fp_encoder
+        # print(sim_fp_encoder)
+        return self.sim_fp_encoder
 
     def getActualHeading(self):
         """
@@ -304,7 +300,7 @@ class SwerveModule:
             radians = (sim_encoder_pos / self.pid["steer"]["ratio"]) * (math.pi * 2)
 
             # Construct a rotation2d object
-            rot = geometry.Rotation2d(radians)
+            rot = geometry.Rotation2d(sim_encoder_pos)
 
             # The current state is constructed
             # TODO: Measure speed
