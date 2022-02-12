@@ -60,7 +60,7 @@ class Drivetrain(SubsystemBase):
 
         # Setup Pigeon
         # Docs: https://docs.ctre-phoenix.com/en/stable/ch11_BringUpPigeon.html?highlight=pigeon#pigeon-api
-        imuConst = self.constants["drivetrain"]["imu"]  # IMU constants
+        imuConst = constants["drivetrain"]["imu"]  # IMU constants
         self.imu = Pigeon2(imuConst["can_id"])  # Create object
 
         # Setup Pigeon pose
@@ -94,13 +94,11 @@ class Drivetrain(SubsystemBase):
         """
         # Update robot odometry using ModuleStates
         self.odometry.update(
-
             geometry.Rotation2d(0),  # This needs to be replaced with a gyro.
             self.fp_module.getActualHeading(),
             self.fs_module.getActualHeading(),
             self.ap_module.getActualHeading(),
             self.as_module.getActualHeading(),
-
         )
 
         # Networktables/dashboard
@@ -402,6 +400,7 @@ class SwerveModule:
             # Collect the simulated encoder position
             sim_encoder_pos = self.updateSimEncoder()
 
+            # NOTE: Unused currently, should it be??
             # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
             radians = (sim_encoder_pos / self.pid["steer"]["ratio"]) * (math.pi * 2)
 
