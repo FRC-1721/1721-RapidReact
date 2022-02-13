@@ -3,12 +3,6 @@ Developing
 
 .. include:: ../resources/resources.rst
 
-.. figure:: resources/AProgrammer.jpg
-  :width: 80%
-  :alt: Figure of a programmer
-
-  A programmer in his natural habitat.
-
 Configuration Files
 ===================
 
@@ -27,6 +21,11 @@ if pose x/y cords match actual.
 .. literalinclude:: ../../rio/constants/robot_hardware.yaml
   :language: YAML
 
+.. figure:: resources/AProgrammer.jpg
+   :width: 80%
+   :alt: Figure of a programmer
+
+   A programmer in his natural habitat
 
 Getting started modifying these docs
 ====================================
@@ -59,25 +58,39 @@ provided files and invoke the ``make latexpdf`` command to build the docs.
 
 Find the generated ``.pdf`` under ``docs/_build/latex/``
 it is recommended that you also have a restructured text interperter such as reStructuredText.
-Documentation can be found at (https://sublime-and-sphinx-guide.readthedocs.io/en/latest/setup.html)
+Documentation for sphinx can be found `here <https://sublime-and-sphinx-guide.readthedocs.io/en/latest/setup.html>`_
 
 Git
 ---
 
-While most git commands are in git documentation (https://git-scm.com/doc),
+While most git commands are in git documentation `here <https://git-scm.com/doc>`_,
 here are a few basic commands you should know.
 
-#. ``git clone <url>`` (clones a repository for you to use yourself, the https you can find by going to a github repository and clicking code the first option should be https. Copy that and then run the command.)
-#. ``git add -A`` (adds all changes to the version you would commit.)
-#. ``git status`` (tells you what files are changed and not yet added with git add)
-#. ``git commit -m "message"`` (puts all changes added into a commit with a message that you made.)
-#. ``git push`` (Push to upstream)
-#. ``git pull`` (Pull from upstream)
-#. ``git checkout <hash/branch name/tag>`` (Checkout a specific revision or branch)
-#. ``git stash`` (Stow your current changes for later)
-   * ``git stash apply`` (apply your stashed changed)
-   * ``git stash drop`` (clears the current stashed changes)
-#. ``git branch "new branch name"`` (Checkout to a new branch)
+#. Git clone (https)
+#. git add -A
+#. git status
+#. git commit -m "message"
+#. git push
+#. git pull
+#. git checkout (hash)
+#. git stash
+#. git branch ""new branch name"
+
+Explanations:
+
+#. git clone (https) clones a repository on your laptop, the https you can find by going to a github repository and clicking code the first option should be https. Copy that and then run the command.
+#. git add -A adds all changes to the version you would commit.
+#. git status tells you what files are changed and not yet added with git add
+#. git commit -m "message" puts all changes added into a commit with a message that you made.
+#. git push makes all commits a new version, git push -m "message" adds a message that you made.
+#. git pull changes your code to be with the most recent version.
+#. git checkout lets you change branches.
+#. git stash commands
+
+   * git stash, stashes you current changes
+   * git stash apply, apply your stashed changed
+   * git stash drop, clears the current stashed changes
+#. git branch "new branch name", is how to add a new branch using git
 
 Examples for each in order are:
 
@@ -243,7 +256,7 @@ The base mode is Teleoperated but you can also set it to Autonomous, practice, a
 
 Autonomous will simulate code that would be run in Autonomous.
 Practice is a mostly useless mode that you need to have written code for, for testing use Teleoperated or :ref:`Robot Simulator`.
-Test tests the code, a better way to test is :ref:`Robot Simulator`.
+Test, tests the code a better way to test is :ref:`Robot Simulator`.
 
 You can enable the robot after a joystick is detected, make sure to plug one 
 in, it has robot code, and has communications with the robot.
