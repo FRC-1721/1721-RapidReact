@@ -9,9 +9,13 @@ Introduction
    Make sure this manual's revision hash and the robot hash match!
 
 
-.. This should will be centered ..
-
-Welcome and thanks for reading
+.. This centers the Welcome and Thanks for Reading text ..
+.. yes I know this is stupid ..
+.. don't touch it ..
+.. figure:: resources/ThisIsStupid.png
+  :width: 300
+  :alt: Alternative text
+  :align: center
 
 .. update image with image of completed robot ..
 .. figure:: resources/placeholder.png
