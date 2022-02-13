@@ -17,5 +17,8 @@ help:
 run:
 	cd www && python -m pynetworktables2js
 
+comp:
+	cd www && python -m pynetworktables2js --robot 10.17.21.2
+
 clean:
 	git clean -fdX

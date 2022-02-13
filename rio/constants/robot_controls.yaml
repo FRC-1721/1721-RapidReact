@@ -5,7 +5,13 @@
 mode_a:
   # Mode A is a driver-centric control mode
   driver:
-    driverstation_port: 0  # What usb port the driver controller is on
-    forward_axis: 0        # "Forward" Axis
+    controller_port: 0     # What usb port the driver controller is on
+    forward_axis: 1        # "Forward" Axis
+    steer_axis: 5          # "Steering" Axis
+    strafe_axis: 0         # "Strafe" Axis
+  sim:
+    # The control mappings for use when using the simulator
+    controller_port: 0     # What usb port the driver controller is on
+    forward_axis: 1        # "Forward" Axis
     steer_axis: 2          # "Steering" Axis
-    strafe_axis: 1         # "Strafe" Axis
+    strafe_axis: 0         # "Strafe" Axis
