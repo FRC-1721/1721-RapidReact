@@ -8,10 +8,13 @@ Introduction
 .. warning::
    Make sure this manual's revision hash and the robot hash match!
 
+
+.. This should will be centered ..
+
 Welcome and thanks for reading
 
 .. update image with image of completed robot ..
-.. figure:: resources/Robot.png
+.. figure:: resources/placeholder.png
   :width: 300
   :alt: Alternative text
 
@@ -23,4 +26,4 @@ If you're reading to get an idea of how our bot works, check out technical
 chapters like :ref:`Robot Network Architecture` or :ref:`Developing`.
 
 If you're reading to get an idea of how our team operates on a technical level
-check out chapters like :ref:`Critical Design Review` and :ref:`Prototyping`.
+check out chapters like :ref:`Critical Design Review` and see the subsystems for prototyping.

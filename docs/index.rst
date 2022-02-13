@@ -6,6 +6,7 @@
    :caption: Contents:
 
    introduction/introduction
+   designReview/design_review
    subsystems/shooter
    subsystems/climber
    subsystems/swervedrive
@@ -13,3 +14,4 @@
    wiring/network
    usage/operating
    developing/developing
+   checklist/event
