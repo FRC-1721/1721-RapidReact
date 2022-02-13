@@ -273,9 +273,21 @@ class SwerveModule:
             self.angleSum + deltaAngle.radians()
         )  # The sum of all the previous movements up to this point
 
+        # If the target is more than a full rotation away from the actual
+        # rotation of the wheel, remove a rotation from the target. This
+        # does not change the target angle as it removes one rotations, but
+        # prevents the wheel from trying to play catch up
+        if self.angleSum - (2 * math.pi) > self.radians:
+            self.angleSum = self.angleSum - (2 * math.pi)
+        elif self.angleSum + (2 * math.pi) < self.radians:
+            self.angleSum = self.angleSum + (2 * math.pi)
+
         currentRef = self.angleSum / (
             2 * math.pi
         )  # The sum (radians) converted to rotations (of the steer wheel)
+
+        if self.constants["steer_id"] == 1:
+            print(self.angleSum, "Angle Sum | ", self.radians, "Radians")
 
         # Set the position of the neo to the desired position
         # self.steer_motor.set(0.5)
@@ -290,20 +302,20 @@ class SwerveModule:
         Returns the current state of this module.
         """
         # Current position of the motor encoder (in rotations)
-        encoder = self.steer_motor_encoder.getPosition()
+        self.encoder = self.steer_motor_encoder.getPosition()
 
         # if self.constants["steer_id"] == 1:
         # print(encoder)
 
         # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
-        radians = encoder * (math.pi * 2)
+        self.radians = self.encoder * (math.pi * 2)
 
         # Construct a rotation2d object
-        rot = geometry.Rotation2d(radians)
+        self.rot = geometry.Rotation2d(self.radians)
 
         # The current state is constructed
         # TODO: Measure speed
-        current_state = kinematics.SwerveModuleState(0, rot)
+        current_state = kinematics.SwerveModuleState(0, self.rot)
 
         # Return
         return current_state

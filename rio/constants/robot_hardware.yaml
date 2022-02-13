@@ -54,8 +54,8 @@ drivetrain:
       # Max amount of I that can accumulate
       maxi: 1                   # Updated 2/8/22 by Joe
       # Max and min values the PID can assign to the motor
-      min_power: -0.85          # Updated 2/8/22 by Joe
-      max_power: 0.85           # Updated 2/8/22 by Joe
+      min_power: -0.3          # Updated 2/8/22 by Joe
+      max_power: 0.3           # Updated 2/8/22 by Joe
       # Ratio of motor rotations to module rotations
       ratio: 0.033              # Updated 2/12/22 by Joe
 
