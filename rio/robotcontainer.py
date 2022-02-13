@@ -6,10 +6,12 @@ import commands2.button
 # Commands
 from commands.flybywire import FlyByWire
 from commands.test_button_action import TestButtonAction
+from commands.sloppy_shooter import SloppyShooter
 
 # Subsystens
 from subsystems.drivetrain import Drivetrain
 from subsystems.lighting import Lighting
+from subsystems.yoke import Yoke
 
 # Constants
 from constants.constants import getConstants
@@ -41,6 +43,7 @@ class RobotContainer:
         # The robot's subsystems
         self.drivetrain = Drivetrain()
         self.lighting = Lighting()
+        self.yoke = Yoke()
 
         # Configure button bindings
         self.configureButtonBindings()
@@ -48,7 +51,7 @@ class RobotContainer:
         # Setup all autonomous routines
         self.configureAutonomous()
 
-        # set up default drive command
+        # Setup default commands
         self.drivetrain.setDefaultCommand(
             FlyByWire(
                 self.drivetrain,
@@ -60,6 +63,15 @@ class RobotContainer:
                 ),
                 lambda: self.driverController.getRawAxis(
                     self.controlMode["strafe_axis"]
+                ),
+            )
+        )
+
+        self.yoke.setDefaultCommand(
+            SloppyShooter(
+                self.yoke,
+                lambda: self.driverController.getRawAxis(
+                    self.controlMode["raw_shooter_axis"]
                 ),
             )
         )
