@@ -1,7 +1,10 @@
 # FRC 1721
 # 2022
 
+from asyncio.format_helpers import extract_stack
+from base64 import encode
 import logging
+import math
 
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
@@ -24,24 +27,37 @@ class Drivetrain(SubsystemBase):
         super().__init__()
 
         # Get hardware constants
-        self.constants = getConstants("robot_hardware")
+        constants = getConstants("robot_hardware")
+        self.drive_const = constants["drivetrain"]
 
         # Configure networktables
         self.configureNetworkTables()
 
         # Create swerve drive modules
         # Fore port module
-        self.fp_module = SwerveModule(self.constants["drivetrain"]["fp_module"])
+        self.fp_module = SwerveModule(
+            self.drive_const["fp_module"],
+            self.drive_const["pid"],
+        )
         # Fore starboard module
-        self.fs_module = SwerveModule(self.constants["drivetrain"]["fs_module"])
+        self.fs_module = SwerveModule(
+            self.drive_const["fs_module"],
+            self.drive_const["pid"],
+        )
         # Aft port module
-        self.ap_module = SwerveModule(self.constants["drivetrain"]["ap_module"])
+        self.ap_module = SwerveModule(
+            self.drive_const["ap_module"],
+            self.drive_const["pid"],
+        )
         # Aft starboard module
-        self.as_module = SwerveModule(self.constants["drivetrain"]["as_module"])
+        self.as_module = SwerveModule(
+            self.drive_const["as_module"],
+            self.drive_const["pid"],
+        )
 
         # Setup Pigeon
         # Docs: https://docs.ctre-phoenix.com/en/stable/ch11_BringUpPigeon.html?highlight=pigeon#pigeon-api
-        imuConst = self.constants["drivetrain"]["imu"]  # IMU constants
+        imuConst = constants["drivetrain"]["imu"]  # IMU constants
         self.imu = Pigeon2(imuConst["can_id"])  # Create object
 
         # Setup Pigeon pose
@@ -54,10 +70,10 @@ class Drivetrain(SubsystemBase):
         # Create kinematics model
         # TODO: Flesh this out later...
         self.swerveKinematics = kinematics.SwerveDrive4Kinematics(
-            self.fp_module.getTranslation(),
-            self.fs_module.getTranslation(),
-            self.ap_module.getTranslation(),
-            self.as_module.getTranslation(),
+            self.fp_module.getPose(),
+            self.fs_module.getPose(),
+            self.ap_module.getPose(),
+            self.as_module.getPose(),
         )
 
         # Swerve drive odometry (needs gyro.. at some point)
@@ -66,6 +82,10 @@ class Drivetrain(SubsystemBase):
             self.swerveKinematics,
             self.getGyroHeading(),
         )
+
+    def doTestAction(self):
+        print("I am doing a test action.")
+        self.fs_module.doTestAction()
 
     def periodic(self):
         """
@@ -76,21 +96,21 @@ class Drivetrain(SubsystemBase):
         # Update robot odometry using ModuleStates
         self.odometry.update(
             self.getGyroHeading(),
-            self.fp_module.getModuleState(),
-            self.fs_module.getModuleState(),
-            self.ap_module.getModuleState(),
-            self.as_module.getModuleState(),
+            self.fp_module.getCurrentState(),
+            self.fs_module.getCurrentState(),
+            self.ap_module.getCurrentState(),
+            self.as_module.getCurrentState(),
         )
 
         # Networktables/dashboard
-        self.fs_actual.setDouble(self.fs_module.getHeading())
-        # self.fs_target.setDouble(self.fs_module.getHeading())
-        self.as_actual.setDouble(self.as_module.getHeading())
-        # self.as_target.setDouble(self.as_module.getHeading())
-        self.fp_actual.setDouble(self.fp_module.getHeading())
-        # self.fp_target.setDouble(self.fp_module.getHeading())
-        self.ap_actual.setDouble(self.ap_module.getHeading())
-        # self.ap_target.setDouble(self.ap_module.getHeading())
+        self.fs_actual.setDouble(self.fs_module.getCurrentState().angle.radians())
+        self.fs_target.setDouble(self.fs_module.getTargetHeading())
+        self.as_actual.setDouble(self.as_module.getCurrentState().angle.radians())
+        self.as_target.setDouble(self.as_module.getTargetHeading())
+        self.fp_actual.setDouble(self.fp_module.getCurrentState().angle.radians())
+        self.fp_target.setDouble(self.fp_module.getTargetHeading())
+        self.ap_actual.setDouble(self.ap_module.getCurrentState().angle.radians())
+        self.ap_target.setDouble(self.ap_module.getTargetHeading())
 
     def arcadeDrive(self, fwd, srf, rot):
         """
@@ -99,17 +119,18 @@ class Drivetrain(SubsystemBase):
         it can always be replaced!
         """
 
+        # Get wheel speeds and angles from Kinematics, given desired chassis speed and angle
         arcade_chassis_speeds = kinematics.ChassisSpeeds(fwd, srf, rot)
         _fp, _fs, _ap, _as = self.swerveKinematics.toSwerveModuleStates(
             arcade_chassis_speeds
         )
 
-        # TODO: These modules should NOT be swapped! This is still a bug, see #9
-        # https://github.com/FRC-1721/pre2022season/issues/9
-        self.fp_module.setModuleState(_fs)
-        self.fs_module.setModuleState(_fp)
-        self.ap_module.setModuleState(_as)
-        self.as_module.setModuleState(_ap)
+        # TODO: These modules should NOT be swapped! This is still a bug, see #1
+        # https://github.com/FRC-1721/1721-RapidReact/issues/1
+        self.fp_module.setDesiredState(_fs)
+        self.fs_module.setDesiredState(_fp)
+        self.ap_module.setDesiredState(_as)
+        self.as_module.setDesiredState(_ap)
 
     def configureNetworkTables(self):
         # Get an instance of networktables
@@ -122,12 +143,13 @@ class Drivetrain(SubsystemBase):
 
         # Setup all of the networktable entries
         self.fs_actual = self.swerve_table.getEntry("fs_actual")
-        # self.fs_target = self.swerve_table.getEntry("fs_target")
+        self.fs_target = self.swerve_table.getEntry("fs_target")
         self.as_actual = self.swerve_table.getEntry("as_actual")
-        # self.as_target = self.swerve_table.getEntry("as_target")
+        self.as_target = self.swerve_table.getEntry("as_target")
         self.fp_actual = self.swerve_table.getEntry("fp_actual")
-        # self.fp_target = self.swerve_table.getEntry("fp_target")
+        self.fp_target = self.swerve_table.getEntry("fp_target")
         self.ap_actual = self.swerve_table.getEntry("ap_actual")
+        self.ap_target = self.swerve_table.getEntry("ap_target")
 
     def getGyroHeading(self):
         """
@@ -139,56 +161,157 @@ class Drivetrain(SubsystemBase):
 
 class SwerveModule:
     """
-    Normally we inherit 'components'
-    from vendors. Ex: CANSparkMax, Pneumatics,
-    etc. But i think this may make it easier
-    to organize.
+    A custom class representing a single
+    real swerve module.
     """
 
-    def __init__(self, constants):
+    def __init__(self, constants, pid):
+        # Import constants
+        self.constants = constants
+        self.pid = pid
+
         # Setup one drive and one steer motor each.
         self.drive_motor = CANSparkMax(
-            constants["drive_id"], CANSparkMaxLowLevel.MotorType.kBrushless
+            self.constants["drive_id"],
+            CANSparkMaxLowLevel.MotorType.kBrushless,
         )
         self.steer_motor = CANSparkMax(
-            constants["steer_id"], CANSparkMaxLowLevel.MotorType.kBrushless
+            self.constants["steer_id"],
+            CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
         # Construct the pose of this module
         self.module_pose = geometry.Translation2d(
-            constants["pose_x"], constants["pose_y"]
+            self.constants["pose_x"],
+            self.constants["pose_y"],
         )
 
-        # Current state variables
-        self.is_zeroed = False
-        self.state = kinematics.SwerveModuleState(
-            0, geometry.Rotation2d(0)
-        )  # This module state is default 0 speed, and 0 rotation
+        # Reset both motor controllers to factory defaults
+        self.drive_motor.restoreFactoryDefaults()
+        self.steer_motor.restoreFactoryDefaults()
 
-    def getTranslation(self):
+        # Construct the PID controllers
+        self.steer_PID = self.steer_motor.getPIDController()
+
+        # Assign PID Values
+        # TODO: Drive motor too
+        self.steer_PID.setD(self.pid["steer"]["kd"])
+        self.steer_PID.setI(self.pid["steer"]["ki"])
+        self.steer_PID.setP(self.pid["steer"]["kp"])
+        # self.steer_PID.setFF(1)
+        self.steer_PID.setIMaxAccum(self.pid["steer"]["maxi"])
+        self.steer_PID.setOutputRange(
+            self.pid["steer"]["min_power"],
+            self.pid["steer"]["max_power"],
+        )
+
+        # Other sensors
+        self.steer_motor_encoder = self.steer_motor.getEncoder()
+        self.steer_motor_encoder.setPositionConversionFactor(self.pid["steer"]["ratio"])
+
+        # Save all settings to flash
+        # TODO: Is it a good idea to do this **every** reboot?
+        # NOTES from Turner's Testing
+        # If you don't run burnFlash, then setPositionConversionFactor appears to work.
+        # If you run burnFlash before setPositionConversionFactor, conversion factor is not set.
+        # if you run burnFlash after setPositionConversionFactor, converstion factor IS set.
+        # we've decided to never burnFlash and instead leave all settings volatile.
+        self.drive_motor.burnFlash()
+        self.steer_motor.burnFlash()
+        print(
+            "Steer Drive:",
+            self.constants["steer_id"],
+            "Start Position: ",
+            self.steer_motor_encoder.getPosition(),
+        )
+
+        # Reset the position of the encoder.
+        # TODO: We need to set this position when the optical limit switch
+        # triggers
+        self.steer_motor_encoder.setPosition(0)
+
+        # Current state variables
+        self.isZeroed = False
+        # By default: 0 speed, and 0 rotation
+        self.desiredState = kinematics.SwerveModuleState(0, geometry.Rotation2d(0))
+
+        self.angleSum = 0  # Delete me
+
+    def doTestAction(self):
+        """
+        This is triggered on the A button on the xbox controller. You can use
+        this to test some code on button press.
+
+        Delete whenever not needed anymore.
+        """
+        res = self.steer_motor_encoder.setPosition(0)
+        print(
+            "Steer Drive:",
+            self.constants["steer_id"],
+            "Immediate Position: ",
+            self.steer_motor_encoder.getPosition(),
+        )
+
+    def getPose(self):
         return self.module_pose
 
-    def setModuleState(self, newState):
+    def setDesiredState(self, newState):
         """
-        Important method that updates
-        the "state" (steering and speed)
-        of a module.
+        Updates the current desired state,
+        where we want this module to now point.
         """
+        # Optimize the input command to reduce unneeded motion.
+        optimizedState = kinematics.SwerveModuleState.optimize(
+            newState, self.getCurrentState().angle
+        )
 
-        # TODO: Use optimization at some point
-        self.state = newState
+        deltaAngle = (
+            newState.angle - self.desiredState.angle
+        )  # The change from the old angle, to the new angle
 
-    def getModuleState(self):
-        """
-        Returns the current module state,
-        useful for odom.
-        """
-        return self.state
+        self.angleSum = (
+            self.angleSum + deltaAngle.radians()
+        )  # The sum of all the previous movements up to this point
 
-    def getHeading(self):
+        currentRef = self.angleSum / (
+            2 * math.pi
+        )  # The sum (radians) converted to rotations (of the steer wheel)
+
+        # Set the position of the neo to the desired position
+        # self.steer_motor.set(0.5)
+        self.steer_PID.setReference(
+            currentRef, CANSparkMaxLowLevel.ControlType.kPosition
+        )
+
+        self.desiredState = newState
+
+    def getCurrentState(self):
+        """
+        Returns the current state of this module.
+        """
+        # Current position of the motor encoder (in rotations)
+        encoder = self.steer_motor_encoder.getPosition()
+
+        # if self.constants["steer_id"] == 1:
+        # print(encoder)
+
+        # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
+        radians = encoder * (math.pi * 2)
+
+        # Construct a rotation2d object
+        rot = geometry.Rotation2d(radians)
+
+        # The current state is constructed
+        # TODO: Measure speed
+        current_state = kinematics.SwerveModuleState(0, rot)
+
+        # Return
+        return current_state
+
+    def getTargetHeading(self):
         """
         Returns the current heading of
-        this module
+        this module.
         """
 
-        return self.state.angle.radians()
+        return self.desiredState.angle.radians()
