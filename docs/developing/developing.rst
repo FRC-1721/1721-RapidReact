@@ -21,6 +21,11 @@ if pose x/y cords match actual.
 .. literalinclude:: ../../rio/constants/robot_hardware.yaml
   :language: YAML
 
+.. figure:: resources/AProgrammer.jpg
+   :width: 80%
+   :alt: Figure of a programmer
+
+   A programmer in his natural habitat
 
 Getting started modifying these docs
 ====================================
