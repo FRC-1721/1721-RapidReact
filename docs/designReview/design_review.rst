@@ -9,6 +9,11 @@ Introduction
 
 |outreach|
 
+This section will review designs for the parts of the robot,
+most of this will not focus on us building them but our proccess of coming up with them.
+
+our designs took us about a week to come up with and then a few more to come to our final designs.
+
 Shooter
 =======
 
@@ -26,5 +31,10 @@ Swervedrive
 
 Navigation
 ==========
+
+|outreach|
+
+Bumpers
+=======
 
 |outreach|
