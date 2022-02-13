@@ -83,6 +83,11 @@ class Drivetrain(SubsystemBase):
             self.getGyroHeading(),
         )
 
+    def doTestAction(self):
+        print("I am doing a test action.")
+        self.fs_module.doTestAction()
+
+
     def periodic(self):
         """
         Called periodically when possible,
@@ -201,14 +206,24 @@ class SwerveModule:
             self.pid["steer"]["max_power"],
         )
 
-        # Save all settings to flash
-        # TODO: Is it a good idea to do this **every** reboot?
-        self.drive_motor.burnFlash()
-        self.steer_motor.burnFlash()
-
         # Other sensors
         self.steer_motor_encoder = self.steer_motor.getEncoder()
         self.steer_motor_encoder.setPositionConversionFactor(self.pid["steer"]["ratio"])
+
+        # Save all settings to flash
+        # TODO: Is it a good idea to do this **every** reboot?
+        # NOTES from Turner's Testing
+        # If you don't run burnFlash, then setPositionConversionFactor appears to work.
+        # If you run burnFlash before setPositionConversionFactor, conversion factor is not set.
+        # if you run burnFlash after setPositionConversionFactor, converstion factor IS set.
+        # we've decided to never burnFlash and instead leave all settings volatile.
+        self.drive_motor.burnFlash()
+        self.steer_motor.burnFlash()
+        print("Steer Drive:", self.constants["steer_id"], "Start Position: ", self.steer_motor_encoder.getPosition())
+
+        # Reset the position of the encoder.
+        # TODO: We need to set this position when the optical limit switch
+        # triggers
         self.steer_motor_encoder.setPosition(0)
 
         # Current state variables
@@ -217,6 +232,17 @@ class SwerveModule:
         self.desiredState = kinematics.SwerveModuleState(0, geometry.Rotation2d(0))
 
         self.angleSum = 0  # Delete me
+
+
+    def doTestAction(self):
+        """
+        This is triggered on the A button on the xbox controller. You can use
+        this to test some code on button press.
+
+        Delete whenever not needed anymore.
+        """
+        res = self.steer_motor_encoder.setPosition(0)
+        print("Steer Drive:", self.constants["steer_id"], "Immediate Position: ", self.steer_motor_encoder.getPosition())
 
     def getPose(self):
         return self.module_pose
@@ -258,8 +284,8 @@ class SwerveModule:
         # Current position of the motor encoder (in rotations)
         encoder = self.steer_motor_encoder.getPosition()
 
-        if self.constants["steer_id"] == 1:
-            print(encoder)
+        #if self.constants["steer_id"] == 1:
+        #print(encoder)
 
         # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
         radians = encoder * (math.pi * 2)

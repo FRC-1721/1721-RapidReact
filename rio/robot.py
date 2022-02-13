@@ -5,6 +5,7 @@ import wpilib
 import commands2
 
 from robotcontainer import RobotContainer
+from datetime import datetime
 
 
 class MyRobot(commands2.TimedCommandRobot):
@@ -22,6 +23,12 @@ class MyRobot(commands2.TimedCommandRobot):
         This function is run when the robot is first started up and should be used for any
         initialization code.
         """
+
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        print("--------------------------------------------------------------")
+        print("RESTARTING ROBOT AT ", current_time)
+        print("--------------------------------------------------------------")
 
         # Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         # autonomous chooser on the dashboard.

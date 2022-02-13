@@ -5,6 +5,7 @@ import commands2.button
 
 # Commands
 from commands.flybywire import FlyByWire
+from commands.test_button_action import TestButtonAction
 
 # Subsystens
 from subsystems.drivetrain import Drivetrain
@@ -69,7 +70,10 @@ class RobotContainer:
         instantiating a :GenericHID or one of its subclasses (Joystick or XboxController),
         and then passing it to a JoystickButton.
         """
-        pass
+        # use the A button the xbox controller
+        commands2.button.JoystickButton(self.driverController, 1).whenPressed(
+            TestButtonAction(self.drivetrain)
+        )
 
     def configureAutonomous(self):
         # Create a sendable chooser
