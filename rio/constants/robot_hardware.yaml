@@ -59,6 +59,12 @@ drivetrain:
       # Ratio of motor rotations to module rotations
       ratio: 0.033              # Updated 2/12/22 by Joe
 
+yoke:
+  shooter:
+    # Constants for the falcons/shooter parts
+    star_falcon_id: 1
+    port_falcon_id: 2
+
 misc:
   # Misc hardware settings
   CANdle:

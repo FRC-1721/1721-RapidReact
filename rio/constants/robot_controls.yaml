@@ -9,9 +9,11 @@ mode_a:
     forward_axis: 1        # "Forward" Axis
     steer_axis: 5          # "Steering" Axis
     strafe_axis: 0         # "Strafe" Axis
+    raw_shooter_axis: 3    # Raw shooter axis, remove me!
   sim:
     # The control mappings for use when using the simulator
     controller_port: 0     # What usb port the driver controller is on
     forward_axis: 1        # "Forward" Axis
     steer_axis: 2          # "Steering" Axis
     strafe_axis: 0         # "Strafe" Axis
+    raw_shooter_axis: 1    # Raw shooter axis, remove me!
