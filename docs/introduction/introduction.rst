@@ -8,7 +8,7 @@ Introduction
 .. warning::
    Make sure this manual's revision hash and the robot hash match!
 
-Welcome and thanks for reading!
+Welcome and thanks for reading
 
 .. update image with image of completed robot ..
 .. figure:: resources/Robot.png
