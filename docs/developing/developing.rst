@@ -108,6 +108,31 @@ Examples for each in order are:
    git stash drop
    git branch "DevDocs"
 
+Please note that git push will not work on main and doesn't automatically create a pull request,
+to see how to use github see :ref:`Using github`.
+
+Using Github
+------------
+
+We use `Github <https://github.com>`_ to store all our files,
+our repo is FRC-1721 to get on the github get a member of the code team to add you.
+
+While you will mostly interact with github through git you should know how to make pull requests.
+
+First go to the current repo (1721-RapidReact).
+
+.. figure:: resources/githubPullrequest.png
+   :width: 80%
+   :alt: pull request
+
+You first under the pull requests tab create a new pull request,
+select the branch you want to make the pull request for.
+
+Once approved by Khan you make merge it, please squash and merge to not have fifty billion commits.
+
+.. figure:: resources/githubMerge.png
+   :width: 80%
+   :alt: merging
 
 Robot Simulator
 ===============
@@ -241,7 +266,6 @@ FRC Driver Station
 .. figure:: resources/Qdriverstation.png
   :width: 600
   :alt: Alternative text
-
   Q driver Station
 
 The FRC Driver Station is made for windows, but there is a linux version 
