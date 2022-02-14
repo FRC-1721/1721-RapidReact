@@ -279,7 +279,7 @@ will go over it all.
 The base mode is Teleoperated but you can also set it to Autonomous, practice, and test.
 
 Autonomous will simulate code that would be run in Autonomous.
-Practice is a mostly useless mode that you need to have written code for, for testing use Teleoperated or :ref:`Robot Simulator`.
+Practice is a mostly useless mode that simulates competitions, for testing use Teleoperated or :ref:`Robot Simulator`.
 Test, tests the code a better way to test is :ref:`Robot Simulator`.
 
 You can enable the robot after a joystick is detected, make sure to plug one 
