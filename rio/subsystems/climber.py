@@ -33,3 +33,5 @@ class Climber(SubsystemBase):
         """
 
         self.portClimber.SetReference(10)
+        self.backgroundTimer.hasPeriodPassed(5)
+        self.portClimber.SetReference(10)
