@@ -284,7 +284,14 @@ class SwerveModule:
         )
 
         self.desiredState = newState
-        self.drive_motor.set(self.desiredState.speed)
+
+        if self.constants["drive_id"] == 2:
+            desired = 0.75
+
+            self.drive_motor.set(desired)
+            print(
+                f"Value for CanSparkMax applied output, motor number 2 should be {desired}"
+            )
 
     def getCurrentState(self):
         """

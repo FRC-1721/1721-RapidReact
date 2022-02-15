@@ -10,10 +10,10 @@ class PhysicsEngine:
         #    deadzone=drivetrains.linear_deadzone(0.2)
         # )
 
-        self.sim_fp_motor = SimDeviceSim("SPARK MAX [1]")
+        self.sim_fp_motor = SimDeviceSim("SPARK MAX [2]")
 
     def update_sim(self, now, tm_diff):
-        print(self.sim_fp_motor.getDouble("Velocity"))
+        print(self.sim_fp_motor.getDouble("Applied Output"))
         # l_motor = self.test.getSpeed()
         # r_motor = self.r_motor.getSpeed()
 
