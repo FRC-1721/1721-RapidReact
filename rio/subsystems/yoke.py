@@ -62,7 +62,7 @@ class Yoke(SubsystemBase):
             self.kicky.set(degs) #moves the kicky
             return curDegs+degs  #returns the updated degrees
         else:
-             if(degs>0):
+            if(degs>0):
                 self.kicky.set(60-curDegs) #moves the kicky
                 return 60 #returns maximum
             else:
