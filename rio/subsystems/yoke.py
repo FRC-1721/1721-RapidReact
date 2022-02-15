@@ -32,7 +32,7 @@ class Yoke(SubsystemBase):
         control required.
         """
 
-        # Send
+        # Send 
         self.star_shooter.set(ControlMode.PercentOutput, speed)
         self.port_shooter.set(ControlMode.PercentOutput, -speed)
 
