@@ -284,6 +284,7 @@ class SwerveModule:
         )
 
         self.desiredState = newState
+        self.drive_motor.set(self.desiredState.speed)
 
     def getCurrentState(self):
         """
