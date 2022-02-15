@@ -171,7 +171,8 @@ When starting up the program there will be no input method
 selected under System Joysticks there may be Joysticks,
 Xbox controllers, or Keyboards 0-3.
 
-Joysticks and Xbox controllers work as if piloting an actual robot.
+Joysticks and Xbox controllers work as if piloting an actual robot,
+to find layouts for controls see :ref:`Controller Map`.
 
 Keyboard 0 is the WASD keys to move and E and R to rotate the controller.
 
@@ -266,6 +267,7 @@ FRC Driver Station
 .. figure:: resources/Qdriverstation.png
   :width: 600
   :alt: Alternative text
+  
   Q driver Station
 
 The FRC Driver Station is made for windows, but there is a linux version 
