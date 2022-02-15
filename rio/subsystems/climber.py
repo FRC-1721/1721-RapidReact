@@ -24,10 +24,12 @@ class Climber(SubsystemBase):
         self.portClimber = rev.CANSparkMax(1, rev.MotorType.kBrushless)
         self.starboardClimber = rev.CANSparkMax(2, rev.MotorType.kBrushless)
 
-        self.motors = (self.portClimberLeader, self.starboardClimberOne)
+        self.starboardClimber.follow(self.portClimber, True)
 
     def climb(self, speed):
         """
         The main purpose of the climber
         to climb
         """
+
+        self.portClimber.SetReference(10)
