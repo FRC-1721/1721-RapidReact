@@ -5,6 +5,7 @@ simgui*
 __pycache__
 _build
 *.*~
+.python-version
 
 # dashboard build files
 dashboard/www/main.js*

@@ -1,9 +1,5 @@
-name: Submit Release
-
-on:
-  push:
-    tags:
-      - '*'
+name: Robot Documentation
+on: push
 
 jobs:
   make_docs:
@@ -29,15 +25,17 @@ jobs:
 
     - run: cd docs && make latexpdf
 
-    - run: mv docs/_build/latex/*.pdf docs/_build/latex/FRC1721_Robot_Manual.pdf
+    - run: mv docs/_build/latex/*.pdf docs/_build/latex/Unnamed_Toaster_Robot_Manual.pdf
 
     - uses: actions/upload-artifact@v2
       with:
         name: Tidal_Force_Robot_Manual
-        path: docs/_build/latex/FRC1721_Robot_Manual.pdf
+        path: docs/_build/latex/Unnamed_Toaster_Robot_Manual.pdf
 
 
   publish_docs:
+    # Only run on tags
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     name: Publish Docs
     needs: [make_docs]

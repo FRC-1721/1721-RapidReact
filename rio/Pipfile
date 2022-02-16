@@ -4,12 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-robotpy = {extras = ["rev", "commands2"], version = "*"}
+robotpy = {extras = ["rev", "ctre", "commands2"], version = "*"}
 wpilib = {extras = ["all"], version = "*"}
 pyyaml = "*"
 
 [dev-packages]
 black = "*"
+
+[requires]
+python_version = "3.10"
 
 [pipenv]
 allow_prereleases = true
