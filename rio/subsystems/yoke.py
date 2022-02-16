@@ -84,9 +84,9 @@ class Yoke(SubsystemBase):
     ):  # raises or lowers the shooter the inputted amount of degrees
         # rot2d is what to set it to
 
-        rot = rot2d.radians()  # converts rottion 2d to radians
+        curRads = rot2d.radians()  # converts rottion 2d to radians
 
-        currentRef = rot / (2 * math.pi)  # (radians) converted to rotations
+        currentRef = curRads / (2 * math.pi)  # (radians) converted to rotations
 
         self.primaryYokeMotor.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
