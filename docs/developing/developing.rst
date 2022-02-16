@@ -21,7 +21,7 @@ if pose x/y cords match actual.
 .. literalinclude:: ../../rio/constants/robot_hardware.yaml
   :language: YAML
 
-.. figure:: resources/AProgrammer.jpg
+.. figure:: resources/AProgrammer.png
    :width: 80%
    :alt: Figure of a programmer
 
@@ -66,31 +66,17 @@ Git
 While most git commands are in git documentation `here <https://git-scm.com/doc>`_,
 here are a few basic commands you should know.
 
-#. Git clone (https)
-#. git add -A
-#. git status
-#. git commit -m "message"
-#. git push
-#. git pull
-#. git checkout (hash)
-#. git stash
-#. git branch ""new branch name"
-
-Explanations:
-
-#. git clone (https) clones a repository on your laptop, the https you can find by going to a github repository and clicking code the first option should be https. Copy that and then run the command.
-#. git add -A adds all changes to the version you would commit.
-#. git status tells you what files are changed and not yet added with git add
-#. git commit -m "message" puts all changes added into a commit with a message that you made.
-#. git push makes all commits a new version, git push -m "message" adds a message that you made.
-#. git pull changes your code to be with the most recent version.
-#. git checkout lets you change branches.
-#. git stash commands
-
-   * git stash, stashes you current changes
-   * git stash apply, apply your stashed changed
-   * git stash drop, clears the current stashed changes
-#. git branch "new branch name", is how to add a new branch using git
+#. ``git clone <url>`` (clones a repository for you to use yourself, the https you can find by going to a github repository and clicking code the first option should be https. Copy that and then run the command.)
+#. ``git add -A`` (adds all changes to the version you would commit.)
+#. ``git status`` (tells you what files are changed and not yet added with git add)
+#. ``git commit -m "message"`` (puts all changes added into a commit with a message that you made.)
+#. ``git push`` (Push to upstream)
+#. ``git pull`` (Pull from upstream)
+#. ``git checkout <hash/branch name/tag>`` (Checkout a specific revision or branch)
+#. ``git stash`` (Stow your current changes for later)
+   * ``git stash apply`` (apply your stashed changed)
+   * ``git stash drop`` (clears the current stashed changes)
+#. ``git branch "new branch name"`` (Checkout to a new branch)
 
 Examples for each in order are:
 
@@ -108,6 +94,31 @@ Examples for each in order are:
    git stash drop
    git branch "DevDocs"
 
+Please note that git push will not work on main and doesn't automatically create a pull request,
+to see how to use github see :ref:`Using github`.
+
+Using Github
+------------
+
+We use `Github <https://github.com>`_ to store all our files,
+our repo is FRC-1721 to get on the github get a member of the code team to add you.
+
+While you will mostly interact with github through git you should know how to make pull requests.
+
+First go to the current repo (1721-RapidReact).
+
+.. figure:: resources/githubPullrequest.png
+   :width: 80%
+   :alt: pull request
+
+You first under the pull requests tab create a new pull request,
+select the branch you want to make the pull request for.
+
+Once approved by Khan you make merge it, please squash and merge to not have fifty billion commits.
+
+.. figure:: resources/githubMerge.png
+   :width: 80%
+   :alt: merging
 
 Robot Simulator
 ===============
@@ -146,7 +157,8 @@ When starting up the program there will be no input method
 selected under System Joysticks there may be Joysticks,
 Xbox controllers, or Keyboards 0-3.
 
-Joysticks and Xbox controllers work as if piloting an actual robot.
+Joysticks and Xbox controllers work as if piloting an actual robot,
+to find layouts for controls see :ref:`Controller Map`.
 
 Keyboard 0 is the WASD keys to move and E and R to rotate the controller.
 
@@ -255,7 +267,7 @@ will go over it all.
 The base mode is Teleoperated but you can also set it to Autonomous, practice, and test.
 
 Autonomous will simulate code that would be run in Autonomous.
-Practice is a mostly useless mode that you need to have written code for, for testing use Teleoperated or :ref:`Robot Simulator`.
+Practice will simulate competition timings, for testing use Teleoperated or in sim, see :ref:`Robot Simulator`.
 Test, tests the code a better way to test is :ref:`Robot Simulator`.
 
 You can enable the robot after a joystick is detected, make sure to plug one 
