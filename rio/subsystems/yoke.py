@@ -7,7 +7,7 @@ from ctre import TalonFX, ControlMode
 from rev import CANSparkMax, CANSparkMaxLowLevel
 
 from constants.constants import getConstants
-
+import math
 
 class Yoke(SubsystemBase):
     """
@@ -31,15 +31,29 @@ class Yoke(SubsystemBase):
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
+        self.primaryPID = self.primaryYokeMotor.getPIDController()
+
+        self.primaryYokeMotorEncoder = self.primaryYokeMotor.getEncoder()
+        
+
         self.auxillaryYokeMotor = CANSparkMax(
             self.yoke_const["shooter"]["auxillary_motor"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
+        self.auxillaryPID = self.auxillaryYokeMotor.getPIDController()
+
+        self.auxillaryYokeMotorEncoder = self.auxillaryYokeMotor.getEncoder()
+
         self.kickerMotor = CANSparkMax(
             self.yoke_const["shooter"]["kicker_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
+
+        self.kickerPID = self.kickerMotor.getPIDController()
+
+        self.kickerMotorEncoder = self.kickerMotor.getEncoder()
+
 
     def setSpeed(self, speed):
         """
@@ -54,22 +68,36 @@ class Yoke(SubsystemBase):
 
         print(speed)
 
+
+    def getPrimAngle(self):
+        self.primaryYokeMotorEncoder = self.primaryYokeMotor.getEncoder()
+        return self.primaryYokeMotorEncoder
+    
+    def getAuxAngle(self):
+        self.auxillaryYokeMotorEncoder = self.auxillaryYokeMotor.getEncoder()
+        return self.auxillaryYokeMotorEncoder
+
+    def getKickMoter(self):
+        self.kickerMotorEncoder = self.kickerMotor.getEncoder()
+        return self.kickerMotorEncoder
+
     def setAngle(
-        self, degs, curDegs
+        self, rot2d
     ):  # raises or lowers the shooter the inputted amount of degrees
-        # degs is the amount to move, curDegs is the degrees off the ground it already is
-        if (
-            curDegs + degs <= 100 and curDegs + degs >= 0
-        ):  # stops the shooter from going underground or into itself
-            self.setSpeed.set(degs)  # moves the shooter
-            return curDegs + degs  # returns the updated degrees
-        else:
-            if degs > 0:
-                self.primaryYokeMotor.set(100 - curDegs)  # moves the shooter
-                return 100  # returns maximum
-            else:
-                self.primaryYokeMotor.set(-curDegs)  # moves the shooter
-                return 0  # returns minimum
+        # rot2d is what to set it to
+        
+        rot2d.radians() # converts rottion 2d to radians
+
+        currentRef = self.angleSum / (
+            2 * math.pi
+        )  # (radians) converted to rotations
+
+        
+        self.primaryYokeMotor.setReference(
+            currentRef, CANSparkMaxLowLevel.ControlType.kPosition
+        ) # updating the pid target
+
+        
 
     def Kicker(
         self, degs, curDegs
