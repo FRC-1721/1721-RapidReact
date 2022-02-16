@@ -26,19 +26,19 @@ class Yoke(SubsystemBase):
         self.star_shooter = TalonFX(self.yoke_const["shooter"]["star_falcon_id"])
         self.port_shooter = TalonFX(self.yoke_const["shooter"]["port_falcon_id"])
         self.upperdowner = CANSparkMax(
-            self.yoke_const["shooter"]["upper_downer_id"],
+            self.yoke_const["shooter"]["rotation_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
         # this may not be the way to do it, please ckeck later
-        self.kicky = CANSparkMax(
-            self.yoke_const["shooter"]["kicky_id"],
+        self.Kicker = CANSparkMax(
+            self.yoke_const["shooter"]["Kicker_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
-    def driveSloppy(self, speed):
+    def Drive(self, speed):
         """
-        Method to 'drive sloppy', setting
+        Method to drive, setting
         a value from 0 to 1 by hand, no speed
         control required.
         """
@@ -49,14 +49,14 @@ class Yoke(SubsystemBase):
 
         print(speed)
 
-    def raiseDropSloppy(
+    def Rotation(
         self, degs, curDegs
     ):  # raises or lowers the shooter the inputted amount of degrees
         # degs is the amount to move, curDegs is the degrees off the ground it already is
         if (
             curDegs + degs <= 100 and curDegs + degs >= 0
         ):  # stops the shooter from going underground or into itself
-            self.upperdowner.set(degs)  # moves the shooter
+            self.Rotation.set(degs)  # moves the shooter
             return curDegs + degs  # returns the updated degrees
         else:
             if degs > 0:
@@ -66,19 +66,19 @@ class Yoke(SubsystemBase):
                 self.upperdowner.set(-curDegs)  # moves the shooter
                 return 0  # returns minimum
 
-    def kickyGoSloppy(
+    def Kicker(
         self, degs, curDegs
-    ):  # raises or lowers the kicky the inputted amount of degrees
+    ):  # raises or lowers the Kicker the inputted amount of degrees
         # degs is the amount to move, curDegs is the degrees off the ground it already is
         if (
             curDegs + curDegs <= 60 and curDegs + curDegs >= 0
-        ):  # stops the kicky from going underground or into itself
-            self.kicky.set(degs)  # moves the kicky
+        ):  # stops the Kicker from going underground or into itself
+            self.Kicker.set(degs)  # moves the Kicker
             return curDegs + degs  # returns the updated degrees
         else:
             if degs > 0:
-                self.kicky.set(60 - curDegs)  # moves the kicky
+                self.Kicker.set(60 - curDegs)  # moves the Kicker
                 return 60  # returns maximum
             else:
-                self.kicky.set(-curDegs)  # moves the kicky
+                self.Kicker.set(-curDegs)  # moves the Kicker
                 return 0  # returns minimum
