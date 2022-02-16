@@ -88,7 +88,7 @@ class Yoke(SubsystemBase):
 
         currentRef = curRads / (2 * math.pi)  # (radians) converted to rotations
 
-        self.primaryYokeMotor.setReference(
+        self.primaryPID.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
         )  # updating the pid target
 
