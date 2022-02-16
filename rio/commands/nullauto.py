@@ -1,29 +1,27 @@
+import math
 import commands2
 
 from commands.flybywire import FlyByWire
 
 
-class NullAuto(commands2.SequentialCommandGroup):
+class NullAuto(commands2.CommandBase):
     def __init__(self, drivetrain) -> None:
         """
         Fill this out.
         """
         super().__init__()
 
-        # list of commands.
-        self.addCommands(
-            FlyByWire(
-                drivetrain,
-                lambda: self.getNum(0),
-                lambda: self.getNum(1),
-                lambda: self.getNum(0),
-            ),
-        )
+        self.drivetrain = drivetrain
+        self.angle = 0
 
-    def getNum(self, num):
-        """
-        Replace me later.
-        Typing weirdness.
-        """
+        self.addRequirements([self.drivetrain])
 
-        return num
+    def execute(self) -> None:
+        self.drivetrain.arcadeDrive(math.sin(self.angle), 0, math.cos(self.angle))
+
+        if self.angle <= 360:
+            self.angle = self.angle + 0.1
+        else:
+            self.angle = 0
+
+        print(self.angle)
