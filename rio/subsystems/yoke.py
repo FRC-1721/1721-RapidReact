@@ -36,9 +36,8 @@ class Yoke(SubsystemBase):
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
-        # this may not be the way to do it, please ckeck later
-        self.Kicker = CANSparkMax(
-            self.yoke_const["shooter"]["Kicker_id"],
+        self.kickerMotor = CANSparkMax(
+            self.yoke_const["shooter"]["kicker_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 

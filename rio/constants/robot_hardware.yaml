@@ -69,6 +69,9 @@ yoke:
     primary_motor: 9       # CANSparkMax Motor
     auxillary_motor: 10    # CANSparkMax Motor
 
+    # Constants for kicker
+    kicker_id: 11          # CANSparkMax Motor
+
 misc:
   # Misc hardware settings
   CANdle:
