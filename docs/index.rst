@@ -12,6 +12,7 @@
    subsystems/climber
    subsystems/swervedrive
    subsystems/navigation
+   wiring/wiring
    wiring/network
    usage/operating
    checklist/event
