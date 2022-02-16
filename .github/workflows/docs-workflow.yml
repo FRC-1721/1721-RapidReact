@@ -33,6 +33,22 @@ jobs:
         path: docs/_build/latex/Unnamed_Toaster_Robot_Manual.pdf
 
 
+  upload_to_gdrive:
+    # TODO, only do this on tags l8r
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: Tidal_Force_Robot_Manual
+
+    - name: Upload to gdrive
+      uses: adityak74/google-drive-upload-git-action@main
+      with:
+        credentials: ${{ secrets.GDRIVE_CREDENTIALS }}
+        filename: "*.pdf"
+        folderId: ${{ secrets.GDRIVE_DOCS_FOLDERID }}
+        overwrite: "true" # optional boolean
+          
+
   publish_docs:
     # Only run on tags
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
