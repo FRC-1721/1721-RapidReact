@@ -21,7 +21,7 @@ if pose x/y cords match actual.
 .. literalinclude:: ../../rio/constants/robot_hardware.yaml
   :language: YAML
 
-.. figure:: resources/AProgrammer.jpg
+.. figure:: resources/AProgrammer.png
    :width: 80%
    :alt: Figure of a programmer
 
@@ -253,7 +253,7 @@ FRC Driver Station
 .. figure:: resources/Qdriverstation.png
   :width: 600
   :alt: Alternative text
-  
+
   Q driver Station
 
 The FRC Driver Station is made for windows, but there is a linux version 
