@@ -34,6 +34,8 @@ jobs:
 
 
   upload_to_gdrive:
+    runs-on: ubuntu-latest
+    name: Upload to gdrive
     # TODO, only do this on tags l8r
     steps:
     - uses: actions/download-artifact@v2
