@@ -36,7 +36,7 @@ jobs:
   upload_to_gdrive:
     # TODO, only do this on tags l8r
     runs-on: ubuntu-latest
-    name: Upload to gdrive
+    name: Upload docs to gdrive
     needs: [make_docs]
 
     steps:
@@ -45,19 +45,19 @@ jobs:
         name: Tidal_Force_Robot_Manual
 
     - name: Upload to gdrive
-      uses: adityak74/google-drive-upload-git-action@main
+      uses: team-tumbleweed/gdrive-upload-action@main
       with:
         credentials: ${{ secrets.GDRIVE_CREDENTIALS }}
         filename: "*.pdf"
-        folderId: ${{ secrets.GDRIVE_DOCS_FOLDERID }}
-        overwrite: "true" # optional boolean
+        folderId: ${{ secrets.GDRIVE_FOLDERID_2022 }}
+        overwrite: "true"
           
 
   publish_docs:
     # Only run on tags
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
-    name: Publish Docs
+    name: Attach Docs to Release
     needs: [make_docs]
 
     steps:
