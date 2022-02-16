@@ -41,7 +41,7 @@ class Yoke(SubsystemBase):
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
-    def Drive(self, speed):
+    def setSpeed(self, speed):
         """
         Method to drive, setting
         a value from 0 to 1 by hand, no speed
@@ -54,14 +54,14 @@ class Yoke(SubsystemBase):
 
         print(speed)
 
-    def Rotation(
+    def setAngle(
         self, degs, curDegs
     ):  # raises or lowers the shooter the inputted amount of degrees
         # degs is the amount to move, curDegs is the degrees off the ground it already is
         if (
             curDegs + degs <= 100 and curDegs + degs >= 0
         ):  # stops the shooter from going underground or into itself
-            self.Rotation.set(degs)  # moves the shooter
+            self.setSpeed.set(degs)  # moves the shooter
             return curDegs + degs  # returns the updated degrees
         else:
             if degs > 0:

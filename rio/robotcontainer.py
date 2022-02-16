@@ -71,7 +71,10 @@ class RobotContainer:
             SloppyShooter(
                 self.yoke,
                 lambda: self.driverController.getRawAxis(
-                    self.controlMode["raw_shooter_axis"]
+                    self.controlMode["raw_shooter_speed_axis"]
+                ),
+                lambda: self.driverController.getRawAxis(
+                    self.controlMode["raw_shooter_angle_axis"]
                 ),
             )
         )
