@@ -286,9 +286,6 @@ class SwerveModule:
             2 * math.pi
         )  # The sum (radians) converted to rotations (of the steer wheel)
 
-        if self.constants["steer_id"] == 1:
-            print(self.angleSum, "Angle Sum | ", self.radians, "Radians")
-
         # Set the position of the neo to the desired position
         # self.steer_motor.set(0.5)
         self.steer_PID.setReference(
