@@ -65,6 +65,10 @@ yoke:
     star_falcon_id: 1
     port_falcon_id: 2
 
+    # Constants for other motors and sensors
+    primary_motor: 9       # CANSparkMax Motor
+    auxillary_motor: 10    # CANSparkMax Motor
+
 misc:
   # Misc hardware settings
   CANdle:

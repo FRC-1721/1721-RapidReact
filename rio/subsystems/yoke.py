@@ -23,10 +23,16 @@ class Yoke(SubsystemBase):
         self.yoke_const = constants["yoke"]
 
         # Configure all motors
-        self.star_shooter = TalonFX(self.yoke_const["shooter"]["star_falcon_id"])
-        self.port_shooter = TalonFX(self.yoke_const["shooter"]["port_falcon_id"])
-        self.upperdowner = CANSparkMax(
-            self.yoke_const["shooter"]["rotation_id"],
+        self.starShooter = TalonFX(self.yoke_const["shooter"]["star_falcon_id"])
+        self.portShooter = TalonFX(self.yoke_const["shooter"]["port_falcon_id"])
+
+        self.primaryYokeMotor = CANSparkMax(
+            self.yoke_const["shooter"]["primary_motor"],
+            CANSparkMaxLowLevel.MotorType.kBrushless,
+        )
+
+        self.auxillaryYokeMotor = CANSparkMax(
+            self.yoke_const["shooter"]["auxillary_motor"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
@@ -44,8 +50,8 @@ class Yoke(SubsystemBase):
         """
 
         # Send
-        self.star_shooter.set(ControlMode.PercentOutput, speed)
-        self.port_shooter.set(ControlMode.PercentOutput, -speed)
+        self.starShooter.set(ControlMode.PercentOutput, speed)
+        self.portShooter.set(ControlMode.PercentOutput, -speed)
 
         print(speed)
 
@@ -60,10 +66,10 @@ class Yoke(SubsystemBase):
             return curDegs + degs  # returns the updated degrees
         else:
             if degs > 0:
-                self.upperdowner.set(100 - curDegs)  # moves the shooter
+                self.primaryYokeMotor.set(100 - curDegs)  # moves the shooter
                 return 100  # returns maximum
             else:
-                self.upperdowner.set(-curDegs)  # moves the shooter
+                self.primaryYokeMotor.set(-curDegs)  # moves the shooter
                 return 0  # returns minimum
 
     def Kicker(
