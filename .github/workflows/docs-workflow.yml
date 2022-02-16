@@ -34,9 +34,11 @@ jobs:
 
 
   upload_to_gdrive:
+    # TODO, only do this on tags l8r
     runs-on: ubuntu-latest
     name: Upload to gdrive
-    # TODO, only do this on tags l8r
+    needs: [make_docs]
+
     steps:
     - uses: actions/download-artifact@v2
       with:
