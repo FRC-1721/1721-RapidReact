@@ -24,8 +24,15 @@ class Yoke(SubsystemBase):
         self.yoke_const = constants["yoke"]
 
         # Configure all motors
-        self.starShooter = TalonFX(self.yoke_const["shooter"]["star_falcon_id"])
-        self.portShooter = TalonFX(self.yoke_const["shooter"]["port_falcon_id"])
+        self.starShooter = CANSparkMax(
+            self.yoke_const["shooter"]["star_canspark_id"],
+            CANSparkMaxLowLevel.MotorType.kBrushless,
+        )
+
+        self.portShooter = CANSparkMax(
+            self.yoke_const["shooter"]["port_canspark_id"],
+            CANSparkMaxLowLevel.MotorType.kBrushless,
+        )
 
         self.primaryYokeMotor = CANSparkMax(
             self.yoke_const["shooter"]["primary_motor"],

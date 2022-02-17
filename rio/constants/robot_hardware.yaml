@@ -61,9 +61,9 @@ drivetrain:
 
 yoke:
   shooter:
-    # Constants for the falcons/shooter parts
-    star_falcon_id: 1
-    port_falcon_id: 2
+    # Constants for canspark
+    star_canspark_id: 1
+    port_canspark_id: 2
 
     # Constants for other motors and sensors
     primary_motor: 9       # CANSparkMax Motor
