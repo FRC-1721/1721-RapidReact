@@ -93,18 +93,15 @@ class Yoke(SubsystemBase):
         )  # updating the pid target
 
     def Kicker(
-        self, degs, curDegs
-    ):  # raises or lowers the Kicker the inputted amount of degrees
-        # degs is the amount to move, curDegs is the degrees off the ground it already is
-        if (
-            curDegs + curDegs <= 60 and curDegs + curDegs >= 0
-        ):  # stops the Kicker from going underground or into itself
-            self.Kicker.set(degs)  # moves the Kicker
-            return curDegs + degs  # returns the updated degrees
-        else:
-            if degs > 0:
-                self.Kicker.set(60 - curDegs)  # moves the Kicker
-                return 60  # returns maximum
-            else:
-                self.Kicker.set(-curDegs)  # moves the Kicker
-                return 0  # returns minimum
+        self,
+        rot2d,
+    ):  # raises or lowers the shooter the inputted amount of degrees
+        # rot2d is what to set it to
+
+        curRads = rot2d.radians()  # converts rottion 2d to radians
+
+        currentRef = curRads / (2 * math.pi)  # (radians) converted to rotations
+
+        self.kickerPID.setReference(
+            currentRef, CANSparkMaxLowLevel.ControlType.kPosition
+        )  # updating the pid target
