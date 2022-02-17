@@ -19,6 +19,8 @@ help:
 build:
 	npm install && npx webpack
 
+# note that build-dev will not exit. It is going to continue running,
+# watching all files for changes and retranspiling on a change
 build-dev:
 	npm install && npx webpack --watch
 
@@ -30,3 +32,7 @@ comp:
 
 clean:
 	git clean -fdX
+
+deploy:
+	echo "This command will prompt you for a password. When it does type 'dash' and press enter."
+	scp -r ./www dash@10.17.21.11:/opt/dashboard
