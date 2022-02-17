@@ -62,8 +62,8 @@ class Yoke(SubsystemBase):
         """
 
         # Send
-        self.starShooter.set(ControlMode.PercentOutput, speed)
-        self.portShooter.set(ControlMode.PercentOutput, -speed)
+        self.starShooter.setVelocityConversionFactor(1.0)
+        self.portShooter.setVelocityConversionFactor(1.0)
 
         print(speed)
 
