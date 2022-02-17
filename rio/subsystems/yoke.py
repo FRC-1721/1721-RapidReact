@@ -29,14 +29,10 @@ class Yoke(SubsystemBase):
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
-        self.StarPID = self.starShooter.getPIDController()
-
         self.portShooter = CANSparkMax(
             self.yoke_const["shooter"]["port_canspark_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
-
-        self.PortPID = self.portShooter.getPIDController()
 
         self.primaryYokeMotor = CANSparkMax(
             self.yoke_const["shooter"]["primary_motor"],
@@ -44,7 +40,8 @@ class Yoke(SubsystemBase):
         )
 
         self.primaryPID = self.primaryYokeMotor.getPIDController()
-        self.primaryPID = self.primaryYokeMotor.getPIDController()
+        self.starPID = self.starShooter.getPIDController()
+        self.portPID = self.portShooter.getPIDController()
 
         self.primaryYokeMotorEncoder = self.primaryYokeMotor.getEncoder()
 
@@ -74,8 +71,8 @@ class Yoke(SubsystemBase):
         """
 
         # Send
-        self.StarPID.setVelocityConversionFactor(1.0)
-        self.PortPID.setVelocityConversionFactor(1.0)
+        self.starPID.setVelocityConversionFactor(1.0)
+        self.portPID.setVelocityConversionFactor(1.0)
 
         print(speed)
 
