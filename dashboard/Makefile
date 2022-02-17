@@ -5,6 +5,9 @@
 # collection of shortcuts, handy for doing simple scripts
 # and macros.
 
+ROOT := $(PWD)
+STAGEDIR := $(ROOT)/_staging/
+
 all: help
 
 help:
@@ -14,6 +17,7 @@ help:
 	@echo "   clean         Shortucut for git clean -fdX"
 	@echo "   build         Shortucut for npm install && npx webpack, which builds the javascript dist files"
 	@echo "   build-dev     Shortucut for npm install && npx webpack --watch, which builds the javascript dist files and autorecompiles on change"
+	@echo "   deploy        Use scp to deploy the new html/js files to the nuc."
 	@echo
 
 build:
@@ -35,4 +39,7 @@ clean:
 
 deploy:
 	echo "This command will prompt you for a password. When it does type 'dash' and press enter."
-	scp -r ./www dash@10.17.21.11:/opt/dashboard
+	mkdir -p $(STAGEDIR)
+	cp -r www/* $(STAGEDIR)
+	cp -r opt/* $(STAGEDIR)
+	scp -r $(STAGEDIR) dash@10.17.21.11:/opt/dashboard
