@@ -71,6 +71,29 @@ yoke:
   aux_yoke_invert: false        # Updated 02/24/22 by Joe
   kicker_invert: true           # Updated 02/24/22 by Joe
 
+Climber:
+  portClimber:
+    pose_x: 1 # updated 2/17/22 by keegan
+    pose_y: 1 # updated 2/17/22 by keegan
+    drive_id: 9 # updated 2/17/22 by keegan
+    steer_id: 10 # updated 2/17/22 by keegan
+
+  starboardClimber:
+    pose_x: 1 # updated 2/17/22 by keegan
+    pose_y: 1 # updated 2/17/22 by keegan
+    drive_id: 11 # updated 2/17/22 by keegan
+    steer_id: 12 # updated 2/17/22 by keegan
+  
+  pid:
+    kp: 1 # updated 2/17/22 by keegan
+    ki: 1 # updated 2/17/22 by keegan
+    kd: 1 # updated 2/17/22 by keegan
+    maxi: 1 # updated 2/17/22 by keegan
+    min_power: -0.85 # updated 2/17/22 by keegan
+    max_power: 0.85 # updated 2/17/22 by keegan
+    ratio: 0.033 # updated 2/17/22 by keegan
+
+
 misc:
   # Misc hardware settings
   CANdle:
