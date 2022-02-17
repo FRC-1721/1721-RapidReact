@@ -50,7 +50,6 @@ jobs:
         credentials: ${{ secrets.GDRIVE_CREDENTIALS }}
         filename: "*.pdf"
         folderId: ${{ secrets.GDRIVE_FOLDERID_2022 }}
-        overwrite: "true"
           
 
   publish_docs:
