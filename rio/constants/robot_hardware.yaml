@@ -62,7 +62,7 @@ drivetrain:
 yoke:
   shooter:
     # Constants for canspark
-    star_canspark_id: 11
+    star_canspark_id: 13
     port_canspark_id: 12
 
     # Constants for other motors and sensors
