@@ -22,14 +22,6 @@ Shared Connectors
 Some processors or subsystems use large, multi pin connectors
 to connect to the central wiring harness, they are detailed below.
 
-.. image:: resources/NUCWiring.png
+.. figure:: resources/NUC&RIOwiring.png
   :height: 300
-  :alt: NUC Ports
-
-NUC Ports
-
-.. image:: resources/RIOWiring.png
-  :height: 300
-  :alt: RIO Ports
-  
-RIO Ports
+  :alt: Ports

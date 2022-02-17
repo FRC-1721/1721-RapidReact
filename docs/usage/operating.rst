@@ -27,4 +27,4 @@ with the blue logitech controller the pov and left joystick are switched.
 
 The standard controller that we use the logitech joystick most should have knowledge on how this works.
 
-This controller have being used the most in previous years it might no be used as much in previous years.
+This controller have being used the most in previous years, it might no be used as much in previous years.

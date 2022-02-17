@@ -9,6 +9,12 @@ Introduction
 
 |outreach|
 
+.. figure:: resources/shooter.png
+  :width: 400
+  :alt: Swerve Module Prototype
+
+  Part of the shooter
+
 While yoke shooters have been done in the past,
 ours is a bit different.
 
