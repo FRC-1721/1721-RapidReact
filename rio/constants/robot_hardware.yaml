@@ -72,17 +72,8 @@ yoke:
   kicker_invert: true           # Updated 02/24/22 by Joe
 
 Climber:
-  portClimber:
-    pose_x: 1 # updated 2/17/22 by keegan
-    pose_y: 1 # updated 2/17/22 by keegan
-    drive_id: 9 # updated 2/17/22 by keegan
-    steer_id: 10 # updated 2/17/22 by keegan
-
-  starboardClimber:
-    pose_x: 1 # updated 2/17/22 by keegan
-    pose_y: 1 # updated 2/17/22 by keegan
-    drive_id: 11 # updated 2/17/22 by keegan
-    steer_id: 12 # updated 2/17/22 by keegan
+  portClimber: 9 # updated 2/17/22 by keegan
+  starboardClimber: 10 # updated 2/17/22 by keegan
   
   pid:
     kp: 1 # updated 2/17/22 by keegan
