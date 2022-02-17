@@ -1,6 +1,8 @@
 # FRC 1721
 # 2022
 
+# This code is kind of a yoke - Khan
+
 from commands2 import SubsystemBase
 
 from ctre import TalonFX, ControlMode
@@ -71,9 +73,8 @@ class Yoke(SubsystemBase):
         """
 
         # Send
-        self.starPID.setVelocityConversionFactor(1.0)
-        self.portPID.setVelocityConversionFactor(1.0)
-
+        self.starPID.setReference(1.0, CANSparkMaxLowLevel.ControlType.kVelocity)
+        self.portPID.setReference(1.0, CANSparkMaxLowLevel.ControlType.kVelocity)
         print(speed)
 
     def getPrimAngle(self):
