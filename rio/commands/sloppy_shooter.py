@@ -42,10 +42,8 @@ class SloppyShooter(commands2.CommandBase):
             self.max_angle,
         )
 
-        print(self.last_angle)
-
         self.yoke.setSpeed(self.speed())
-        self.yoke.setPrimaryYokeAngle(self.angle2d)
+        self.yoke.setPrimaryYokeAngle(geometry.Rotation2d(self.last_angle))
 
     def clamp(self, _min, x, _max):
         """

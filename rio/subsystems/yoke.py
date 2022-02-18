@@ -126,6 +126,8 @@ class Yoke(SubsystemBase):
         # Convert radians to motor rotations
         target_rotations = target_radians / (2 * math.pi)
 
+        # print(target_rotations / self.pid_const["ratio"])
+
         # Set a new PID target
         self.primaryPID.setReference(
             target_rotations, CANSparkMaxLowLevel.ControlType.kPosition
