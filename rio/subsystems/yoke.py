@@ -3,13 +3,16 @@
 
 # This code is kind of a yoke - Khan
 
+import math
+
 from commands2 import SubsystemBase
 
 from ctre import TalonFX, ControlMode
 from rev import CANSparkMax, CANSparkMaxLowLevel
+from wpilib import RobotBase
+from wpimath import geometry
 
 from constants.constants import getConstants
-import math
 
 
 class Yoke(SubsystemBase):
@@ -74,6 +77,16 @@ class Yoke(SubsystemBase):
             self.pid_const["primary"]["max_power"],
         )
 
+        # TODO: Auxillary yoke pid here
+
+        # Ratios
+        self.primaryYokeMotorEncoder.setPositionConversionFactor(
+            self.pid_const["ratio"]
+        )
+        self.auxillaryYokeMotorEncoder.setPositionConversionFactor(
+            self.pid_const["ratio"]
+        )
+
     def setSpeed(self, speed):
         """
         Method to drive, setting
@@ -81,48 +94,53 @@ class Yoke(SubsystemBase):
         control required.
         """
 
-        # This does not work, tested Feb 18
-        # self.starPID.setReference(1.0, CANSparkMaxLowLevel.ControlType.kVelocity)
-        # self.portPID.setReference(1.0, CANSparkMaxLowLevel.ControlType.kVelocity)
         self.portShooter.set(speed)
         self.starShooter.set(-speed)
-        print(speed)
 
-    def getPrimAngle(self):
+        if not RobotBase.isReal():
+            print(speed)
+
+    def setVelocity(self, velocity):
+        """
+        Method to set the shooter speed velocity
+        via pid.
+        """
+
+        # TODO: These need to be inverted, DONT do this here, do this in init
+        self.starPID.setReference(velocity, CANSparkMaxLowLevel.ControlType.kVelocity)
+        self.portPID.setReference(velocity, CANSparkMaxLowLevel.ControlType.kVelocity)
+
+    def getPrimaryAngle(self):
         self.primaryYokeMotorEncoder = self.primaryYokeMotor.getEncoder()
         return self.primaryYokeMotorEncoder
 
-    def getAuxAngle(self):
+    def getAuxillaryAngle(self):
         self.auxillaryYokeMotorEncoder = self.auxillaryYokeMotor.getEncoder()
         return self.auxillaryYokeMotorEncoder
 
-    def getKickMoter(self):
-        self.kickerMotorEncoder = self.kickerMotor.getEncoder()
-        return self.kickerMotorEncoder
+    def setPrimaryYokeAngle(self, angle: geometry.Rotation2d):
+        """
+        Method to update the target angle
+        for the primary shooter.
+        """
 
-    def setAngle(
-        self, rot2d
-    ):  # raises or lowers the shooter the inputted amount of degrees
-        # rot2d is what to set it to
+        # Convert rotation2d to radians
+        target_radians = angle.radians()
+        # Convert radians to motor rotations
+        target_rotations = target_radians / (2 * math.pi)
 
-        curRads = rot2d.radians()  # converts rottion 2d to radians
-
-        currentRef = curRads / (2 * math.pi)  # (radians) converted to rotations
-
+        # Set a new PID target
         self.primaryPID.setReference(
-            currentRef, CANSparkMaxLowLevel.ControlType.kPosition
-        )  # updating the pid target
+            target_rotations, CANSparkMaxLowLevel.ControlType.kPosition
+        )
 
-    def Kicker(
-        self,
-        rot2d,
-    ):  # raises or lowers the shooter the inputted amount of degrees
-        # rot2d is what to set it to
+    def kick(self, reverse: bool = False):
+        """
+        Activates the kicker, pushing the ball
+        into the wheels.
 
-        curRads = rot2d.radians()  # converts rottion 2d to radians
+        TODO: Should return error if shooter is not up to speed.
+        """
 
-        currentRef = curRads / (2 * math.pi)  # (radians) converted to rotations
-
-        self.kickerPID.setReference(
-            currentRef, CANSparkMaxLowLevel.ControlType.kPosition
-        )  # updating the pid target
+        if not reverse:
+            self.kickerMotor.set(0.6)  # CHangeme!

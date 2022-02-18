@@ -29,4 +29,4 @@ class SloppyShooter(commands2.CommandBase):
 
     def execute(self) -> None:
         self.yoke.setSpeed(self.speed())
-        self.yoke.setAngle(self.angle2d)
+        self.yoke.setPrimaryYokeAngle(self.angle2d)
