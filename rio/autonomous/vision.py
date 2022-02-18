@@ -13,3 +13,6 @@ class vision(commands2.SequentialCommandGroup):
     def __init__(self, drive: Drivetrain, yoke: Yoke):
         super().__init__()
         NetworkTables.getTable("limelight").getNumber("<variablename>")
+
+    def camera(self):
+        pass
