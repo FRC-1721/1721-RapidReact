@@ -64,6 +64,15 @@ class Yoke(SubsystemBase):
         self.kickerMotorEncoder = self.kickerMotor.getEncoder()
 
         # Configure PID
+        self.primaryPID.setP(self.pid_const["primary"]["kp"])
+        self.primaryPID.setI(self.pid_const["primary"]["ki"])
+        self.primaryPID.setD(self.pid_const["primary"]["kd"])
+        # self.primaryPID.setFF(1)
+        self.primaryPID.setIMaxAccum(self.pid_const["primary"]["maxi"])
+        self.primaryPID.setOutputRange(
+            self.pid_const["primary"]["min_power"],
+            self.pid_const["primary"]["max_power"],
+        )
 
     def setSpeed(self, speed):
         """

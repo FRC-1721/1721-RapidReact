@@ -72,27 +72,26 @@ yoke:
   kicker_id: 11                 # Updated never by Joe
   
   pid: # PID and position constants
-    yoke:
-      primary:
-        kp: 1                     # Updated never by Joe
-        ki: 1                     # Updated never by Joe
-        kd: 1                     # Updated never by Joe
-        # Max amount of I that can accumulate
-        maxi: 1                   # Updated never by Joe
-        # Max and min values the PID can assign to the motor
-        min_power: -0.5           # Updated never by Joe
-        max_power: 0.5            # Updated never by Joe
-      auxillary:
-        kp: 1                     # Updated never by Joe
-        ki: 1                     # Updated never by Joe
-        kd: 1                     # Updated never by Joe
-        # Max amount of I that can accumulate
-        maxi: 1                   # Updated never by Joe
-        # Max and min values the PID can assign to the motor
-        min_power: -0.5           # Updated never by Joe
-        max_power: 0.5            # Updated never by Joe
-      # Ratio of motor rotations to yoke rotations
-      ratio: 0.05                 # Updated never by Joe
+    primary:
+      kp: 1                     # Updated never by Joe
+      ki: 1                     # Updated never by Joe
+      kd: 1                     # Updated never by Joe
+      # Max amount of I that can accumulate
+      maxi: 1                   # Updated never by Joe
+      # Max and min values the PID can assign to the motor
+      min_power: -0.5           # Updated never by Joe
+      max_power: 0.5            # Updated never by Joe
+    auxillary:
+      kp: 1                     # Updated never by Joe
+      ki: 1                     # Updated never by Joe
+      kd: 1                     # Updated never by Joe
+      # Max amount of I that can accumulate
+      maxi: 1                   # Updated never by Joe
+      # Max and min values the PID can assign to the motor
+      min_power: -0.5           # Updated never by Joe
+      max_power: 0.5            # Updated never by Joe
+    # Ratio of motor rotations to yoke rotations
+    ratio: 0.05                 # Updated never by Joe
 
 misc:
   # Misc hardware settings
