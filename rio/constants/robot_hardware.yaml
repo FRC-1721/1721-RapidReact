@@ -60,17 +60,39 @@ drivetrain:
       ratio: 0.033              # Updated 2/12/22 by Joe
 
 yoke:
-  shooter:
-    # Constants for canspark
-    star_canspark_id: 13   # Updated 2/18/22 by Joe
-    port_canspark_id: 12   # Updated 2/18/22 by Joe
+  # Constants for shooter motors
+  star_shooter_id: 13           # Updated 2/18/22 by Joe
+  port_shooter_id: 12           # Updated 2/18/22 by Joe
 
-    # Constants for other motors and sensors
-    primary_motor: 9       # CANSparkMax Motor
-    auxillary_motor: 10    # CANSparkMax Motor
+  # Constants for yoke motors and other sensors
+  primary_motor_id: 9           # Updated never by Joe
+  auxillary_motor_id: 10        # Updated never by Joe
 
-    # Constants for kicker
-    kicker_id: 11          # CANSparkMax Motor
+  # Constants for kicker
+  kicker_id: 11                 # Updated never by Joe
+  
+  pid: # PID and position constants
+    yoke:
+      primary:
+        kp: 1                     # Updated never by Joe
+        ki: 1                     # Updated never by Joe
+        kd: 1                     # Updated never by Joe
+        # Max amount of I that can accumulate
+        maxi: 1                   # Updated never by Joe
+        # Max and min values the PID can assign to the motor
+        min_power: -0.5           # Updated never by Joe
+        max_power: 0.5            # Updated never by Joe
+      auxillary:
+        kp: 1                     # Updated never by Joe
+        ki: 1                     # Updated never by Joe
+        kd: 1                     # Updated never by Joe
+        # Max amount of I that can accumulate
+        maxi: 1                   # Updated never by Joe
+        # Max and min values the PID can assign to the motor
+        min_power: -0.5           # Updated never by Joe
+        max_power: 0.5            # Updated never by Joe
+      # Ratio of motor rotations to yoke rotations
+      ratio: 0.05                 # Updated never by Joe
 
 misc:
   # Misc hardware settings

@@ -24,46 +24,46 @@ class Yoke(SubsystemBase):
         # Configure Constants
         constants = getConstants("robot_hardware")
         self.yoke_const = constants["yoke"]
+        self.pid_const = self.yoke_const["pid"]
 
         # Configure all motors
         self.starShooter = CANSparkMax(
-            self.yoke_const["shooter"]["star_canspark_id"],
+            self.yoke_const["star_shooter_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
         self.portShooter = CANSparkMax(
-            self.yoke_const["shooter"]["port_canspark_id"],
+            self.yoke_const["port_shooter_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
         self.primaryYokeMotor = CANSparkMax(
-            self.yoke_const["shooter"]["primary_motor"],
+            self.yoke_const["primary_motor_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
+        self.auxillaryYokeMotor = CANSparkMax(
+            self.yoke_const["auxillary_motor_id"],
+            CANSparkMaxLowLevel.MotorType.kBrushless,
+        )
+
+        self.kickerMotor = CANSparkMax(
+            self.yoke_const["kicker_id"],
+            CANSparkMaxLowLevel.MotorType.kBrushless,
+        )
+
+        # Get PID controller objects
         self.primaryPID = self.primaryYokeMotor.getPIDController()
+        self.auxillaryPID = self.auxillaryYokeMotor.getPIDController()
         self.starPID = self.starShooter.getPIDController()
         self.portPID = self.portShooter.getPIDController()
 
+        # Get encoders and sensors
         self.primaryYokeMotorEncoder = self.primaryYokeMotor.getEncoder()
-
-        self.auxillaryYokeMotor = CANSparkMax(
-            self.yoke_const["shooter"]["auxillary_motor"],
-            CANSparkMaxLowLevel.MotorType.kBrushless,
-        )
-
-        self.auxillaryPID = self.auxillaryYokeMotor.getPIDController()
-
         self.auxillaryYokeMotorEncoder = self.auxillaryYokeMotor.getEncoder()
-
-        self.kickerMotor = CANSparkMax(
-            self.yoke_const["shooter"]["kicker_id"],
-            CANSparkMaxLowLevel.MotorType.kBrushless,
-        )
-
-        self.kickerPID = self.kickerMotor.getPIDController()
-
         self.kickerMotorEncoder = self.kickerMotor.getEncoder()
+
+        # Configure PID
 
     def setSpeed(self, speed):
         """
