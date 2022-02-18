@@ -97,9 +97,6 @@ class Yoke(SubsystemBase):
         self.portShooter.set(speed)
         self.starShooter.set(-speed)
 
-        if not RobotBase.isReal():
-            print(speed)
-
     def setVelocity(self, velocity):
         """
         Method to set the shooter speed velocity
@@ -133,9 +130,6 @@ class Yoke(SubsystemBase):
         self.primaryPID.setReference(
             target_rotations, CANSparkMaxLowLevel.ControlType.kPosition
         )
-
-        if not RobotBase.isReal():
-            print(target_rotations)
 
     def kick(self, reverse: bool = False):
         """

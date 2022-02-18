@@ -22,7 +22,11 @@ class SloppyShooter(commands2.CommandBase):
         self.speed = speed  # Callable
         self.angle = angle  # Callable
 
-        self.print(self.angle())
+        # For the head-lift system
+        self.max_angle = 1.5708  # TODO: MOVE ME
+        self.min_angle = 0  # TODO: MOVE ME
+        self.head_acceleration = 0.01
+        self.last_angle = 0
 
         self.angle2d = geometry.Rotation2d(self.angle())
 
@@ -30,5 +34,24 @@ class SloppyShooter(commands2.CommandBase):
         self.addRequirements([self.yoke])
 
     def execute(self) -> None:
+
+        # Head lift math
+        self.last_angle = self.clamp(
+            self.min_angle,
+            self.last_angle + (self.head_acceleration * self.angle()),
+            self.max_angle,
+        )
+
+        print(self.last_angle)
+
         self.yoke.setSpeed(self.speed())
         self.yoke.setPrimaryYokeAngle(self.angle2d)
+
+    def clamp(self, _min, x, _max):
+        """
+        Minor utility function
+        written by joe
+
+        TODO: MOVE ME
+        """
+        return max(_min, min(x, _max))
