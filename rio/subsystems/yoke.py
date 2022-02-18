@@ -72,9 +72,11 @@ class Yoke(SubsystemBase):
         control required.
         """
 
-        # Send
-        self.starPID.setReference(1.0, CANSparkMaxLowLevel.ControlType.kVelocity)
-        self.portPID.setReference(1.0, CANSparkMaxLowLevel.ControlType.kVelocity)
+        # This does not work, tested Feb 18
+        # self.starPID.setReference(1.0, CANSparkMaxLowLevel.ControlType.kVelocity)
+        # self.portPID.setReference(1.0, CANSparkMaxLowLevel.ControlType.kVelocity)
+        self.portShooter.set(speed)
+        self.starShooter.set(-speed)
         print(speed)
 
     def getPrimAngle(self):
