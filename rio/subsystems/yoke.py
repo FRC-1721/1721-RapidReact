@@ -134,6 +134,9 @@ class Yoke(SubsystemBase):
             target_rotations, CANSparkMaxLowLevel.ControlType.kPosition
         )
 
+        if not RobotBase.isReal():
+            print(target_rotations)
+
     def kick(self, reverse: bool = False):
         """
         Activates the kicker, pushing the ball

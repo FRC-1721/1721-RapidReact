@@ -22,6 +22,8 @@ class SloppyShooter(commands2.CommandBase):
         self.speed = speed  # Callable
         self.angle = angle  # Callable
 
+        self.print(self.angle())
+
         self.angle2d = geometry.Rotation2d(self.angle())
 
         # Requires yoke to operate
