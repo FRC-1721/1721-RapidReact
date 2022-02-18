@@ -38,8 +38,17 @@ clean:
 	git clean -fdX
 
 deploy:
-	echo "This command will prompt you for a password. When it does type 'dash' and press enter."
-	mkdir -p $(STAGEDIR)
-	cp -r www/* $(STAGEDIR)
+	mkdir -p $(STAGEDIR)www/
+	cp -r www/* $(STAGEDIR)www/
 	cp -r opt/* $(STAGEDIR)
-	scp -r $(STAGEDIR) dash@10.17.21.11:/opt/dashboard
+
+	@echo "======================================================================================="
+	@echo "When prompted for a password, type 'dash' and press enter."
+	@echo "======================================================================================="
+
+	# Transfer
+	scp -r $(STAGEDIR)/* dash@10.17.21.11:/opt/dashboard
+
+	# Restart
+	ssh dash@10.17.21.11 "sudo -S systemctl daemon-reload"
+	ssh dash@10.17.21.11 "sudo -S systemctl restart dashboard"
