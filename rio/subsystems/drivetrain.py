@@ -86,6 +86,9 @@ class Drivetrain(SubsystemBase):
     def doTestAction(self):
         print("I am doing a test action.")
         self.fs_module.doTestAction()
+        self.fp_module.doTestAction()
+        self.as_module.doTestAction()
+        self.ap_module.doTestAction()
 
     def periodic(self):
         """
@@ -267,12 +270,19 @@ class SwerveModule:
 
         Delete whenever not needed anymore.
         """
-        res = self.steer_motor_encoder.setPosition(0)
+        # res = self.steer_motor_encoder.setPosition(0)
+        # print(
+        #     "Steer Drive:",
+        #     self.constants["steer_id"],
+        #     "Immediate Position: ",
+        #     self.steer_motor_encoder.getPosition(),
+        # )
+        self.drive_motor.set(0);
         print(
-            "Steer Drive:",
+            "Drive:",
             self.constants["steer_id"],
-            "Immediate Position: ",
-            self.steer_motor_encoder.getPosition(),
+            "Speed: ",
+            self.drive_motor.get()
         )
 
     def getPose(self):
@@ -328,6 +338,19 @@ class SwerveModule:
 
         self.steer_PID.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
+        )
+
+        safeSpeed = self.desiredState.speed
+        if safeSpeed > 1:
+            safeSpeed = 1
+        elif safeSpeed < -1:
+            safeSpeed = -1
+        self.drive_motor.set(safeSpeed)
+        print(
+            "Drive Motor:",
+            self.constants["drive_id"],
+            "Set value: ",
+            self.drive_motor.get()
         )
 
         self.desiredState = newState
