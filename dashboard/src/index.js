@@ -37,14 +37,14 @@ $(document).ready(function () {
     });
 });
 
+var swerveDriveImage = new Image();
+swerveDriveImage.src = 'resources/swerveModule.png'
 function swerveListener(key, value, isNew) {
-    //console.log(key)
+    // console.log(key)
 
     var canvas = document.getElementById('SwerveCanvas');
     if (canvas.getContext) {
         var lf = canvas.getContext('2d');
-        var swerveDriveImage = new Image();
-        swerveDriveImage.src = 'resources/swerveModule.png'
 
         //console.log(key, value)
         if (key == "/SmartDashboard/SwerveDrive/fp_actual") {
