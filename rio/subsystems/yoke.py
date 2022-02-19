@@ -136,11 +136,14 @@ class Yoke(SubsystemBase):
         # )
 
         # TODO: MOVE ME
-        if not target_rotations > 0.05:
-            # Set a new PID target
-            self.primaryPID.setReference(
-                target_rotations, CANSparkMaxLowLevel.ControlType.kPosition
-            )
+        if not self.primaryYokeMotor.getMotorTemperature() > 45:
+            if not target_rotations > 0.05:
+                # Set a new PID target
+                self.primaryPID.setReference(
+                    target_rotations, CANSparkMaxLowLevel.ControlType.kPosition
+                )
+        else:
+            self.primaryYokeMotor.set(0)
 
     def kick(self, reverse: bool = False):
         """
