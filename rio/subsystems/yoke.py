@@ -8,6 +8,7 @@ import math
 from commands2 import SubsystemBase
 
 from ctre import TalonFX, ControlMode
+from networktables import NetworkTables
 from rev import CANSparkMax, CANSparkMaxLowLevel
 from wpilib import RobotBase
 import wpilib
@@ -29,6 +30,9 @@ class Yoke(SubsystemBase):
         constants = getConstants("robot_hardware")
         self.yoke_const = constants["yoke"]
         self.pid_const = self.yoke_const["pid"]
+
+        # Configure networktables
+        self.configureNetworkTables()
 
         # Configure all motors
         self.starShooter = CANSparkMax(
@@ -94,6 +98,25 @@ class Yoke(SubsystemBase):
             self.pid_const["ratio"]
         )
 
+        # A handy background timer
+        self.backgroundTimer = wpilib.Timer()
+        self.backgroundTimer.start()
+
+    def configureNetworkTables(self):
+        # Get an instance of networktables
+        self.nt = NetworkTables.getDefault()
+
+        # Get the smart dashboard table
+        self.sd = self.nt.getTable("SmartDashboard")
+
+        # Setup subtables
+        self.thermal_table = self.sd.getSubTable("Thermals")
+
+        # Setup all of the networktable entries
+        self.primary_yoke_temp = self.thermal_table.getEntry("primary_yoke_temp")
+        self.auxillary_yoke_temp = self.thermal_table.getEntry("auxillary_yoke_temp")
+        self.kicker_temp = self.thermal_table.getEntry("kicker_temp")
+
     def setSpeed(self, speed):
         """
         Method to drive, setting
@@ -153,3 +176,19 @@ class Yoke(SubsystemBase):
         """
 
         self.kickerMotor.set(kickspeed)
+
+    def periodic(self):
+        """
+        Called periodically when possible,
+        ie: when other commands are not running.
+        Odom/constant updates go here
+        """
+
+        if self.backgroundTimer.hasElapsed(1):  # Every 1s
+            self.primary_yoke_temp.setDouble(
+                self.primaryYokeMotor.getMotorTemperature()
+            )
+            self.auxillary_yoke_temp.setDouble(
+                self.auxillaryYokeMotor.getMotorTemperature()
+            )
+            self.kicker_temp.setDouble(self.kickerMotor.getMotorTemperature())
