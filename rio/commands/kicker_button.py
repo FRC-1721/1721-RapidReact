@@ -1,20 +1,20 @@
 import typing
 import commands2
-from subsystems.yoke import kicker
+from subsystems.yoke import Yoke
 
 
-class TestButtonAction(commands2.CommandBase):
+class Kicker(commands2.CommandBase):
     """
     System to let us tie some arbitrary action to a button for testing purposes
     """
 
-    def __init__(self, yoke: kicker) -> None:
+    def __init__(self, yoke: Yoke) -> None:
         super().__init__()
 
-        self.kicker = kicker
+        self.yoke = yoke
 
     def initialize(self) -> None:
-        self.kicker.kick()
+        self.yoke.kick()
 
     def isFinished(self) -> bool:
         return True
