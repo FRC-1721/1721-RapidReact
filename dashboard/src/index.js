@@ -90,7 +90,7 @@ function swerveListener(key, value, isNew) {
     if (key == "/SmartDashboard/SwerveDrive/as_actual") {
         drawWheel(WHEEL_STARBOARD_X, WHEEL_AFT_Y, value);
     }
-    if (key.contains("/SmartDashboard/Thermals/")) {
+    if (key.includes("/SmartDashboard/Thermals/")) {
         updateTemp(key, value);
     }
 }
