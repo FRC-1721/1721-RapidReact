@@ -27,7 +27,7 @@ Introduction
   :width: 300
   :alt: Alternative text
 
-This manual details everything about **Unnamed Toaster** from the
+This manual details everything about **Burnt Toaster** from the
 prototyping and testing to the grity technical details that make our
 bot tick!
 
