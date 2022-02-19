@@ -19,6 +19,7 @@ from constants.constants import getConstants
 
 # Auto
 from commands.nullauto import NullAuto
+from commands.botchauto import BotchAuto
 
 
 class RobotContainer:
@@ -104,7 +105,10 @@ class RobotContainer:
         self.autoChooser = wpilib.SendableChooser()
 
         # Add options for chooser
-        self.autoChooser.setDefaultOption("Null Auto", NullAuto(self.drivetrain))
+        # self.autoChooser.setDefaultOption("Null Auto", NullAuto(self.drivetrain))
+        self.autoChooser.setDefaultOption(
+            "Caleb pick this one Auto", BotchAuto(self.yoke)
+        )
 
         # Put the chooser on the dashboard
         wpilib.SmartDashboard.putData("Autonomous", self.autoChooser)

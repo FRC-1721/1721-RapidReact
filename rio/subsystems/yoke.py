@@ -184,6 +184,10 @@ class Yoke(SubsystemBase):
         Odom/constant updates go here
         """
 
+        if self.kickerMotor.getMotorTemperature() > 80:
+            self.kickerMotor.set(0)
+            print("Its running a little hot")
+
         if self.backgroundTimer.hasElapsed(1):  # Every 1s
             self.primary_yoke_temp.setDouble(
                 self.primaryYokeMotor.getMotorTemperature()
