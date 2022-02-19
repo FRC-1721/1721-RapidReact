@@ -119,8 +119,13 @@ class Drivetrain(SubsystemBase):
         it can always be replaced!
         """
 
+        fwd_velocity = fwd * self.drive_const["pid"]["velocity"]
+        srf_velocity = srf * self.drive_const["pid"]["velocity"]
+
         # Get wheel speeds and angles from Kinematics, given desired chassis speed and angle
-        arcade_chassis_speeds = kinematics.ChassisSpeeds(fwd, srf, rot)
+        arcade_chassis_speeds = kinematics.ChassisSpeeds(
+            fwd_velocity, srf_velocity, rot
+        )
         _fp, _fs, _ap, _as = self.swerveKinematics.toSwerveModuleStates(
             arcade_chassis_speeds
         )
@@ -192,15 +197,27 @@ class SwerveModule:
 
         # Construct the PID controllers
         self.steer_PID = self.steer_motor.getPIDController()
+        self.drive_PID = self.drive_motor.getPIDController()
 
         # Assign PID Values
-        # TODO: Drive motor too
+        # TODO: PID values currently the same for both steering and driveing
         self.steer_PID.setD(self.pid["steer"]["kd"])
         self.steer_PID.setI(self.pid["steer"]["ki"])
         self.steer_PID.setP(self.pid["steer"]["kp"])
+
+        self.drive_PID.setD(self.pid["steer"]["kd"])
+        self.drive_PID.setI(self.pid["steer"]["ki"])
+        self.drive_PID.setP(self.pid["steer"]["kp"])
+
         # self.steer_PID.setFF(1)
         self.steer_PID.setIMaxAccum(self.pid["steer"]["maxi"])
         self.steer_PID.setOutputRange(
+            self.pid["steer"]["min_power"],
+            self.pid["steer"]["max_power"],
+        )
+
+        self.drive_PID.setIMaxAccum(self.pid["steer"]["maxi"])
+        self.drive_PID.setOutputRange(
             self.pid["steer"]["min_power"],
             self.pid["steer"]["max_power"],
         )
@@ -273,6 +290,15 @@ class SwerveModule:
             self.angleSum + deltaAngle.radians()
         )  # The sum of all the previous movements up to this point
 
+        # If the target is more than a full rotation away from the actual
+        # rotation of the wheel, remove a rotation from the target. This
+        # does not change the target angle as it removes one rotations, but
+        # prevents the wheel from trying to play catch up
+        if self.angleSum - (2 * math.pi) > self.radians:
+            self.angleSum = self.angleSum - (2 * math.pi)
+        elif self.angleSum + (2 * math.pi) < self.radians:
+            self.angleSum = self.angleSum + (2 * math.pi)
+
         currentRef = self.angleSum / (
             2 * math.pi
         )  # The sum (radians) converted to rotations (of the steer wheel)
@@ -283,6 +309,16 @@ class SwerveModule:
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
         )
 
+        # Set velocity, only sets velociy if controler has been moved from the 0 position
+        if self.desiredState.speed > abs(self.pid["drive"]["velocity_min"]):
+            self.drive_PID.setReference(
+                self.desiredState.speed, CANSparkMaxLowLevel.ControlType.kVelocity
+            )
+        else:
+            self.drive_PID.setReference(
+                self.desiredState.speed, CANSparkMaxLowLevel.ControlType.kVelocity
+            )
+
         self.desiredState = newState
 
     def getCurrentState(self):
@@ -290,20 +326,20 @@ class SwerveModule:
         Returns the current state of this module.
         """
         # Current position of the motor encoder (in rotations)
-        encoder = self.steer_motor_encoder.getPosition()
+        self.encoder = self.steer_motor_encoder.getPosition()
 
         # if self.constants["steer_id"] == 1:
         # print(encoder)
 
         # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
-        radians = encoder * (math.pi * 2)
+        self.radians = self.encoder * (math.pi * 2)
 
         # Construct a rotation2d object
-        rot = geometry.Rotation2d(radians)
+        self.rot = geometry.Rotation2d(self.radians)
 
         # The current state is constructed
         # TODO: Measure speed
-        current_state = kinematics.SwerveModuleState(0, rot)
+        current_state = kinematics.SwerveModuleState(0, self.rot)
 
         # Return
         return current_state
