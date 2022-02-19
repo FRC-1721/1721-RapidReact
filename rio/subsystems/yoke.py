@@ -45,6 +45,9 @@ class Yoke(SubsystemBase):
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
+        # MOVE ME
+        self.primaryYokeMotor.setInverted(True)
+
         self.auxillaryYokeMotor = CANSparkMax(
             self.yoke_const["auxillary_motor_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
@@ -124,9 +127,9 @@ class Yoke(SubsystemBase):
         # Convert rotation2d to radians
         target_radians = angle.radians()
         # Convert radians to motor rotations
-        target_rotations = target_radians / (2 * math.pi)
+        target_rotations = (target_radians / (2 * math.pi)) / self.pid_const["ratio"]
 
-        # print(target_rotations / self.pid_const["ratio"])
+        print(target_rotations)
 
         # Set a new PID target
         self.primaryPID.setReference(

@@ -91,7 +91,7 @@ yoke:
       min_power: -0.5           # Updated never by Joe
       max_power: 0.5            # Updated never by Joe
     # Ratio of motor rotations to yoke rotations
-    ratio: 0.05                 # Updated never by Joe
+    ratio: 0.005                # Updated Week 0 by Joe
 
 misc:
   # Misc hardware settings
