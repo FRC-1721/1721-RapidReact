@@ -119,23 +119,28 @@ class Drivetrain(SubsystemBase):
         it can always be replaced!
         """
 
-        fwd_velocity = fwd * self.drive_const["pid"]["velocity"]
-        srf_velocity = srf * self.drive_const["pid"]["velocity"]
+        fwd_velocity = fwd * self.drive_const["max_velocity"]
+        srf_velocity = srf * self.drive_const["max_velocity"]
 
         # Get wheel speeds and angles from Kinematics, given desired chassis speed and angle
         arcade_chassis_speeds = kinematics.ChassisSpeeds(
             fwd_velocity, srf_velocity, rot
         )
+
         _fp, _fs, _ap, _as = self.swerveKinematics.toSwerveModuleStates(
             arcade_chassis_speeds
         )
 
-        # TODO: These modules should NOT be swapped! This is still a bug, see #1
-        # https://github.com/FRC-1721/1721-RapidReact/issues/1
-        self.fp_module.setDesiredState(_fs)
-        self.fs_module.setDesiredState(_fp)
-        self.ap_module.setDesiredState(_as)
-        self.as_module.setDesiredState(_ap)
+        if (
+            max(_fp.speed, _fs.speed, _ap.speed, _as.speed)
+            > self.drive_const["min_velocity"]
+        ):
+            # TODO: These modules should NOT be swapped! This is still a bug, see #1
+            # https://github.com/FRC-1721/1721-RapidReact/issues/1
+            self.fp_module.setDesiredState(_fs)
+            self.fs_module.setDesiredState(_fp)
+            self.ap_module.setDesiredState(_as)
+            self.as_module.setDesiredState(_ap)
 
     def configureNetworkTables(self):
         # Get an instance of networktables
@@ -201,13 +206,14 @@ class SwerveModule:
 
         # Assign PID Values
         # TODO: PID values currently the same for both steering and driveing
-        self.steer_PID.setD(self.pid["steer"]["kd"])
-        self.steer_PID.setI(self.pid["steer"]["ki"])
         self.steer_PID.setP(self.pid["steer"]["kp"])
+        self.steer_PID.setI(self.pid["steer"]["ki"])
+        self.steer_PID.setD(self.pid["steer"]["kd"])
 
-        self.drive_PID.setD(self.pid["steer"]["kd"])
-        self.drive_PID.setI(self.pid["steer"]["ki"])
-        self.drive_PID.setP(self.pid["steer"]["kp"])
+        self.drive_PID.setP(self.pid["drive"]["kp"])
+        self.drive_PID.setI(self.pid["drive"]["ki"])
+        self.drive_PID.setD(self.pid["drive"]["kd"])
+        self.drive_PID.setFF(self.pid["drive"]["ff"])
 
         # self.steer_PID.setFF(1)
         self.steer_PID.setIMaxAccum(self.pid["steer"]["maxi"])
@@ -308,16 +314,6 @@ class SwerveModule:
         self.steer_PID.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
         )
-
-        # Set velocity, only sets velociy if controler has been moved from the 0 position
-        if self.desiredState.speed > abs(self.pid["drive"]["velocity_min"]):
-            self.drive_PID.setReference(
-                self.desiredState.speed, CANSparkMaxLowLevel.ControlType.kVelocity
-            )
-        else:
-            self.drive_PID.setReference(
-                self.desiredState.speed, CANSparkMaxLowLevel.ControlType.kVelocity
-            )
 
         self.desiredState = newState
 
