@@ -1,6 +1,8 @@
 import commands2
 import constants
+
 from networktables import NetworkTables
+
 from subsystems.drivetrain import Drivetrain
 from subsystems.yoke import Yoke
 

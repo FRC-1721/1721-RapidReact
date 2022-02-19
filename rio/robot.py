@@ -4,8 +4,6 @@ import typing
 import wpilib
 import commands2
 
-from cscore import CameraServer
-
 from robotcontainer import RobotContainer
 from datetime import datetime
 
@@ -25,8 +23,6 @@ class MyRobot(commands2.TimedCommandRobot):
         This function is run when the robot is first started up and should be used for any
         initialization code.
         """
-
-        wpilib.CameraServer.launch("autonomous/vision.py:Vision.camera")
 
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
