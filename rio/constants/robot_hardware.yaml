@@ -17,8 +17,8 @@ drivetrain:
   fs_module: # Fore Starboard
     pose_x: 0.5   # Updated 2/1/22 by Joe
     pose_y: -0.5  # Updated 2/1/22 by Joe
-    drive_id: 2   # Updated 2/8/22 by Khan
-    steer_id: 1   # Updated 2/8/22 by Khan
+    drive_id: 1   # Updated Week 0 by Joe
+    steer_id: 2   # Updated Week 0 by Joe
 
   ap_module: # Aft Port
     pose_x: -0.5  # Updated 2/1/22 by Joe
