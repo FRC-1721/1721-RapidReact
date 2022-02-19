@@ -59,6 +59,10 @@ drivetrain:
       # Ratio of motor rotations to module rotations
       ratio: 0.033              # Updated 2/12/22 by Joe
 
+  Deadzone:
+    Asxis1: 0.5
+    Axis2: 0.5
+
 misc:
   # Misc hardware settings
   CANdle:
