@@ -25,8 +25,8 @@ h2 {
     padding: 6px;
     border: 1px solid #777;
     border-radius: 4px;
-    margin-right: 12px;
     background-color: #666;
+    margin-right: 12px;
 }
 
 .camera_wrapper {
@@ -41,7 +41,8 @@ h2 {
     width: 300px;
 }
 
-.data_container {
+.data_wrapper {
+    margin-top: 12px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -57,7 +58,34 @@ h2 {
     border: 1px solid black;
 }
 
-.pid_table td {
-    width: auto;
-    border: 1px solid black;
+.pid_table {
+    border: 1px solid #777;
+    border-radius: 4px;
+    background-color: #666;
+    padding: 12px;
+    margin-left: 12px;
+}
+
+.input_container {
+}
+
+.input_container label {
+    width: 24px;
+    display: inline-block;
+}
+
+.auto_wrapper {
+    border: 1px solid #777;
+    border-radius: 4px;
+    background-color: #666;
+    padding: 12px;
+    margin-right: 12px;
+}
+
+.auto_wrapper label {
+    display: block;
+}
+
+.auto_wrapper select {
+    width: 100px;
 }

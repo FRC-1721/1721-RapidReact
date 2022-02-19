@@ -41,8 +41,11 @@
                 </div>
             </div>
         </div>
-        <div class="data_container">
-            <td style="vertical-align: top;">Autonomous Selector<select id="autonomous"></select></td>
+        <div class="data_wrapper">
+            <div class="auto_wrapper">
+                <label for="autonomous">Autonomous Selector</label>
+                <select id="autonomous"></select>
+            </div>
             <table class="temp_table">
                 <tbody>
                     <tr>
@@ -63,36 +66,34 @@
                     </tr>
                     <!-- Shooter temps -->
                     <tr>
-                        <td>Yoke Temp<br>
-                        </td>
+                        <td>Yoke Temp</td>
                         <td id="primary_yoke_temp">Value?</td>
                     </tr>
                     <tr>
-                        <td>Kicker Temp<br>
-                        </td>
+                        <td>Kicker Temp</td>
                         <td id="kicker_temp">Value?</td>
                     </tr>
                     <tr>
-                        <td>Spinner (Auxillary) Temp<br>
-                        </td>
+                        <td>Spinner (Auxillary) Temp</td>
                         <td id="auxillary_yoke_temp">Value?</td>
                     </tr>
                 </tbody>
             </table>
-            <table class="pid_table">
-                <tbody>
-                    <tr>
-                        <td>P</td>
-                        <td id="fs_temp">Value?</tr>
-                    <tr>
-                        <td>I</td>
-                        <td id="fp_temp">Value?</tr>
-                    <tr>
-                        <td>D</td>
-                        <td id="ap_temp">Value?</td>
-                    </tr>
+            <div class="pid_table">
+                <div class="input_container">
+                    <label for="p_value">P</label>
+                    <input type="number" name="p_value" value="NOT SET" id="p_value" />
+                </div>
+                <div class="input_container">
+                    <label for="i_value">I</label>
+                    <input type="number" name="i_value" value="NOT SET" id="i_value" />
+                </div>
+                <div class="input_container">
+                    <label for="d_value">D</label>
+                    <input type="number" name="d_value" value="NOT SET" id="d_value" />
+                </div>
                 </tbody>
-            </table>
+            </div>
         </div>
     </main>
 </body>
