@@ -288,6 +288,14 @@ class SwerveModule:
             newState, self.getCurrentState().angle
         )
 
+        print("optimizedState", optimizedState)
+        print(
+            "Steer Drive:",
+            self.constants["steer_id"],
+            "OptimizedState: ",
+            optimizedState,
+        )
+
         deltaAngle = (
             newState.angle - self.desiredState.angle
         )  # The change from the old angle, to the new angle
