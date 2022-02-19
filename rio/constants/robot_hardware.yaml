@@ -8,26 +8,26 @@ drivetrain:
   fp_module: # Fore Port
     pose_x: 0.5   # Updated 2/1/22 by Joe
     pose_y: 0.5   # Updated 2/1/22 by Joe
-    drive_id: 5   # Updated 2/19/22 by Joe
-    steer_id: 6   # Updated 2/19/22 by Joe
+    drive_id: 5   # Updated Week 0 by Joe
+    steer_id: 6   # Updated Week 0 by Joe
 
   fs_module: # Fore Starboard
     pose_x: 0.5   # Updated 2/1/22 by Joe
     pose_y: -0.5  # Updated 2/1/22 by Joe
-    drive_id: 2   # Updated 2/19/22 by Joe
-    steer_id: 1   # Updated 2/19/22 by Joe
+    drive_id: 2   # Updated Week 0 by Joe
+    steer_id: 1   # Updated Week 0 by Joe
 
   ap_module: # Aft Port
     pose_x: -0.5  # Updated 2/1/22 by Joe
     pose_y: 0.5   # Updated 2/1/22 by Joe
-    drive_id: 7   # Updated 2/19/22 by Joe
-    steer_id: 8   # Updated 2/19/22 by Joe 
+    drive_id: 7   # Updated Week 0 by Joe
+    steer_id: 8   # Updated Week 0 by Joe 
 
   as_module: # Aft Starboard
     pose_x: -0.5  # Updated 2/1/22 by Joe
     pose_y: -0.5  # Updated 2/1/22 by Joe
-    drive_id: 3   # Updated 2/19/22 by Joe
-    steer_id: 4   # Updated 2/19/22 by Joe
+    drive_id: 3   # Updated Week 0 by Joe
+    steer_id: 4   # Updated Week 0 by Joe
   
   imu: # IMU Sensor
     can_id: 0
@@ -61,15 +61,15 @@ drivetrain:
 
 yoke:
   # Constants for shooter motors
-  star_shooter_id: 13           # Updated 2/18/22 by Joe
-  port_shooter_id: 12           # Updated 2/18/22 by Joe
+  star_shooter_id: 13           # Updated Week 0 by Joe
+  port_shooter_id: 12           # Updated Week 0 by Joe
 
   # Constants for yoke motors and other sensors
   primary_motor_id: 9           # Updated never by Joe
   auxillary_motor_id: 10        # Updated never by Joe
 
   # Constants for kicker
-  kicker_id: 11                 # Updated never by Joe
+  kicker_id: 11                 # Updated Week 0 by Joe
   
   pid: # PID and position constants
     primary:
