@@ -5,6 +5,7 @@ import math
 
 
 from wpilib import RobotBase
+import wpilib
 
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
@@ -83,6 +84,10 @@ class Drivetrain(SubsystemBase):
             self.getGyroHeading(),
         )
 
+        # A handy background timer
+        self.backgroundTimer = wpilib.Timer()
+        self.backgroundTimer.start()
+
     def doTestAction(self):
         print("I am doing a test action.")
         self.fs_module.doTestAction()
@@ -114,6 +119,12 @@ class Drivetrain(SubsystemBase):
         self.fp_target.setDouble(self.fp_module.getTargetHeading())
         self.ap_actual.setDouble(self.ap_module.getCurrentState().angle.radians())
         self.ap_target.setDouble(self.ap_module.getTargetHeading())
+
+        if self.backgroundTimer.hasElapsed(1):  # Every 1s
+            self.fs_temp.setDouble(self.fs_module.getMaxTemp())
+            self.as_temp.setDouble(self.as_module.getMaxTemp())
+            self.fp_temp.setDouble(self.fp_module.getMaxTemp())
+            self.ap_temp.setDouble(self.ap_module.getMaxTemp())
 
     def arcadeDrive(self, fwd, srf, rot):
         """
@@ -154,7 +165,9 @@ class Drivetrain(SubsystemBase):
         # Get the smart dashboard table
         self.sd = self.nt.getTable("SmartDashboard")
 
+        # Setup subtables
         self.swerve_table = self.sd.getSubTable("SwerveDrive")
+        self.thermal_table = self.sd.getSubTable("Thermals")
 
         # Setup all of the networktable entries
         self.fs_actual = self.swerve_table.getEntry("fs_actual")
@@ -165,6 +178,11 @@ class Drivetrain(SubsystemBase):
         self.fp_target = self.swerve_table.getEntry("fp_target")
         self.ap_actual = self.swerve_table.getEntry("ap_actual")
         self.ap_target = self.swerve_table.getEntry("ap_target")
+
+        self.fs_temp = self.thermal_table.getEntry("fs_temp")
+        self.as_temp = self.thermal_table.getEntry("as_temp")
+        self.fp_temp = self.thermal_table.getEntry("fp_temp")
+        self.ap_temp = self.thermal_table.getEntry("ap_temp")
 
     def getGyroHeading(self):
         """
@@ -284,6 +302,16 @@ class SwerveModule:
 
     def getPose(self):
         return self.module_pose
+
+    def getMaxTemp(self):
+        """
+        Returns the max temp of this module.
+        """
+
+        return max(
+            self.drive_motor.getMotorTemperature(),
+            self.steer_motor.getMotorTemperature(),
+        )
 
     def setDesiredState(self, newState):
         """
