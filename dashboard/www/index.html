@@ -50,36 +50,40 @@
                 <tbody>
                     <tr>
                         <td>Fore Port Max Temp</td>
-                        <td id="fs_temp">Value?</td>
+                        <td id="fs_temp">NO DATA</td>
                     </tr>
                     <tr>
                         <td>Fore Starboard Max Temp</td>
-                        <td id="fp_temp">Value?</td>
+                        <td id="fp_temp">NO DATA</td>
                     </tr>
                     <tr>
                         <td>Aft Port Max Temp </td>
-                        <td id="ap_temp">Value?</td>
+                        <td id="ap_temp">NO DATA</td>
                     </tr>
                     <tr>
                         <td>Aft Starboard Max Temp</td>
-                        <td id="as_temp">Value?</td>
+                        <td id="as_temp">NO DATA</td>
                     </tr>
                     <!-- Shooter temps -->
                     <tr>
                         <td>Yoke Temp</td>
-                        <td id="primary_yoke_temp">Value?</td>
+                        <td id="primary_yoke_temp">NO DATA</td>
                     </tr>
                     <tr>
                         <td>Kicker Temp</td>
-                        <td id="kicker_temp">Value?</td>
+                        <td id="kicker_temp">NO DATA</td>
                     </tr>
                     <tr>
                         <td>Spinner (Auxillary) Temp</td>
-                        <td id="auxillary_yoke_temp">Value?</td>
+                        <td id="auxillary_yoke_temp">NO DATA</td>
                     </tr>
                 </tbody>
             </table>
             <div class="pid_table">
+                <div class="input_container">
+                    <label for="d_value">D</label>
+                    <input type="number" name="d_value" value="NOT SET" id="d_value" />
+                </div>
                 <div class="input_container">
                     <label for="p_value">P</label>
                     <input type="number" name="p_value" value="NOT SET" id="p_value" />
@@ -89,8 +93,20 @@
                     <input type="number" name="i_value" value="NOT SET" id="i_value" />
                 </div>
                 <div class="input_container">
-                    <label for="d_value">D</label>
-                    <input type="number" name="d_value" value="NOT SET" id="d_value" />
+                    <label for="ff_value">FF</label>
+                    <input type="number" name="ff_value" value="NOT SET" id="d_value" />
+                </div>
+                <div class="input_container">
+                    <label for="min_value">Min</label>
+                    <input type="number" name="min_value" value="NOT SET" id="d_value" />
+                </div>
+                <div class="input_container">
+                    <label for="max_value">Max</label>
+                    <input type="number" name="max_value" value="NOT SET" id="d_value" />
+                </div>
+                <div class="input_container">
+                    <label for="maxi_value">Max I</label>
+                    <input type="number" name="max_i_value" value="NOT SET" id="d_value" />
                 </div>
                 </tbody>
             </div>

@@ -2,6 +2,8 @@
 import * as $ from "jquery";
 import * as d3 from "d3";
 import updateTemp from "./temp-display";
+import { updateValue } from "./utils";
+import { setupPID, receivePIDUpdate } from "./pid-optimizer";
 
 const WHEEL_PORT_X = 25 + 50/2;
 const WHEEL_STARBOARD_X = 200 + 50/2;
@@ -52,6 +54,8 @@ $(document).ready(function () {
         drawWheel(WHEEL_PORT_X, WHEEL_AFT_Y, 0);
         drawWheel(WHEEL_STARBOARD_X, WHEEL_AFT_Y, 0);
     }
+
+    setupPID();
 });
 
 function drawWheel(x, y, angle) {
@@ -92,6 +96,9 @@ function swerveListener(key, value, isNew) {
     }
     if (key.includes("/SmartDashboard/Thermals/")) {
         updateTemp(key, value);
+    }
+    if (key.includes("/SmartDashboard/PID/") ) {
+        receivePIDUpdate(key, value);
     }
 }
 

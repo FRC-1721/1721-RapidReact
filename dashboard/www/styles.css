@@ -1,3 +1,8 @@
+:root {
+    --light-gray: #BBB;
+    --mid-gray: #AAA;
+    --dark-gray: #333;
+}
 .wrapper {
     position: absolute;
     left: 0;
@@ -23,16 +28,16 @@ h2 {
 
 .canvas_wrapper {
     padding: 6px;
-    border: 1px solid #777;
+    border: 1px solid var(--light-gray);
     border-radius: 4px;
-    background-color: #666;
+    background-color: var(--mid-gray);
     margin-right: 12px;
 }
 
 .camera_wrapper {
     padding: 6px;
-    border: 1px solid #777;
-    background-color: #666;
+    border: 1px solid var(--light-gray);
+    background-color: var(--mid-gray);
     border-radius: 4px;
 }
 
@@ -49,7 +54,7 @@ h2 {
 }
 
 .temp_table {
-    background-color: #666;
+    background-color: var(--mid-gray);
 
 }
 
@@ -59,25 +64,37 @@ h2 {
 }
 
 .pid_table {
-    border: 1px solid #777;
+    border: 1px solid var(--light-gray);
     border-radius: 4px;
-    background-color: #666;
+    background-color: var(--mid-gray);
     padding: 12px;
     margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .input_container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.input_container + .input_container {
+    margin-top: 4px;
 }
 
 .input_container label {
-    width: 24px;
+    text-align: right;
     display: inline-block;
+    margin-right: 6px;
+    flex: 1 1 auto;
 }
 
 .auto_wrapper {
-    border: 1px solid #777;
+    border: 1px solid var(--light-gray);
     border-radius: 4px;
-    background-color: #666;
+    background-color: var(--mid-gray);
     padding: 12px;
     margin-right: 12px;
 }
@@ -87,5 +104,6 @@ h2 {
 }
 
 .auto_wrapper select {
-    width: 100px;
+    margin-top: 4px;
+    width: 100%;
 }
