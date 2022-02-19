@@ -318,6 +318,14 @@ class SwerveModule:
         )  # The sum (radians) converted to rotations (of the steer wheel)
         # Set the position of the neo to the desired position
         # self.steer_motor.set(0.5)
+
+        print(
+            "Steer Drive:",
+            self.constants["steer_id"],
+            "Reference Value: ",
+            currentRef
+        )
+
         self.steer_PID.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
         )
