@@ -3,12 +3,13 @@ import commands2
 import wpilib
 
 from subsystems.yoke import Yoke
+from subsystems.drivetrain import Drivetrain
 
 from commands.kicker_button import Kicker
 
 
 class BotchAuto(commands2.CommandBase):
-    def __init__(self, yoke: Yoke) -> None:
+    def __init__(self, yoke: Yoke, drivetrain: Drivetrain) -> None:
         """
         AHH
         """
@@ -16,13 +17,13 @@ class BotchAuto(commands2.CommandBase):
 
         self.yoke = yoke
 
-        self.addRequirements([self.yoke])
+        self.addRequirements([self.yoke, drivetrain])
 
         self.backgroundTimer = wpilib.Timer()
         self.backgroundTimer.start()
 
     def initialize(self) -> None:
-        wpilib.wait(2)
+        wpilib.wait(4)
         self.yoke.setSpeed(-0.524)
         wpilib.wait(1)
         self.yoke.kick(0.4)

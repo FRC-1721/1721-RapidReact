@@ -107,8 +107,9 @@ class RobotContainer:
         # Add options for chooser
         # self.autoChooser.setDefaultOption("Null Auto", NullAuto(self.drivetrain))
         self.autoChooser.setDefaultOption(
-            "Caleb pick this one Auto", BotchAuto(self.yoke)
+            "Caleb pick this one Auto", BotchAuto(self.yoke, self.drivetrain)
         )
+        self.autoChooser.addOption("Null Auto", NullAuto(self.drivetrain))
 
         # Put the chooser on the dashboard
         wpilib.SmartDashboard.putData("Autonomous", self.autoChooser)
