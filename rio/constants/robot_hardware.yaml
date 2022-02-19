@@ -73,7 +73,7 @@ yoke:
   
   pid: # PID and position constants
     primary:
-      kp: 0.005                 # Updated Week 0 by Joe
+      kp: 0.8                   # Updated Week 0 by Joe
       ki: 0                     # Updated Week 0 by Joe
       kd: 0.01                  # Updated Week 0 by Joe
       ff: 2                     # Updated Week 0 by Joe

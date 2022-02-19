@@ -131,14 +131,16 @@ class Yoke(SubsystemBase):
         # Convert radians to motor rotations
         target_rotations = (target_radians / (2 * math.pi)) / self.pid_const["ratio"]
 
-        print(
-            f"rotation target:{target_rotations}, current: {self.getAuxillaryAngle()} temp:{self.primaryYokeMotor.getMotorTemperature()}"
-        )
+        # print(
+        #     f"rotation target:{target_rotations}, current: {self.getPrimaryAngle()} temp:{self.primaryYokeMotor.getMotorTemperature()}"
+        # )
 
-        # Set a new PID target
-        self.primaryPID.setReference(
-            target_rotations, CANSparkMaxLowLevel.ControlType.kPosition
-        )
+        # TODO: MOVE ME
+        if not target_rotations > 0.05:
+            # Set a new PID target
+            self.primaryPID.setReference(
+                target_rotations, CANSparkMaxLowLevel.ControlType.kPosition
+            )
 
     def kick(self, reverse: bool = False):
         """
@@ -149,4 +151,7 @@ class Yoke(SubsystemBase):
         """
 
         if not reverse:
-            self.kickerMotor.set(0.6)  # CHangeme!
+            self.kickerMotor.set(0.6)  # Changeme!
+
+    def periodic(self) -> None:
+        print(self.primaryYokeMotor.getMotorTemperature())
