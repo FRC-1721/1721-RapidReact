@@ -134,10 +134,12 @@ class Drivetrain(SubsystemBase):
             arcade_chassis_speeds
         )
 
-        if (
-            max(_fp.speed, _fs.speed, _ap.speed, _as.speed)
-            > self.drive_const["min_velocity"]
-        ):
+        # if (
+        #     max(_fp.speed, _fs.speed, _ap.speed, _as.speed)
+        #     > self.drive_const["min_velocity"]
+        # ):
+
+        if True:
             # TODO: These modules should NOT be swapped! This is still a bug, see #1
             # https://github.com/FRC-1721/1721-RapidReact/issues/1
             self.fp_module.setDesiredState(_fs)
@@ -341,6 +343,7 @@ class SwerveModule:
         elif safeSpeed < -1:
             safeSpeed = -1
         self.drive_motor.set(safeSpeed)
+
         # print(
         #     "Drive Motor:",
         #     self.constants["drive_id"],
