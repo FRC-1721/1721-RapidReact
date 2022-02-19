@@ -20,82 +20,102 @@
     <!-- utility functions to attach to a camera -->
     <script src="/networktables/camera.js"></script>
 
-    <div>
-        NetworkTables websocket: <span id="connectstate">Unknown state</span><br>
-        Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
-    </div>
-    <hr>
-    <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
-        <tbody>
-            <tr>
-                <td style="vertical-align: top; height: 500px; width: 500px;"><canvas id="SwerveCanvas" width="500"
-                        height="500"></canvas><br>
-                </td>
-                <td style="vertical-align: top;">
-                    <div id="camera_container" , style="height: 500px; width: 500px;">
-                        <!-- this element should be empty, an img tag will be added here -->
-                    </div><br>
-                </td>
-                <td style="vertical-align: top;">Camera 2<br>
-                </td>
-                <td style="vertical-align: top;">Autonomous Selector<select id="autonomous"></select><br>
-                </td>
-            </tr>
-            <tr>
-                <td style="vertical-align: top;">
-                    <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
-                        <tbody>
-                            <tr>
-                                <td style="vertical-align: top;">Key<br>
-                                </td>
-                                <td style="vertical-align: top;">Value?<br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align: top;">Key<br>
-                                </td>
-                                <td style="vertical-align: top;">Val<br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align: top;">Keee<br>
-                                </td>
-                                <td style="vertical-align: top;">Mhh idk<br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align: top;"><br>
-                                </td>
-                                <td style="vertical-align: top;"><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align: top;"><br>
-                                </td>
-                                <td style="vertical-align: top;"><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align: top;"><br>
-                                </td>
-                                <td style="vertical-align: top;"><br>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table><br>
-                </td>
-                <td style="vertical-align: top;">Make sure to not leave this blank<br>
-                </td>
-                <td style="vertical-align: top;">This one too<br>
-                </td>
-                <td style="vertical-align: top;">bot4<br>
-                </td>
+    <!-- Load styling -->
+    <link rel="stylesheet" href="styles.css" />
 
-
-            </tr>
-        </tbody>
-    </table>
-
+    <main class="wrapper">
+        <div class="connection_state">
+            NetworkTables websocket: <span id="connectstate">Unknown state</span>
+            Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
+        </div>
+        <div class="swerve_drive_area">
+            <div class="canvas_wrapper">
+                <h2>Swerve State</h2>
+                <canvas id="SwerveCanvas" width="300" height="300" />
+            </div>
+            <div class="camera_wrapper">
+                <h2>Camera 2</h2>
+                </td>
+                <div id="camera_container">
+                    <!-- this element should be empty, an img tag will be added here -->
+                </div>
+            </div>
+        </div>
+        <div class="data_Container">
+            <!-- <td style="vertical-align: top;">Autonomous Selector<select id="autonomous"></select></td> -->
+            <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+                <tbody>
+                    <tr>
+                        <td>Fore Port Steer Temp<br>
+                        </td>
+                        <td id="fs_steer_temp">Value?<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fore Starboard Steer Temp<br>
+                        </td>
+                        <td id="fp_steer_temp">Value?<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Aft Port Steer Temp<br>
+                        </td>
+                        <td id="fp_steer_temp">Value?<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Aft Starboard Steer Temp<br>
+                        </td>
+                        <td id="fp_steer_temp">Value?<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fore Port Drive Temp<br>
+                        </td>
+                        <td id="fs_steer_temp">Value?<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fore Starboard Drive Temp<br>
+                        </td>
+                        <td id="fp_steer_temp">Value?<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Aft Port Drive Temp<br>
+                        </td>
+                        <td id="fp_steer_temp">Value?<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Aft Starboard Drive Temp<br>
+                        </td>
+                        <td id="fp_steer_temp">Value?<br>
+                        </td>
+                    </tr>
+                    <!-- Shooter temps -->
+                    <tr>
+                        <td>Yoke Temp<br>
+                        </td>
+                        <td id="yoke_temp">Value?<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kicker Temp<br>
+                        </td>
+                        <td id="kicker_temp">Value?<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Spinner Temp<br>
+                        </td>
+                        <td id="spinner_temp">Value?<br>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
 </body>
 
 </html>

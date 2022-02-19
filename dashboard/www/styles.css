@@ -1,0 +1,46 @@
+.wrapper {
+    position: absolute;
+    left: 0;
+    top:0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+}
+
+.connection_state {
+    margin-bottom: 6px;
+}
+
+.swerve_drive_area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+h2 {
+    margin-top: 0px;margin-top: 0px;
+}
+
+.canvas_wrapper {
+    padding: 6px;
+    border: 1px solid #777;
+    border-radius: 4px;
+    margin-right: 12px;
+    background-color: #666;
+}
+
+.camera_wrapper {
+    padding: 6px;
+    border: 1px solid #777;
+    background-color: #666;
+    border-radius: 4px;
+}
+
+.camera_container {
+    height: 300px;
+    width: 300px;
+}
+
+.data_container {
+
+}

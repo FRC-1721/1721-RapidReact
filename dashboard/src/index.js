@@ -2,9 +2,16 @@
 import * as $ from "jquery";
 import * as d3 from "d3";
 
+const WHEEL_PORT_X = 25 + 50/2;
+const WHEEL_STARBOARD_X = 200 + 50/2;
+const WHEEL_FORE_Y = 25 + 75/2;
+const WHEEL_AFT_Y = 200 + 75/2;
+
 // make these packages visible to the networktables helpers, too
 window.$ = $;
 window.d3 = d3;
+var canvas;
+var drawingContext;
 
 $(document).ready(function () {
 
@@ -35,70 +42,55 @@ $(document).ready(function () {
             height: 480,                    // optional, stretches image to this width
         }
     });
+
+    canvas = document.getElementById('SwerveCanvas');
+    if (canvas.getContext) {
+        // draw initial wheels
+        drawingContext = canvas.getContext('2d');
+        drawWheel(WHEEL_PORT_X, WHEEL_FORE_Y, 0);
+        drawWheel(WHEEL_STARBOARD_X, WHEEL_FORE_Y, 0);
+        drawWheel(WHEEL_PORT_X, WHEEL_AFT_Y, 0);
+        drawWheel(WHEEL_STARBOARD_X, WHEEL_AFT_Y, 0);
+    }
 });
+
+function drawWheel(x, y, angle) {
+    if (drawingContext) {
+        drawingContext.clearRect(x-75, y-75, 150, 150);
+        //save the untranslated/unrotated context
+        drawingContext.save();
+        drawingContext.beginPath();
+        //move the rotation point to the center of the rect
+        drawingContext.translate(x, y);
+        //rotate the rect
+        drawingContext.rotate(angle);
+        //draw the rect on the transformed context
+        //Note: after transforming [0,0] is visually [x,y]
+        //so the rect needs to be offset accordingly when drawn
+        drawingContext.drawImage(swerveDriveImage, -39 / 2, -48 / 2);
+        drawingContext.fill();
+        //restore the context to its untranslated/unrotated state
+        drawingContext.restore();
+    }
+}
 
 var swerveDriveImage = new Image();
 swerveDriveImage.src = 'resources/swerveModule.png'
 function swerveListener(key, value, isNew) {
     // console.log(key)
-
-    var canvas = document.getElementById('SwerveCanvas');
-    if (canvas.getContext) {
-        var lf = canvas.getContext('2d');
-
-        //console.log(key, value)
-        if (key == "/SmartDashboard/SwerveDrive/fp_actual") {
-            lf.clearRect(0, 0, 150, 150);
-            //save the untranslated/unrotated context
-            lf.save();
-            lf.beginPath();
-            //move the rotation point to the center of the rect
-            lf.translate(25 + 50 / 2, 25 + 75 / 2);
-            //rotate the rect
-            lf.rotate(value);
-            //draw the rect on the transformed context
-            //Note: after transforming [0,0] is visually [x,y]
-            //so the rect needs to be offset accordingly when drawn
-            lf.drawImage(swerveDriveImage, -39 / 2, -48 / 2);
-            lf.fill();
-            //restore the context to its untranslated/unrotated state
-            lf.restore();
-        }
-
-
-        if (key == "/SmartDashboard/SwerveDrive/fs_actual") {
-            lf.clearRect(150, 0, canvas.width, 150);
-            lf.save();
-            lf.beginPath();
-            lf.translate(200 + 50 / 2, 25 + 75 / 2);
-            lf.rotate(value);
-            lf.drawImage(swerveDriveImage, -39 / 2, -48 / 2);
-            lf.fill();
-            lf.restore();
-        }
-
-        if (key == "/SmartDashboard/SwerveDrive/ap_actual") {
-            lf.clearRect(0, 150, 150, canvas.height);
-            lf.save();
-            lf.beginPath();
-            lf.translate(50, 300 + 75);
-            lf.rotate(value);
-            lf.drawImage(swerveDriveImage, -39 / 2, -48 / 2);
-            lf.fill();
-            lf.restore();
-        }
-
-        if (key == "/SmartDashboard/SwerveDrive/as_actual") {
-            lf.clearRect(150, 150, canvas.width, canvas.height);
-            lf.save();
-            lf.beginPath();
-            lf.translate(175 + 50, 300 + 75);
-            lf.rotate(value);
-            lf.drawImage(swerveDriveImage, -39 / 2, -48 / 2);
-            lf.fill();
-            lf.restore();
-        }
-
+    if (key == "/SmartDashboard/SwerveDrive/fp_actual") {
+        drawWheel(WHEEL_PORT_X, WHEEL_FORE_Y, value);
+    }
+    if (key == "/SmartDashboard/SwerveDrive/fs_actual") {
+        drawWheel(WHEEL_STARBOARD_X, WHEEL_FORE_Y, value);
+    }
+    if (key == "/SmartDashboard/SwerveDrive/ap_actual") {
+        drawWheel(WHEEL_PORT_X, WHEEL_AFT_Y, value);
+    }
+    if (key == "/SmartDashboard/SwerveDrive/as_actual") {
+        drawWheel(WHEEL_STARBOARD_X, WHEEL_AFT_Y, value);
+    }
+    if (key == "temperature") {
 
     }
 }
