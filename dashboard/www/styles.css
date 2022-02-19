@@ -44,3 +44,12 @@ h2 {
 .data_container {
 
 }
+
+.temp_table {
+
+}
+
+.temp_table td {
+    width: auto;
+    border: 1px solid black;
+}

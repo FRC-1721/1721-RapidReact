@@ -1,6 +1,7 @@
 "use strict";
 import * as $ from "jquery";
 import * as d3 from "d3";
+import updateTemp from "./temp-display";
 
 const WHEEL_PORT_X = 25 + 50/2;
 const WHEEL_STARBOARD_X = 200 + 50/2;
@@ -22,7 +23,6 @@ $(document).ready(function () {
     NetworkTables.addRobotConnectionListener(onRobotConnection, true);
 
     NetworkTables.addGlobalListener(swerveListener, true);
-    console.log("Started")
 
     // attaches the select element to a SendableChooser object
     attachSelectToSendableChooser("#autonomous", "Autonomous");
@@ -33,13 +33,13 @@ $(document).ready(function () {
         proto: null,                    // optional, defaults to http://
         host: null,                     // optional, if null will use robot's autodetected IP address
         port: 5800,                     // webserver port
-        image_url: '/?action=stream',   // mjpg stream of camera
+        image_url: 'http://10.17.21.11:8000/video',   // mjpg stream of camera
         data_url: '/program.json',      // used to test if connection is up
         wait_img: null,                 // optional img to show when not connected, can use SVG instead
         error_img: null,                // optional img to show when error connecting, can use SVG instead
         attrs: {                        // optional: attributes set on svg or img element
-            width: 640,                     // optional, stretches image to this width
-            height: 480,                    // optional, stretches image to this width
+            width: 320,                     // optional, stretches image to this width
+            height: 240,                    // optional, stretches image to this width
         }
     });
 
@@ -90,8 +90,8 @@ function swerveListener(key, value, isNew) {
     if (key == "/SmartDashboard/SwerveDrive/as_actual") {
         drawWheel(WHEEL_STARBOARD_X, WHEEL_AFT_Y, value);
     }
-    if (key == "temperature") {
-
+    if (key.contains("/SmartDashboard/Thermals/")) {
+        updateTemp(key, value);
     }
 }
 
