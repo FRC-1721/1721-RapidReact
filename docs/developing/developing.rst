@@ -77,6 +77,8 @@ here are a few basic commands you should know.
    * ``git stash apply`` (apply your stashed changed)
    * ``git stash drop`` (clears the current stashed changes)
 #. ``git branch "new branch name"`` (Checkout to a new branch)
+#. ``git rebase <branch path>`` (this helps with not being able to push)
+#. ``git reset --hard`` (this command is a nuclear option, reverting back commits BE CAREFUL)
 
 Examples for each in order are:
 
@@ -93,8 +95,10 @@ Examples for each in order are:
    git stash apply
    git stash drop
    git branch "DevDocs"
+   git rebase origin/DevDocs
+   git reset --hard
 
-Please note that git push will not work on main and doesn't automatically create a pull request,
+Please note that ``git push`` will not work on main and doesn't automatically create a pull request,
 to see how to use github see :ref:`Using github`.
 
 Using Github
@@ -114,7 +118,7 @@ First go to the current repo (1721-RapidReact).
 You first under the pull requests tab create a new pull request,
 select the branch you want to make the pull request for.
 
-Once approved by Khan you make merge it, please squash and merge to not have fifty billion commits.
+Once approved by someone with proper clearence current Khan, Joe, and Turner you may merge it, please squash and merge to not have fifty billion commits.
 
 .. figure:: resources/githubMerge.png
    :width: 80%

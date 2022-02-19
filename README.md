@@ -5,5 +5,5 @@
 # 1721 Rapid React
 
 Hello thank you looking at our robot code, documentation, and dashboard. 
-Here is our robot [documentation](https://1721-rapidreact.readthedocs.io/en/latest/).
+Here is our Burnt Toaster's [documentation](https://1721-rapidreact.readthedocs.io/en/latest/).
 To check out our calender or get in contact see our [website](https://www.frc1721.org/).
