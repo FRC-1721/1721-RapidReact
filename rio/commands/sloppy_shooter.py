@@ -13,13 +13,15 @@ class SloppyShooter(commands2.CommandBase):
     def __init__(
         self,
         yoke: Yoke,
-        speed: typing.Callable[[], float],
+        intakeSpeed: typing.Callable[[], float],
+        shooterSpeed: typing.Callable[[], float],
         angle: typing.Callable[[], float],
     ) -> None:
         super().__init__()
 
         self.yoke = yoke  # This is a 'local' instance of yoke
-        self.speed = speed  # Callable
+        self.intakeSpeed = intakeSpeed  # Callable
+        self.shooterSpeed = shooterSpeed
         self.angle = angle  # Callable
 
         # For the head-lift system
@@ -42,7 +44,7 @@ class SloppyShooter(commands2.CommandBase):
             self.max_angle,
         )
 
-        self.yoke.setSpeed(self.speed())
+        self.yoke.setSpeed(self.intakeSpeed() - self.shooterSpeed())
         self.yoke.setPrimaryYokeAngle(geometry.Rotation2d(self.last_angle))
 
     def clamp(self, _min, x, _max):

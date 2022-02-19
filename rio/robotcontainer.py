@@ -74,6 +74,9 @@ class RobotContainer:
                     self.controlMode["raw_shooter_speed_axis"]
                 ),
                 lambda: self.driverController.getRawAxis(
+                    self.controlMode["raw_shooter_intake_axis"]
+                ),
+                lambda: self.driverController.getRawAxis(
                     self.controlMode["raw_shooter_angle_axis"]
                 ),
             )

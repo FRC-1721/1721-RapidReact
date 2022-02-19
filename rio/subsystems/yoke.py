@@ -97,6 +97,8 @@ class Yoke(SubsystemBase):
         control required.
         """
 
+        print(speed)
+
         self.portShooter.set(speed)
         self.starShooter.set(-speed)
 
@@ -129,7 +131,7 @@ class Yoke(SubsystemBase):
         # Convert radians to motor rotations
         target_rotations = (target_radians / (2 * math.pi)) / self.pid_const["ratio"]
 
-        print(target_rotations)
+        # print(target_rotations)
 
         # Set a new PID target
         self.primaryPID.setReference(
