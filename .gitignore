@@ -6,3 +6,9 @@ __pycache__
 _build
 *.*~
 .python-version
+
+# dashboard build files
+dashboard/www/main.js*
+#dashboard packages
+node_modules
+_staging

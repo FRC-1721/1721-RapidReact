@@ -1,0 +1,4 @@
+cbor2==4.1.2
+pynetworktables==2021.0.0
+pynetworktables2js==2021.0.1
+tornado==6.1
