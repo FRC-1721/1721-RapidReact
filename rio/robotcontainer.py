@@ -6,10 +6,13 @@ import commands2.button
 # Commands
 from commands.flybywire import FlyByWire
 from commands.test_button_action import TestButtonAction
+from commands.sloppy_shooter import SloppyShooter
+from commands.kicker_button import kicker
 
 # Subsystens
 from subsystems.drivetrain import Drivetrain
 from subsystems.lighting import Lighting
+from subsystems.yoke import Yoke
 
 # Constants
 from constants.constants import getConstants
@@ -41,6 +44,7 @@ class RobotContainer:
         # The robot's subsystems
         self.drivetrain = Drivetrain()
         self.lighting = Lighting()
+        self.yoke = Yoke()
 
         # Configure button bindings
         self.configureButtonBindings()
@@ -48,7 +52,7 @@ class RobotContainer:
         # Setup all autonomous routines
         self.configureAutonomous()
 
-        # set up default drive command
+        # Setup default commands
         self.drivetrain.setDefaultCommand(
             FlyByWire(
                 self.drivetrain,
@@ -64,6 +68,21 @@ class RobotContainer:
             )
         )
 
+        self.yoke.setDefaultCommand(
+            SloppyShooter(
+                self.yoke,
+                lambda: self.driverController.getRawAxis(
+                    self.controlMode["raw_shooter_speed_axis"]
+                ),
+                lambda: self.driverController.getRawAxis(
+                    self.controlMode["raw_shooter_intake_axis"]
+                ),
+                lambda: self.driverController.getRawAxis(
+                    self.controlMode["raw_shooter_angle_axis"]
+                ),
+            )
+        )
+
     def configureButtonBindings(self):
         """
         Use this method to define your button->command mappings. Buttons can be created by
@@ -73,6 +92,11 @@ class RobotContainer:
         # use the A button the xbox controller
         commands2.button.JoystickButton(self.driverController, 1).whenPressed(
             TestButtonAction(self.drivetrain)
+        )
+
+        # use the B button the xbox controller
+        commands2.button.JoystickButton(self.driverController, 2).whenPressed(
+            kicker(self.kicker)
         )
 
     def configureAutonomous(self):
