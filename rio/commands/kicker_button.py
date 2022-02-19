@@ -14,7 +14,7 @@ class TestButtonAction(commands2.CommandBase):
         self.kicker = kicker
 
     def initialize(self) -> None:
-        self.kicker.doTestAction()
+        self.kicker.kick()
 
     def isFinished(self) -> bool:
         return True

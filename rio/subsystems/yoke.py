@@ -149,4 +149,5 @@ class Yoke(SubsystemBase):
         """
 
         if not reverse:
-            self.kickerMotor.set(0.6)  # CHangeme!
+            self.kickerMotor.set(0.6)  # Change me!
+            self.kickerMotor.set(-0.6)  # Need tweking
