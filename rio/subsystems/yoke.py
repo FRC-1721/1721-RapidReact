@@ -10,6 +10,7 @@ from commands2 import SubsystemBase
 from ctre import TalonFX, ControlMode
 from rev import CANSparkMax, CANSparkMaxLowLevel
 from wpilib import RobotBase
+import wpilib
 from wpimath import geometry
 
 from constants.constants import getConstants
@@ -58,6 +59,8 @@ class Yoke(SubsystemBase):
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
+        self.kickerMotor.setInverted(True)
+
         # Get PID controller objects
         self.primaryPID = self.primaryYokeMotor.getPIDController()
         self.auxillaryPID = self.auxillaryYokeMotor.getPIDController()
@@ -97,8 +100,6 @@ class Yoke(SubsystemBase):
         a value from 0 to 1 by hand, no speed
         control required.
         """
-
-        print(speed)
 
         self.portShooter.set(speed)
         self.starShooter.set(-speed)
@@ -145,14 +146,10 @@ class Yoke(SubsystemBase):
         else:
             self.primaryYokeMotor.set(0)
 
-    def kick(self, reverse: bool = False):
+    def kick(self, kickspeed):
         """
         Activates the kicker, pushing the ball
         into the wheels.
-
-        TODO: Should return error if shooter is not up to speed.
         """
 
-        if not reverse:
-            self.kickerMotor.set(0.6)  # Change me!
-            self.kickerMotor.set(-0.6)  # Need tweking
+        self.kickerMotor.set(kickspeed)
