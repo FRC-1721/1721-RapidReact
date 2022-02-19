@@ -151,7 +151,5 @@ class Yoke(SubsystemBase):
         """
 
         if not reverse:
-            self.kickerMotor.set(0.6)  # Changeme!
-
-    def periodic(self) -> None:
-        print(self.primaryYokeMotor.getMotorTemperature())
+            self.kickerMotor.set(0.6)  # Change me!
+            self.kickerMotor.set(-0.6)  # Need tweking
