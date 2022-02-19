@@ -111,11 +111,17 @@ class Yoke(SubsystemBase):
 
         # Setup subtables
         self.thermal_table = self.sd.getSubTable("Thermals")
+        self.pid_NT = self.sd.getSubTable("PIDS")
 
         # Setup all of the networktable entries
         self.primary_yoke_temp = self.thermal_table.getEntry("primary_yoke_temp")
         self.auxillary_yoke_temp = self.thermal_table.getEntry("auxillary_yoke_temp")
         self.kicker_temp = self.thermal_table.getEntry("kicker_temp")
+
+        self.primary_yoke_kp = self.pid_NT.getEntry("primary_yoke_kp")
+        self.primary_yoke_ki = self.pid_NT.getEntry("primary_yoke_ki")
+        self.primary_yoke_kd = self.pid_NT.getEntry("primary_yoke_kd")
+        self.primary_yoke_ff = self.pid_NT.getEntry("primary_yoke_ff")
 
     def setSpeed(self, speed):
         """
