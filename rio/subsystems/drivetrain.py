@@ -242,14 +242,14 @@ class SwerveModule:
         # If you run burnFlash before setPositionConversionFactor, conversion factor is not set.
         # if you run burnFlash after setPositionConversionFactor, converstion factor IS set.
         # we've decided to never burnFlash and instead leave all settings volatile.
-        self.drive_motor.burnFlash()
-        self.steer_motor.burnFlash()
-        print(
-            "Steer Drive:",
-            self.constants["steer_id"],
-            "Start Position: ",
-            self.steer_motor_encoder.getPosition(),
-        )
+        # self.drive_motor.burnFlash()
+        # self.steer_motor.burnFlash()
+        # print(
+        #    "Steer Drive:",
+        #    self.constants["steer_id"],
+        #    "Start Position: ",
+        #    self.steer_motor_encoder.getPosition(),
+        # )
 
         # Reset the position of the encoder.
         # TODO: We need to set this position when the optical limit switch
@@ -277,13 +277,8 @@ class SwerveModule:
         #     "Immediate Position: ",
         #     self.steer_motor_encoder.getPosition(),
         # )
-        self.drive_motor.set(0);
-        print(
-            "Drive:",
-            self.constants["steer_id"],
-            "Speed: ",
-            self.drive_motor.get()
-        )
+        self.drive_motor.set(0)
+        print("Drive:", self.constants["steer_id"], "Speed: ", self.drive_motor.get())
 
     def getPose(self):
         return self.module_pose
@@ -298,12 +293,12 @@ class SwerveModule:
             newState, self.getCurrentState().angle
         )
 
-        print(
-            "Steer Drive:",
-            self.constants["steer_id"],
-            "OptimizedState: ",
-            optimizedState
-        )
+        # print(
+        #    "Steer Drive:",
+        #    self.constants["steer_id"],
+        #    "OptimizedState: ",
+        #    optimizedState
+        # )
 
         deltaAngle = (
             newState.angle - self.desiredState.angle
@@ -329,12 +324,12 @@ class SwerveModule:
         # Set the position of the neo to the desired position
         # self.steer_motor.set(0.5)
 
-        print(
-            "Steer Drive:",
-            self.constants["steer_id"],
-            "Reference Value: ",
-            currentRef
-        )
+        # print(
+        #     "Steer Drive:",
+        #     self.constants["steer_id"],
+        #     "Reference Value: ",
+        #     currentRef
+        # )
 
         self.steer_PID.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
@@ -346,12 +341,12 @@ class SwerveModule:
         elif safeSpeed < -1:
             safeSpeed = -1
         self.drive_motor.set(safeSpeed)
-        print(
-            "Drive Motor:",
-            self.constants["drive_id"],
-            "Set value: ",
-            self.drive_motor.get()
-        )
+        # print(
+        #     "Drive Motor:",
+        #     self.constants["drive_id"],
+        #     "Set value: ",
+        #     self.drive_motor.get()
+        # )
 
         self.desiredState = newState
 
