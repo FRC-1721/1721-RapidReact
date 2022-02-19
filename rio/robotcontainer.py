@@ -7,6 +7,7 @@ import commands2.button
 from commands.flybywire import FlyByWire
 from commands.test_button_action import TestButtonAction
 from commands.sloppy_shooter import SloppyShooter
+from commands.kicker_button import kicker
 
 # Subsystens
 from subsystems.drivetrain import Drivetrain
@@ -91,6 +92,11 @@ class RobotContainer:
         # use the A button the xbox controller
         commands2.button.JoystickButton(self.driverController, 1).whenPressed(
             TestButtonAction(self.drivetrain)
+        )
+
+        # use the B button the xbox controller
+        commands2.button.JoystickButton(self.driverController, 2).whenPressed(
+            kicker(self.kicker)
         )
 
     def configureAutonomous(self):
