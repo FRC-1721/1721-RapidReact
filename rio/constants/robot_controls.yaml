@@ -11,7 +11,7 @@ mode_a:
     strafe_axis: 0               # "Strafe" Axis
     raw_shooter_speed_axis: 3    # Raw shooter axis, remove me!
     raw_shooter_intake_axis: 2   # Raw shooter axis, remove me!
-    raw_shooter_angle_axis: 4    # Raw shooter axis, remove me!
+    raw_shooter_angle_axis: 5    # Raw shooter axis, remove me!
   sim:
     # The control mappings for use when using the simulator
     controller_port: 0           # What usb port the driver controller is on
