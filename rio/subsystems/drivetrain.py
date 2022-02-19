@@ -306,18 +306,16 @@ class SwerveModule:
             elif self.angleSum + (2 * math.pi) < self.radians:
                 self.angleSum = self.angleSum + (2 * math.pi)
 
-        if self.joy.getRawAxis(1) >= 0.05 or self.joy.getRawAxis(2) >= 0.05:
-            currentRef = self.angleSum / (
-                2 * math.pi
-            )  # The sum (radians) converted to rotations (of the steer wheel)
+        currentRef = self.angleSum / (
+            2 * math.pi
+        )  # The sum (radians) converted to rotations (of the steer wheel)
+        # Set the position of the neo to the desired position
+        # self.steer_motor.set(0.5)
+        self.steer_PID.setReference(
+            currentRef, CANSparkMaxLowLevel.ControlType.kPosition
+        )
 
-            # Set the position of the neo to the desired position
-            # self.steer_motor.set(0.5)
-            self.steer_PID.setReference(
-                currentRef, CANSparkMaxLowLevel.ControlType.kPosition
-            )
-
-            self.desiredState = newState
+        self.desiredState = newState
 
     def getCurrentState(self):
         """
