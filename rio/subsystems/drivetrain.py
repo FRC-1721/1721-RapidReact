@@ -1,10 +1,10 @@
 # FRC 1721
 # 2022
 
-from asyncio.format_helpers import extract_stack
-from base64 import encode
-import logging
 import math
+
+
+from wpilib import RobotBase
 
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
@@ -300,10 +300,11 @@ class SwerveModule:
         # rotation of the wheel, remove a rotation from the target. This
         # does not change the target angle as it removes one rotations, but
         # prevents the wheel from trying to play catch up
-        if self.angleSum - (2 * math.pi) > self.radians:
-            self.angleSum = self.angleSum - (2 * math.pi)
-        elif self.angleSum + (2 * math.pi) < self.radians:
-            self.angleSum = self.angleSum + (2 * math.pi)
+        if RobotBase.isReal():
+            if self.angleSum - (2 * math.pi) > self.radians:
+                self.angleSum = self.angleSum - (2 * math.pi)
+            elif self.angleSum + (2 * math.pi) < self.radians:
+                self.angleSum = self.angleSum + (2 * math.pi)
 
         currentRef = self.angleSum / (
             2 * math.pi
