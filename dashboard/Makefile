@@ -29,10 +29,10 @@ build-dev:
 	npm install && npx webpack --watch
 
 run:
-	cd www && python -m pynetworktables2js
+	cd www && python -m pynetworktables2js --port=5800
 
 comp:
-	cd www && python -m pynetworktables2js --robot 10.17.21.2
+	cd www && python -m pynetworktables2js --robot 10.17.21.2 --port=5800
 
 clean:
 	git clean -fdX
