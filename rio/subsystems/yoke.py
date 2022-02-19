@@ -122,6 +122,17 @@ class Yoke(SubsystemBase):
         self.primary_yoke_ki = self.pid_NT.getEntry("primary_yoke_ki")
         self.primary_yoke_kd = self.pid_NT.getEntry("primary_yoke_kd")
         self.primary_yoke_ff = self.pid_NT.getEntry("primary_yoke_ff")
+        self.primary_yoke_max_I = self.pid_NT.getEntry("primary_yoke_max_I")
+        self.primary_yoke_max = self.pid_NT.getEntry("primary_yoke_max")
+        self.primary_yoke_min = self.pid_NT.getEntry("primary_yoke_min")
+
+        self.primary_yoke_kp.setDouble(0)
+        self.primary_yoke_ki.setDouble(0)
+        self.primary_yoke_kd.setDouble(0)
+        self.primary_yoke_ff.setDouble(0)
+        self.primary_yoke_max_I.setDouble(0)
+        self.primary_yoke_max.setDouble(0)
+        self.primary_yoke_min.setDouble(0)
 
     def setSpeed(self, speed):
         """
