@@ -73,6 +73,7 @@ class Yoke(SubsystemBase):
         self.primaryPID.setP(self.pid_const["primary"]["kp"])
         self.primaryPID.setI(self.pid_const["primary"]["ki"])
         self.primaryPID.setD(self.pid_const["primary"]["kd"])
+        self.primaryPID.setD(self.pid_const["primary"]["ff"])
         # self.primaryPID.setFF(1)
         self.primaryPID.setIMaxAccum(self.pid_const["primary"]["maxi"])
         self.primaryPID.setOutputRange(
@@ -113,12 +114,11 @@ class Yoke(SubsystemBase):
         self.portPID.setReference(velocity, CANSparkMaxLowLevel.ControlType.kVelocity)
 
     def getPrimaryAngle(self):
-        self.primaryYokeMotorEncoder = self.primaryYokeMotor.getEncoder()
-        return self.primaryYokeMotorEncoder
+        return self.primaryYokeMotorEncoder.getPosition()
 
     def getAuxillaryAngle(self):
-        self.auxillaryYokeMotorEncoder = self.auxillaryYokeMotor.getEncoder()
-        return self.auxillaryYokeMotorEncoder
+
+        return self.auxillaryYokeMotorEncoder.getPosition()
 
     def setPrimaryYokeAngle(self, angle: geometry.Rotation2d):
         """
@@ -131,7 +131,9 @@ class Yoke(SubsystemBase):
         # Convert radians to motor rotations
         target_rotations = (target_radians / (2 * math.pi)) / self.pid_const["ratio"]
 
-        print(target_rotations)
+        print(
+            f"rotation target:{target_rotations}, current: {self.getAuxillaryAngle()} temp:{self.primaryYokeMotor.getMotorTemperature()}"
+        )
 
         # Set a new PID target
         self.primaryPID.setReference(

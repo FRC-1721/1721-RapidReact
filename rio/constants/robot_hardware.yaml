@@ -73,9 +73,10 @@ yoke:
   
   pid: # PID and position constants
     primary:
-      kp: 1                     # Updated never by Joe
-      ki: 1                     # Updated never by Joe
-      kd: 1                     # Updated never by Joe
+      kp: 0.005                 # Updated Week 0 by Joe
+      ki: 0                     # Updated Week 0 by Joe
+      kd: 0.01                  # Updated Week 0 by Joe
+      ff: 2                     # Updated Week 0 by Joe
       # Max amount of I that can accumulate
       maxi: 1                   # Updated never by Joe
       # Max and min values the PID can assign to the motor
@@ -91,7 +92,7 @@ yoke:
       min_power: -0.5           # Updated never by Joe
       max_power: 0.5            # Updated never by Joe
     # Ratio of motor rotations to yoke rotations
-    ratio: 0.005                # Updated Week 0 by Joe
+    ratio: 0.008                 # Updated Week 0 by Joe
 
 misc:
   # Misc hardware settings
