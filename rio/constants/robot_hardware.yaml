@@ -47,6 +47,10 @@ drivetrain:
       max_power: 0.5            # Updated 2/8/22 by Joe
       # Ratio of motor rotations to meters traveled
       ratio: 1                  # Updated never by Joe
+      # Ratio of joystick position to robot speed
+      velocity: 1
+      velocity_min: 0.1
+
     steer:
       kp: 2.650                 # Updated 2/12/22 by Joe
       ki: 0.012                 # Updated 2/12/22 by Joe
