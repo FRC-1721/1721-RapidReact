@@ -110,6 +110,8 @@ class Drivetrain(SubsystemBase):
             self.as_module.getCurrentState(),
         )
 
+        print(self.fs_module.steer_motor_encoder.getPosition())
+
         # Networktables/dashboard
         self.fs_actual.setDouble(self.fs_module.getCurrentState().angle.radians())
         self.fs_target.setDouble(self.fs_module.getTargetHeading())
@@ -290,15 +292,7 @@ class SwerveModule:
 
         Delete whenever not needed anymore.
         """
-        # res = self.steer_motor_encoder.setPosition(0)
-        # print(
-        #     "Steer Drive:",
-        #     self.constants["steer_id"],
-        #     "Immediate Position: ",
-        #     self.steer_motor_encoder.getPosition(),
-        # )
-        self.drive_motor.set(0)
-        print("Drive:", self.constants["steer_id"], "Speed: ", self.drive_motor.get())
+        self.steer_motor_encoder.setPosition(0)
 
     def getPose(self):
         return self.module_pose
@@ -323,13 +317,6 @@ class SwerveModule:
             newState, self.getCurrentState().angle
         )
 
-        # print(
-        #    "Steer Drive:",
-        #    self.constants["steer_id"],
-        #    "OptimizedState: ",
-        #    optimizedState
-        # )
-
         deltaAngle = (
             newState.angle - self.desiredState.angle
         )  # The change from the old angle, to the new angle
@@ -338,22 +325,12 @@ class SwerveModule:
             self.angleSum + deltaAngle.radians()
         )  # The sum of all the previous movements up to this point
 
-        # If the target is more than a full rotation away from the actual
-        # rotation of the wheel, remove a rotation from the target. This
-        # does not change the target angle as it removes one rotations, but
-        # prevents the wheel from trying to play catch up
-        # if RobotBase.isReal():
-        #     if self.angleSum - (2 * math.pi) > self.radians:
-        #         self.angleSum = self.angleSum - (2 * math.pi)
-        #     elif self.angleSum + (2 * math.pi) < self.radians:
-        #         self.angleSum = self.angleSum + (2 * math.pi)
-
         currentRef = self.angleSum / (2 * math.pi)
         # The sum (radians) converted to rotations (of the steer wheel)
         # Set the position of the neo to the desired position
         # self.steer_motor.set(0.5)
 
-        # currentRef = newState.angle.radians() / (2 * math.pi)
+        currentRef = newState.angle.radians() / (2 * math.pi)
 
         self.steer_PID.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
