@@ -370,7 +370,7 @@ class SwerveModule:
             safeSpeed = 1
         elif safeSpeed < -1:
             safeSpeed = -1
-        self.drive_motor.set(safeSpeed)
+        # self.drive_motor.set(safeSpeed)
 
         # print(
         #     "Drive Motor:",

@@ -9,28 +9,28 @@ drivetrain:
 
   # All pose coordinates are in meters.
   fp_module: # Fore Port
-    pose_x: 0.5   # Updated 2/1/22 by Joe
-    pose_y: 0.5   # Updated 2/1/22 by Joe
-    drive_id: 5   # Updated Week 0 by Joe
-    steer_id: 6   # Updated Week 0 by Joe
+    pose_x: 0.517525   # Updated 2/21/22 by Joe
+    pose_y: 0.3048     # Updated 2/21/22 by Joe
+    drive_id: 5        # Updated Week 0 by Joe
+    steer_id: 6        # Updated Week 0 by Joe
 
   fs_module: # Fore Starboard
-    pose_x: 0.5   # Updated 2/1/22 by Joe
-    pose_y: -0.5  # Updated 2/1/22 by Joe
-    drive_id: 1   # Updated Week 0 by Joe
-    steer_id: 2   # Updated Week 0 by Joe
+    pose_x: 0.517525   # Updated 2/21/22 by Joe
+    pose_y: -0.3048    # Updated 2/21/22 by Joe
+    drive_id: 1        # Updated Week 0 by Joe
+    steer_id: 2        # Updated Week 0 by Joe
 
   ap_module: # Aft Port
-    pose_x: -0.5  # Updated 2/1/22 by Joe
-    pose_y: 0.5   # Updated 2/1/22 by Joe
-    drive_id: 7   # Updated Week 0 by Joe
-    steer_id: 8   # Updated Week 0 by Joe 
+    pose_x: -0.517525  # Updated 2/21/22 by Joe
+    pose_y: 0.3048     # Updated 2/21/22 by Joe
+    drive_id: 7        # Updated Week 0 by Joe
+    steer_id: 8        # Updated Week 0 by Joe 
 
   as_module: # Aft Starboard
-    pose_x: -0.5  # Updated 2/1/22 by Joe
-    pose_y: -0.5  # Updated 2/1/22 by Joe
-    drive_id: 3   # Updated Week 0 by Joe
-    steer_id: 4   # Updated Week 0 by Joe
+    pose_x: -0.517525  # Updated 2/21/22 by Joe
+    pose_y: -0.3048    # Updated 2/21/22 by Joe
+    drive_id: 3        # Updated Week 0 by Joe
+    steer_id: 4        # Updated Week 0 by Joe
   
   imu: # IMU Sensor
     can_id: 0
