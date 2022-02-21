@@ -28,7 +28,7 @@ jobs:
 
     - run: cd dashboard && make build
 
-    - run: cd dashboard && make staging
+    - run: cd dashboard && make stage
 
     - uses: actions/upload-artifact@v2
       with:
