@@ -63,7 +63,7 @@ drivetrain:
       min_power: -0.85          # Updated 2/12/22 by Joe
       max_power: 0.85           # Updated 2/12/22 by Joe
       # Ratio of motor rotations to module rotations
-      ratio: 0.033              # Updated 2/12/22 by Joe
+      ratio: 0.03333            # Updated 2/21/22 by Joe
 
 yoke:
   # Constants for shooter motors
@@ -98,7 +98,7 @@ yoke:
       min_power: -0.5           # Updated never by Joe
       max_power: 0.5            # Updated never by Joe
     # Ratio of motor rotations to yoke rotations
-    ratio: 0.02                # Updated Week 0 by Keegan
+    ratio: 0.02                 # Updated Week 0 by Keegan
 
 misc:
   # Misc hardware settings

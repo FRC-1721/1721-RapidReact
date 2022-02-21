@@ -26,10 +26,10 @@ class ConversionTest(commands2.CommandBase):
                 0,
             )
 
-            if self.angle <= 360:
+            if self.angle <= 2 * math.pi:
                 self.angle = self.angle + 0.1
             else:
                 self.angle = 0
                 self.rotations_done = self.rotations_done + 1
 
-        print(self.rotations_done)
+        # print(self.rotations_done)

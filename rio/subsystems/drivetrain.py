@@ -353,7 +353,7 @@ class SwerveModule:
         # Set the position of the neo to the desired position
         # self.steer_motor.set(0.5)
 
-        currentRef = newState.angle.radians() / (2 * math.pi)
+        # currentRef = newState.angle.radians() / (2 * math.pi)
 
         self.steer_PID.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
