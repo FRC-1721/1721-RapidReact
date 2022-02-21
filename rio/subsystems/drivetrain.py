@@ -10,7 +10,7 @@ import wpilib
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
 
-from rev import CANSparkMax, CANSparkMaxLowLevel
+from rev import CANSparkMax, CANSparkMaxLowLevel, SparkMaxLimitSwitch
 from ctre import Pigeon2, Pigeon2Configuration
 
 from networktables import NetworkTables
@@ -110,8 +110,6 @@ class Drivetrain(SubsystemBase):
             self.as_module.getCurrentState(),
         )
 
-        print(self.fs_module.steer_motor_encoder.getPosition())
-
         # Networktables/dashboard
         self.fs_actual.setDouble(self.fs_module.getCurrentState().angle.radians())
         self.fs_target.setDouble(self.fs_module.getTargetHeading())
@@ -185,6 +183,20 @@ class Drivetrain(SubsystemBase):
         self.as_temp = self.thermal_table.getEntry("as_temp")
         self.fp_temp = self.thermal_table.getEntry("fp_temp")
         self.ap_temp = self.thermal_table.getEntry("ap_temp")
+
+    def zero_swerve_modules(self):
+        self.fs_module.find_zero()
+        self.as_module.find_zero()
+        self.fp_module.find_zero()
+        self.ap_module.find_zero()
+
+    def all_zeroed(self):
+        return (
+            self.ap_module.isZeroed
+            and self.fp_module.isZeroed
+            and self.as_module.isZeroed
+            and self.fp_module.isZeroed
+        )
 
     def getGyroHeading(self):
         """
@@ -278,12 +290,18 @@ class SwerveModule:
         # triggers
         self.steer_motor_encoder.setPosition(0)
 
-        # Current state variables
+        # Zeroing objects
         self.isZeroed = False
+        self.zeroSwitch = self.steer_motor.getForwardLimitSwitch(
+            SparkMaxLimitSwitch.Type.kNormallyClosed
+        )
+
+        self.zeroSwitch.enableLimitSwitch(False)
         # By default: 0 speed, and 0 rotation
         self.desiredState = kinematics.SwerveModuleState(0, geometry.Rotation2d(0))
 
-        self.angleSum = 0  # Delete me
+        # Keeps track of the acrewed angle over time
+        self.angleSum = 0
 
     def doTestAction(self):
         """
@@ -362,6 +380,18 @@ class SwerveModule:
 
         # Return
         return current_state
+
+    def find_zero(self):
+        """
+        Seeks to the zero.
+        """
+
+        print(self.zeroSwitch.get())
+        if not self.zeroSwitch.get():
+            self.steer_motor.set(0.5)  # CHANGEME
+        else:
+            self.steer_motor_encoder.setPosition(0)
+            self.isZeroed = True
 
     def getTargetHeading(self):
         """

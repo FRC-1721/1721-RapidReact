@@ -8,6 +8,7 @@ from commands.flybywire import FlyByWire
 from commands.test_button_action import TestButtonAction
 from commands.sloppy_shooter import SloppyShooter
 from commands.kicker_button import Kicker
+from commands.zero_swerve import ZeroSwerveModules
 
 # Autonomous
 from autonomous.conversion_test import ConversionTest
@@ -102,6 +103,15 @@ class RobotContainer:
         commands2.button.JoystickButton(self.driverController, 2).whenPressed(
             Kicker(self.yoke)
         )
+
+    def enabledInit(self):
+        """
+        Idea from FRC discord, called any time
+        we move to enabled.
+        """
+
+        if not self.drivetrain.all_zeroed():
+            ZeroSwerveModules(self.drivetrain).schedule()
 
     def configureAutonomous(self):
         # Create a sendable chooser

@@ -47,6 +47,9 @@ class MyRobot(commands2.TimedCommandRobot):
         if self.autonomousCommand:
             self.autonomousCommand.schedule()
 
+        # Trigger an enabledInit()
+        self.container.enabledInit()
+
     def autonomousPeriodic(self) -> None:
         """This function is called periodically during autonomous"""
 
@@ -58,12 +61,18 @@ class MyRobot(commands2.TimedCommandRobot):
         if self.autonomousCommand:
             self.autonomousCommand.cancel()
 
+        # Trigger an enabledInit()
+        self.container.enabledInit()
+
     def teleopPeriodic(self) -> None:
         """This function is called periodically during operator control"""
 
     def testInit(self) -> None:
         # Cancels all running commands at the start of test mode
         commands2.CommandScheduler.getInstance().cancelAll()
+
+        # Trigger an enabledInit()
+        # self.container.enabledInit()
 
     def _simulationPeriodic(self) -> None:
         """Called during simulation after the rest of the code has excecuted."""
