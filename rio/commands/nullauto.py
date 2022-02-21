@@ -17,7 +17,11 @@ class NullAuto(commands2.CommandBase):
         self.addRequirements([self.drivetrain])
 
     def execute(self) -> None:
-        self.drivetrain.arcadeDrive(math.sin(self.angle), 0, math.cos(self.angle))
+        self.drivetrain.arcadeDrive(
+            math.sin(self.angle) / 10,
+            math.cos(self.angle) / 10,
+            0,
+        )
 
         if self.angle <= 360:
             self.angle = self.angle + 0.1

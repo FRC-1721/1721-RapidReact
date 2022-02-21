@@ -1,10 +1,11 @@
 # FRC 1721
 # 2022
 
-from asyncio.format_helpers import extract_stack
-from base64 import encode
-import logging
 import math
+
+
+from wpilib import RobotBase
+import wpilib
 
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
@@ -83,9 +84,16 @@ class Drivetrain(SubsystemBase):
             self.getGyroHeading(),
         )
 
+        # A handy background timer
+        self.backgroundTimer = wpilib.Timer()
+        self.backgroundTimer.start()
+
     def doTestAction(self):
         print("I am doing a test action.")
         self.fs_module.doTestAction()
+        self.fp_module.doTestAction()
+        self.as_module.doTestAction()
+        self.ap_module.doTestAction()
 
     def periodic(self):
         """
@@ -112,6 +120,12 @@ class Drivetrain(SubsystemBase):
         self.ap_actual.setDouble(self.ap_module.getCurrentState().angle.radians())
         self.ap_target.setDouble(self.ap_module.getTargetHeading())
 
+        if self.backgroundTimer.hasElapsed(1):  # Every 1s
+            self.fs_temp.setDouble(self.fs_module.getMaxTemp())
+            self.as_temp.setDouble(self.as_module.getMaxTemp())
+            self.fp_temp.setDouble(self.fp_module.getMaxTemp())
+            self.ap_temp.setDouble(self.ap_module.getMaxTemp())
+
     def arcadeDrive(self, fwd, srf, rot):
         """
         Generates a chassis speeds using the joystick commands
@@ -119,18 +133,30 @@ class Drivetrain(SubsystemBase):
         it can always be replaced!
         """
 
+        fwd_velocity = fwd * self.drive_const["max_velocity"]
+        srf_velocity = srf * self.drive_const["max_velocity"]
+
         # Get wheel speeds and angles from Kinematics, given desired chassis speed and angle
-        arcade_chassis_speeds = kinematics.ChassisSpeeds(fwd, srf, rot)
+        arcade_chassis_speeds = kinematics.ChassisSpeeds(
+            fwd_velocity, srf_velocity, rot
+        )
+
         _fp, _fs, _ap, _as = self.swerveKinematics.toSwerveModuleStates(
             arcade_chassis_speeds
         )
 
-        # TODO: These modules should NOT be swapped! This is still a bug, see #1
-        # https://github.com/FRC-1721/1721-RapidReact/issues/1
-        self.fp_module.setDesiredState(_fs)
-        self.fs_module.setDesiredState(_fp)
-        self.ap_module.setDesiredState(_as)
-        self.as_module.setDesiredState(_ap)
+        # if (
+        #     max(_fp.speed, _fs.speed, _ap.speed, _as.speed)
+        #     > self.drive_const["min_velocity"]
+        # ):
+
+        if True:
+            # TODO: These modules should NOT be swapped! This is still a bug, see #1
+            # https://github.com/FRC-1721/1721-RapidReact/issues/1
+            self.fp_module.setDesiredState(_fs)
+            self.fs_module.setDesiredState(_fp)
+            self.ap_module.setDesiredState(_as)
+            self.as_module.setDesiredState(_ap)
 
     def configureNetworkTables(self):
         # Get an instance of networktables
@@ -139,7 +165,9 @@ class Drivetrain(SubsystemBase):
         # Get the smart dashboard table
         self.sd = self.nt.getTable("SmartDashboard")
 
+        # Setup subtables
         self.swerve_table = self.sd.getSubTable("SwerveDrive")
+        self.thermal_table = self.sd.getSubTable("Thermals")
 
         # Setup all of the networktable entries
         self.fs_actual = self.swerve_table.getEntry("fs_actual")
@@ -150,6 +178,11 @@ class Drivetrain(SubsystemBase):
         self.fp_target = self.swerve_table.getEntry("fp_target")
         self.ap_actual = self.swerve_table.getEntry("ap_actual")
         self.ap_target = self.swerve_table.getEntry("ap_target")
+
+        self.fs_temp = self.thermal_table.getEntry("fs_temp")
+        self.as_temp = self.thermal_table.getEntry("as_temp")
+        self.fp_temp = self.thermal_table.getEntry("fp_temp")
+        self.ap_temp = self.thermal_table.getEntry("ap_temp")
 
     def getGyroHeading(self):
         """
@@ -192,15 +225,28 @@ class SwerveModule:
 
         # Construct the PID controllers
         self.steer_PID = self.steer_motor.getPIDController()
+        self.drive_PID = self.drive_motor.getPIDController()
 
         # Assign PID Values
-        # TODO: Drive motor too
-        self.steer_PID.setD(self.pid["steer"]["kd"])
-        self.steer_PID.setI(self.pid["steer"]["ki"])
+        # TODO: PID values currently the same for both steering and driveing
         self.steer_PID.setP(self.pid["steer"]["kp"])
+        self.steer_PID.setI(self.pid["steer"]["ki"])
+        self.steer_PID.setD(self.pid["steer"]["kd"])
+
+        self.drive_PID.setP(self.pid["drive"]["kp"])
+        self.drive_PID.setI(self.pid["drive"]["ki"])
+        self.drive_PID.setD(self.pid["drive"]["kd"])
+        self.drive_PID.setFF(self.pid["drive"]["ff"])
+
         # self.steer_PID.setFF(1)
         self.steer_PID.setIMaxAccum(self.pid["steer"]["maxi"])
         self.steer_PID.setOutputRange(
+            self.pid["steer"]["min_power"],
+            self.pid["steer"]["max_power"],
+        )
+
+        self.drive_PID.setIMaxAccum(self.pid["steer"]["maxi"])
+        self.drive_PID.setOutputRange(
             self.pid["steer"]["min_power"],
             self.pid["steer"]["max_power"],
         )
@@ -216,14 +262,14 @@ class SwerveModule:
         # If you run burnFlash before setPositionConversionFactor, conversion factor is not set.
         # if you run burnFlash after setPositionConversionFactor, converstion factor IS set.
         # we've decided to never burnFlash and instead leave all settings volatile.
-        self.drive_motor.burnFlash()
-        self.steer_motor.burnFlash()
-        print(
-            "Steer Drive:",
-            self.constants["steer_id"],
-            "Start Position: ",
-            self.steer_motor_encoder.getPosition(),
-        )
+        # self.drive_motor.burnFlash()
+        # self.steer_motor.burnFlash()
+        # print(
+        #    "Steer Drive:",
+        #    self.constants["steer_id"],
+        #    "Start Position: ",
+        #    self.steer_motor_encoder.getPosition(),
+        # )
 
         # Reset the position of the encoder.
         # TODO: We need to set this position when the optical limit switch
@@ -244,16 +290,28 @@ class SwerveModule:
 
         Delete whenever not needed anymore.
         """
-        res = self.steer_motor_encoder.setPosition(0)
-        print(
-            "Steer Drive:",
-            self.constants["steer_id"],
-            "Immediate Position: ",
-            self.steer_motor_encoder.getPosition(),
-        )
+        # res = self.steer_motor_encoder.setPosition(0)
+        # print(
+        #     "Steer Drive:",
+        #     self.constants["steer_id"],
+        #     "Immediate Position: ",
+        #     self.steer_motor_encoder.getPosition(),
+        # )
+        self.drive_motor.set(0)
+        print("Drive:", self.constants["steer_id"], "Speed: ", self.drive_motor.get())
 
     def getPose(self):
         return self.module_pose
+
+    def getMaxTemp(self):
+        """
+        Returns the max temp of this module.
+        """
+
+        return max(
+            self.drive_motor.getMotorTemperature(),
+            self.steer_motor.getMotorTemperature(),
+        )
 
     def setDesiredState(self, newState):
         """
@@ -265,6 +323,13 @@ class SwerveModule:
             newState, self.getCurrentState().angle
         )
 
+        # print(
+        #    "Steer Drive:",
+        #    self.constants["steer_id"],
+        #    "OptimizedState: ",
+        #    optimizedState
+        # )
+
         deltaAngle = (
             newState.angle - self.desiredState.angle
         )  # The change from the old angle, to the new angle
@@ -273,15 +338,46 @@ class SwerveModule:
             self.angleSum + deltaAngle.radians()
         )  # The sum of all the previous movements up to this point
 
+        # If the target is more than a full rotation away from the actual
+        # rotation of the wheel, remove a rotation from the target. This
+        # does not change the target angle as it removes one rotations, but
+        # prevents the wheel from trying to play catch up
+        # if RobotBase.isReal():
+        #     if self.angleSum - (2 * math.pi) > self.radians:
+        #         self.angleSum = self.angleSum - (2 * math.pi)
+        #     elif self.angleSum + (2 * math.pi) < self.radians:
+        #         self.angleSum = self.angleSum + (2 * math.pi)
+
         currentRef = self.angleSum / (
             2 * math.pi
         )  # The sum (radians) converted to rotations (of the steer wheel)
-
         # Set the position of the neo to the desired position
         # self.steer_motor.set(0.5)
+
+        # print(
+        #     "Steer Drive:",
+        #     self.constants["steer_id"],
+        #     "Reference Value: ",
+        #     currentRef
+        # )
+
         self.steer_PID.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
         )
+
+        safeSpeed = self.desiredState.speed
+        if safeSpeed > 1:
+            safeSpeed = 1
+        elif safeSpeed < -1:
+            safeSpeed = -1
+        self.drive_motor.set(safeSpeed)
+
+        # print(
+        #     "Drive Motor:",
+        #     self.constants["drive_id"],
+        #     "Set value: ",
+        #     self.drive_motor.get()
+        # )
 
         self.desiredState = newState
 
@@ -290,20 +386,20 @@ class SwerveModule:
         Returns the current state of this module.
         """
         # Current position of the motor encoder (in rotations)
-        encoder = self.steer_motor_encoder.getPosition()
+        self.encoder = self.steer_motor_encoder.getPosition()
 
         # if self.constants["steer_id"] == 1:
         # print(encoder)
 
         # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
-        radians = encoder * (math.pi * 2)
+        self.radians = self.encoder * (math.pi * 2)
 
         # Construct a rotation2d object
-        rot = geometry.Rotation2d(radians)
+        self.rot = geometry.Rotation2d(self.radians)
 
         # The current state is constructed
         # TODO: Measure speed
-        current_state = kinematics.SwerveModuleState(0, rot)
+        current_state = kinematics.SwerveModuleState(0, self.rot)
 
         # Return
         return current_state
