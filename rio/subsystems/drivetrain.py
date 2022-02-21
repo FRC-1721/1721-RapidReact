@@ -348,36 +348,18 @@ class SwerveModule:
         #     elif self.angleSum + (2 * math.pi) < self.radians:
         #         self.angleSum = self.angleSum + (2 * math.pi)
 
-        currentRef = self.angleSum / (
-            2 * math.pi
-        )  # The sum (radians) converted to rotations (of the steer wheel)
+        currentRef = self.angleSum / (2 * math.pi)
+        # The sum (radians) converted to rotations (of the steer wheel)
         # Set the position of the neo to the desired position
         # self.steer_motor.set(0.5)
 
-        # print(
-        #     "Steer Drive:",
-        #     self.constants["steer_id"],
-        #     "Reference Value: ",
-        #     currentRef
-        # )
+        currentRef = newState.angle.radians() / (2 * math.pi)
 
         self.steer_PID.setReference(
             currentRef, CANSparkMaxLowLevel.ControlType.kPosition
         )
 
-        safeSpeed = self.desiredState.speed
-        if safeSpeed > 1:
-            safeSpeed = 1
-        elif safeSpeed < -1:
-            safeSpeed = -1
-        # self.drive_motor.set(safeSpeed)
-
-        # print(
-        #     "Drive Motor:",
-        #     self.constants["drive_id"],
-        #     "Set value: ",
-        #     self.drive_motor.get()
-        # )
+        # self.drive_motor.set(<speed here>)
 
         self.desiredState = newState
 

@@ -9,6 +9,9 @@ from commands.test_button_action import TestButtonAction
 from commands.sloppy_shooter import SloppyShooter
 from commands.kicker_button import Kicker
 
+# Autonomous
+from autonomous.conversion_test import ConversionTest
+
 # Subsystens
 from subsystems.drivetrain import Drivetrain
 from subsystems.lighting import Lighting
@@ -110,6 +113,7 @@ class RobotContainer:
             "Caleb pick this one Auto", BotchAuto(self.yoke, self.drivetrain)
         )
         self.autoChooser.addOption("Null Auto", NullAuto(self.drivetrain))
+        self.autoChooser.addOption("Conversion Test", ConversionTest(self.drivetrain))
 
         # Put the chooser on the dashboard
         wpilib.SmartDashboard.putData("Autonomous", self.autoChooser)
