@@ -7,8 +7,3 @@
 Hello thank you looking at our robot code, documentation, and dashboard. 
 Here is our Burnt Toaster's [documentation](https://1721-rapidreact.readthedocs.io/en/latest/).
 To check out our calender or get in contact see our [website](https://www.frc1721.org/).
-
-## Contents
-
-This repositiory mainly has the code for the robot,
-the mechanical aspects are contatined in the [documentation](https://1721-rapidreact.readthedocs.io/en/latest/)
