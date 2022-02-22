@@ -2,7 +2,7 @@ import git
 
 # Project Information
 
-project = "Unnamed Toaster Robot Manual"
+project = "Burnt Toaster Robot Manual"
 copyright = "2021-2022, To Be Announced"
 author = "Tidal Force, FRC Team 1721"
 

@@ -9,16 +9,18 @@ Introduction
 
 |outreach|
 
-While yoke shooters have been done in the past,
-ours is a bit different.
+.. figure:: resources/shooter.png
+  :width: 400
+  :alt: Swerve Module Prototype
 
-Our yoke is different from previous yoke due to the,
+  Part of the yoke
+
+While yoke shooters have been done in the past,
+ours is a bit different our yoke is different from previous yoke due to the,
 two ball compacity.
 
 This is possible because we have a yoke and a
-hand to hold another ball.
-
-For and indepth explanation see :ref:`Prototyping`.
+hand to hold another ball for and indepth explanation see :ref:`Prototyping`.
 
 Prototyping
 ===========
