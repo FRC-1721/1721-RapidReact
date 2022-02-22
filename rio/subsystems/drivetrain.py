@@ -1,6 +1,7 @@
 # FRC 1721
 # 2022
 
+from cmath import pi
 import math
 
 
@@ -222,10 +223,17 @@ class SwerveModule:
             self.constants["drive_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
+
+        # Set inverted
+        self.drive_motor.setInverted(self.constants["drive_inverted"])
+
         self.steer_motor = CANSparkMax(
             self.constants["steer_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
+
+        # Set inverted
+        self.steer_motor.setInverted(self.constants["steer_inverted"])
 
         # Construct the pose of this module
         self.module_pose = geometry.Translation2d(
@@ -291,7 +299,7 @@ class SwerveModule:
         self.steer_motor_encoder.setPosition(0)
 
         # Zeroing objects
-        self.isZeroed = False
+        self.isZeroed = True  # TODO: Change me later!
         self.zeroSwitch = self.steer_motor.getForwardLimitSwitch(
             SparkMaxLimitSwitch.Type.kNormallyClosed
         )
@@ -343,18 +351,29 @@ class SwerveModule:
             self.angleSum + deltaAngle.radians()
         )  # The sum of all the previous movements up to this point
 
-        currentRef = self.angleSum / (2 * math.pi)
+        oldcurrentRef = self.angleSum / (2 * math.pi)
         # The sum (radians) converted to rotations (of the steer wheel)
         # Set the position of the neo to the desired position
         # self.steer_motor.set(0.5)
 
         currentRef = newState.angle.radians() / (2 * math.pi)
 
+        #         if self.constants["steer_id"] == 2:
+        #             print(
+        #                 f"""
+        # New Angle: {newState.angle}
+        # Old Angle: {self.desiredState.angle}
+        # Delta: {deltaAngle}
+        # Angle Sum: {self.angleSum}
+        # currentref: {currentRef}
+        # oldcurrentref: {oldcurrentRef}"""
+        #             )
+
         self.steer_PID.setReference(
-            currentRef, CANSparkMaxLowLevel.ControlType.kPosition
+            oldcurrentRef, CANSparkMaxLowLevel.ControlType.kPosition
         )
 
-        # self.drive_motor.set(<speed here>)
+        self.drive_motor.set(newState.speed)
 
         self.desiredState = newState
 
