@@ -127,10 +127,6 @@ class Drivetrain(SubsystemBase):
             self.fp_temp.setDouble(self.fp_module.getMaxTemp())
             self.ap_temp.setDouble(self.ap_module.getMaxTemp())
 
-        print(
-            f"{self.fs_module.zeroSwitch.get()}, {self.fp_module.zeroSwitch.get()}, {self.as_module.zeroSwitch.get()}, {self.ap_module.zeroSwitch.get()}, "
-        )
-
     def arcadeDrive(self, fwd, srf, rot):
         """
         Generates a chassis speeds using the joystick commands
@@ -411,7 +407,7 @@ class SwerveModule:
 
         if not self.isZeroed:
             if not self.zeroSwitch.get():
-                self.steer_motor.set(0.125)  # CHANGEME
+                self.steer_motor.set(0.165)  # CHANGEME
             else:
                 self.steer_motor_encoder.setPosition(0)
                 self.isZeroed = True
