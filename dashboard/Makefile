@@ -37,11 +37,12 @@ comp:
 clean:
 	git clean -fdX
 
-deploy:
+stage:
 	mkdir -p $(STAGEDIR)www/
 	cp -r www/* $(STAGEDIR)www/
 	cp -r opt/* $(STAGEDIR)
 
+deploy: stage
 	@echo "======================================================================================="
 	@echo "When prompted for a password, type 'dash' and press enter."
 	@echo "======================================================================================="
