@@ -71,6 +71,10 @@ jobs:
     needs: [make_docs, make_dashboard]
 
     steps:
+
+    - name: Update and install zip
+      run: sudo apt update && sudo apt install zip
+
     - uses: actions/download-artifact@v2
       with:
         name: Tidal_Force_Robot_Manual
@@ -78,6 +82,10 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: Dashboard_Transpiled
+        path: Dashboard_Transpiled/
+    
+    - name: Zip all dashboard back up
+      run: zip -r Dashboard_Transpiled.zip Dashboard_Transpiled
     
     - name: Display structure of downloaded files
       run: ls -R
