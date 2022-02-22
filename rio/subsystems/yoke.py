@@ -196,6 +196,31 @@ class Yoke(SubsystemBase):
         else:
             self.primaryYokeMotor.set(0)
 
+    def setAuxillaryYokeAngle(self, angle: geometry.Rotation2d):
+        """
+        Method to update the target angle
+        for the aux.
+        """
+
+        # Convert rotation2d to radians
+        target_radians = angle.radians()
+        # Convert radians to motor rotations
+        target_rotations = (target_radians / (2 * math.pi)) / self.pid_const["ratio"]
+
+        # print(
+        #     f"rotation target:{target_rotations}, current: {self.getAuxillaryAngle()} temp:{self.auxillaryYokeMotor.getMotorTemperature()}"
+        # )
+
+        # TODO: MOVE ME
+        if not self.auxillaryYokeMotor.getMotorTemperature() > 45:
+            if not target_rotations > 0.05:
+                # Set a new PID target
+                self.auxillaryPID.setReference(
+                    target_rotations, CANSparkMaxLowLevel.ControlType.kPosition
+                )
+        else:
+            self.auxillaryYokeMotor.set(0)
+
     def kick(self, kickspeed):
         """
         Activates the kicker, pushing the ball
