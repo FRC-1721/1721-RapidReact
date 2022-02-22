@@ -77,27 +77,27 @@ class Yoke(SubsystemBase):
         self.kickerMotorEncoder = self.kickerMotor.getEncoder()
 
         # Configure PID
-        self.auxillaryPID.setP(self.pid_const["auxillary"]["kp"])
-        self.auxillaryPID.setI(self.pid_const["auxillary"]["ki"])
-        self.auxillaryPID.setD(self.pid_const["auxillary"]["kd"])
-        self.auxillaryPID.setD(self.pid_const["auxillary"]["ff"])
-        # self.primaryPID.setFF(1)
-        self.auxillaryPID.setIMaxAccum(self.pid_const["auxillary"]["maxi"])
-        self.auxillaryPID.setOutputRange(
-            self.pid_const["auxillary"]["min_power"],
-            self.pid_const["auxillary"]["max_power"],
-        )
-
-        # Configure PID
         self.primaryPID.setP(self.pid_const["primary"]["kp"])
         self.primaryPID.setI(self.pid_const["primary"]["ki"])
         self.primaryPID.setD(self.pid_const["primary"]["kd"])
         self.primaryPID.setD(self.pid_const["primary"]["ff"])
-        # TODO: Auxillary yoke pid here
-        self.auxillaryPID.setIMaxAccum(self.pid_const["primary"]["maxi"])
-        self.auxillaryPID.setOutputRange(
+        # self.primaryPID.setFF(1)
+        self.primaryPID.setIMaxAccum(self.pid_const["primary"]["maxi"])
+        self.primaryPID.setOutputRange(
             self.pid_const["primary"]["min_power"],
             self.pid_const["primary"]["max_power"],
+        )
+
+        # Configure PID
+        self.auxillaryPID.setP(self.pid_const["auxillary"]["kp"])
+        self.auxillaryPID.setI(self.pid_const["auxillary"]["ki"])
+        self.auxillaryPID.setD(self.pid_const["auxillary"]["kd"])
+        self.auxillaryPID.setD(self.pid_const["auxillary"]["ff"])
+        # TODO: Auxillary yoke pid here
+        self.auxillaryPID.setIMaxAccum(self.pid_const["auxillary"]["maxi"])
+        self.auxillaryPID.setOutputRange(
+            self.pid_const["auxillary"]["min_power"],
+            self.pid_const["auxillary"]["max_power"],
         )
 
         # Ratios
