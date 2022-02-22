@@ -64,14 +64,15 @@ jobs:
       with:
         name: Dashboard_Transpiled
         path: dashboard/_staging
-  
-  test:
+
+  publish_docs:
+    # Only run on tags
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
-    name: remove me
+    name: Publish Docs
     needs: [make_docs, make_dashboard]
 
     steps:
-
     - name: Update and install zip
       run: sudo apt update && sudo apt install zip
 
@@ -86,25 +87,6 @@ jobs:
     
     - name: Zip all dashboard back up
       run: zip -r Dashboard_Transpiled.zip Dashboard_Transpiled
-    
-    - name: Display structure of downloaded files
-      run: ls -R
-
-  publish_docs:
-    # Only run on tags
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    runs-on: ubuntu-latest
-    name: Publish Docs
-    needs: [make_docs, make_dashboard]
-
-    steps:
-    - uses: actions/download-artifact@v2
-      with:
-        name: Tidal_Force_Robot_Manual
-    
-    - uses: actions/download-artifact@v2
-      with:
-        name: Dashboard_Transpiled
 
     - name: Upload Docs to release
       uses: svenstaro/upload-release-action@v2
