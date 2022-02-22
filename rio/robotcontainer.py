@@ -6,7 +6,7 @@ import commands2.button
 # Commands
 from commands.flybywire import FlyByWire
 from commands.test_button_action import TestButtonAction
-from commands.sloppy_shooter import SloppyShooter
+from commands.sloppy_intake import SloppyIntake
 from commands.kicker_button import Kicker
 
 # Subsystens
@@ -69,20 +69,20 @@ class RobotContainer:
             )
         )
 
-        self.yoke.setDefaultCommand(
-            SloppyShooter(
-                self.yoke,
-                lambda: self.driverController.getRawAxis(
-                    self.controlMode["raw_shooter_speed_axis"]
-                ),
-                lambda: self.driverController.getRawAxis(
-                    self.controlMode["raw_shooter_intake_axis"]
-                ),
-                lambda: self.driverController.getRawAxis(
-                    self.controlMode["raw_shooter_angle_axis"]
-                ),
-            )
-        )
+        # self.yoke.setDefaultCommand(
+        #    SloppyIntake(
+        #        self.yoke,
+        #        lambda: self.driverController.getRawAxis(
+        #            self.controlMode["raw_shooter_speed_axis"]
+        #        ),
+        #        lambda: self.driverController.getRawAxis(
+        #            self.controlMode["raw_shooter_intake_axis"]
+        #        ),
+        #        lambda: self.driverController.getRawAxis(
+        #            self.controlMode["raw_shooter_angle_axis"]
+        #        ),
+        #    )
+        # )
 
     def configureButtonBindings(self):
         """
@@ -91,13 +91,27 @@ class RobotContainer:
         and then passing it to a JoystickButton.
         """
         # use the A button the xbox controller
-        commands2.button.JoystickButton(self.driverController, 1).whenPressed(
-            TestButtonAction(self.drivetrain)
-        )
+        # commands2.button.JoystickButton(self.driverController, 1).whenPressed(
+        #    TestButtonAction(self.drivetrain)
+        # )
 
-        # use the B button the xbox controller
+        # use the B button the xbox controller to activate the kicker
         commands2.button.JoystickButton(self.driverController, 2).whenPressed(
             Kicker(self.yoke)
+        )
+
+        # use the Y, X, and A buttons to operate the intake
+        # TODO: This is test code and kinda bad
+        commands2.button.JoystickButton(self.driverController, 4).whenPressed(
+            SloppyIntake(self.yoke, True, False)
+        )
+
+        commands2.button.JoystickButton(self.driverController, 1).whenPressed(
+            SloppyIntake(self.yoke, False, True)
+        )
+
+        commands2.button.JoystickButton(self.driverController, 3).whenPressed(
+            SloppyIntake(self.yoke, False, False)
         )
 
     def configureAutonomous(self):

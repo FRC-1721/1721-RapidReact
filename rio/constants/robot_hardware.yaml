@@ -92,6 +92,7 @@ yoke:
       kp: 1                     # Updated never by Joe
       ki: 1                     # Updated never by Joe
       kd: 1                     # Updated never by Joe
+      ff: 1                     # Updated never by Khan
       # Max amount of I that can accumulate
       maxi: 1                   # Updated never by Joe
       # Max and min values the PID can assign to the motor

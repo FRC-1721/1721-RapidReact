@@ -4,7 +4,7 @@ from wpilib import geometry
 from subsystems.yoke import Yoke
 
 
-class SloppyShooter(commands2.CommandBase):
+class SloppyIntake(commands2.CommandBase):
     """
     Command that drives the shooter with just
     a simple set power output.
@@ -20,8 +20,6 @@ class SloppyShooter(commands2.CommandBase):
         super().__init__()
 
         self.yoke = yoke  # This is a 'local' instance of yoke
-        self.intakeSpeed = intakeSpeed  # Callable
-        self.shooterSpeed = shooterSpeed
         self.angle = angle  # Callable
 
         # For the head-lift system
