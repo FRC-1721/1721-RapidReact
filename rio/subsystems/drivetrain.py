@@ -127,6 +127,13 @@ class Drivetrain(SubsystemBase):
             self.fp_temp.setDouble(self.fp_module.getMaxTemp())
             self.ap_temp.setDouble(self.ap_module.getMaxTemp())
 
+            self.fs_zero.setBoolean(self.fs_module.isZeroed)
+            self.as_zero.setBoolean(self.as_module.isZeroed)
+            self.fp_zero.setBoolean(self.fp_module.isZeroed)
+            self.ap_zero.setBoolean(self.ap_module.isZeroed)
+
+            self.backgroundTimer.reset()
+
     def arcadeDrive(self, fwd, srf, rot):
         """
         Generates a chassis speeds using the joystick commands
@@ -184,6 +191,11 @@ class Drivetrain(SubsystemBase):
         self.as_temp = self.thermal_table.getEntry("as_temp")
         self.fp_temp = self.thermal_table.getEntry("fp_temp")
         self.ap_temp = self.thermal_table.getEntry("ap_temp")
+
+        self.fs_zero = self.swerve_table.getEntry("fs_zero")
+        self.as_zero = self.swerve_table.getEntry("as_zero")
+        self.fp_zero = self.swerve_table.getEntry("fp_zero")
+        self.ap_zero = self.swerve_table.getEntry("ap_zero")
 
     def zero_swerve_modules(self):
         self.fs_module.find_zero()
