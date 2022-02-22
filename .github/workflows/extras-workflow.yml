@@ -65,11 +65,11 @@ jobs:
         name: Dashboard_Transpiled
         path: dashboard/_staging
 
-  publish_docs:
+  publish:
     # Only run on tags
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
-    name: Publish Docs
+    name: Publish
     needs: [make_docs, make_dashboard]
 
     steps:
