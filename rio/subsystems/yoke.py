@@ -69,7 +69,10 @@ class Yoke(SubsystemBase):
         self.primaryPID = self.primaryYokeMotor.getPIDController()
         self.auxillaryPID = self.auxillaryYokeMotor.getPIDController()
         self.starPID = self.starShooter.getPIDController()
+        self.starPID.setInverted(True)
+
         self.portPID = self.portShooter.getPIDController()
+        self.portPID.setInverted(True)
 
         # Get encoders and sensors
         self.primaryYokeMotorEncoder = self.primaryYokeMotor.getEncoder()
@@ -93,7 +96,7 @@ class Yoke(SubsystemBase):
         self.auxillaryPID.setI(self.pid_const["auxillary"]["ki"])
         self.auxillaryPID.setD(self.pid_const["auxillary"]["kd"])
         self.auxillaryPID.setD(self.pid_const["auxillary"]["ff"])
-        # TODO: Auxillary yoke pid here
+        # self.auxillaryPID.setFF(1)
         self.auxillaryPID.setIMaxAccum(self.pid_const["auxillary"]["maxi"])
         self.auxillaryPID.setOutputRange(
             self.pid_const["auxillary"]["min_power"],
