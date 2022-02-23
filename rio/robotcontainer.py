@@ -96,22 +96,18 @@ class RobotContainer:
         # )
 
         # use the B button the xbox controller to activate the kicker
-        commands2.button.JoystickButton(self.driverController, 2).whenPressed(
+        commands2.button.JoystickButton(self.driverController, 5).whenPressed(
             Kicker(self.yoke)
         )
 
         # use the Y, X, and A buttons to operate the intake
         # TODO: This is test code and kinda bad
-        commands2.button.JoystickButton(self.driverController, 4).whenPressed(
-            SloppyIntake(self.yoke, True, False)
+        commands2.button.JoystickButton(self.driverController, 4).whileHeld(
+            SloppyIntake(self.yoke, True)
         )
 
-        commands2.button.JoystickButton(self.driverController, 1).whenPressed(
-            SloppyIntake(self.yoke, False, True)
-        )
-
-        commands2.button.JoystickButton(self.driverController, 3).whenPressed(
-            SloppyIntake(self.yoke, False, False)
+        commands2.button.JoystickButton(self.driverController, 1).whileHeld(
+            SloppyIntake(self.yoke, False)
         )
 
     def configureAutonomous(self):

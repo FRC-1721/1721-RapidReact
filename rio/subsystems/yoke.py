@@ -248,3 +248,12 @@ class Yoke(SubsystemBase):
                 self.auxillaryYokeMotor.getMotorTemperature()
             )
             self.kicker_temp.setDouble(self.kickerMotor.getMotorTemperature())
+
+    def isExtraBallPresent(self):
+        """
+        Returns whether a ball is held in the yoke
+        TODO: check if a ball is in the yoke,
+        probobly with a limit switch
+        """
+
+        return True

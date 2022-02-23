@@ -10,12 +10,11 @@ class SloppyIntake(commands2.CommandBase):
     a simple set power output.
     """
 
-    def __init__(self, yoke: Yoke, collect_ball: bool, expunge_ball: bool) -> None:
+    def __init__(self, yoke: Yoke, collecting_ball: bool) -> None:
         super().__init__()
 
         self.yoke = yoke  # This is a 'local' instance of yoke
-        self.collect_ball = collect_ball
-        self.expunge_ball = expunge_ball
+        self.collecting_ball = collecting_ball
 
         # Requires yoke to operate
         self.addRequirements([self.yoke])
@@ -23,12 +22,13 @@ class SloppyIntake(commands2.CommandBase):
     def execute(self) -> None:
 
         # Set the intake speed
-        if self.collect_ball:
+        if self.collecting_ball:
             self.yoke.setSpeed(1)
-        elif self.expunge_ball:
+        elif not self.collecting_ball:
             self.yoke.setSpeed(-1)
-        elif not self.collect_ball and not self.expunge_ball:
-            self.yoke.setSpeed(0)
 
     def isFinished(self) -> bool:
+
+        # Turn off the intake
+        self.yoke.setSpeed(0)
         return True
