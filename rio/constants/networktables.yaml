@@ -1,0 +1,8 @@
+# A common place to store
+# networktables paths and entries
+
+
+root_table: SmartDashboard
+
+thermals_table: thermals
+panel_table: panel

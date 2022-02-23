@@ -13,6 +13,7 @@ from commands.kicker_button import Kicker
 from subsystems.drivetrain import Drivetrain
 from subsystems.lighting import Lighting
 from subsystems.yoke import Yoke
+from subsystems.dashboard import Dashboard
 
 # Constants
 from constants.constants import getConstants
@@ -46,6 +47,7 @@ class RobotContainer:
         self.drivetrain = Drivetrain()
         self.lighting = Lighting()
         self.yoke = Yoke()
+        self.dashboard = Dashboard()
 
         # Configure button bindings
         self.configureButtonBindings()

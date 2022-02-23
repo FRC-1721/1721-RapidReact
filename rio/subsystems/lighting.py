@@ -50,7 +50,7 @@ class Lighting(SubsystemBase):
 
     def periodic(self):
         # Only continue once every 5 seconds.
-        if self.backgroundTimer.hasPeriodPassed(5):
+        if self.backgroundTimer.advanceIfElapsed(5):
 
             candleError = (
                 self.CANdle.getLastError()
