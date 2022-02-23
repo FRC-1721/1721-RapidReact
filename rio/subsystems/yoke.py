@@ -40,10 +40,16 @@ class Yoke(SubsystemBase):
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
+        # MOVE ME
+        self.starShooter.setInverted(True)
+
         self.portShooter = CANSparkMax(
             self.yoke_const["port_shooter_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
+
+        # MOVE ME
+        self.portShooter.setInverted(True)
 
         self.primaryYokeMotor = CANSparkMax(
             self.yoke_const["primary_motor_id"],
@@ -69,10 +75,7 @@ class Yoke(SubsystemBase):
         self.primaryPID = self.primaryYokeMotor.getPIDController()
         self.auxillaryPID = self.auxillaryYokeMotor.getPIDController()
         self.starPID = self.starShooter.getPIDController()
-        self.starPID.setInverted(True)
-
         self.portPID = self.portShooter.getPIDController()
-        self.portPID.setInverted(True)
 
         # Get encoders and sensors
         self.primaryYokeMotorEncoder = self.primaryYokeMotor.getEncoder()
@@ -154,8 +157,8 @@ class Yoke(SubsystemBase):
         control required.
         """
 
-        self.portShooter.set(speed)
-        self.starShooter.set(-speed)
+        self.portShooter.set(-speed)
+        self.starShooter.set(speed)
 
     def setVelocity(self, velocity):
         """
@@ -164,6 +167,7 @@ class Yoke(SubsystemBase):
         """
 
         # TODO: These need to be inverted, DONT do this here, do this in init
+        # We just inverted it in init, don't know if it is correct enough to get rid of T0DO.
         self.starPID.setReference(velocity, CANSparkMaxLowLevel.ControlType.kVelocity)
         self.portPID.setReference(velocity, CANSparkMaxLowLevel.ControlType.kVelocity)
 
@@ -194,8 +198,8 @@ class Yoke(SubsystemBase):
         # print(
         #     f"rotation target:{target_rotations}, current: {self.getPrimaryAngle()} temp:{self.primaryYokeMotor.getMotorTemperature()}"
         # )
-
         # TODO: MOVE ME
+
         if not self.primaryYokeMotor.getMotorTemperature() > 45:
             if not target_rotations > 0.05:
                 # Set a new PID target
