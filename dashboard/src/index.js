@@ -30,20 +30,20 @@ $(document).ready(function () {
     attachSelectToSendableChooser("#autonomous", "Autonomous");
 
     // will load a camera from the robot's IP address on port 5800
-    loadCameraOnConnect({
-        container: '#camera_container', // where to put the img tag
-        proto: null,                    // optional, defaults to http://
-        host: null,                     // optional, if null will use robot's autodetected IP address
-        port: 5800,                     // webserver port
-        image_url: 'http://10.17.21.11:8000/video',   // mjpg stream of camera
-        data_url: '/program.json',      // used to test if connection is up
-        wait_img: null,                 // optional img to show when not connected, can use SVG instead
-        error_img: null,                // optional img to show when error connecting, can use SVG instead
-        attrs: {                        // optional: attributes set on svg or img element
-            width: 320,                     // optional, stretches image to this width
-            height: 240,                    // optional, stretches image to this width
-        }
-    });
+    // loadCameraOnConnect({
+    //     container: '#camera_container', // where to put the img tag
+    //     proto: null,                    // optional, defaults to http://
+    //     host: null,                     // optional, if null will use robot's autodetected IP address
+    //     port: 5800,                     // webserver port
+    //     image_url: 'http://10.17.21.11:8000/video',   // mjpg stream of camera
+    //     data_url: '/program.json',      // used to test if connection is up
+    //     wait_img: null,                 // optional img to show when not connected, can use SVG instead
+    //     error_img: null,                // optional img to show when error connecting, can use SVG instead
+    //     attrs: {                        // optional: attributes set on svg or img element
+    //         width: 320,                     // optional, stretches image to this width
+    //         height: 240,                    // optional, stretches image to this width
+    //     }
+    // });
 
     canvas = document.getElementById('SwerveCanvas');
     if (canvas.getContext) {
@@ -114,9 +114,6 @@ function onNetworkTablesConnection(connected) {
 
         // clear the table
         $("#nt tbody > tr").remove();
-
-        console.log(NetworkTables.getKeys())
-
     } else {
         $("#connectstate").text("Disconnected!");
     }

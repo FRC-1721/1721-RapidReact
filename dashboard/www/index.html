@@ -25,8 +25,12 @@
 
     <main class="wrapper">
         <div class="connection_state">
-            NetworkTables websocket: <span id="connectstate">Unknown state</span>
-            Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
+            <span class="status">
+                NetworkTables websocket: <span id="connectstate">Unknown state</span>
+            </span>
+            <span class="status">
+                Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
+            </span>
         </div>
         <div class="swerve_drive_area">
             <div class="canvas_wrapper">
@@ -39,12 +43,6 @@
                 <div id="camera_container">
                     <!-- this element should be empty, an img tag will be added here -->
                 </div>
-            </div>
-        </div>
-        <div class="data_wrapper">
-            <div class="auto_wrapper">
-                <label for="autonomous">Autonomous Selector</label>
-                <select id="autonomous"></select>
             </div>
             <table class="temp_table">
                 <tbody>
@@ -79,36 +77,56 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="pid_table">
+        </div>
+        <div class="data_wrapper">
+            <div class="auto_wrapper">
+                <label for="autonomous">Autonomous Selector</label>
+                <select id="autonomous">Auto</select>
+            </div>
+            <div class="pid_wrapper">
+                <label for="pid_subsystem">Subsystem To Optimize</label>
+                <select name="pid_subsystem" id="pid_subsystem">
+                    <option value="off">
+                        Off
+                    </option>
+                    <option value="primary_yoke">
+                        Primary Yoke
+                    </option>
+                </select>
                 <div class="input_container">
-                    <label for="d_value">D</label>
-                    <input type="number" name="d_value" value="NOT SET" id="d_value" />
+                    <label for="kp">P</label>
+                    <input type="number" name="kp" value="" id="kp" />
                 </div>
                 <div class="input_container">
-                    <label for="p_value">P</label>
-                    <input type="number" name="p_value" value="NOT SET" id="p_value" />
+                    <label for="ki">I</label>
+                    <input type="number" name="ki" value="" id="ki" />
                 </div>
                 <div class="input_container">
-                    <label for="i_value">I</label>
-                    <input type="number" name="i_value" value="NOT SET" id="i_value" />
+                    <label for="kd">D</label>
+                    <input type="number" name="kd" value="" id="kd" />
                 </div>
                 <div class="input_container">
-                    <label for="ff_value">FF</label>
-                    <input type="number" name="ff_value" value="NOT SET" id="d_value" />
+                    <label for="ff">FF</label>
+                    <input type="number" name="ff" value="" id="ff" />
                 </div>
                 <div class="input_container">
-                    <label for="min_value">Min</label>
-                    <input type="number" name="min_value" value="NOT SET" id="d_value" />
+                    <label for="min">Min</label>
+                    <input type="number" name="min" value="" id="min" />
                 </div>
                 <div class="input_container">
-                    <label for="max_value">Max</label>
-                    <input type="number" name="max_value" value="NOT SET" id="d_value" />
+                    <label for="max">Max</label>
+                    <input type="number" name="max" value="" id="max" />
                 </div>
                 <div class="input_container">
-                    <label for="maxi_value">Max I</label>
-                    <input type="number" name="max_i_value" value="NOT SET" id="d_value" />
+                    <label for="maxI">Max I</label>
+                    <input type="number" name="maxI" value="" id="maxI" />
                 </div>
-                </tbody>
+            </div>
+            <div class="pid_graph_wrapper">
+                <button type="button" id="pid_graph_reset">Restart Graph</button>
+                <div id="pid_graph_spacer">
+                    <div id="pid_graph"></div>
+                </div>
             </div>
         </div>
     </main>
