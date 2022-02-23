@@ -179,8 +179,14 @@ class Yoke(SubsystemBase):
 
         # Convert rotation2d to radians
         target_radians = angle.radians()
+
         # Convert radians to motor rotations
         target_rotations = (target_radians / (2 * math.pi)) / self.pid_const["ratio"]
+
+        actual_rotations = self.primaryYokeMotorEncoder.getPosition()
+
+        if actual_rotations > 1 / self.pid_const["ratio"]:
+            actual_rotations = actual_rotations - 1 / self.pid_const["ratio"]
 
         # print(
         #     f"rotation target:{target_rotations}, current: {self.getPrimaryAngle()} temp:{self.primaryYokeMotor.getMotorTemperature()}"

@@ -76,6 +76,9 @@ yoke:
 
   # Constants for kicker
   kicker_id: 11                 # Updated Week 0 by Joe
+
+  # Maximum speed when driving the yoke without PID
+  max_raw_speed: 0.3            # Updated never by Khan
   
   pid: # PID and position constants
     primary:
@@ -88,6 +91,9 @@ yoke:
       # Max and min values the PID can assign to the motor
       min_power: -0.5           # Updated never by Joe
       max_power: 0.5            # Updated never by Joe
+      # Max and min angles for the yoke 
+      max_angle: 1.5708         # Updated never by Khan
+      min_angle: 0              # Updated never by Khan
     auxillary:
       kp: 1                     # Updated never by Joe
       ki: 1                     # Updated never by Joe
