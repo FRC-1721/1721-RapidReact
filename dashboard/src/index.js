@@ -33,10 +33,10 @@ $(document).ready(function () {
     loadCameraOnConnect({
         container: '#camera_container', // where to put the img tag
         proto: null,                    // optional, defaults to http://
-        host: null,                     // optional, if null will use robot's autodetected IP address
-        port: 5800,                     // webserver port
-        image_url: 'http://10.17.21.11:8000/video',   // mjpg stream of camera
-        data_url: '/program.json',      // used to test if connection is up
+        host: "10.17.21.11",                     // optional, if null will use robot's autodetected IP address
+        port: 5801,                     // webserver port
+        image_url: '/video',   // mjpg stream of camera
+        data_url: '/',      // used to test if connection is up
         wait_img: null,                 // optional img to show when not connected, can use SVG instead
         error_img: null,                // optional img to show when error connecting, can use SVG instead
         attrs: {                        // optional: attributes set on svg or img element
