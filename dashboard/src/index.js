@@ -37,8 +37,8 @@ $(document).ready(function () {
         port: 5801,                     // webserver port
         image_url: '/video',   // mjpg stream of camera
         data_url: '/',      // used to test if connection is up
-        wait_img: null,                 // optional img to show when not connected, can use SVG instead
-        error_img: null,                // optional img to show when error connecting, can use SVG instead
+        wait_img: 'resources/no_signal.png',                 // optional img to show when not connected, can use SVG instead
+        error_img: 'resources/error.png',                // optional img to show when error connecting, can use SVG instead
         attrs: {                        // optional: attributes set on svg or img element
             width: 320,                     // optional, stretches image to this width
             height: 240,                    // optional, stretches image to this width
