@@ -157,18 +157,18 @@ class Yoke(SubsystemBase):
         self.portShooter.set(speed)
         self.starShooter.set(speed)
 
-    def setVelocity(self):
+    def setVelocity(self, newVelocity):
         """
         Method to set the shooter speed velocity
         via pid.
         """
 
-        # TODO: These need to be inverted, DONT do this here, do this in init
+        # takes a new value and sets it as the referance for the new motors
         self.starPID.setReference(
-            self.velocity, CANSparkMaxLowLevel.ControlType.kVelocity
+            newVelocity, CANSparkMaxLowLevel.ControlType.kVelocity
         )  # self.setVelocity() sets the velocity feel free, to fix it
         self.portPID.setReference(
-            self.velocity, CANSparkMaxLowLevel.ControlType.kVelocity
+            newVelocity, CANSparkMaxLowLevel.ControlType.kVelocity
         )
 
     def getPrimaryAngle(self):
