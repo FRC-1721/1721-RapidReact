@@ -157,8 +157,8 @@ class Yoke(SubsystemBase):
         control required.
         """
 
-        self.portShooter.set(-speed)
-        self.starShooter.set(speed)
+        self.portShooter.set(speed)
+        self.starShooter.set(-speed)
 
     def setVelocity(self):
         """
