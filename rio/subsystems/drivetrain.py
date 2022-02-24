@@ -385,7 +385,9 @@ class SwerveModule:
             oldcurrentRef, CANSparkMaxLowLevel.ControlType.kPosition
         )
 
-        self.drive_motor.set(newState.speed)
+        self.drive_PID.setReference(
+            newState.speed, CANSparkMaxLowLevel.ControlType.kVelocity
+        )
 
         self.desiredState = newState
 
