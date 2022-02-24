@@ -40,9 +40,6 @@ class Yoke(SubsystemBase):
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
-        # MOVE ME
-        self.starShooter.setInverted(True)
-
         self.portShooter = CANSparkMax(
             self.yoke_const["port_shooter_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
@@ -158,7 +155,7 @@ class Yoke(SubsystemBase):
         """
 
         self.portShooter.set(speed)
-        self.starShooter.set(-speed)
+        self.starShooter.set(speed)
 
     def setVelocity(self):
         """
