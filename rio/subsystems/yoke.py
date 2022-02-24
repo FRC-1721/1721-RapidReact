@@ -168,10 +168,10 @@ class Yoke(SubsystemBase):
 
         # TODO: These need to be inverted, DONT do this here, do this in init
         self.starPID.setReference(
-            self.setVelocity(), CANSparkMaxLowLevel.ControlType.kVelocity
+            self.velocity, CANSparkMaxLowLevel.ControlType.kVelocity
         )  # self.setVelocity() sets the velocity feel free, to fix it
         self.portPID.setReference(
-            self.setVelocity(), CANSparkMaxLowLevel.ControlType.kVelocity
+            self.velocity, CANSparkMaxLowLevel.ControlType.kVelocity
         )
 
     def getPrimaryAngle(self):
