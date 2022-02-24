@@ -34,7 +34,8 @@ class Yoke(SubsystemBase):
         # Configure networktables
         self.configureNetworkTables()
 
-        # Configure all motors
+        # Configure motors
+        # Configure Shooter motors
         self.starShooter = CANSparkMax(
             self.yoke_const["star_shooter_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
@@ -45,28 +46,29 @@ class Yoke(SubsystemBase):
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
-        # MOVE ME
-        self.portShooter.setInverted(True)
-
+        # Configure yoke Motors
         self.primaryYokeMotor = CANSparkMax(
             self.yoke_const["primary_motor_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
-
-        # MOVE ME
-        self.primaryYokeMotor.setInverted(True)
 
         self.auxillaryYokeMotor = CANSparkMax(
             self.yoke_const["auxillary_motor_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
+        # Configure Kicker motor
         self.kickerMotor = CANSparkMax(
             self.yoke_const["kicker_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
-        self.kickerMotor.setInverted(True)
+        # Set motor inversions
+        self.starShooter.setInverted(self.yoke_const["star_shooter_invert"])
+        self.portShooter.setInverted(self.yoke_const["port_shooter_invert"])
+        self.primaryYokeMotor.setInverted(self.yoke_const["primary_yoke_invert"])
+        self.auxillaryYokeMotor.setInverted(self.yoke_const["aux_yoke_invert"])
+        self.kickerMotor.setInverted(self.yoke_const["kicker_invert"])
 
         # Get PID controller objects
         self.primaryPID = self.primaryYokeMotor.getPIDController()
@@ -80,10 +82,10 @@ class Yoke(SubsystemBase):
         self.kickerMotorEncoder = self.kickerMotor.getEncoder()
 
         # Configure PID
+        # Primary Yoke Pid
         self.primaryPID.setP(self.pid_const["primary"]["kp"])
         self.primaryPID.setI(self.pid_const["primary"]["ki"])
         self.primaryPID.setD(self.pid_const["primary"]["kd"])
-        self.primaryPID.setD(self.pid_const["primary"]["ff"])
         # self.primaryPID.setFF(1)
         self.primaryPID.setIMaxAccum(self.pid_const["primary"]["maxi"])
         self.primaryPID.setOutputRange(
@@ -91,16 +93,35 @@ class Yoke(SubsystemBase):
             self.pid_const["primary"]["max_power"],
         )
 
-        # Configure PID
+        # Aux Yoke PID
         self.auxillaryPID.setP(self.pid_const["auxillary"]["kp"])
         self.auxillaryPID.setI(self.pid_const["auxillary"]["ki"])
         self.auxillaryPID.setD(self.pid_const["auxillary"]["kd"])
-        self.auxillaryPID.setD(self.pid_const["auxillary"]["ff"])
         # self.auxillaryPID.setFF(1)
         self.auxillaryPID.setIMaxAccum(self.pid_const["auxillary"]["maxi"])
         self.auxillaryPID.setOutputRange(
             self.pid_const["auxillary"]["min_power"],
             self.pid_const["auxillary"]["max_power"],
+        )
+
+        # Shooter pid
+        self.starPID.setP(self.pid_const["shooter"]["kp"])
+        self.portPID.setP(self.pid_const["shooter"]["kp"])
+        self.starPID.setI(self.pid_const["shooter"]["ki"])
+        self.portPID.setI(self.pid_const["shooter"]["ki"])
+        self.starPID.setD(self.pid_const["shooter"]["kd"])
+        self.portPID.setD(self.pid_const["shooter"]["kd"])
+        # self.starPID.setFF(1)
+        # self.portPID.setFF(1)
+        self.starPID.setIMaxAccum(self.pid_const["shooter"]["maxi"])
+        self.starPID.setOutputRange(
+            self.pid_const["shooter"]["min_power"],
+            self.pid_const["shooter"]["max_power"],
+        )
+        self.portPID.setIMaxAccum(self.pid_const["shooter"]["maxi"])
+        self.portPID.setOutputRange(
+            self.pid_const["shooter"]["min_power"],
+            self.pid_const["shooter"]["max_power"],
         )
 
         # Ratios
@@ -163,19 +184,20 @@ class Yoke(SubsystemBase):
         via pid.
         """
 
-        # takes a new value and sets it as the referance for the new motors
+        # Update the velocity reference
         self.starPID.setReference(
-            newVelocity, CANSparkMaxLowLevel.ControlType.kVelocity
-        )  # self.setVelocity() sets the velocity feel free, to fix it
+            newVelocity,
+            CANSparkMaxLowLevel.ControlType.kVelocity,
+        )
         self.portPID.setReference(
-            newVelocity, CANSparkMaxLowLevel.ControlType.kVelocity
+            newVelocity,
+            CANSparkMaxLowLevel.ControlType.kVelocity,
         )
 
     def getPrimaryAngle(self):
         return self.primaryYokeMotorEncoder.getPosition()
 
     def getAuxillaryAngle(self):
-
         return self.auxillaryYokeMotorEncoder.getPosition()
 
     def setPrimaryYokeAngle(self, angle: geometry.Rotation2d):
@@ -184,27 +206,27 @@ class Yoke(SubsystemBase):
         for the primary shooter.
         """
 
+        # TODO: Move this somewhere else
+        self.setAuxillaryYokeAngle(angle)
+
         # Convert rotation2d to radians
         target_radians = angle.radians()
 
         # Convert radians to motor rotations
-        target_rotations = (target_radians / (2 * math.pi)) / self.pid_const["ratio"]
+        target_rotations = target_radians / (2 * math.pi)
 
         actual_rotations = self.primaryYokeMotorEncoder.getPosition()
 
-        if actual_rotations > 1 / self.pid_const["ratio"]:
-            actual_rotations = actual_rotations - 1 / self.pid_const["ratio"]
-
-        # print(
-        #     f"rotation target:{target_rotations}, current: {self.getPrimaryAngle()} temp:{self.primaryYokeMotor.getMotorTemperature()}"
-        # )
-        # TODO: MOVE ME
+        print(
+            f"rotation target:{target_rotations}, current: {self.getPrimaryAngle()} temp:{self.primaryYokeMotor.getMotorTemperature()}"
+        )
 
         if not self.primaryYokeMotor.getMotorTemperature() > 45:
             if not target_rotations > 0.05:
                 # Set a new PID target
                 self.primaryPID.setReference(
-                    target_rotations, CANSparkMaxLowLevel.ControlType.kPosition
+                    target_rotations,
+                    CANSparkMaxLowLevel.ControlType.kPosition,
                 )
         else:
             self.primaryYokeMotor.set(0)
@@ -217,22 +239,25 @@ class Yoke(SubsystemBase):
 
         # Convert rotation2d to radians
         target_radians = angle.radians()
+
         # Convert radians to motor rotations
-        target_rotations = (target_radians / (2 * math.pi)) / self.pid_const["ratio"]
+        target_rotations = target_radians / (2 * math.pi)
 
-        # print(
-        #     f"rotation target:{target_rotations}, current: {self.getAuxillaryAngle()} temp:{self.auxillaryYokeMotor.getMotorTemperature()}"
-        # )
+        actual_rotations = self.primaryYokeMotorEncoder.getPosition()
 
-        # TODO: MOVE ME
-        if not self.auxillaryYokeMotor.getMotorTemperature() > 45:
+        print(
+            f"rotation target:{target_rotations}, current: {self.getPrimaryAngle()} temp:{self.primaryYokeMotor.getMotorTemperature()}"
+        )
+
+        if not self.primaryYokeMotor.getMotorTemperature() > 45:
             if not target_rotations > 0.05:
                 # Set a new PID target
                 self.auxillaryPID.setReference(
-                    target_rotations, CANSparkMaxLowLevel.ControlType.kPosition
+                    target_rotations,
+                    CANSparkMaxLowLevel.ControlType.kPosition,
                 )
         else:
-            self.auxillaryYokeMotor.set(0)
+            self.primaryYokeMotor.set(0)
 
     def kick(self, kickspeed):
         """

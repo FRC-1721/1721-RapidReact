@@ -8,6 +8,8 @@ from commands.flybywire import FlyByWire
 from commands.test_button_action import TestButtonAction
 from commands.sloppy_intake import SloppyIntake
 from commands.kicker_button import Kicker
+from commands.intake import Intake
+from commands.catapult import Catapult
 
 # Subsystens
 from subsystems.drivetrain import Drivetrain
@@ -108,6 +110,13 @@ class RobotContainer:
 
         commands2.button.JoystickButton(self.driverController, 1).whileHeld(
             SloppyIntake(self.yoke, False)
+        )
+
+        commands2.button.JoystickButton(self.driverController, 2).whileHeld(
+            Intake(self.yoke)
+        )
+        commands2.button.JoystickButton(self.driverController, 3).whileHeld(
+            Catapult(self.yoke)
         )
 
     def configureAutonomous(self):
