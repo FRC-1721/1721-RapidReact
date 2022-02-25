@@ -1,18 +1,15 @@
 # FRC 1721
 # 2022
 
-from cmath import pi
 import math
 
-
-from wpilib import RobotBase
 import wpilib
 
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
 
 from rev import CANSparkMax, CANSparkMaxLowLevel, SparkMaxLimitSwitch
-from ctre import Pigeon2, Pigeon2Configuration
+from ctre import Pigeon2
 
 from networktables import NetworkTables
 
@@ -355,40 +352,26 @@ class SwerveModule:
             newState, self.getCurrentState().angle
         )
 
-        deltaAngle = (
-            newState.angle - self.desiredState.angle
-        )  # The change from the old angle, to the new angle
+        # The change from the old angle, to the new angle
+        deltaAngle = newState.angle - self.desiredState.angle
 
-        self.angleSum = (
-            self.angleSum + deltaAngle.radians()
-        )  # The sum of all the previous movements up to this point
+        # The sum of all the previous movements up to this point
+        self.angleSum = self.angleSum + deltaAngle.radians()
 
-        oldcurrentRef = self.angleSum / (2 * math.pi)
-        # The sum (radians) converted to rotations (of the steer wheel)
-        # Set the position of the neo to the desired position
-        # self.steer_motor.set(0.5)
+        # The new reference point (in rotations)
+        newReference = self.angleSum / (2 * math.pi)
 
-        currentRef = newState.angle.radians() / (2 * math.pi)
-
-        #         if self.constants["steer_id"] == 2:
-        #             print(
-        #                 f"""
-        # New Angle: {newState.angle}
-        # Old Angle: {self.desiredState.angle}
-        # Delta: {deltaAngle}
-        # Angle Sum: {self.angleSum}
-        # currentref: {currentRef}
-        # oldcurrentref: {oldcurrentRef}"""
-        #             )
-
+        # Send the new reference to the motor controller
         self.steer_PID.setReference(
-            oldcurrentRef, CANSparkMaxLowLevel.ControlType.kPosition
+            newReference, CANSparkMaxLowLevel.ControlType.kPosition
         )
 
+        # Send the new velocity reference to the motor controller
         self.drive_PID.setReference(
             newState.speed, CANSparkMaxLowLevel.ControlType.kVelocity
         )
 
+        # The desired state is now the newState
         self.desiredState = newState
 
     def getCurrentState(self):
@@ -434,4 +417,8 @@ class SwerveModule:
         this module.
         """
 
-        return self.desiredState.angle.radians()
+        # Desired state
+        # return self.desiredState.angle.radians()
+
+        # Actual reference
+        return self.angleSum
