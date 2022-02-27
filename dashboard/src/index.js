@@ -1,6 +1,7 @@
 "use strict";
 import * as $ from "jquery";
 import * as d3 from "d3";
+// import FRC from "@frc-web-components/frc-web-components";
 import updateTemp from "./temp-display";
 import { updateValue } from "./utils";
 import { setupPID, receivePIDUpdate } from "./pid-optimizer";

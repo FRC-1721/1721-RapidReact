@@ -7,7 +7,7 @@ const ids = [
     "min",
     "max"
 ];
-const subsystems = ["primary_yoke", "off"];
+const subsystems = ["shooter", "primary_yoke", "off"];
 var selectedSubsystem = "off";
 const lastValues = {};
 var graphData = []
@@ -42,36 +42,42 @@ export function setupPID() {
         selectedSubsystem = e.target.value;
         NetworkTables.putValue("/SmartDashboard/PID/subsystem", selectedSubsystem);
         if (selectedSubsystem !== "off") {
+            updatePIDValue("kp", NetworkTables.getValue(`/SmartDashboard/PID/${selectedSubsystem}/kp`))
+            updatePIDValue("ki", NetworkTables.getValue(`/SmartDashboard/PID/${selectedSubsystem}/ki`))
+            updatePIDValue("kd", NetworkTables.getValue(`/SmartDashboard/PID/${selectedSubsystem}/kd`))
+            updatePIDValue("ff", NetworkTables.getValue(`/SmartDashboard/PID/${selectedSubsystem}/kd`))
+            updatePIDValue("maxi", NetworkTables.getValue(`/SmartDashboard/PID/${selectedSubsystem}/kd`))
+            updatePIDValue("min", NetworkTables.getValue(`/SmartDashboard/PID/${selectedSubsystem}/kd`))
+            updatePIDValue("max", NetworkTables.getValue(`/SmartDashboard/PID/${selectedSubsystem}/kd`))
             restartPIDGraph();
         }
     });
     $("#pid_graph_reset").click(restartPIDGraph);
 }
 
+function updatePIDValue(id, value){
+    const numVal = parseFloat(value, 10);
+    lastValues[id] = numVal;
+    const elem = document.getElementById(id);
+    if (elem) {
+        elem.value = `${value}`;
+    }
+}
+
 export function receivePIDUpdate(key, value) {
     // handle incoming updates to the network table
-    if (key.includes("/SmartDashboard/PID/")) {
-        // always handle graphing data
-        const lastSection = key.split("/").pop();
-        if (lastSection === "graph_data") {
-            graphData = formatGraphData(value);
-            updatePIDGraph()
-        }
+    if (key === "/SmartDashboard/PID/graph_data") {
+        appendGraphData(value)
+        updatePIDGraph()
+    } else if (key.includes(`/SmartDashboard/PID/${selectedSubsystem}`)) {
         // then only watch for PID values that match our current selected
         // subsystem, for examplle "primary_yoke"
-        if (lastSection.includes(selectedSubsystem)) {
-            const splitKey = lastSection.split("_");
-            // we use the text after the last underscore in the key as the id
-            // of the element on the screen to update
-            const id = splitKey[splitKey.length - 1];
-            if (id) {
-                const numVal = parseFloat(value, 10);
-                lastValues[id] = numVal;
-                const elem = document.getElementById(id);
-                if (elem) {
-                    elem.innerHTML = `${value}`;
-                }
-            }
+        const splitKey = key.split("/");
+        // we use the text after the last underscore in the key as the id
+        // of the element on the screen to update
+        const id = splitKey[splitKey.length - 1];
+        if (id) {
+            updatePIDValue(id, value)
         }
     }
 }
@@ -91,22 +97,11 @@ export function setupPIDGraph() {
         .attr("transform", "translate(" + GRAPH_MARGIN.left + "," + GRAPH_MARGIN.top + ")");
 }
 
-function formatGraphData(networkData) {
-    var n = networkData.length
-    if (n % 2 === 1) {
-        networkData.pop()
-        n = networkData.length
-    }
-    const result = [];
-    for (let i = 0; i < n; i += 2) {
-        const time = networkData[i];
-        const error = networkData[i+1];
-        result.push({
-            time: time,
-            error: error
-        });
-    }
-    return result;
+function appendGraphData(datum) {
+    graphData.push({
+        time: datum[0],
+        error: datum[1]
+    });
 }
 
 function restartPIDGraph() {

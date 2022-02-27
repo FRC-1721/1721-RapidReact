@@ -185,7 +185,7 @@ class Yoke(SubsystemBase):
         self.auxillaryYokeMotorEncoder = self.auxillaryYokeMotor.getEncoder()
         self.kickerMotorEncoder = self.kickerMotor.getEncoder()
 
-        # Configure PID
+        # Configure Primary PID
         self.primaryPID.setP(self.pid_const["primary"]["kp"])
         self.primaryPID.setI(self.pid_const["primary"]["ki"])
         self.primaryPID.setD(self.pid_const["primary"]["kd"])
@@ -226,26 +226,18 @@ class Yoke(SubsystemBase):
         self.auxillary_yoke_temp = self.thermal_table.getEntry("auxillary_yoke_temp")
         self.kicker_temp = self.thermal_table.getEntry("kicker_temp")
 
-        self.primary_yoke_kp = self.pid_NT.getEntry("primary_yoke_kp")
-        self.primary_yoke_ki = self.pid_NT.getEntry("primary_yoke_ki")
-        self.primary_yoke_kd = self.pid_NT.getEntry("primary_yoke_kd")
-        self.primary_yoke_ff = self.pid_NT.getEntry("primary_yoke_ff")
-        # no _ after "max" here to make it easier to parse out the key on the frontend
-        self.primary_yoke_max_I = self.pid_NT.getEntry("primary_yoke_maxI")
-        self.primary_yoke_max = self.pid_NT.getEntry("primary_yoke_max")
-        self.primary_yoke_min = self.pid_NT.getEntry("primary_yoke_min")
-        self.pid_to_visualize = self.pid_NT.getEntry("subsystem")
         self.graph_data = self.pid_NT.getEntry("graph_data");
+        self.graph_data.setDoubleArray([0, 0]);
 
-        self.primary_yoke_kp.setDouble(self.pid_const["primary"]["kp"])
-        self.primary_yoke_ki.setDouble(self.pid_const["primary"]["ki"])
-        self.primary_yoke_kd.setDouble(self.pid_const["primary"]["kd"])
-        self.primary_yoke_ff.setDouble(self.pid_const["primary"]["ff"])
-        self.primary_yoke_max_I.setDouble(self.pid_const["primary"]["maxi"])
-        self.primary_yoke_max.setDouble(self.pid_const["primary"]["max_power"])
-        self.primary_yoke_min.setDouble(self.pid_const["primary"]["min_power"])
+        self.pid_to_visualize = self.pid_NT.getEntry("subsystem")
         self.pid_to_visualize.setString("off")
-        self.graph_data.setDoubleArray([]);
+
+        self.primary_yoke_NT = self.pid_NT.getSubTable("primary_yoke")
+        self.shooter_NT = self.pid_NT.getSubTable("shooter")
+
+        # NOTE: you can add additional tables to this array to auto set them up
+        for [table, motorName] in [[self.primary_yoke_NT, "primary"], [self.shooter_NT, "shooter"]]:
+            self.publishPIDForSubsystem(table, motorName)
 
     def setSpeed(self, speed):
         """
@@ -328,61 +320,87 @@ class Yoke(SubsystemBase):
             )
             self.kicker_temp.setDouble(self.kickerMotor.getMotorTemperature())
 
-        # Only update the PID visualizer if the subsystem option is set.
-        # This avoids running PID updates during comp.
         # TODO: Add a condition here based on the comp environment variable
-        subsystem = self.pid_to_visualize.getString("off")
-        if subsystem == "primary_yoke":
-            self.checkForPIDUpdates()
+        self.checkForPIDUpdates()
 
     def checkForPIDUpdates(self):
+        # Only update the PID visualizer if the subsystem option is set.
+        # This avoids running PID updates during comp.
+        subsystem = self.pid_to_visualize.getString("off")
+
+        if subsystem == "off":
+            return
+        elif subsystem == "primary_yoke":
+            self.updatePIDForSubsystem(self.primaryPID, self.primary_yoke_NT)
+            self.publishGraphingData(self.primaryPID)
+        # elif subsystem == "shooter":
+        #     self.updatePIDForSubsystem(self.portPID, self.shooter_NT)
+        #     TODO: Update to publish shooter PID data.
+        #     self.publishGraphingData(self.portPID)
+    def publishPIDForSubsystem(self, table, motorName):
+        kpEntry = table.getEntry("kp")
+        kiEntry = table.getEntry("ki")
+        kdEntry = table.getEntry("kd")
+        ffEntry = table.getEntry("ff")
+        # no _ after "max" here to make it easier to parse out the key on the frontend
+        maxIEntry = table.getEntry("maxi")
+        maxEntry = table.getEntry("max")
+        minEntry = table.getEntry("min")
+
+        kpEntry.setDouble(self.pid_const[motorName]["kp"])
+        kiEntry.setDouble(self.pid_const[motorName]["ki"])
+        kdEntry.setDouble(self.pid_const[motorName]["kd"])
+        ffEntry.setDouble(self.pid_const[motorName]["ff"])
+        maxIEntry.setDouble(self.pid_const[motorName]["maxi"])
+        maxEntry.setDouble(self.pid_const[motorName]["max_power"])
+        minEntry.setDouble(self.pid_const[motorName]["min_power"])
+
+    def publishGraphingData(self, pid):
+        # CODE FOR TESTING
+        if (self.data_timer.hasElapsed(self.next_data_send_time)):
+            self.graph_data.setDoubleArray(self.fake_data[self.data_index])
+            self.data_index = (self.data_index + 1) % len(self.fake_data);
+            self.next_data_send_time = self.data_timer.get() + self.DATA_SEND_FREQUENCY
+        # CODE FOR THE REAL THING
+        # if (self.data_timer.hasElapsed(self.next_data_send_time)):
+        #     error = self.primaryPIDReference - self.getPrimaryAngle()
+        #     time = self.data_timer.get()
+        #     self.graph_data.setDoubleArray([time, error])
+        #     self.next_data_send_time = time + self.DATA_SEND_FREQUENCY
+
+    def updatePIDForSubsystem(self, pid, subtable):
         """
         Get each network table value and compare to the value the PID is
         currently set to. If it differs, update the PID value.
 
+        Built to be reused with any PID just by passing in that PID and the
+        subtable that stores its PID values in Networktables.
         """
-        currentP = self.primaryPID.getP()
-        currentI = self.primaryPID.getI()
-        currentD = self.primaryPID.getD()
-        currentFF = self.primaryPID.getFF()
-        currentMaxI = self.primaryPID.getIMaxAccum()
-        currentMax = self.primaryPID.getOutputMax();
-        currentMin = self.primaryPID.getOutputMin();
+        currentP = pid.getP()
+        currentI = pid.getI()
+        currentD = pid.getD()
+        currentFF = pid.getFF()
+        currentMaxI = pid.getIMaxAccum()
+        currentMax = pid.getOutputMax();
+        currentMin = pid.getOutputMin();
 
-        networkTableP = self.primary_yoke_kp.getDouble(currentP)
-        networkTableI = self.primary_yoke_ki.getDouble(currentI)
-        networkTableD = self.primary_yoke_kd.getDouble(currentD)
-        networkTableFF = self.primary_yoke_ff.getDouble(currentFF)
-        networkTableMaxI = self.primary_yoke_max_I.getDouble(currentMaxI)
-        networkTableMax = self.primary_yoke_max.getDouble(currentMax)
-        networkTableMin = self.primary_yoke_min.getDouble(currentMin)
+        networkTableP = subtable.getEntry("kp").getDouble(currentP)
+        networkTableI = subtable.getEntry("ki").getDouble(currentI)
+        networkTableD = subtable.getEntry("kd").getDouble(currentD)
+        networkTableFF = subtable.getEntry("ff").getDouble(currentFF)
+        networkTableMaxI = subtable.getEntry("maxi").getDouble(currentMaxI)
+        networkTableMax = subtable.getEntry("max").getDouble(currentMax)
+        networkTableMin = subtable.getEntry("min").getDouble(currentMin)
 
         if currentP != networkTableP:
-            self.primaryPID.setP(networkTableP);
+            pid.setP(networkTableP);
         if currentI != networkTableI:
-            self.primaryPID.setI(networkTableI);
+            pid.setI(networkTableI);
         if currentD != networkTableD:
-            self.primaryPID.setD(networkTableD);
+            pid.setD(networkTableD);
         if currentFF != networkTableFF:
-            self.primaryPID.setFF(networkTableFF);
+            pid.setFF(networkTableFF);
         if currentMaxI != networkTableMaxI:
-            self.primaryPID.setIMaxAccum(networkTableMaxI);
+            pid.setIMaxAccum(networkTableMaxI);
         if (currentMax != networkTableMax) or (currentMin != networkTableMin):
-            self.primaryPID.setOutputRange(networkTableMin, networkTableMax)
-
-        # CODE FOR TESTING
-        # if (self.data_timer.hasElapsed(self.next_data_send_time)):
-        #     currentGraph = self.graph_data.getDoubleArray([]);
-        #     currentGraph += self.fake_data[self.data_index]
-        #     self.data_index += 1;
-        #     self.graph_data.setDoubleArray(currentGraph)
-        #     self.next_data_send_time = self.data_timer.get() + self.DATA_SEND_FREQUENCY
-        # CODE FOR THE REAL THING. Have not tested this!
-        if (self.data_timer.hasElapsed(self.next_data_send_time)):
-            currentGraph = self.graph_data.getDoubleArray([])
-            # Should this be reversed?
-            error = self.primaryPIDReference - self.getPrimaryAngle()
-            time = self.data_timer.get()
-            currentGraph += [time, error]
-            self.graph_data.setDoubleArray(currentGraph)
-            self.next_data_send_time = time + self.DATA_SEND_FREQUENCY
+            pid.setOutputRange(networkTableMin, networkTableMax)
