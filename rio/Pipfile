@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-robotpy = {extras = ["cscore"], version = "*"}
+robotpy = {extras = ["rev", "ctre", "commands2"], version = "*"}
 wpilib = {extras = ["all"], version = "*"}
 pyyaml = "*"
 
