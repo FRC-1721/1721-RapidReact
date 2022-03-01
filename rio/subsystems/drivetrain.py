@@ -323,61 +323,20 @@ class SwerveModule:
             newState, self.getCurrentState().angle
         )
 
-        # print(
-        #    "Steer Drive:",
-        #    self.constants["steer_id"],
-        #    "OptimizedState: ",
-        #    optimizedState
-        # )
-
-        deltaAngle = (
-            newState.angle - self.desiredState.angle
-        )  # The change from the old angle, to the new angle
-
-        self.angleSum = (
-            self.angleSum + deltaAngle.radians()
-        )  # The sum of all the previous movements up to this point
-
-        # If the target is more than a full rotation away from the actual
-        # rotation of the wheel, remove a rotation from the target. This
-        # does not change the target angle as it removes one rotations, but
-        # prevents the wheel from trying to play catch up
-        # if RobotBase.isReal():
-        #     if self.angleSum - (2 * math.pi) > self.radians:
-        #         self.angleSum = self.angleSum - (2 * math.pi)
-        #     elif self.angleSum + (2 * math.pi) < self.radians:
-        #         self.angleSum = self.angleSum + (2 * math.pi)
-
-        currentRef = self.angleSum / (
-            2 * math.pi
-        )  # The sum (radians) converted to rotations (of the steer wheel)
-        # Set the position of the neo to the desired position
-        # self.steer_motor.set(0.5)
-
-        # print(
-        #     "Steer Drive:",
-        #     self.constants["steer_id"],
-        #     "Reference Value: ",
-        #     currentRef
-        # )
-
-        self.steer_PID.setReference(
-            currentRef, CANSparkMaxLowLevel.ControlType.kPosition
+        # newTargetAngle is an angle in radians.
+        newTargetAngle = self.reboundValue(
+            optimizedState.angle.radians(),
+            self.getCurrentState().angle.radians(),
         )
 
-        safeSpeed = self.desiredState.speed
-        if safeSpeed > 1:
-            safeSpeed = 1
-        elif safeSpeed < -1:
-            safeSpeed = -1
-        self.drive_motor.set(safeSpeed)
+        # newTargetRef is a number of rotations.
+        newTargetRef = newTargetAngle / (2 * math.pi)
 
-        # print(
-        #     "Drive Motor:",
-        #     self.constants["drive_id"],
-        #     "Set value: ",
-        #     self.drive_motor.get()
-        # )
+        # Send newTargetRef to the motor controller.
+        self.steer_PID.setReference(
+            newTargetRef,
+            CANSparkMaxLowLevel.ControlType.kPosition,
+        )
 
         self.desiredState = newState
 
@@ -411,3 +370,19 @@ class SwerveModule:
         """
 
         return self.desiredState.angle.radians()
+
+    def reboundValue(self, target, datum) -> float:
+        """
+        https://www.chiefdelphi.com/t/wrap-around-with-rev-spark-maxes/403608/17
+        Made with help from JohnGilb on Chief Delphi
+        """
+
+        lowerDatum = datum - math.pi  # 180 behind
+        upperDatum = datum + math.pi  # 180 ahead
+
+        if target < lowerDatum:
+            target = upperDatum + ((target - lowerDatum) % (upperDatum - lowerDatum))
+        elif target > upperDatum:
+            target = lowerDatum + ((target - upperDatum) % (upperDatum - lowerDatum))
+
+        return target
