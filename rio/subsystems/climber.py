@@ -33,9 +33,9 @@ class Climber(SubsystemBase):
 
         self.climbPID = self.portClimber.getPIDController()
 
-        self.climbPID.setI(1)
-        self.climbPID.setP(1)
-        self.climbPID.setD(1)
+        self.climbPID.setP("kp")
+        self.climbPID.setI("ki")
+        self.climbPID.setD("kd")
 
     def climb(self, speed):
         """
@@ -45,4 +45,4 @@ class Climber(SubsystemBase):
 
         self.climbPID.setReference(100, CANSparkMaxLowLevel.ControlType.kPosition)
         self.backgroundTimer.hasPeriodPassed(5)
-        self.climbPID.setReference(0)
+        self.climbPID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
