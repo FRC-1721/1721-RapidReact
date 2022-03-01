@@ -1,0 +1,8 @@
+[Unit]
+Description=Dashboard web page for 1721's robot.
+
+[Service]
+ExecStart=/opt/dashboard/bin/entrypoint.sh
+
+[Install]
+WantedBy=multi-user.target

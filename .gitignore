@@ -7,3 +7,9 @@ _build
 *.*~
 .python-version
 *.whl
+
+# dashboard build files
+dashboard/www/main.js*
+#dashboard packages
+node_modules
+_staging
