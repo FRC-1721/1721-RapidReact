@@ -22,6 +22,7 @@ from commands.triggers.trigger_trigger import Trigger
 from subsystems.drivetrain import Drivetrain
 from subsystems.lighting import Lighting
 from subsystems.yoke import Yoke
+from subsystems.climber import Climber
 
 # Constants
 from constants.constants import getConstants
@@ -55,6 +56,7 @@ class RobotContainer:
 
         # The robot's subsystems
         self.drivetrain = Drivetrain()
+        self.climber = Climber()
         self.lighting = Lighting()
         self.yoke = Yoke()
 
@@ -116,10 +118,10 @@ class RobotContainer:
 
         # uses the menu and share button
         commands2.button.JoystickButton(self.driverController, 7).whenPressed(
-            climb(self.Climber, True)
+            Climb(Climber, True)
         )
         commands2.button.JoystickButton(self.driverController, 8).whenPressed(
-            climb(self.Climber, False)
+            Climb(Climber, False)
         )
 
     def enabledInit(self):

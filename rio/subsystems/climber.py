@@ -43,4 +43,4 @@ class Climber(SubsystemBase):
         to climb
         """
 
-        self.climbPID.setReference(speed, CANSparkMaxLowLevel.ControlType.kPosition)
+        self.climbPID.setReference(speed, CANSparkMaxLowLevel.ControlType.kVelocity)
