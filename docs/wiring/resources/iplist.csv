@@ -1,6 +1,6 @@
 ﻿Hostname,mDNS,IP
-roborio,I forget,10.17.21.2
-nuc,,10.17.21.11
-limelight,,10.17.21.13
+roborio,roboRIO-1721.local,10.17.21.2
+nuc,nuc.frc1721.lan,10.17.21.11
 frcvision,,10.17.21.12
+limelight,,10.17.21.13
 driverstation,,DHCP
