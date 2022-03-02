@@ -1,0 +1,109 @@
+:root {
+    --light-gray: #BBB;
+    --mid-gray: #AAA;
+    --dark-gray: #333;
+}
+.wrapper {
+    position: absolute;
+    left: 0;
+    top:0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+}
+
+.connection_state {
+    margin-bottom: 6px;
+}
+
+.swerve_drive_area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+h2 {
+    margin-top: 0px;margin-top: 0px;
+}
+
+.canvas_wrapper {
+    padding: 6px;
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    background-color: var(--mid-gray);
+    margin-right: 12px;
+}
+
+.camera_wrapper {
+    padding: 6px;
+    border: 1px solid var(--light-gray);
+    background-color: var(--mid-gray);
+    border-radius: 4px;
+}
+
+.camera_container {
+    height: 300px;
+    width: 300px;
+}
+
+.data_wrapper {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.temp_table {
+    background-color: var(--mid-gray);
+
+}
+
+.temp_table td {
+    width: auto;
+    border: 1px solid black;
+}
+
+.pid_table {
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    background-color: var(--mid-gray);
+    padding: 12px;
+    margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.input_container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.input_container + .input_container {
+    margin-top: 4px;
+}
+
+.input_container label {
+    text-align: right;
+    display: inline-block;
+    margin-right: 6px;
+    flex: 1 1 auto;
+}
+
+.auto_wrapper {
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    background-color: var(--mid-gray);
+    padding: 12px;
+    margin-right: 12px;
+}
+
+.auto_wrapper label {
+    display: block;
+}
+
+.auto_wrapper select {
+    margin-top: 4px;
+    width: 100%;
+}

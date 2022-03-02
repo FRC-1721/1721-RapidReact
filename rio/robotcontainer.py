@@ -6,16 +6,20 @@ import commands2.button
 # Commands
 from commands.flybywire import FlyByWire
 from commands.test_button_action import TestButtonAction
+from commands.sloppy_shooter import SloppyShooter
+from commands.kicker_button import Kicker
 
 # Subsystens
 from subsystems.drivetrain import Drivetrain
 from subsystems.lighting import Lighting
+from subsystems.yoke import Yoke
 
 # Constants
 from constants.constants import getConstants
 
 # Auto
 from commands.nullauto import NullAuto
+from commands.botchauto import BotchAuto
 
 
 class RobotContainer:
@@ -41,6 +45,7 @@ class RobotContainer:
         # The robot's subsystems
         self.drivetrain = Drivetrain()
         self.lighting = Lighting()
+        self.yoke = Yoke()
 
         # Configure button bindings
         self.configureButtonBindings()
@@ -48,7 +53,7 @@ class RobotContainer:
         # Setup all autonomous routines
         self.configureAutonomous()
 
-        # set up default drive command
+        # Setup default commands
         self.drivetrain.setDefaultCommand(
             FlyByWire(
                 self.drivetrain,
@@ -64,6 +69,21 @@ class RobotContainer:
             )
         )
 
+        self.yoke.setDefaultCommand(
+            SloppyShooter(
+                self.yoke,
+                lambda: self.driverController.getRawAxis(
+                    self.controlMode["raw_shooter_speed_axis"]
+                ),
+                lambda: self.driverController.getRawAxis(
+                    self.controlMode["raw_shooter_intake_axis"]
+                ),
+                lambda: self.driverController.getRawAxis(
+                    self.controlMode["raw_shooter_angle_axis"]
+                ),
+            )
+        )
+
     def configureButtonBindings(self):
         """
         Use this method to define your button->command mappings. Buttons can be created by
@@ -75,12 +95,21 @@ class RobotContainer:
             TestButtonAction(self.drivetrain)
         )
 
+        # use the B button the xbox controller
+        commands2.button.JoystickButton(self.driverController, 2).whenPressed(
+            Kicker(self.yoke)
+        )
+
     def configureAutonomous(self):
         # Create a sendable chooser
         self.autoChooser = wpilib.SendableChooser()
 
         # Add options for chooser
-        self.autoChooser.setDefaultOption("Null Auto", NullAuto(self.drivetrain))
+        # self.autoChooser.setDefaultOption("Null Auto", NullAuto(self.drivetrain))
+        self.autoChooser.setDefaultOption(
+            "Caleb pick this one Auto", BotchAuto(self.yoke, self.drivetrain)
+        )
+        self.autoChooser.addOption("Null Auto", NullAuto(self.drivetrain))
 
         # Put the chooser on the dashboard
         wpilib.SmartDashboard.putData("Autonomous", self.autoChooser)
