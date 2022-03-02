@@ -264,12 +264,6 @@ class SwerveModule:
         # we've decided to never burnFlash and instead leave all settings volatile.
         # self.drive_motor.burnFlash()
         # self.steer_motor.burnFlash()
-        # print(
-        #    "Steer Drive:",
-        #    self.constants["steer_id"],
-        #    "Start Position: ",
-        #    self.steer_motor_encoder.getPosition(),
-        # )
 
         # Reset the position of the encoder.
         # TODO: We need to set this position when the optical limit switch
@@ -281,7 +275,8 @@ class SwerveModule:
         # By default: 0 speed, and 0 rotation
         self.desiredState = kinematics.SwerveModuleState(0, geometry.Rotation2d(0))
 
-        self.angleSum = 0  # Delete me
+        # A value in radians, this value is held for reporting pourposes
+        self.newTargetAngle = 0
 
     def doTestAction(self):
         """
@@ -324,13 +319,13 @@ class SwerveModule:
         )
 
         # newTargetAngle is an angle in radians.
-        newTargetAngle = self.reboundValue(
+        self.newTargetAngle = self.reboundValue(
             optimizedState.angle.radians(),
             self.getCurrentState().angle.radians(),
         )
 
         # newTargetRef is a number of rotations.
-        newTargetRef = newTargetAngle / (2 * math.pi)
+        newTargetRef = self.newTargetAngle / (2 * math.pi)
 
         # Send newTargetRef to the motor controller.
         self.steer_PID.setReference(
@@ -369,7 +364,7 @@ class SwerveModule:
         this module.
         """
 
-        return self.desiredState.angle.radians()
+        return self.newTargetAngle
 
     def reboundValue(self, target, datum) -> float:
         """
