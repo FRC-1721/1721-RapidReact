@@ -66,6 +66,9 @@ drivetrain:
       ratio: 0.033              # Updated 2/12/22 by Joe
 
 yoke:
+
+ # diameter of shooter wheel is 3.85 inches (0.09779 meters)
+
   # Constants for shooter motors
   star_shooter_id: 13           # Updated Week 0 by Joe
   port_shooter_id: 12           # Updated Week 0 by Joe

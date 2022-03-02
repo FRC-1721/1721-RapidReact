@@ -3,7 +3,6 @@
 
 # This code is kind of a yoke - Khan
 
-# diameter of shooter wheel is 3.85 inches
 
 import math
 
