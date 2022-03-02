@@ -87,7 +87,6 @@ class Drivetrain(SubsystemBase):
         print("I am doing a test action.")
         self.fs_module.doTestAction()
 
-
     def periodic(self):
         """
         Called periodically when possible,
@@ -159,6 +158,13 @@ class Drivetrain(SubsystemBase):
 
         return geometry.Rotation2d.fromDegrees(self.imu.getYaw())
 
+    def getRotation(self):
+        """
+        Returns the rotation of the robot
+        """
+
+        return self.odometry.getPose().rotation()
+
 
 class SwerveModule:
     """
@@ -219,7 +225,12 @@ class SwerveModule:
         # we've decided to never burnFlash and instead leave all settings volatile.
         self.drive_motor.burnFlash()
         self.steer_motor.burnFlash()
-        print("Steer Drive:", self.constants["steer_id"], "Start Position: ", self.steer_motor_encoder.getPosition())
+        print(
+            "Steer Drive:",
+            self.constants["steer_id"],
+            "Start Position: ",
+            self.steer_motor_encoder.getPosition(),
+        )
 
         # Reset the position of the encoder.
         # TODO: We need to set this position when the optical limit switch
@@ -233,7 +244,6 @@ class SwerveModule:
 
         self.angleSum = 0  # Delete me
 
-
     def doTestAction(self):
         """
         This is triggered on the A button on the xbox controller. You can use
@@ -242,7 +252,12 @@ class SwerveModule:
         Delete whenever not needed anymore.
         """
         res = self.steer_motor_encoder.setPosition(0)
-        print("Steer Drive:", self.constants["steer_id"], "Immediate Position: ", self.steer_motor_encoder.getPosition())
+        print(
+            "Steer Drive:",
+            self.constants["steer_id"],
+            "Immediate Position: ",
+            self.steer_motor_encoder.getPosition(),
+        )
 
     def getPose(self):
         return self.module_pose
@@ -284,8 +299,8 @@ class SwerveModule:
         # Current position of the motor encoder (in rotations)
         encoder = self.steer_motor_encoder.getPosition()
 
-        #if self.constants["steer_id"] == 1:
-        #print(encoder)
+        # if self.constants["steer_id"] == 1:
+        # print(encoder)
 
         # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
         radians = encoder * (math.pi * 2)
