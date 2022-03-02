@@ -307,14 +307,6 @@ class SwerveModule:
         """
         Returns the max temp of this module.
         """
-        # Optimize the input command to reduce unneeded motion.
-        optimizedState = kinematics.SwerveModuleState.optimize(
-            newState, self.getCurrentState().angle
-        )
-
-        deltaAngle = (
-            newState.angle - self.desiredState.angle
-        )  # The change from the old angle, to the new angle
 
         return max(
             self.drive_motor.getMotorTemperature(),
