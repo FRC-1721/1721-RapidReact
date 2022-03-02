@@ -7,5 +7,14 @@ class climb(commands2.CommandBase):
         # fill out later
         pass
 
-    def upwards():
-        Climber.climb()
+    def upwards(self) -> None:
+        """
+        This kode should work
+        """
+        # Set the intake speed
+        if self.climbing:
+            self.Climber.setSpeed(1)
+        elif not self.climbing:
+            self.Climber.setSpeed(-1)
+        else:
+            self.Climber.setSpeed(0)

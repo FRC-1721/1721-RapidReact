@@ -43,6 +43,4 @@ class Climber(SubsystemBase):
         to climb
         """
 
-        self.climbPID.setReference(100, CANSparkMaxLowLevel.ControlType.kPosition)
-        self.backgroundTimer.hasPeriodPassed(5)
-        self.climbPID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
+        self.climbPID.setReference(speed, CANSparkMaxLowLevel.ControlType.kPosition)
