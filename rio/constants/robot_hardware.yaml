@@ -67,7 +67,9 @@ drivetrain:
 
 yoke:
 
- # diameter of shooter wheel is 3.85 inches (0.09779 meters)
+
+
+  
 
   # Constants for shooter motors
   star_shooter_id: 13           # Updated Week 0 by Joe
@@ -79,6 +81,9 @@ yoke:
 
   # Constants for kicker
   kicker_id: 11                 # Updated Week 0 by Joe
+  
+  #diameter of the wheel in meters
+  wheel_diameter: 0.09779       
 
   # Maximum speed when driving the yoke without PID
   max_raw_speed: 0.3            # Updated never by Khan
