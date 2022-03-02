@@ -97,7 +97,7 @@ class RobotContainer:
         #    TestButtonAction(self.drivetrain)
         # )
 
-        # use the B button the xbox controller to activate the kicker
+        # use the left bumper button the xbox controller to activate the kicker
         commands2.button.JoystickButton(self.driverController, 5).whenPressed(
             Kicker(self.yoke)
         )

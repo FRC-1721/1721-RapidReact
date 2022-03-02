@@ -9,7 +9,14 @@ mode_a:
     forward_axis: 1        # "Forward" Axis
     steer_axis: 4          # "Steering" Axis
     strafe_axis: 0         # "Strafe" Axis
+    
+
+  shooter:
     raw_shooter_angle_axis: 5    # Raw shooter axis, remove me!
+    kicker_button: 5
+    shooter_wheel_intake: 1
+    shooter_wheel_output: 4
+
 
   sim:
     # The control mappings for use when using the simulator
