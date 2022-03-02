@@ -107,3 +107,14 @@ h2 {
     margin-top: 4px;
     width: 100%;
 }
+
+
+.canvas_wrapper {
+    background-image: url("resources/RobotBody.png");
+    background-color: #cccccc; /* Used if the image is unavailable */
+    height: 375px; /* You must set a specified height */
+    width: 400px;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}

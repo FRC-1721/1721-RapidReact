@@ -13,6 +13,8 @@ function updateTemp(key, value) {
                 elem.style.backgroundColor = RED;
             } else if (value > YELLOW_TEMP) {
                 elem.style.backgroundColor = YELLOW;
+            } else {
+                elem.style.backgroundColor = "transparent";
             }
         }
     }

@@ -5,10 +5,10 @@ import updateTemp from "./temp-display";
 import { updateValue } from "./utils";
 import { setupPID, receivePIDUpdate } from "./pid-optimizer";
 
-const WHEEL_PORT_X = 25 + 50 / 2;
-const WHEEL_STARBOARD_X = 200 + 50 / 2;
+const WHEEL_PORT_X = 52 + 50 / 2;
+const WHEEL_STARBOARD_X = 296 + 50 / 2;
 const WHEEL_FORE_Y = 25 + 75 / 2;
-const WHEEL_AFT_Y = 200 + 75 / 2;
+const WHEEL_AFT_Y = 230 + 75 / 2;
 
 // make these packages visible to the networktables helpers, too
 window.$ = $;
