@@ -6,5 +6,6 @@ module.exports = {
     output: {
         filename: "main.js",
         path: path.resolve(__dirname, "www")
-    }
+    },
+    devtool: "eval-source-map"
 }

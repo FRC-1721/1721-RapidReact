@@ -2,6 +2,8 @@
     --light-gray: #BBB;
     --mid-gray: #AAA;
     --dark-gray: #333;
+    --team-red: #94221A;
+    font-family: "helventica", "helvetica neue", "san-serif";
 }
 .wrapper {
     position: absolute;
@@ -10,10 +12,18 @@
     right: 0;
     bottom: 0;
     height: 100%;
+    padding: 6px;
 }
 
 .connection_state {
     margin-bottom: 6px;
+    color: white;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.status + .status {
+    padding-left: 12px;
 }
 
 .swerve_drive_area {
@@ -55,7 +65,7 @@ h2 {
 
 .temp_table {
     background-color: var(--mid-gray);
-
+    margin-left: 12px;
 }
 
 .temp_table td {
@@ -63,12 +73,11 @@ h2 {
     border: 1px solid black;
 }
 
-.pid_table {
+.pid_wrapper {
     border: 1px solid var(--light-gray);
     border-radius: 4px;
     background-color: var(--mid-gray);
     padding: 12px;
-    margin-left: 12px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -108,6 +117,28 @@ h2 {
     width: 100%;
 }
 
+#pid_subsystem {
+    margin-bottom: 12px;
+}
+
+.pid_graph_wrapper {
+    width: 400px;
+    height: 300px;
+    background-color: var(--mid-gray);
+    margin-left: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+#pid_graph_spacer {
+    margin-top: 12px;
+    background-color: white;
+    flex: 1 1 auto;
+}
+
+#pid_graph {
+}
 
 .canvas_wrapper {
     background-image: url("resources/RobotBody.png");
