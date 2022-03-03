@@ -2,7 +2,7 @@
 # 2022
 
 import math
-
+import logging
 
 from wpilib import RobotBase
 import wpilib
@@ -190,6 +190,13 @@ class Drivetrain(SubsystemBase):
         """
 
         return geometry.Rotation2d.fromDegrees(self.imu.getYaw())
+
+    def getRotation(self):
+        """
+        Returns the rotation of the robot
+        """
+
+        return self.odometry.getPose().rotation()
 
 
 class SwerveModule:

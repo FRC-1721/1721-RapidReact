@@ -8,6 +8,7 @@ from commands.flybywire import FlyByWire
 from commands.test_button_action import TestButtonAction
 from commands.sloppy_shooter import SloppyShooter
 from commands.kicker_button import Kicker
+from commands.limeauto import LimeAuto
 
 # Subsystens
 from subsystems.drivetrain import Drivetrain
@@ -98,6 +99,10 @@ class RobotContainer:
         # use the B button the xbox controller
         commands2.button.JoystickButton(self.driverController, 2).whenPressed(
             Kicker(self.yoke)
+        )
+
+        commands2.button.JoystickButton(self.driverController, 5).whenPressed(
+            LimeAuto(self.drivetrain)
         )
 
     def configureAutonomous(self):

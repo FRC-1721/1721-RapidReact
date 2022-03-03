@@ -6,6 +6,7 @@ __pycache__
 _build
 *.*~
 .python-version
+*.whl
 
 # dashboard build files
 dashboard/www/main.js*
