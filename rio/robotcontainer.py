@@ -71,21 +71,6 @@ class RobotContainer:
             )
         )
 
-        # self.yoke.setDefaultCommand(
-        #    SloppyIntake(
-        #        self.yoke,
-        #        lambda: self.driverController.getRawAxis(
-        #            self.controlMode["raw_shooter_speed_axis"]
-        #        ),
-        #        lambda: self.driverController.getRawAxis(
-        #            self.controlMode["raw_shooter_intake_axis"]
-        #        ),
-        #        lambda: self.driverController.getRawAxis(
-        #            self.controlMode["raw_shooter_angle_axis"]
-        #        ),
-        #    )
-        # )
-
     def configureButtonBindings(self):
         """
         Use this method to define your button->command mappings. Buttons can be created by
@@ -97,27 +82,17 @@ class RobotContainer:
         #    TestButtonAction(self.drivetrain)
         # )
 
-        # use the left bumper button the xbox controller to activate the kicker
-        commands2.button.JoystickButton(self.driverController, 5).whenPressed(
-            Kicker(self.yoke)
-        )
+        # Use the left bumper button the xbox controller to activate the kicker
+        commands2.button.JoystickButton(
+            self.driverController, self.controlMode["kicker_button"]
+        ).whenPressed(Kicker(self.yoke))
 
-        # use the Y, X, and A buttons to operate the intake
-        # TODO: This is test code and kinda bad
-        commands2.button.JoystickButton(self.driverController, 4).whileHeld(
-            SloppyIntake(self.yoke, True)
-        )
+        # TODO: Intake command
 
-        commands2.button.JoystickButton(self.driverController, 1).whileHeld(
-            SloppyIntake(self.yoke, False)
-        )
-
-        commands2.button.JoystickButton(self.driverController, 2).whileHeld(
-            Intake(self.yoke)
-        )
-        commands2.button.JoystickButton(self.driverController, 3).whileHeld(
-            Catapult(self.yoke)
-        )
+        # Triggers the catapult command
+        commands2.button.JoystickButton(
+            self.driverController, self.controlMode["catapult_button"]
+        ).whileHeld(Catapult(self.yoke))
 
     def configureAutonomous(self):
         # Create a sendable chooser

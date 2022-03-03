@@ -19,9 +19,19 @@ class Catapult(commands2.CommandBase):
         self.addRequirements([self.yoke])
 
     def initialize(self) -> None:
+        # Set the yoke angle to 75deg
         self.yoke.setPrimaryYokeAngle(Rotation2d.fromDegrees(75))
-        self.yoke.setSpeed(0.8)
+
+        # Set the yoke speed to a fixed 'bunt' value
+        self.yoke.setSpeed(0.4)
+
+        print("Catapulting.....")
 
     def end(self, interrupted: bool) -> None:
+        # Set the yoke speed back to 0
         self.yoke.setSpeed(0)
+
+        print("Catapult done")
+
+        # Return true when done
         return True

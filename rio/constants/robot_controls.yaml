@@ -6,24 +6,30 @@ mode_a:
   # Mode A is a driver-centric control mode
   driver:
     controller_port: 0     # What usb port the driver controller is on
+    
+    # Driving
     forward_axis: 1        # "Forward" Axis
     steer_axis: 4          # "Steering" Axis
     strafe_axis: 0         # "Strafe" Axis
     
-
-  shooter:
-    raw_shooter_angle_axis: 5    # Raw shooter axis, remove me!
+    # Functions
     kicker_button: 5
-    shooter_wheel_intake: 1
-    shooter_wheel_output: 4
+    catapult_button: 6
+    intake_button: 7
+    assisted_shooter_button: 8
 
 
   sim:
     # The control mappings for use when using the simulator
     controller_port: 0           # What usb port the driver controller is on
+
+    # Driving
     forward_axis: 1              # "Forward" Axis
     steer_axis: 2                # "Steering" Axis
     strafe_axis: 0               # "Strafe" Axis
-    raw_shooter_speed_axis: 1    # Raw shooter axis, remove me!
-    raw_shooter_intake_axis: 2   # Raw shooter axis, remove me!
-    raw_shooter_angle_axis: 1    # Raw shooter axis, remove me!
+
+    # Functions
+    kicker_button: 4
+    catapult_button: 3
+    intake_button: 3
+    assisted_shooter_button: 3
