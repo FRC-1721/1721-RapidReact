@@ -22,15 +22,15 @@ class LimeAuto(commands2.CommandBase):
         self.lime_table = self.nt.getTable("SmartDashboard")
 
         # Get tables from network tables
-        self.target_seen = self.lime_table.getNumber("tv")
-        self.horisontal_diff = self.lime_table.getNumber("tx")
+        self.target_seen = self.lime_table.getEntry("tv")
+        self.horisontal_diff = self.lime_table.getEntry("tx")
 
         # Set the LimeLight pipeline to 0 (limelight off)
-        self.lime_table.getEntry("pipeline").setNumber(0)
+        self.lime_table.putNumber("pipeline", 0)
 
     def execute(self) -> None:
         # set the LimeLight pipeline to 1 (Limelight on)
-        self.lime_table.getEntry("pipeline").setNumber(1)
+        self.lime_table.putNumber("pipeline", 1)
 
         # If a vision target is spotted by the limelight
         if self.target_seen:
@@ -53,6 +53,6 @@ class LimeAuto(commands2.CommandBase):
     def isFinished(self) -> bool:
 
         # Set the LimeLight pipeline to 0 (limelight off)
-        self.lime_table.getEntry("pipeline").setNumber(0)
+        self.lime_table.putNumber("pipeline", 0)
 
         return True
