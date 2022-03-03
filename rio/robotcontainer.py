@@ -10,6 +10,10 @@ from commands.sloppy_intake import SloppyIntake
 from commands.kicker_button import Kicker
 from commands.intake import Intake
 from commands.catapult import Catapult
+from commands.zero_swerve import ZeroSwerveModules
+
+# Autonomous
+from autonomous.conversion_test import ConversionTest
 
 # Subsystens
 from subsystems.drivetrain import Drivetrain
@@ -96,6 +100,15 @@ class RobotContainer:
             self.driverController, self.controlMode["catapult_button"]
         ).whileHeld(Catapult(self.yoke))
 
+    def enabledInit(self):
+        """
+        Idea from FRC discord, called any time
+        we move to enabled.
+        """
+
+        if not self.drivetrain.all_zeroed():
+            ZeroSwerveModules(self.drivetrain).schedule()
+
     def configureAutonomous(self):
         # Create a sendable chooser
         self.autoChooser = wpilib.SendableChooser()
@@ -106,6 +119,7 @@ class RobotContainer:
             "Caleb pick this one Auto", BotchAuto(self.yoke, self.drivetrain)
         )
         self.autoChooser.addOption("Null Auto", NullAuto(self.drivetrain))
+        self.autoChooser.addOption("Conversion Test", ConversionTest(self.drivetrain))
 
         # Put the chooser on the dashboard
         wpilib.SmartDashboard.putData("Autonomous", self.autoChooser)
