@@ -1,0 +1,30 @@
+,**Qty**, **Unit Cost** , **Total Cost** ,**Season**
+**Yoke**,,,,
+Misc pulleys/fittings,1, $100.00 , $100.00 ,2022
+REV Gear Boxes,2, $120.00 , $240.00 ,2022
+REV Robotics NEO Motors,4, $45.00 , $180.00 ,2022
+REV Robotics 550 Motors,1, $25.00 , $25.00 ,2022
+VEX Planetary Gear Boxes,1, $65.00 , $65.00 ,2022
+Spark Max Motor Controller,5, $80.00 , $400.00 ,2022
+,,,,
+**Swerve Drive**,,,,
+REV Robotics NEO Motors,4, $45.00 , $180.00 ,2022
+REV Robotics 550 Motors,4, $25.00 , $100.00 ,2022
+VEX Planetary Gear Boxes,4, $65.00 , $260.00 ,2022
+Stock Metal,1, $450.00 , $450.00 ,2022
+Spark Max Motor Controller,8, $80.00 , $640.00 ,2022
+,,,,
+**Navigation**,,,,
+Gyroscope CTRE Pidgeon,1, $120.00 , $120.00 ,2022
+180 deg Camera,2, $60.00 , $120.00 ,2022
+RoboRIO,1, $485.00 , $485.00 ,2019
+NUC,1, $600.00 , $600.00 ,2020
+Lidar,1, $150.00 , $150.00 ,2020
+Lime Light,1, $400.00 , $400.00 ,2019
+,,,,
+**Climber**,,,,
+REV Gear Boxes,2, $120.00 , $240.00 ,2022
+REV Robotics NEO Motors,2, $45.00 , $90.00 ,2022
+Spark Max Motor Controller,2, $80.00 , $160.00 ,2022
+,,,,
+,,," $5,005.00 ",
