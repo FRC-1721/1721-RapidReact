@@ -77,28 +77,59 @@ yoke:
   # Constants for kicker
   kicker_id: 11                 # Updated Week 0 by Joe
   
+  #diameter of the wheel in meters
+  wheel_diameter: 0.09779       
+
+  # Maximum speed when driving the yoke without PID
+  max_raw_speed: 0.3            # Updated never by Khan
+  
+  # Motor inversions
+  star_shooter_invert: false    # Updated 02/24/22 by Joe
+  port_shooter_invert: true     # Updated 02/24/22 by Joe
+  primary_yoke_invert: true     # Updated 02/24/22 by Joe
+  aux_yoke_invert: false        # Updated 02/24/22 by Joe
+  kicker_invert: true           # Updated 02/24/22 by Joe
+
   pid: # PID and position constants
     primary:
-      kp: 0.8                   # Updated Week 0 by Joe
-      ki: 0                     # Updated Week 0 by Joe
-      kd: 0.01                  # Updated Week 0 by Joe
-      ff: 2                     # Updated Week 0 by Joe
+      kp: 1.75                    # Updated Week 1 by Joe
+      ki: 0.0001                  # Updated Week 1 by Joe
+      kd: 0.001                   # Updated Week 1 by Joe
+      ff: 2                       # Updated Week 0 by Joe
       # Max amount of I that can accumulate
       maxi: 1                   # Updated never by Joe
       # Max and min values the PID can assign to the motor
-      min_power: -0.5           # Updated never by Joe
-      max_power: 0.5            # Updated never by Joe
+      min_power: -0.4           # Updated never by Joe
+      max_power: 0.6            # Updated never by Joe
+      
+
     auxillary:
       kp: 1                     # Updated never by Joe
       ki: 1                     # Updated never by Joe
       kd: 1                     # Updated never by Joe
+      ff: 1                     # Updated never by Khan
       # Max amount of I that can accumulate
       maxi: 1                   # Updated never by Joe
       # Max and min values the PID can assign to the motor
       min_power: -0.5           # Updated never by Joe
       max_power: 0.5            # Updated never by Joe
+
+    shooter:
+      kp: 0.1                   # Updated never by Joe
+      ki: 0.1                   # Updated never by Joe
+      kd: 0.1                   # Updated never by Joe
+      ff: 0                     # Updated never by Simon
+      # Max amount of I that can accumulate
+      maxi: 0.1                 # Updated never by Joe
+      # Max and min values the PID can assign to the motor
+      min_power: -0.5           # Updated never by Joe
+      max_power: 0.5            # Updated never by Joe
+
     # Ratio of motor rotations to yoke rotations
-    ratio: 0.02                # Updated Week 0 by Keegan
+    ratio: 0.04                 # Updated Week 0 by Keegan
+    # Max and min angles for the yoke 
+    max_angle: 1.5708           # Updated never by Khan
+    min_angle: 0                # Updated never by Khan
 
 misc:
   # Misc hardware settings

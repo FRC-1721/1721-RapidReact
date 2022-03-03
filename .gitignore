@@ -12,3 +12,5 @@ dashboard/www/main.js*
 #dashboard packages
 node_modules
 _staging
+
+.SysId/

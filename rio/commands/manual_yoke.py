@@ -4,7 +4,7 @@ from wpilib import geometry
 from subsystems.yoke import Yoke
 
 
-class SloppyShooter(commands2.CommandBase):
+class SloppyIntake(commands2.CommandBase):
     """
     Command that drives the shooter with just
     a simple set power output.
@@ -13,20 +13,20 @@ class SloppyShooter(commands2.CommandBase):
     def __init__(
         self,
         yoke: Yoke,
-        intakeSpeed: typing.Callable[[], float],
-        shooterSpeed: typing.Callable[[], float],
+        max_speed: float,
+        max_angle: float,
+        min_angle: float,
         angle: typing.Callable[[], float],
     ) -> None:
         super().__init__()
 
         self.yoke = yoke  # This is a 'local' instance of yoke
-        self.intakeSpeed = intakeSpeed  # Callable
-        self.shooterSpeed = shooterSpeed
         self.angle = angle  # Callable
+        self.max_speed = max_speed
 
         # For the head-lift system
-        self.max_angle = 1.5708  # TODO: MOVE ME
-        self.min_angle = 0  # TODO: MOVE ME
+        self.max_angle = max_angle
+        self.min_angle = min_angle
         self.head_acceleration = 0.01
         self.last_angle = 0
 
@@ -44,7 +44,6 @@ class SloppyShooter(commands2.CommandBase):
             self.max_angle,
         )
 
-        self.yoke.setSpeed(self.intakeSpeed() - self.shooterSpeed())
         self.yoke.setPrimaryYokeAngle(geometry.Rotation2d(self.last_angle))
 
     def clamp(self, _min, x, _max):
@@ -55,3 +54,6 @@ class SloppyShooter(commands2.CommandBase):
         TODO: MOVE ME
         """
         return max(_min, min(x, _max))
+
+    def isFinished(self) -> bool:
+        return True

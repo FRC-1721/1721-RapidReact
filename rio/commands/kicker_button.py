@@ -1,7 +1,6 @@
-from operator import truediv
-import typing
 import commands2
 import wpilib
+
 from subsystems.yoke import Yoke
 
 
