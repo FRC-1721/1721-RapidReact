@@ -16,3 +16,4 @@
    wiring/network
    usage/operating
    checklist/event
+   checklist/bom
