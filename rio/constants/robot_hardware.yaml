@@ -66,11 +66,6 @@ drivetrain:
       ratio: 0.033              # Updated 2/12/22 by Joe
 
 yoke:
-
-
-
-  
-
   # Constants for shooter motors
   star_shooter_id: 13           # Updated Week 0 by Joe
   port_shooter_id: 12           # Updated Week 0 by Joe
@@ -131,10 +126,10 @@ yoke:
       max_power: 0.5            # Updated never by Joe
 
     # Ratio of motor rotations to yoke rotations
-    ratio: 0.02                # Updated Week 0 by Keegan
+    ratio: 0.04                 # Updated Week 0 by Keegan
     # Max and min angles for the yoke 
-    max_angle: 1.5708         # Updated never by Khan
-    min_angle: 0              # Updated never by Khan
+    max_angle: 1.5708           # Updated never by Khan
+    min_angle: 0                # Updated never by Khan
 
 misc:
   # Misc hardware settings

@@ -137,6 +137,9 @@ class Yoke(SubsystemBase):
         self.backgroundTimer = wpilib.Timer()
         self.backgroundTimer.start()
 
+        # TODO: REMOVE ME AFTER WEEK 1
+        self.resetYoke(0.25)
+
     def configureNetworkTables(self):
         # Get an instance of networktables
         self.nt = NetworkTables.getDefault()
@@ -268,6 +271,16 @@ class Yoke(SubsystemBase):
 
         self.kickerMotor.set(kickspeed)
 
+    def resetYoke(self, angle=0):
+        """
+        Should be called on enabled_init,
+        DELETE ME AND REPLACE ME
+        WITH A REAL LIMIT SIWTCH
+        """
+
+        self.primaryYokeMotorEncoder.setPosition(angle)
+        self.auxillaryYokeMotorEncoder.setPosition(angle)
+
     def periodic(self):
         """
         Called periodically when possible,
@@ -287,6 +300,8 @@ class Yoke(SubsystemBase):
                 self.auxillaryYokeMotor.getMotorTemperature()
             )
             self.kicker_temp.setDouble(self.kickerMotor.getMotorTemperature())
+
+        print(self.getPrimaryAngle())
 
     def isExtraBallPresent(self):
         """
