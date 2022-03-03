@@ -13,10 +13,10 @@ mode_a:
     strafe_axis: 0         # "Strafe" Axis
     
     # Functions
-    kicker_button: 5
-    catapult_button: 6
-    intake_button: 7
-    assisted_shooter_button: 8
+    kicker_button: 6              # Updated week1 by Joe
+    catapult_button: 1            # Updated week1 by Joe
+    intake_button: 2              # Updated week1 by Joe
+    assisted_shooter_button: 4    # Updated week1 by Joe
 
 
   sim:

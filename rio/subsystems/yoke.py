@@ -138,7 +138,7 @@ class Yoke(SubsystemBase):
         self.backgroundTimer.start()
 
         # TODO: REMOVE ME AFTER WEEK 1
-        self.resetYoke(0.25)
+        self.resetYoke(0.268 + 0.04)  # FIX IT IN CODE FIX IT IN CODE
 
     def configureNetworkTables(self):
         # Get an instance of networktables
@@ -226,7 +226,7 @@ class Yoke(SubsystemBase):
         )
 
         if not self.primaryYokeMotor.getMotorTemperature() > 45:
-            if not target_rotations > 0.05:
+            if not target_rotations < -0.05:
                 # Set a new PID target
                 self.primaryPID.setReference(
                     target_rotations,
@@ -300,8 +300,6 @@ class Yoke(SubsystemBase):
                 self.auxillaryYokeMotor.getMotorTemperature()
             )
             self.kicker_temp.setDouble(self.kickerMotor.getMotorTemperature())
-
-        print(self.getPrimaryAngle())
 
     def isExtraBallPresent(self):
         """
