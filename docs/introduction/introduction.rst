@@ -18,7 +18,7 @@ Introduction
   :align: center
 
 .. update image with image of completed robot ..
-.. figure:: resources/placeholder.png
+.. figure:: resources/robot.png
   :width: 300
   :alt: Alternative text
 

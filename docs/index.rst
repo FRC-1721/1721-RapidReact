@@ -7,12 +7,13 @@
 
    introduction/introduction
    designReview/design_review
-   developing/developing
+   costs/build_costs
    subsystems/shooter
    subsystems/climber
    subsystems/swervedrive
    subsystems/navigation
-   wiring/wiring
    wiring/network
    usage/operating
+   developing/developing
    checklist/event
+
