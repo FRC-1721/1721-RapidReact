@@ -117,6 +117,7 @@ h2 {
     width: 100%;
 }
 
+<<<<<<< HEAD
 #pid_subsystem {
     margin-bottom: 12px;
 }
@@ -138,4 +139,15 @@ h2 {
 }
 
 #pid_graph {
+=======
+
+.canvas_wrapper {
+    background-image: url("resources/RobotBody.png");
+    background-color: #cccccc; /* Used if the image is unavailable */
+    height: 375px; /* You must set a specified height */
+    width: 400px;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+>>>>>>> main
 }
