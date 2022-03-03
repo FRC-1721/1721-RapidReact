@@ -1,6 +1,6 @@
 import typing
 import commands2
-from wpilib import geometry
+from wpimath import geometry
 from subsystems.yoke import Yoke
 
 

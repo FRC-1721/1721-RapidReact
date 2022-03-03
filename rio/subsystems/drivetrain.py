@@ -3,15 +3,13 @@
 
 import math
 
-
-from wpilib import RobotBase
 import wpilib
 
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
 
-from rev import CANSparkMax, CANSparkMaxLowLevel
-from ctre import Pigeon2, Pigeon2Configuration
+from rev import CANSparkMax, CANSparkMaxLowLevel, SparkMaxLimitSwitch
+from ctre import Pigeon2
 
 from networktables import NetworkTables
 
@@ -126,6 +124,13 @@ class Drivetrain(SubsystemBase):
             self.fp_temp.setDouble(self.fp_module.getMaxTemp())
             self.ap_temp.setDouble(self.ap_module.getMaxTemp())
 
+            self.fs_zero.setBoolean(self.fs_module.isZeroed)
+            self.as_zero.setBoolean(self.as_module.isZeroed)
+            self.fp_zero.setBoolean(self.fp_module.isZeroed)
+            self.ap_zero.setBoolean(self.ap_module.isZeroed)
+
+            self.backgroundTimer.reset()
+
     def arcadeDrive(self, fwd, srf, rot):
         """
         Generates a chassis speeds using the joystick commands
@@ -184,6 +189,25 @@ class Drivetrain(SubsystemBase):
         self.fp_temp = self.thermal_table.getEntry("fp_temp")
         self.ap_temp = self.thermal_table.getEntry("ap_temp")
 
+        self.fs_zero = self.swerve_table.getEntry("fs_zero")
+        self.as_zero = self.swerve_table.getEntry("as_zero")
+        self.fp_zero = self.swerve_table.getEntry("fp_zero")
+        self.ap_zero = self.swerve_table.getEntry("ap_zero")
+
+    def zero_swerve_modules(self):
+        self.fs_module.find_zero()
+        self.as_module.find_zero()
+        self.fp_module.find_zero()
+        self.ap_module.find_zero()
+
+    def all_zeroed(self):
+        return (
+            self.ap_module.isZeroed
+            and self.fp_module.isZeroed
+            and self.as_module.isZeroed
+            and self.fp_module.isZeroed
+        )
+
     def getGyroHeading(self):
         """
         Returns the gyro heading.
@@ -208,10 +232,17 @@ class SwerveModule:
             self.constants["drive_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
+
+        # Set inverted
+        self.drive_motor.setInverted(self.constants["drive_inverted"])
+
         self.steer_motor = CANSparkMax(
             self.constants["steer_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
+
+        # Set inverted
+        self.steer_motor.setInverted(self.constants["steer_inverted"])
 
         # Construct the pose of this module
         self.module_pose = geometry.Translation2d(
@@ -270,8 +301,13 @@ class SwerveModule:
         # triggers
         self.steer_motor_encoder.setPosition(0)
 
-        # Current state variables
+        # Zeroing objects
         self.isZeroed = False
+        self.zeroSwitch = self.steer_motor.getForwardLimitSwitch(
+            SparkMaxLimitSwitch.Type.kNormallyClosed
+        )
+
+        self.zeroSwitch.enableLimitSwitch(False)
         # By default: 0 speed, and 0 rotation
         self.desiredState = kinematics.SwerveModuleState(0, geometry.Rotation2d(0))
 
@@ -285,15 +321,7 @@ class SwerveModule:
 
         Delete whenever not needed anymore.
         """
-        # res = self.steer_motor_encoder.setPosition(0)
-        # print(
-        #     "Steer Drive:",
-        #     self.constants["steer_id"],
-        #     "Immediate Position: ",
-        #     self.steer_motor_encoder.getPosition(),
-        # )
-        self.drive_motor.set(0)
-        print("Drive:", self.constants["steer_id"], "Speed: ", self.drive_motor.get())
+        self.steer_motor_encoder.setPosition(0)
 
     def getPose(self):
         return self.module_pose
@@ -333,6 +361,7 @@ class SwerveModule:
             CANSparkMaxLowLevel.ControlType.kPosition,
         )
 
+        # The desired state is now the newState
         self.desiredState = newState
 
     def getCurrentState(self):
@@ -357,6 +386,20 @@ class SwerveModule:
 
         # Return
         return current_state
+
+    def find_zero(self):
+        """
+        Seeks to the zero.
+        """
+
+        if not self.isZeroed:
+            if not self.zeroSwitch.get():
+                self.steer_motor.set(0.165)  # CHANGEME
+            else:
+                self.steer_motor_encoder.setPosition(0)
+                self.isZeroed = True
+        else:
+            self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
 
     def getTargetHeading(self):
         """
