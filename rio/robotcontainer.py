@@ -87,7 +87,9 @@ class RobotContainer:
             self.driverController, self.controlMode["kicker_button"]
         ).whenPressed(Kicker(self.yoke))
 
-        # TODO: Intake command
+        commands2.button.JoystickButton(
+            self.driverController, self.controlMode["intake_button"]
+        ).whileHeld(Intake(self.yoke))
 
         # Triggers the catapult command
         commands2.button.JoystickButton(

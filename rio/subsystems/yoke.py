@@ -138,7 +138,7 @@ class Yoke(SubsystemBase):
         self.backgroundTimer.start()
 
         # TODO: REMOVE ME AFTER WEEK 1
-        self.resetYoke(0.268 + 0.04)  # FIX IT IN CODE FIX IT IN CODE
+        self.resetYoke(0.268 + 0.08)  # FIX IT IN CODE FIX IT IN CODE
 
     def configureNetworkTables(self):
         # Get an instance of networktables
