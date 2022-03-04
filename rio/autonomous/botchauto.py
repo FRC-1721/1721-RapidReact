@@ -24,6 +24,6 @@ class BotchAuto(commands2.SequentialCommandGroup):
                 WaitCommand(2),  # Wait again
                 Kicker(yoke),
                 WaitCommand(1),
-                FlyWithWires(drivetrain),
+                FlyWithWires(drivetrain, 1),
             ]
         )
