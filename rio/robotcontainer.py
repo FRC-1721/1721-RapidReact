@@ -10,6 +10,10 @@ from commands.kicker_button import Kicker
 from commands.intake import Intake
 from commands.catapult import Catapult
 from commands.zero_swerve import ZeroSwerveModules
+from commands.fake_trigger import FakeTrigger
+
+# Triggers
+from commands.triggers.trigger_trigger import Trigger
 
 # Autonomous
 from autonomous.conversion_test import ConversionTest
@@ -103,6 +107,10 @@ class RobotContainer:
         commands2.button.JoystickButton(self.driverController, 8).whenPressed(
             ZeroSwerveModules(self.drivetrain, True)
         )
+
+        commands2.button.JoystickButton(
+            self.driverController, self.controlMode["intake_button"]
+        ).whileHeld(FakeTrigger(self.driverController, Kicker(self.yoke)))
 
     def enabledInit(self):
         """

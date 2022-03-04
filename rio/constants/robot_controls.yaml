@@ -18,6 +18,10 @@ mode_a:
     intake_button: 2              # Updated week1 by Joe
     assisted_shooter_button: 4    # Updated week1 by Joe
 
+    # Triggers
+    left_trigger: 2
+    right_trigger: 3
+
 
   sim:
     # The control mappings for use when using the simulator
