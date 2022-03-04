@@ -20,7 +20,7 @@ class BotchAuto(commands2.SequentialCommandGroup):
         """
         super().__init__(
             ZeroSwerveModules(drivetrain, True),
-            Catapult(yoke, 75, 0.4, True),  # Shoot like dis
+            Catapult(yoke, 75, 0.25, True),  # Shoot like dis
             WaitCommand(2),  # Wait again
             Kicker(yoke),
         )
