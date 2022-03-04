@@ -194,6 +194,15 @@ class Drivetrain(SubsystemBase):
         self.fp_zero = self.swerve_table.getEntry("fp_zero")
         self.ap_zero = self.swerve_table.getEntry("ap_zero")
 
+    def clear_swerve_zero(self):
+        """
+        Unsets all of the zero states.
+        """
+        self.fs_module.isZeroed = False
+        self.as_module.isZeroed = False
+        self.fp_module.isZeroed = False
+        self.ap_module.isZeroed = False
+
     def zero_swerve_modules(self):
         self.fs_module.find_zero()
         self.as_module.find_zero()

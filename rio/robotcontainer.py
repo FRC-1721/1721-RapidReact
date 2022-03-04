@@ -99,6 +99,11 @@ class RobotContainer:
             self.driverController, self.controlMode["catapult_button"]
         ).whileHeld(Catapult(self.yoke))
 
+        # Rezero the swerve modules
+        commands2.button.JoystickButton(self.driverController, 8).whenPressed(
+            ZeroSwerveModules(self.drivetrain, True)
+        )
+
     def enabledInit(self):
         """
         Idea from FRC discord, called any time

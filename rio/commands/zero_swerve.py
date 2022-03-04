@@ -6,13 +6,14 @@ from commands.flybywire import FlyByWire
 
 
 class ZeroSwerveModules(commands2.CommandBase):
-    def __init__(self, drivetrain) -> None:
+    def __init__(self, drivetrain, overwrite=False) -> None:
         """
         This command zeroes the swerve drive modules.
         """
         super().__init__()
 
         self.drivetrain = drivetrain
+        self.overwrite = overwrite
 
         # Require full control of the drivetrain
         self.addRequirements([self.drivetrain])
@@ -23,6 +24,9 @@ class ZeroSwerveModules(commands2.CommandBase):
 
     def initialize(self) -> None:
         self.backgroundTimer.reset()
+
+        if self.overwrite:
+            self.drivetrain.clear_swerve_zero()
 
     def execute(self) -> None:
         self.drivetrain.zero_swerve_modules()
