@@ -99,6 +99,11 @@ class RobotContainer:
             self.driverController, self.controlMode["catapult_button"]
         ).whileHeld(Catapult(self.yoke))
 
+        # Triggers the catapult command but its high
+        commands2.button.JoystickButton(self.driverController, 3).whileHeld(
+            Catapult(self.yoke, 80, 0.5)
+        )
+
         # Rezero the swerve modules
         commands2.button.JoystickButton(self.driverController, 8).whenPressed(
             ZeroSwerveModules(self.drivetrain, True)

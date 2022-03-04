@@ -10,7 +10,7 @@ class Catapult(commands2.CommandBase):
     Fires a ball at a fixed angle with no checks or fancy stuff.
     """
 
-    def __init__(self, yoke: Yoke, angle=75, power=0.2, end=False) -> None:
+    def __init__(self, yoke: Yoke, angle=75, power=0.36, end=False) -> None:
         super().__init__()
 
         # Local instance of yoke
