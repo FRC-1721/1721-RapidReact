@@ -22,4 +22,5 @@ class BotchAuto(commands2.SequentialCommandGroup):
             Catapult(yoke, 75, 0.4, True),  # Shoot like dis
             WaitCommand(2),  # Wait again
             Kicker(yoke),
+            FlyByWire(drivetrain, -0.2, 0, 0),
         )

@@ -11,9 +11,6 @@ from commands.intake import Intake
 from commands.catapult import Catapult
 from commands.zero_swerve import ZeroSwerveModules
 
-# Autonomous
-from autonomous.conversion_test import ConversionTest
-
 # Subsystens
 from subsystems.drivetrain import Drivetrain
 from subsystems.lighting import Lighting
@@ -22,9 +19,10 @@ from subsystems.yoke import Yoke
 # Constants
 from constants.constants import getConstants
 
-# Auto
-from commands.nullauto import NullAuto
-from commands.botchauto import BotchAuto
+# Autonomous
+from autonomous.conversion_test import ConversionTest
+from autonomous.nullauto import NullAuto
+from autonomous.botchauto import BotchAuto
 
 
 class RobotContainer:
@@ -100,14 +98,14 @@ class RobotContainer:
         ).whileHeld(Catapult(self.yoke))
 
         # Triggers the catapult command but its high
-        commands2.button.JoystickButton(self.driverController, 3).whileHeld(
-            Catapult(self.yoke, 80, 0.5)
-        )
+        commands2.button.JoystickButton(
+            self.driverController, self.controlMode["high_catapult_button"]
+        ).whileHeld(Catapult(self.yoke, 80, 0.5))
 
         # Rezero the swerve modules
-        commands2.button.JoystickButton(self.driverController, 8).whenPressed(
-            ZeroSwerveModules(self.drivetrain, True)
-        )
+        commands2.button.JoystickButton(
+            self.driverController, self.controlMode["rezero_swerve"]
+        ).whenPressed(ZeroSwerveModules(self.drivetrain, True))
 
     def enabledInit(self):
         """
