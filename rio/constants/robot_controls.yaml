@@ -15,7 +15,7 @@ mode_a:
     # Functions
     kicker_button: 6              # Updated week1 by Joe
     catapult_button: 1            # Updated week1 by Joe
-    intake_button: 2              # Updated week1 by Joe
+    intake_button: 5              # Updated week1 by Joe
     assisted_shooter_button: 4    # Updated week1 by Joe
 
     # Triggers
