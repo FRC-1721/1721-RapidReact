@@ -10,7 +10,8 @@ from commands.kicker_button import Kicker
 from commands.intake import Intake
 from commands.catapult import Catapult
 from commands.zero_swerve import ZeroSwerveModules
-from commands.fake_trigger import FakeTrigger
+
+# from commands.fake_trigger import FakeTrigger
 from commands.lime_detect import LimeAuto
 
 # Triggers
@@ -97,7 +98,7 @@ class RobotContainer:
         # Triggers the catapult command but its low
         commands2.button.JoystickButton(
             self.driverController, self.controlMode["catapult_button"]
-        ).whileHeld(Catapult(self.yoke, 75, 0.25))
+        ).whileHeld(Catapult(self.yoke, 85, 0.25))
 
         # Triggers the catapult command but its high
         commands2.button.JoystickButton(
@@ -109,7 +110,7 @@ class RobotContainer:
             self.driverController, self.controlMode["rezero_swerve"]
         ).whenPressed(ZeroSwerveModules(self.drivetrain, True))
 
-        commands2.button.POVButton(self.driverController, 180).whileHeld(
+        commands2.button.POVButton(self.driverController, 4).whileHeld(
             LimeAuto(self.drivetrain)
         )
 
