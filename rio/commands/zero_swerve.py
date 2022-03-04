@@ -34,3 +34,7 @@ class ZeroSwerveModules(commands2.CommandBase):
 
     def isFinished(self) -> bool:
         return self.drivetrain.all_zeroed() or self.backgroundTimer.hasElapsed(2)
+
+    def end(self, interrupted: bool) -> None:
+        if interrupted:
+            print("Swerve Zeroing was interrupted")
