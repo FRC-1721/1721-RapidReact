@@ -11,6 +11,7 @@ from commands.intake import Intake
 from commands.catapult import Catapult
 from commands.zero_swerve import ZeroSwerveModules
 from commands.fake_trigger import FakeTrigger
+from commands.lime_detect import LimeAuto
 
 # Triggers
 from commands.triggers.trigger_trigger import Trigger
@@ -98,10 +99,10 @@ class RobotContainer:
             self.driverController, self.controlMode["intake_button"]
         ).whileHeld(Intake(self.yoke))
 
-        # Triggers the catapult command
+        # Triggers the catapult command but its low
         commands2.button.JoystickButton(
             self.driverController, self.controlMode["catapult_button"]
-        ).whileHeld(Catapult(self.yoke))
+        ).whileHeld(Catapult(self.yoke, 0.25))
 
         # Triggers the catapult command but its high
         commands2.button.JoystickButton(self.driverController, 3).whileHeld(
@@ -116,6 +117,10 @@ class RobotContainer:
         commands2.button.JoystickButton(
             self.driverController, self.controlMode["intake_button"]
         ).whileHeld(FakeTrigger(self.driverController, Kicker(self.yoke)))
+
+        commands2.button.POVButton(self.driverController, 180).whileHeld(
+            LimeAuto(self.drivetrain)
+        )
 
     def enabledInit(self):
         """
