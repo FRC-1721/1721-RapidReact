@@ -291,6 +291,9 @@ class SwerveModule:
             self.pid["steer"]["max_power"],
         )
 
+        # Set max current
+        self.steer_motor.setSmartCurrentLimit(self.pid["steer"]["max_current"])
+
         # Other sensors
         self.steer_motor_encoder = self.steer_motor.getEncoder()
         self.steer_motor_encoder.setPositionConversionFactor(self.pid["steer"]["ratio"])
@@ -418,6 +421,7 @@ class SwerveModule:
                 self.steer_motor_encoder.setPosition(0)
                 self.isZeroed = True
         else:
+            self.steer_motor_encoder.setPosition(0)
             self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
 
     def getTargetHeading(self):
