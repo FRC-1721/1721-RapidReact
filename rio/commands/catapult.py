@@ -1,6 +1,6 @@
 import commands2
 
-from wpilib.geometry import Rotation2d
+from wpimath.geometry import Rotation2d
 
 from subsystems.yoke import Yoke
 

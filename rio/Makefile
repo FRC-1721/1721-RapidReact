@@ -12,6 +12,10 @@ help:
 	@echo "Targets:"
 	@echo "   sim           Shortcut for roboy.py sim."
 	@echo "   clean         Shortucut for git clean -fdX"
+	@echo "   deploy        Deploy code with netconsole"
+	@echo "   push          Deploy code by the seat of your pants"
+	@echo "   download      Download all the requirements"
+	@echo "   install       Install requirements"
 	@echo
 
 # Shortcut for the simulator

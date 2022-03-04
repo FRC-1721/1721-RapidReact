@@ -6,7 +6,6 @@ import commands2.button
 # Commands
 from commands.flybywire import FlyByWire
 from commands.test_button_action import TestButtonAction
-from commands.sloppy_intake import SloppyIntake
 from commands.kicker_button import Kicker
 from commands.intake import Intake
 from commands.catapult import Catapult
