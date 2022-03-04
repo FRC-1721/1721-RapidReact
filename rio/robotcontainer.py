@@ -103,6 +103,11 @@ class RobotContainer:
             self.driverController, self.controlMode["catapult_button"]
         ).whileHeld(Catapult(self.yoke))
 
+        # Triggers the catapult command but its high
+        commands2.button.JoystickButton(self.driverController, 3).whileHeld(
+            Catapult(self.yoke, 80, 0.5)
+        )
+
         # Rezero the swerve modules
         commands2.button.JoystickButton(self.driverController, 8).whenPressed(
             ZeroSwerveModules(self.drivetrain, True)
@@ -128,7 +133,7 @@ class RobotContainer:
         # Add options for chooser
         # self.autoChooser.setDefaultOption("Null Auto", NullAuto(self.drivetrain))
         self.autoChooser.setDefaultOption(
-            "Caleb pick this one Auto", BotchAuto(self.yoke, self.drivetrain)
+            "F*ck it, pick this one cal", BotchAuto(self.yoke, self.drivetrain)
         )
         self.autoChooser.addOption("Null Auto", NullAuto(self.drivetrain))
         self.autoChooser.addOption("Conversion Test", ConversionTest(self.drivetrain))
