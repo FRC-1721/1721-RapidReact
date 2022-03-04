@@ -31,6 +31,7 @@ class LimeAuto(commands2.CommandBase):
     def execute(self) -> None:
         # set the LimeLight pipeline to 1 (Limelight on)
         self.lime_table.putNumber("pipeline", 1)
+        print("Lime executing")
 
         # If a vision target is spotted by the limelight
         if self.target_seen:
