@@ -102,7 +102,7 @@ class RobotContainer:
         # Triggers the catapult command but its low
         commands2.button.JoystickButton(
             self.driverController, self.controlMode["catapult_button"]
-        ).whileHeld(Catapult(self.yoke, 0.25))
+        ).whileHeld(Catapult(self.yoke, 75, 0.25))
 
         # Triggers the catapult command but its high
         commands2.button.JoystickButton(self.driverController, 3).whileHeld(
