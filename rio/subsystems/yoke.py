@@ -210,9 +210,6 @@ class Yoke(SubsystemBase):
         for the primary shooter.
         """
 
-        # TODO: Move this somewhere else
-        self.setAuxillaryYokeAngle(angle)
-
         # Convert rotation2d to radians
         target_radians = angle.radians()
 
@@ -240,6 +237,8 @@ class Yoke(SubsystemBase):
         Method to update the target angle
         for the aux.
         """
+        # sets auxillary yoke angle
+        self.setAuxillaryYokeAngle(angle)
 
         # Convert rotation2d to radians
         target_radians = angle.radians()
