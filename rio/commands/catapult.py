@@ -32,7 +32,6 @@ class Catapult(commands2.CommandBase):
         self.yoke.setPrimaryYokeAngle(Rotation2d.fromDegrees(self.angle))
 
         # Set the yoke speed to a fixed 'bunt' value
-        print(self.power)
         self.yoke.setSpeed(self.power)
 
         print("Catapulting.....")

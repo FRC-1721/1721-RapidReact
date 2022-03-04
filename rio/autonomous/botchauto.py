@@ -9,7 +9,7 @@ from subsystems.drivetrain import Drivetrain
 
 from commands.kicker_button import Kicker
 from commands.catapult import Catapult
-from commands.flybywire import FlyByWire
+from commands.flywithwires import FlyWithWires
 
 
 class BotchAuto(commands2.SequentialCommandGroup):
@@ -18,9 +18,12 @@ class BotchAuto(commands2.SequentialCommandGroup):
         AHH
         """
         super().__init__(
-            WaitCommand(4),  # Wait
-            Catapult(yoke, 75, 0.4, True),  # Shoot like dis
-            WaitCommand(2),  # Wait again
-            Kicker(yoke),
-            FlyByWire(drivetrain, -0.2, 0, 0),
+            [
+                WaitCommand(4),  # Wait
+                Catapult(yoke, 75, 0.4, True),  # Shoot like dis
+                WaitCommand(2),  # Wait again
+                Kicker(yoke),
+                WaitCommand(1),
+                FlyWithWires(drivetrain),
+            ]
         )
