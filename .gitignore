@@ -13,4 +13,6 @@ dashboard/www/main.js*
 node_modules
 _staging
 
+# Tools
 .SysId/
+.OutlineViewer/
