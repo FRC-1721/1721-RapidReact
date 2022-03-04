@@ -85,12 +85,7 @@ class RobotContainer:
         instantiating a :GenericHID or one of its subclasses (Joystick or XboxController),
         and then passing it to a JoystickButton.
         """
-        # use the A button the xbox controller
-        # commands2.button.JoystickButton(self.driverController, 1).whenPressed(
-        #    TestButtonAction(self.drivetrain)
-        # )
 
-        # Use the left bumper button the xbox controller to activate the kicker
         commands2.button.JoystickButton(
             self.driverController, self.controlMode["kicker_button"]
         ).whenPressed(Kicker(self.yoke))
@@ -105,18 +100,14 @@ class RobotContainer:
         ).whileHeld(Catapult(self.yoke, 75, 0.25))
 
         # Triggers the catapult command but its high
-        commands2.button.JoystickButton(self.driverController, 3).whileHeld(
-            Catapult(self.yoke, 80, 0.5)
-        )
+        commands2.button.JoystickButton(
+            self.driverController, self.controlMode["high_catapult_button"]
+        ).whileHeld(Catapult(self.yoke, 80, 0.5))
 
         # Rezero the swerve modules
-        commands2.button.JoystickButton(self.driverController, 8).whenPressed(
-            ZeroSwerveModules(self.drivetrain, True)
-        )
-
         commands2.button.JoystickButton(
-            self.driverController, self.controlMode["intake_button"]
-        ).whileHeld(FakeTrigger(self.driverController, Kicker(self.yoke)))
+            self.driverController, self.controlMode["rezero_swerve"]
+        ).whenPressed(ZeroSwerveModules(self.drivetrain, True))
 
         commands2.button.POVButton(self.driverController, 180).whileHeld(
             LimeAuto(self.drivetrain)

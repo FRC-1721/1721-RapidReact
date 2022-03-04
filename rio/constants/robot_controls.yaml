@@ -17,10 +17,8 @@ mode_a:
     catapult_button: 1            # Updated week1 by Joe
     intake_button: 2              # Updated week1 by Joe
     assisted_shooter_button: 4    # Updated week1 by Joe
-
-    # Triggers
-    left_trigger: 2
-    right_trigger: 3
+    high_catapult_button: 3       # Updated week1 by Joe
+    rezero_swerve: 8              # Updated week1 by Joe
 
 
   sim:
@@ -37,3 +35,5 @@ mode_a:
     catapult_button: 3
     intake_button: 3
     assisted_shooter_button: 3
+    high_catapult_button: 2
+    rezero_swerve: 1
