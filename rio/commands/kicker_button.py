@@ -21,14 +21,11 @@ class Kicker(commands2.CommandBase):
     def initialize(self) -> None:
         self.yoke.kick(0.45)
         self.backgroundTimer.reset()
-        print("Kicked")
 
     def isFinished(self) -> bool:
         if self.backgroundTimer.hasElapsed(0.05):
             self.yoke.kick(-0.06)
-            print("stop kicking")
 
         if self.backgroundTimer.hasElapsed(1):
             self.yoke.kick(0)
-            print("Done kicking")
             return True
