@@ -120,7 +120,7 @@ class RobotContainer:
         # Add options for chooser
         # self.autoChooser.setDefaultOption("Null Auto", NullAuto(self.drivetrain))
         self.autoChooser.setDefaultOption(
-            "Caleb pick this one Auto", BotchAuto(self.yoke, self.drivetrain)
+            "F*ck it, pick this one cal", BotchAuto(self.yoke, self.drivetrain)
         )
         self.autoChooser.addOption("Null Auto", NullAuto(self.drivetrain))
         self.autoChooser.addOption("Conversion Test", ConversionTest(self.drivetrain))
