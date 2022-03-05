@@ -13,14 +13,15 @@ from commands.flybywire import FlyByWire
 from commands.zero_swerve import ZeroSwerveModules
 
 
-class BotchAuto(commands2.SequentialCommandGroup):
+class HighBotchAuto(commands2.SequentialCommandGroup):
     def __init__(self, yoke: Yoke, drivetrain: Drivetrain) -> None:
         """
         AHH
         """
         super().__init__(
             ZeroSwerveModules(drivetrain, True),
-            Catapult(yoke, 75, 0.25, True),  # Shoot like dis
+            WaitCommand(2),
+            Catapult(yoke, 78.5, 0.52, True),  # Shoot like dis
             WaitCommand(2),  # Wait again
             Kicker(yoke),
         )

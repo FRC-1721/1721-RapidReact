@@ -17,9 +17,6 @@ from commands.lime_detect import LimeAuto
 # Triggers
 from commands.triggers.trigger_trigger import Trigger
 
-# Autonomous
-from autonomous.conversion_test import ConversionTest
-
 # Subsystens
 from subsystems.drivetrain import Drivetrain
 from subsystems.lighting import Lighting
@@ -28,9 +25,11 @@ from subsystems.yoke import Yoke
 # Constants
 from constants.constants import getConstants
 
-# Auto
+# Autonomous
+from autonomous.conversion_test import ConversionTest
 from commands.nullauto import NullAuto
-from commands.botchauto import BotchAuto
+from autonomous.botchauto import BotchAuto
+from autonomous.highBotchAuto import HighBotchAuto
 
 
 class RobotContainer:
@@ -130,10 +129,15 @@ class RobotContainer:
         # Add options for chooser
         # self.autoChooser.setDefaultOption("Null Auto", NullAuto(self.drivetrain))
         self.autoChooser.setDefaultOption(
-            "F*ck it, pick this one cal", BotchAuto(self.yoke, self.drivetrain)
+            "(Comp) Low Goal", BotchAuto(self.yoke, self.drivetrain)
         )
-        self.autoChooser.addOption("Null Auto", NullAuto(self.drivetrain))
-        self.autoChooser.addOption("Conversion Test", ConversionTest(self.drivetrain))
+        self.autoChooser.addOption(
+            "(Comp) High Cal", HighBotchAuto(self.yoke, self.drivetrain)
+        )
+        self.autoChooser.addOption("(Dev) Null Auto", NullAuto(self.drivetrain))
+        self.autoChooser.addOption(
+            "(Dev) Conversion Test", ConversionTest(self.drivetrain)
+        )
 
         # Put the chooser on the dashboard
         wpilib.SmartDashboard.putData("Autonomous", self.autoChooser)
