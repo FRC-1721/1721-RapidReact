@@ -8,7 +8,7 @@ from robotcontainer import RobotContainer
 from datetime import datetime
 
 
-class verybadbroken(commands2.TimedCommandRobot):
+class BurntToaster(commands2.TimedCommandRobot):
     """
     Our default robot class, pass it to wpilib.run
 
