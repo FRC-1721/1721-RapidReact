@@ -28,3 +28,10 @@ with the blue logitech controller the pov and left joystick are switched.
 The standard controller that we use the logitech joystick, most should have knowledge on how this works.
 
 This controller have being used the most in previous years, it might no be used as much in previous years.
+
+.. image:: resource/buttonMap.png
+  :width: 600
+  :alt: button's Map
+
+This is the button mapping for the controller,
+check with the driver because this may be out of date.
