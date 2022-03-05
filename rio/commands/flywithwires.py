@@ -28,6 +28,7 @@ class FlyWithWires(commands2.CommandBase):
 
     def initialize(self) -> None:
         self.backgroundTimer.reset()
+        print("backround timer reset")
 
     def execute(self) -> None:
         self.drivetrain.arcadeDrive(
@@ -35,12 +36,13 @@ class FlyWithWires(commands2.CommandBase):
             self.srf,
             self.rot,
         )
+        print("execute finished")
 
     def end(self, interrupted: bool) -> None:
         self.drivetrain.arcadeDrive(0, 0, 0)
-
-        print("Fly with wires done")
+        print("end finished")
 
     def isFinished(self) -> bool:
         if self.time != -1 and self.backgroundTimer.hasElapsed(self.time):
             return True
+            print("fly with wires compleated")
