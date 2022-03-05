@@ -7,7 +7,6 @@
 
    introduction/introduction
    designReview/design_review
-   developing/developing
    subsystems/shooter
    subsystems/climber
    subsystems/swervedrive
@@ -16,4 +15,4 @@
    wiring/network
    usage/operating
    checklist/event
-   checklist/bom
+   developing/developing
