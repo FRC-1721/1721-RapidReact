@@ -8,7 +8,7 @@ from robotcontainer import RobotContainer
 from datetime import datetime
 
 
-class robotto(commands2.TimedCommandRobot):
+class IBROKEN(commands2.TimedCommandRobot):
     """
     Our default robot class, pass it to wpilib.run
 
@@ -66,7 +66,7 @@ class robotto(commands2.TimedCommandRobot):
 
     def teleopPeriodic(self) -> None:
         """This function is called periodically during operator control"""
-
+this
     def testInit(self) -> None:
         # Cancels all running commands at the start of test mode
         commands2.CommandScheduler.getInstance().cancelAll()
