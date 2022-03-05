@@ -65,11 +65,11 @@ jobs:
         name: Dashboard_Transpiled
         path: dashboard/_staging
 
-  publish_docs:
+  publish:
     # Only run on tags
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
-    name: Publish Docs
+    name: Publish
     needs: [make_docs, make_dashboard]
 
     steps:
@@ -94,6 +94,7 @@ jobs:
         file: '*.pdf'
         tag: ${{ github.ref }}
         overwrite: true
+        prerelease: true
         body: "Tidal Force Robotics, Automated with github ci/cd."
         file_glob: true
     
@@ -104,5 +105,6 @@ jobs:
         file: '*.zip'
         tag: ${{ github.ref }}
         overwrite: true
+        prerelease: true
         body: "Tidal Force Robotics, Automated with github ci/cd."
         file_glob: true

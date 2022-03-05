@@ -1,7 +1,6 @@
-from operator import truediv
-import typing
 import commands2
 import wpilib
+
 from subsystems.yoke import Yoke
 
 
@@ -20,7 +19,7 @@ class Kicker(commands2.CommandBase):
         self.backgroundTimer.start()
 
     def initialize(self) -> None:
-        self.yoke.kick(0.45)
+        self.yoke.kick(0.55)
         self.backgroundTimer.reset()
 
     def isFinished(self) -> bool:

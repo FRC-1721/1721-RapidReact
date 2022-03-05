@@ -6,8 +6,16 @@ import commands2.button
 # Commands
 from commands.flybywire import FlyByWire
 from commands.test_button_action import TestButtonAction
-from commands.sloppy_shooter import SloppyShooter
 from commands.kicker_button import Kicker
+from commands.intake import Intake
+from commands.catapult import Catapult
+from commands.zero_swerve import ZeroSwerveModules
+
+# from commands.fake_trigger import FakeTrigger
+from commands.lime_detect import LimeAuto
+
+# Triggers
+from commands.triggers.trigger_trigger import Trigger
 
 # Subsystens
 from subsystems.drivetrain import Drivetrain
@@ -17,9 +25,11 @@ from subsystems.yoke import Yoke
 # Constants
 from constants.constants import getConstants
 
-# Auto
+# Autonomous
+from autonomous.conversion_test import ConversionTest
 from commands.nullauto import NullAuto
-from commands.botchauto import BotchAuto
+from autonomous.botchauto import BotchAuto
+from autonomous.highBotchAuto import HighBotchAuto
 
 
 class RobotContainer:
@@ -69,36 +79,48 @@ class RobotContainer:
             )
         )
 
-        self.yoke.setDefaultCommand(
-            SloppyShooter(
-                self.yoke,
-                lambda: self.driverController.getRawAxis(
-                    self.controlMode["raw_shooter_speed_axis"]
-                ),
-                lambda: self.driverController.getRawAxis(
-                    self.controlMode["raw_shooter_intake_axis"]
-                ),
-                lambda: self.driverController.getRawAxis(
-                    self.controlMode["raw_shooter_angle_axis"]
-                ),
-            )
-        )
-
     def configureButtonBindings(self):
         """
         Use this method to define your button->command mappings. Buttons can be created by
         instantiating a :GenericHID or one of its subclasses (Joystick or XboxController),
         and then passing it to a JoystickButton.
         """
-        # use the A button the xbox controller
-        commands2.button.JoystickButton(self.driverController, 1).whenPressed(
-            TestButtonAction(self.drivetrain)
+
+        commands2.button.JoystickButton(
+            self.driverController, self.controlMode["kicker_button"]
+        ).whenPressed(Kicker(self.yoke))
+
+        commands2.button.JoystickButton(
+            self.driverController, self.controlMode["intake_button"]
+        ).whileHeld(Intake(self.yoke))
+
+        # Triggers the catapult command but its low
+        commands2.button.JoystickButton(
+            self.driverController, self.controlMode["catapult_button"]
+        ).whileHeld(Catapult(self.yoke, 85, 0.25))
+
+        # Triggers the catapult command but its high
+        commands2.button.JoystickButton(
+            self.driverController, self.controlMode["high_catapult_button"]
+        ).whileHeld(Catapult(self.yoke, 80, 0.5))
+
+        # Rezero the swerve modules
+        commands2.button.JoystickButton(
+            self.driverController, self.controlMode["rezero_swerve"]
+        ).whenPressed(ZeroSwerveModules(self.drivetrain, True))
+
+        commands2.button.POVButton(self.driverController, 4).whileHeld(
+            LimeAuto(self.drivetrain)
         )
 
-        # use the B button the xbox controller
-        commands2.button.JoystickButton(self.driverController, 2).whenPressed(
-            Kicker(self.yoke)
-        )
+    def enabledInit(self):
+        """
+        Idea from FRC discord, called any time
+        we move to enabled.
+        """
+
+        if not self.drivetrain.all_zeroed():
+            ZeroSwerveModules(self.drivetrain).schedule()
 
     def configureAutonomous(self):
         # Create a sendable chooser
@@ -107,9 +129,15 @@ class RobotContainer:
         # Add options for chooser
         # self.autoChooser.setDefaultOption("Null Auto", NullAuto(self.drivetrain))
         self.autoChooser.setDefaultOption(
-            "Caleb pick this one Auto", BotchAuto(self.yoke, self.drivetrain)
+            "(Comp) Low Goal", BotchAuto(self.yoke, self.drivetrain)
         )
-        self.autoChooser.addOption("Null Auto", NullAuto(self.drivetrain))
+        self.autoChooser.addOption(
+            "(Comp) High Cal", HighBotchAuto(self.yoke, self.drivetrain)
+        )
+        self.autoChooser.addOption("(Dev) Null Auto", NullAuto(self.drivetrain))
+        self.autoChooser.addOption(
+            "(Dev) Conversion Test", ConversionTest(self.drivetrain)
+        )
 
         # Put the chooser on the dashboard
         wpilib.SmartDashboard.putData("Autonomous", self.autoChooser)

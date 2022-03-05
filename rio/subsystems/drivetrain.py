@@ -3,15 +3,13 @@
 
 import math
 
-
-from wpilib import RobotBase
 import wpilib
 
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
 
-from rev import CANSparkMax, CANSparkMaxLowLevel
-from ctre import Pigeon2, Pigeon2Configuration
+from rev import CANSparkMax, CANSparkMaxLowLevel, SparkMaxLimitSwitch
+from ctre import Pigeon2
 
 from networktables import NetworkTables
 
@@ -126,6 +124,13 @@ class Drivetrain(SubsystemBase):
             self.fp_temp.setDouble(self.fp_module.getMaxTemp())
             self.ap_temp.setDouble(self.ap_module.getMaxTemp())
 
+            self.fs_zero.setBoolean(self.fs_module.isZeroed)
+            self.as_zero.setBoolean(self.as_module.isZeroed)
+            self.fp_zero.setBoolean(self.fp_module.isZeroed)
+            self.ap_zero.setBoolean(self.ap_module.isZeroed)
+
+            self.backgroundTimer.reset()
+
     def arcadeDrive(self, fwd, srf, rot):
         """
         Generates a chassis speeds using the joystick commands
@@ -184,6 +189,34 @@ class Drivetrain(SubsystemBase):
         self.fp_temp = self.thermal_table.getEntry("fp_temp")
         self.ap_temp = self.thermal_table.getEntry("ap_temp")
 
+        self.fs_zero = self.swerve_table.getEntry("fs_zero")
+        self.as_zero = self.swerve_table.getEntry("as_zero")
+        self.fp_zero = self.swerve_table.getEntry("fp_zero")
+        self.ap_zero = self.swerve_table.getEntry("ap_zero")
+
+    def clear_swerve_zero(self):
+        """
+        Unsets all of the zero states.
+        """
+        self.fs_module.isZeroed = False
+        self.as_module.isZeroed = False
+        self.fp_module.isZeroed = False
+        self.ap_module.isZeroed = False
+
+    def zero_swerve_modules(self):
+        self.fs_module.find_zero()
+        self.as_module.find_zero()
+        self.fp_module.find_zero()
+        self.ap_module.find_zero()
+
+    def all_zeroed(self):
+        return (
+            self.ap_module.isZeroed
+            and self.fp_module.isZeroed
+            and self.as_module.isZeroed
+            and self.fp_module.isZeroed
+        )
+
     def getGyroHeading(self):
         """
         Returns the gyro heading.
@@ -208,10 +241,17 @@ class SwerveModule:
             self.constants["drive_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
+
+        # Set inverted
+        self.drive_motor.setInverted(self.constants["drive_inverted"])
+
         self.steer_motor = CANSparkMax(
             self.constants["steer_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
+
+        # Set inverted
+        self.steer_motor.setInverted(self.constants["steer_inverted"])
 
         # Construct the pose of this module
         self.module_pose = geometry.Translation2d(
@@ -251,6 +291,9 @@ class SwerveModule:
             self.pid["steer"]["max_power"],
         )
 
+        # Set max current
+        self.steer_motor.setSmartCurrentLimit(self.pid["steer"]["max_current"])
+
         # Other sensors
         self.steer_motor_encoder = self.steer_motor.getEncoder()
         self.steer_motor_encoder.setPositionConversionFactor(self.pid["steer"]["ratio"])
@@ -276,12 +319,18 @@ class SwerveModule:
         # triggers
         self.steer_motor_encoder.setPosition(0)
 
-        # Current state variables
+        # Zeroing objects
         self.isZeroed = False
+        self.zeroSwitch = self.steer_motor.getForwardLimitSwitch(
+            SparkMaxLimitSwitch.Type.kNormallyClosed
+        )
+
+        self.zeroSwitch.enableLimitSwitch(False)
         # By default: 0 speed, and 0 rotation
         self.desiredState = kinematics.SwerveModuleState(0, geometry.Rotation2d(0))
 
-        self.angleSum = 0  # Delete me
+        # Keeps track of the acrewed angle over time
+        self.angleSum = 0
 
     def doTestAction(self):
         """
@@ -290,15 +339,7 @@ class SwerveModule:
 
         Delete whenever not needed anymore.
         """
-        # res = self.steer_motor_encoder.setPosition(0)
-        # print(
-        #     "Steer Drive:",
-        #     self.constants["steer_id"],
-        #     "Immediate Position: ",
-        #     self.steer_motor_encoder.getPosition(),
-        # )
-        self.drive_motor.set(0)
-        print("Drive:", self.constants["steer_id"], "Speed: ", self.drive_motor.get())
+        self.steer_motor_encoder.setPosition(0)
 
     def getPose(self):
         return self.module_pose
@@ -323,62 +364,26 @@ class SwerveModule:
             newState, self.getCurrentState().angle
         )
 
-        # print(
-        #    "Steer Drive:",
-        #    self.constants["steer_id"],
-        #    "OptimizedState: ",
-        #    optimizedState
-        # )
+        # The change from the old angle, to the new angle
+        deltaAngle = newState.angle - self.desiredState.angle
 
-        deltaAngle = (
-            newState.angle - self.desiredState.angle
-        )  # The change from the old angle, to the new angle
+        # The sum of all the previous movements up to this point
+        self.angleSum = self.angleSum + deltaAngle.radians()
 
-        self.angleSum = (
-            self.angleSum + deltaAngle.radians()
-        )  # The sum of all the previous movements up to this point
+        # The new reference point (in rotations)
+        newReference = self.angleSum / (2 * math.pi)
 
-        # If the target is more than a full rotation away from the actual
-        # rotation of the wheel, remove a rotation from the target. This
-        # does not change the target angle as it removes one rotations, but
-        # prevents the wheel from trying to play catch up
-        # if RobotBase.isReal():
-        #     if self.angleSum - (2 * math.pi) > self.radians:
-        #         self.angleSum = self.angleSum - (2 * math.pi)
-        #     elif self.angleSum + (2 * math.pi) < self.radians:
-        #         self.angleSum = self.angleSum + (2 * math.pi)
-
-        currentRef = self.angleSum / (
-            2 * math.pi
-        )  # The sum (radians) converted to rotations (of the steer wheel)
-        # Set the position of the neo to the desired position
-        # self.steer_motor.set(0.5)
-
-        # print(
-        #     "Steer Drive:",
-        #     self.constants["steer_id"],
-        #     "Reference Value: ",
-        #     currentRef
-        # )
-
+        # Send the new reference to the motor controller
         self.steer_PID.setReference(
-            currentRef, CANSparkMaxLowLevel.ControlType.kPosition
+            newReference, CANSparkMaxLowLevel.ControlType.kPosition
         )
 
-        safeSpeed = self.desiredState.speed
-        if safeSpeed > 1:
-            safeSpeed = 1
-        elif safeSpeed < -1:
-            safeSpeed = -1
-        self.drive_motor.set(safeSpeed)
+        # Send the new velocity reference to the motor controller
+        self.drive_PID.setReference(
+            newState.speed, CANSparkMaxLowLevel.ControlType.kVelocity
+        )
 
-        # print(
-        #     "Drive Motor:",
-        #     self.constants["drive_id"],
-        #     "Set value: ",
-        #     self.drive_motor.get()
-        # )
-
+        # The desired state is now the newState
         self.desiredState = newState
 
     def getCurrentState(self):
@@ -404,10 +409,29 @@ class SwerveModule:
         # Return
         return current_state
 
+    def find_zero(self):
+        """
+        Seeks to the zero.
+        """
+
+        if not self.isZeroed:
+            if not self.zeroSwitch.get():
+                self.steer_motor.set(0.165)  # CHANGEME
+            else:
+                self.steer_motor_encoder.setPosition(0)
+                self.isZeroed = True
+        else:
+            self.steer_motor_encoder.setPosition(0)
+            self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
+
     def getTargetHeading(self):
         """
         Returns the current heading of
         this module.
         """
 
-        return self.desiredState.angle.radians()
+        # Desired state
+        # return self.desiredState.angle.radians()
+
+        # Actual reference
+        return self.angleSum

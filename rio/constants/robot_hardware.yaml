@@ -4,33 +4,41 @@
 # of arms, and similar should go here.
 
 drivetrain:
-  max_velocity: 1.5    # Updated 2/19/22 by Joe
-  min_velocity: 0.075    # Updated 2/19/22 by Joe
+  max_velocity: 1.5          # Updated 2/19/22 by Joe
+  min_velocity: 0.075        # Updated 2/19/22 by Joe
 
   # All pose coordinates are in meters.
   fp_module: # Fore Port
-    pose_x: 0.5   # Updated 2/1/22 by Joe
-    pose_y: 0.5   # Updated 2/1/22 by Joe
-    drive_id: 5   # Updated Week 0 by Joe
-    steer_id: 6   # Updated Week 0 by Joe
+    pose_x: 0.517525         # Updated 2/21/22 by Joe
+    pose_y: 0.3048           # Updated 2/21/22 by Joe
+    drive_id: 5              # Updated Week 0 by Joe
+    steer_id: 6              # Updated Week 0 by Joe
+    drive_inverted: false    # Updated 2/21/22 by Joe
+    steer_inverted: false    # Updated 2/21/22 by Joe
 
   fs_module: # Fore Starboard
-    pose_x: 0.5   # Updated 2/1/22 by Joe
-    pose_y: -0.5  # Updated 2/1/22 by Joe
-    drive_id: 1   # Updated Week 0 by Joe
-    steer_id: 2   # Updated Week 0 by Joe
+    pose_x: 0.517525        # Updated 2/21/22 by Joe
+    pose_y: -0.3048         # Updated 2/21/22 by Joe
+    drive_id: 1             # Updated Week 0 by Joe
+    steer_id: 2             # Updated Week 0 by Joe
+    drive_inverted: true    # Updated 2/21/22 by Joe
+    steer_inverted: false   # Updated 2/21/22 by Joe
 
   ap_module: # Aft Port
-    pose_x: -0.5  # Updated 2/1/22 by Joe
-    pose_y: 0.5   # Updated 2/1/22 by Joe
-    drive_id: 7   # Updated Week 0 by Joe
-    steer_id: 8   # Updated Week 0 by Joe 
+    pose_x: -0.517525       # Updated 2/21/22 by Joe
+    pose_y: 0.3048          # Updated 2/21/22 by Joe
+    drive_id: 7             # Updated Week 0 by Joe
+    steer_id: 8             # Updated Week 0 by Joe 
+    drive_inverted: false   # Updated 2/21/22 by Joe
+    steer_inverted: false   # Updated 2/21/22 by Joe
 
   as_module: # Aft Starboard
-    pose_x: -0.5  # Updated 2/1/22 by Joe
-    pose_y: -0.5  # Updated 2/1/22 by Joe
-    drive_id: 3   # Updated Week 0 by Joe
-    steer_id: 4   # Updated Week 0 by Joe
+    pose_x: -0.517525       # Updated 2/21/22 by Joe
+    pose_y: -0.3048         # Updated 2/21/22 by Joe
+    drive_id: 3             # Updated Week 0 by Joe
+    steer_id: 4             # Updated Week 0 by Joe
+    drive_inverted: false   # Updated 2/21/22 by Joe
+    steer_inverted: false   # Updated 2/21/22 by Joe
   
   imu: # IMU Sensor
     can_id: 0
@@ -49,6 +57,7 @@ drivetrain:
       # Max and min values the PID can assign to the motor
       min_power: -0.5           # Updated 2/8/22 by Joe
       max_power: 0.5            # Updated 2/8/22 by Joe
+      max_current: -1           # Updated Week 1 by Joe
       # Ratio of motor rotations to meters traveled
       ratio: 1                  # Updated never by Joe
 
@@ -62,8 +71,9 @@ drivetrain:
       # Max and min values the PID can assign to the motor
       min_power: -0.85          # Updated 2/12/22 by Joe
       max_power: 0.85           # Updated 2/12/22 by Joe
+      max_current: 35           # Updated Week 1 by Joe
       # Ratio of motor rotations to module rotations
-      ratio: 0.033              # Updated 2/12/22 by Joe
+      ratio: 0.02702702703      # Updated 2/21/22 by Joe & Khan
 
 yoke:
   # Constants for shooter motors
@@ -77,28 +87,59 @@ yoke:
   # Constants for kicker
   kicker_id: 11                 # Updated Week 0 by Joe
   
+  #diameter of the wheel in meters
+  wheel_diameter: 0.09779       
+
+  # Maximum speed when driving the yoke without PID
+  max_raw_speed: 0.3            # Updated never by Khan
+  
+  # Motor inversions
+  star_shooter_invert: false    # Updated 02/24/22 by Joe
+  port_shooter_invert: true     # Updated 02/24/22 by Joe
+  primary_yoke_invert: true     # Updated 02/24/22 by Joe
+  aux_yoke_invert: false        # Updated 02/24/22 by Joe
+  kicker_invert: true           # Updated 02/24/22 by Joe
+
   pid: # PID and position constants
     primary:
-      kp: 0.8                   # Updated Week 0 by Joe
-      ki: 0                     # Updated Week 0 by Joe
-      kd: 0.01                  # Updated Week 0 by Joe
-      ff: 2                     # Updated Week 0 by Joe
+      kp: 1.75                    # Updated Week 1 by Joe
+      ki: 0.0001                  # Updated Week 1 by Joe
+      kd: 0.001                   # Updated Week 1 by Joe
+      ff: 2                       # Updated Week 0 by Joe
       # Max amount of I that can accumulate
       maxi: 1                   # Updated never by Joe
       # Max and min values the PID can assign to the motor
-      min_power: -0.5           # Updated never by Joe
-      max_power: 0.5            # Updated never by Joe
+      min_power: -0.4           # Updated never by Joe
+      max_power: 0.6            # Updated never by Joe
+      
+
     auxillary:
       kp: 1                     # Updated never by Joe
       ki: 1                     # Updated never by Joe
       kd: 1                     # Updated never by Joe
+      ff: 1                     # Updated never by Khan
       # Max amount of I that can accumulate
       maxi: 1                   # Updated never by Joe
       # Max and min values the PID can assign to the motor
       min_power: -0.5           # Updated never by Joe
       max_power: 0.5            # Updated never by Joe
+
+    shooter:
+      kp: 0.1                   # Updated never by Joe
+      ki: 0.1                   # Updated never by Joe
+      kd: 0.1                   # Updated never by Joe
+      ff: 0                     # Updated never by Simon
+      # Max amount of I that can accumulate
+      maxi: 0.1                 # Updated never by Joe
+      # Max and min values the PID can assign to the motor
+      min_power: -0.5           # Updated never by Joe
+      max_power: 0.5            # Updated never by Joe
+
     # Ratio of motor rotations to yoke rotations
-    ratio: 0.02                # Updated Week 0 by Keegan
+    ratio: 0.04                 # Updated Week 1 by Joe
+    # Max and min angles for the yoke 
+    max_angle: 1.5708           # Updated never by Khan
+    min_angle: 0                # Updated never by Khan
 
 misc:
   # Misc hardware settings
