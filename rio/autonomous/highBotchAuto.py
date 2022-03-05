@@ -19,10 +19,10 @@ class HighBotchAuto(commands2.SequentialCommandGroup):
         AHH
         """
         super().__init__(
+            FlyWithWires(drivetrain, fwd=-0.2, time=2),
             ZeroSwerveModules(drivetrain, True),
             WaitCommand(2),
             Catapult(yoke, 78.5, 0.52, True),  # Shoot like dis
             WaitCommand(2),  # Wait again
             Kicker(yoke),
-            FlyWithWires(drivetrain, fwd=-0.2, time=2),
         )
