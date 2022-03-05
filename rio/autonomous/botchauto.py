@@ -9,7 +9,7 @@ from subsystems.drivetrain import Drivetrain
 
 from commands.kicker_button import Kicker
 from commands.catapult import Catapult
-from commands.flybywire import FlyByWire
+from commands.flywithwires import FlyWithWires
 from commands.zero_swerve import ZeroSwerveModules
 
 
@@ -24,4 +24,5 @@ class BotchAuto(commands2.SequentialCommandGroup):
             Catapult(yoke, 75, 0.25, True),  # Shoot like dis
             WaitCommand(2),  # Wait again
             Kicker(yoke),
+            FlyWithWires(drivetrain, fwd=-0.2, time=2),
         )

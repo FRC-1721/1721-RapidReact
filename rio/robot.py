@@ -47,8 +47,10 @@ class BurntToaster(commands2.TimedCommandRobot):
         if self.autonomousCommand:
             self.autonomousCommand.schedule()
 
+        # Don't trigger an enabledInit(), auto can choose for itself.
+
         # Trigger an enabledInit()
-        self.container.enabledInit()
+        # self.container.enabledInit()
 
     def autonomousPeriodic(self) -> None:
         """This function is called periodically during autonomous"""

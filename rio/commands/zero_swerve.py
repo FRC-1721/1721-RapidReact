@@ -16,8 +16,7 @@ class ZeroSwerveModules(commands2.CommandBase):
         self.overwrite = overwrite
 
         # Require full control of the drivetrain
-        if not overwrite:
-            self.addRequirements([self.drivetrain])
+        self.addRequirements([self.drivetrain])
 
         # Timer
         self.backgroundTimer = wpilib.Timer()

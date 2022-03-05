@@ -29,3 +29,6 @@ class Kicker(commands2.CommandBase):
         if self.backgroundTimer.hasElapsed(1):
             self.yoke.kick(0)
             return True
+
+    def end(self, interrupted: bool) -> None:
+        print("Kicker command ended")

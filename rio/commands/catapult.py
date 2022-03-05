@@ -43,7 +43,7 @@ class Catapult(commands2.CommandBase):
         if not self.endWhenDone:
             self.yoke.setSpeed(0)
 
-        print("Catapult done")
+        print("Catapult command ended")
 
         # Return true when done
         return True
