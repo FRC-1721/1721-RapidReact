@@ -11,6 +11,12 @@ from commands.intake import Intake
 from commands.catapult import Catapult
 from commands.zero_swerve import ZeroSwerveModules
 
+# from commands.fake_trigger import FakeTrigger
+from commands.lime_detect import LimeAuto
+
+# Triggers
+from commands.triggers.trigger_trigger import Trigger
+
 # Subsystens
 from subsystems.drivetrain import Drivetrain
 from subsystems.lighting import Lighting
@@ -21,8 +27,9 @@ from constants.constants import getConstants
 
 # Autonomous
 from autonomous.conversion_test import ConversionTest
-from autonomous.nullauto import NullAuto
+from commands.nullauto import NullAuto
 from autonomous.botchauto import BotchAuto
+from autonomous.highBotchAuto import HighBotchAuto
 
 
 class RobotContainer:
@@ -78,12 +85,7 @@ class RobotContainer:
         instantiating a :GenericHID or one of its subclasses (Joystick or XboxController),
         and then passing it to a JoystickButton.
         """
-        # use the A button the xbox controller
-        # commands2.button.JoystickButton(self.driverController, 1).whenPressed(
-        #    TestButtonAction(self.drivetrain)
-        # )
 
-        # Use the left bumper button the xbox controller to activate the kicker
         commands2.button.JoystickButton(
             self.driverController, self.controlMode["kicker_button"]
         ).whenPressed(Kicker(self.yoke))
@@ -92,10 +94,10 @@ class RobotContainer:
             self.driverController, self.controlMode["intake_button"]
         ).whileHeld(Intake(self.yoke))
 
-        # Triggers the catapult command
+        # Triggers the catapult command but its low
         commands2.button.JoystickButton(
             self.driverController, self.controlMode["catapult_button"]
-        ).whileHeld(Catapult(self.yoke))
+        ).whileHeld(Catapult(self.yoke, 85, 0.25))
 
         # Triggers the catapult command but its high
         commands2.button.JoystickButton(
@@ -106,6 +108,10 @@ class RobotContainer:
         commands2.button.JoystickButton(
             self.driverController, self.controlMode["rezero_swerve"]
         ).whenPressed(ZeroSwerveModules(self.drivetrain, True))
+
+        commands2.button.POVButton(self.driverController, 4).whileHeld(
+            LimeAuto(self.drivetrain)
+        )
 
     def enabledInit(self):
         """
@@ -123,10 +129,15 @@ class RobotContainer:
         # Add options for chooser
         # self.autoChooser.setDefaultOption("Null Auto", NullAuto(self.drivetrain))
         self.autoChooser.setDefaultOption(
-            "F*ck it, pick this one cal", BotchAuto(self.yoke, self.drivetrain)
+            "(Comp) Low Goal", BotchAuto(self.yoke, self.drivetrain)
         )
-        self.autoChooser.addOption("Null Auto", NullAuto(self.drivetrain))
-        self.autoChooser.addOption("Conversion Test", ConversionTest(self.drivetrain))
+        self.autoChooser.addOption(
+            "(Comp) High Cal", HighBotchAuto(self.yoke, self.drivetrain)
+        )
+        self.autoChooser.addOption("(Dev) Null Auto", NullAuto(self.drivetrain))
+        self.autoChooser.addOption(
+            "(Dev) Conversion Test", ConversionTest(self.drivetrain)
+        )
 
         # Put the chooser on the dashboard
         wpilib.SmartDashboard.putData("Autonomous", self.autoChooser)
