@@ -45,21 +45,6 @@ drivetrain:
     yaw: 0
     pitch: 0
     roll: 0
-  
-  pid: # PID and position constants
-    drive:
-      kp: 0                     # Updated never by Joe
-      ki: 0                     # Updated never by Joe
-      kd: 0                     # Updated never by Joe
-      ff: 10                    # Updated never by Joe
-      # Max amount of I that can accumulate
-      maxi: 1                   # Updated 2/8/22 by Joe
-      # Max and min values the PID can assign to the motor
-      min_power: -0.5           # Updated 2/8/22 by Joe
-      max_power: 0.5            # Updated 2/8/22 by Joe
-      max_current: -1           # Updated Week 1 by Joe
-      # Ratio of motor rotations to meters traveled
-      ratio: 1                  # Updated never by Joe
 
     steer:
       kp: 2.650                 # Updated 2/12/22 by Joe
