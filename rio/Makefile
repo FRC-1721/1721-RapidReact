@@ -38,5 +38,9 @@ download:
 install:
 	robotpy-installer install -r robot_requirements.txt
 
+# Shortcut to get information about the code already on the bot
+info:
+	python robot.py deploy-info
+
 clean:
 	git clean -fdX
