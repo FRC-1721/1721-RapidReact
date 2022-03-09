@@ -14,6 +14,6 @@ class DriveAuto(commands2.SequentialCommandGroup):
         AHH
         """
         super().__init__(
-            WaitCommand(1),
-            FlyWithWires(drivetrain, fwd=0.1, time=0.5),
+            # WaitCommand(1),
+            FlyWithWires(drivetrain, fwd=-0.05, time=1),
         )
