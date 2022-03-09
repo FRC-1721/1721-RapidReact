@@ -29,6 +29,9 @@ class Drivetrain(SubsystemBase):
         constants = getConstants("robot_hardware")
         self.drive_const = constants["drivetrain"]
 
+        pid_constants = getConstants("robot_pid")
+        self.drive_const_pid = pid_constants["drivetrain"]
+
         # Configure networktables
         self.configureNetworkTables()
 
@@ -36,22 +39,22 @@ class Drivetrain(SubsystemBase):
         # Fore port module
         self.fp_module = SwerveModule(
             self.drive_const["fp_module"],
-            self.drive_const["pid"],
+            self.drive_const_pid["pid"],
         )
         # Fore starboard module
         self.fs_module = SwerveModule(
             self.drive_const["fs_module"],
-            self.drive_const["pid"],
+            self.drive_const_pid["pid"],
         )
         # Aft port module
         self.ap_module = SwerveModule(
             self.drive_const["ap_module"],
-            self.drive_const["pid"],
+            self.drive_const_pid["pid"],
         )
         # Aft starboard module
         self.as_module = SwerveModule(
             self.drive_const["as_module"],
-            self.drive_const["pid"],
+            self.drive_const_pid["pid"],
         )
 
         # Setup Pigeon
