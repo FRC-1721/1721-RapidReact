@@ -6,7 +6,7 @@ from subsystems.drivetrain import Drivetrain
 
 class FlyWithWires(commands2.CommandBase):
     """
-    Fires a ball at a fixed angle with no checks or fancy stuff.
+    this is the drive command
     """
 
     def __init__(self, drivetrain: Drivetrain, fwd=0, srf=0, rot=0, time=-1) -> None:

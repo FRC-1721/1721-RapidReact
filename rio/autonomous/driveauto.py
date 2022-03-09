@@ -1,19 +1,20 @@
-import math
 import commands2
 import wpilib
 
-from commands2 import WaitCommand
-
+# command imports
 from commands.flywithwires import FlyWithWires
+from commands.catapult import Catapult
+
+# subsystems imports
 from subsystems.drivetrain import Drivetrain
 
 
 class DriveAuto(commands2.SequentialCommandGroup):
-    def __init__(self, drivetrain: Drivetrain) -> None:
+    def __init__(self, drivetrain: Drivetrain):
         """
-        AHH
+        Drives in auto
         """
         super().__init__(
-            # WaitCommand(1),
-            FlyWithWires(drivetrain, fwd=-0.05, time=1),
+            FlyWithWires(drivetrain, fwd=-0.05, time=0.75),
+            FlyWithWires(drivetrain, fwd=0.05, time=0.75),
         )
