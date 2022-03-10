@@ -94,6 +94,7 @@ jobs:
         file: '*.pdf'
         tag: ${{ github.ref }}
         overwrite: true
+        prerelease: true
         body: "Tidal Force Robotics, Automated with github ci/cd."
         file_glob: true
     
@@ -104,6 +105,7 @@ jobs:
         file: '*.zip'
         tag: ${{ github.ref }}
         overwrite: true
+        prerelease: true
         body: "Tidal Force Robotics, Automated with github ci/cd."
         file_glob: true
 

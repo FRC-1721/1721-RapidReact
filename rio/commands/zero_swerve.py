@@ -16,7 +16,8 @@ class ZeroSwerveModules(commands2.CommandBase):
         self.overwrite = overwrite
 
         # Require full control of the drivetrain
-        self.addRequirements([self.drivetrain])
+        if not overwrite:
+            self.addRequirements([self.drivetrain])
 
         # Timer
         self.backgroundTimer = wpilib.Timer()
@@ -33,3 +34,7 @@ class ZeroSwerveModules(commands2.CommandBase):
 
     def isFinished(self) -> bool:
         return self.drivetrain.all_zeroed() or self.backgroundTimer.hasElapsed(2)
+
+    def end(self, interrupted: bool) -> None:
+        if interrupted:
+            print("Swerve Zeroing was interrupted")
