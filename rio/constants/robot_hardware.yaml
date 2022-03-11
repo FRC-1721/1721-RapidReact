@@ -143,6 +143,10 @@ yoke:
 
 misc:
   # Misc hardware settings
+
+  #length of the tarmac(starting area)
+  Tarmac: 215 
+
   CANdle:
     can_id: 0           # Updated 2/3/22 by Joe
     strip_type: RGB     # Updated 2/3/22 by Joe
