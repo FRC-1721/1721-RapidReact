@@ -15,6 +15,6 @@ class DriveAuto(commands2.SequentialCommandGroup):
         Drives in auto
         """
         super().__init__(
-            FlyWithWires(drivetrain, fwd=-0.05, time=0.75),
+            # FlyWithWires(drivetrain, fwd=-0.05, time=0.75),
             FlyWithWires(drivetrain, fwd=0.05, time=0.75),
         )
