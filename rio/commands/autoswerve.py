@@ -37,8 +37,12 @@ class AutoSwerve(SubsystemBase):
             self.drive_const["as_module"]["drive_id"],
             self.drive_const["as_module"]["steer_id"],
         )
-        # TODO fix this, its bad
-        # it should run serve drive
+
+        # orgonizes motors into sides (might be a bad idea)
+        self.leftMotors = self.fp_module, self.fs_module
+        self.rightMotors = self.ap_module, self.as_module
+
+        # TODO replace DifferentialDrive with our custom swerve drive
         self.drive = DifferentialDrive(self.leftMotors, self.rightMotors)
 
         # Create the encoder objects.
@@ -48,7 +52,8 @@ class AutoSwerve(SubsystemBase):
         self.as_encoder = Encoder(self.pid_const["drive"], self.pid_const["steer"])
 
         # Configure the encoder so it knows how many encoder units are in one rotation.
-        # fp encoders
+        # enc/encs = encoder/encoders
+        # fp encodersself.ap_enc_steer
         self.fp_enc_drive.setDistancePerPulse(self.pid_const["drive"]["ratio"])
         self.fp_enc_steer.setDistancePerPulse(self.pid_const["steer"]["ratio"])
 
@@ -64,12 +69,22 @@ class AutoSwerve(SubsystemBase):
         self.as_enc_drive.setDistancePerPulse(self.pid_const["drive"]["ratio"])
         self.as_enc_steer.setDistancePerPulse(self.pid_const["steer"]["ratio"])
 
+        # orgonize the encoders (might be a bad idea)
+        self.fp_encs = self.fp_enc_drive, self.fp_enc_steer
+        self.fs_encs = self.fs_enc_drive, self.fs_enc_steer
+        self.ap_encs = self.ap_enc_drive, self.ap_enc_steer
+        self.as_encs = self.as_enc_drive, self.as_enc_steer
+
+        self.leftEncoder = self.fp_encs, self.fs_encs
+        self.rightEncoder = self.ap_encs, self.as_encs
+
         # Create the gyro, a sensor which can indicate the heading of the robot relative
         # to a customizable position.
         self.gyro = AnalogGyro(1)
 
         # Create the an object for our odometry, which will utilize sensor data to
         # keep a record of our position on the field.
+        # TODO replace DifferentialDriveOdometry with our custom odometry
         self.odometry = DifferentialDriveOdometry(self.gyro.getRotation2d())
 
         # Reset the encoders upon the initilization of the robot.
