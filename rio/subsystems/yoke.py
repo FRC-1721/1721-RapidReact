@@ -30,7 +30,7 @@ class Yoke(SubsystemBase):
         # Configure Constants
         constants = getConstants("robot_hardware")
         self.yoke_const = constants["yoke"]
-        self.pid_const = self.yoke_const["pid"]
+        self.pid_const = getConstants("robot_pid")["yoke"]
 
         # Configure networktables
         self.configureNetworkTables()

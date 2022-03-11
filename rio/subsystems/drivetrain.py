@@ -34,24 +34,25 @@ class Drivetrain(SubsystemBase):
 
         # Create swerve drive modules
         # Fore port module
+        pid_const = getConstants("robot_pid")["drivetrain"]
         self.fp_module = SwerveModule(
             self.drive_const["fp_module"],
-            self.drive_const["pid"],
+            pid_const,
         )
         # Fore starboard module
         self.fs_module = SwerveModule(
             self.drive_const["fs_module"],
-            self.drive_const["pid"],
+            pid_const,
         )
         # Aft port module
         self.ap_module = SwerveModule(
             self.drive_const["ap_module"],
-            self.drive_const["pid"],
+            pid_const,
         )
         # Aft starboard module
         self.as_module = SwerveModule(
             self.drive_const["as_module"],
-            self.drive_const["pid"],
+            pid_const,
         )
 
         # Setup Pigeon
