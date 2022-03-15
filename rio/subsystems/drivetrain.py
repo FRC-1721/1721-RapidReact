@@ -416,7 +416,7 @@ class SwerveModule:
 
         if not self.isZeroed:
             if not self.zeroSwitch.get():
-                self.steer_motor.set(0.165)  # CHANGEME
+                self.steer_motor.setVoltage(0.165)
             else:
                 self.steer_motor_encoder.setPosition(0)
                 self.isZeroed = True
