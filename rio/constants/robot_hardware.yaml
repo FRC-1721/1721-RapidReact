@@ -13,7 +13,7 @@ drivetrain:
     pose_y: 0.3048           # Updated 2/21/22 by Joe
     drive_id: 5              # Updated Week 0 by Joe
     steer_id: 6              # Updated Week 0 by Joe
-    drive_inverted: false    # Updated 2/21/22 by Joe
+    drive_inverted: true    # Updated 2/21/22 by Joe
     steer_inverted: false    # Updated 2/21/22 by Joe
 
   fs_module: # Fore Starboard
@@ -21,7 +21,7 @@ drivetrain:
     pose_y: -0.3048         # Updated 2/21/22 by Joe
     drive_id: 1             # Updated Week 0 by Joe
     steer_id: 2             # Updated Week 0 by Joe
-    drive_inverted: true    # Updated 2/21/22 by Joe
+    drive_inverted: false    # Updated 2/21/22 by Joe
     steer_inverted: false   # Updated 2/21/22 by Joe
 
   ap_module: # Aft Port
