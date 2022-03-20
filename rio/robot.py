@@ -120,8 +120,6 @@ class BurntToaster(commands2.TimedCommandRobot):
             "build-date": "never",
         }
 
-        print(deployinfo.getDeployData())
-
         if RobotBase.isReal():
             try:
                 with open("/home/lvuser/py/deploy.json") as fp:
