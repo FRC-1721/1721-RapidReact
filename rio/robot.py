@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import json
 import typing
 import wpilib
 import commands2
@@ -110,17 +111,25 @@ class BurntToaster(commands2.TimedCommandRobot):
         Returns appropriate deploy data.
         """
 
+        fakedata = {
+            "git-hash": "0000000",
+            "git-branch": "sim/sim",
+            "build-host": "SimulatedLaptop",
+            "builder": "SimUser",
+            "path": "/sim/simulatedrobot",
+            "build-date": "never",
+        }
+
+        print(deployinfo.getDeployData())
+
         if RobotBase.isReal():
-            return deployinfo.getDeployData()
+            try:
+                with open("/home/lvuser/py/deploy.json") as fp:
+                    return json.load(fp)
+            except FileNotFoundError:
+                return fakedata
         else:
-            return {
-                "git-hash": "0000000",
-                "git-branch": "sim/sim",
-                "build-host": "SimulatedLaptop",
-                "builder": "SimUser",
-                "path": "/sim/simulatedrobot",
-                "build-date": "never",
-            }
+            return fakedata
 
     def configureNetworktables(self):
         # Configure networktables
