@@ -27,7 +27,7 @@ from constants.constants import getConstants
 
 # Autonomous
 from autonomous.conversion_test import ConversionTest
-from commands.nullauto import NullAuto
+from autonomous.nullauto import NullAuto
 from autonomous.botchauto import BotchAuto
 from autonomous.highBotchAuto import HighBotchAuto
 from autonomous.driveauto import DriveAuto

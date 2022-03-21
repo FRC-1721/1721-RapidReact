@@ -2,7 +2,7 @@ import commands2
 import wpilib
 
 # command imports
-from commands.flywithwires import FlyWithWires
+from autonomous.flywithwires import FlyWithWires
 from commands.catapult import Catapult
 
 # subsystems imports
