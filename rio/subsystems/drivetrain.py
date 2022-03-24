@@ -416,13 +416,16 @@ class SwerveModule:
 
         if not self.isZeroed:
             if not self.zeroSwitch.get():
-                self.steer_motor.setVoltage(0.165)
+                self.steer_motor.set(0.165)
             else:
                 self.steer_motor_encoder.setPosition(0)
                 self.isZeroed = True
         else:
             self.steer_motor_encoder.setPosition(0)
             self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
+
+    def setDriveVoltage(self):
+        self.drive_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kVoltage)
 
     def getTargetHeading(self):
         """
