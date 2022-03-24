@@ -424,8 +424,8 @@ class SwerveModule:
             self.steer_motor_encoder.setPosition(0)
             self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
 
-    def setDriveVoltage(self):
-        self.drive_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kVoltage)
+    def setDriveVoltage(self, voltage):
+        self.drive_PID.setReference(voltage, CANSparkMaxLowLevel.ControlType.kVoltage)
 
     def getTargetHeading(self):
         """
