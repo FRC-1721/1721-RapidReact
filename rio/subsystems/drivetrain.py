@@ -321,10 +321,7 @@ class SwerveModule:
 
         # Zeroing objects
 
-        self.forePortLimitSwitch = wpilib.digitalInput(1)
-        self.foreStarLimitSwitch = wpilib.digitalInput(2)
-        self.aftPortLimitSwitch = wpilib.digitalInput(3)
-        self.aftStarLimitSwitch = wpilib.digitalInput(4)
+        self.forewardLimitSwitch = wpilib.digitalInput(1)
 
         self.isZeroed = False
         self.zeroSwitch = self.steer_motor.getForwardLimitSwitch(
@@ -421,12 +418,7 @@ class SwerveModule:
         """
 
         if not self.isZeroed:
-            if (
-                not self.forePortLimitSwitch.get()
-                and not self.foreStarLimitSwitch.get()
-                and not self.aftPortLimitSwitch.get()
-                and not self.aftStarLimitSwitch.get()
-            ):
+            if not self.forewardLimitSwitch.get():
                 self.steer_motor.set(0.165)  # CHANGEME
             else:
                 self.steer_motor_encoder.setPosition(0)
