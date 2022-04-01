@@ -8,7 +8,7 @@ import wpilib
 from wpimath import kinematics, geometry
 from commands2 import SubsystemBase
 
-from rev import CANSparkMax, CANSparkMaxLowLevel, SparkMaxLimitSwitch
+from rev import CANSparkMax, CANSparkMaxLowLevel
 from ctre import Pigeon2
 
 from networktables import NetworkTables
@@ -320,15 +320,9 @@ class SwerveModule:
         self.steer_motor_encoder.setPosition(0)
 
         # Zeroing objects
-
-        self.opticalZeroSwitch = wpilib.digitalInput(1)
-
         self.isZeroed = False
-        self.zeroSwitch = self.steer_motor.getForwardLimitSwitch(
-            SparkMaxLimitSwitch.Type.kNormallyClosed
-        )
+        self.opticalZeroSwitch = wpilib.DigitalInput(self.constants["zeroSwitchID"])
 
-        self.zeroSwitch.enableLimitSwitch(False)
         # By default: 0 speed, and 0 rotation
         self.desiredState = kinematics.SwerveModuleState(0, geometry.Rotation2d(0))
 
