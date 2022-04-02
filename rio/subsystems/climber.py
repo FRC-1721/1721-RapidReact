@@ -20,22 +20,21 @@ class Climber(SubsystemBase):
 
         # get Constants
         constants = getConstants("robot_hardware")
-        self.Climber_const = constants["Climber"]
+        self.climber_const = constants["climber"]
 
         # motor configuration
-        self.portClimber = CANSparkMax(1, CANSparkMaxLowLevel.MotorType.kBrushless)
-        self.starboardClimber = CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushless)
+        self.portClimber = CANSparkMax(
+            self.climber_const["port_climber"], CANSparkMaxLowLevel.MotorType.kBrushless
+        )
+        self.starboardClimber = CANSparkMax(
+            self.climber_const["starboard_climber"],
+            CANSparkMaxLowLevel.MotorType.kBrushless,
+        )
 
         self.starboardClimber.follow(self.portClimber, True)
 
         self.backgroundTimer = wpilib.Timer()
         self.backgroundTimer.start()
-
-        self.climbPID = self.portClimber.getPIDController()
-
-        self.climbPID.setP("kp")
-        self.climbPID.setI("ki")
-        self.climbPID.setD("kd")
 
     def climb(self, speed):
         """
@@ -43,4 +42,5 @@ class Climber(SubsystemBase):
         to climb
         """
 
-        self.climbPID.setReference(speed, CANSparkMaxLowLevel.ControlType.kVelocity)
+        self.portClimber.set(speed)
+        self.starboardClimber.set(speed)

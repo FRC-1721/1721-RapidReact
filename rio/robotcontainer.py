@@ -10,7 +10,7 @@ from commands.kicker_button import Kicker
 from commands.intake import Intake
 from commands.catapult import Catapult
 from commands.zero_swerve import ZeroSwerveModules
-from commands.climb import climb
+from commands.climb import Climb
 
 # from commands.fake_trigger import FakeTrigger
 from commands.lime_detect import LimeAuto
@@ -118,10 +118,7 @@ class RobotContainer:
 
         # uses the menu and share button
         commands2.button.JoystickButton(self.driverController, 7).whenPressed(
-            Climb(Climber, True)
-        )
-        commands2.button.JoystickButton(self.driverController, 8).whenPressed(
-            Climb(Climber, False)
+            Climb(self.climber, lambda: self.driverController.getRawAxis(5))
         )
 
     def enabledInit(self):

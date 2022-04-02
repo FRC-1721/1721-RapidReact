@@ -71,9 +71,9 @@ yoke:
   aux_yoke_invert: false        # Updated 02/24/22 by Joe
   kicker_invert: true           # Updated 02/24/22 by Joe
 
-Climber:
-  portClimber: 9 # updated 2/17/22 by keegan
-  starboardClimber: 10 # updated 2/17/22 by keegan
+climber:
+  port_climber: 17              # Updated 4/2/22 by Khan
+  starboard_climber: 18         # Updated 4/2/22 by Khan
   
   pid:
     kp: 1 # updated 2/17/22 by keegan
