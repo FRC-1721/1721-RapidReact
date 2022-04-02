@@ -16,3 +16,4 @@ _staging
 # Tools
 .SysId/
 .OutlineViewer/
+*.out
