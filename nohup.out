@@ -1,0 +1,1183 @@
+kf.plasma.quick: Applet preload policy set to 1
+qml: PlasmaExtras.ScrollArea is deprecated. Use PlasmaComponents3.ScrollView instead.
+trying to show an empty dialog
+file:///usr/share/plasma/shells/org.kde.plasma.desktop/contents/views/Desktop.qml:118:19: QML Loader: Binding loop detected for property "height"
+file:///usr/share/plasma/shells/org.kde.plasma.desktop/contents/views/Desktop.qml:118:19: QML Loader: Binding loop detected for property "height"
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:531:9: QML Label: Binding loop detected for property "height"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:486:13: QML Label: Binding loop detected for property "height"
+trying to show an empty dialog
+file:///usr/share/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/ui/main.qml:43:5: QML MouseArea: Cannot anchor to an item that isn't a parent or sibling.
+Trying to use rootObject before initialization is completed, whilst using setInitializationDelayed. Forcing completion
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:486:13: QML Label: Binding loop detected for property "height"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:531:9: QML Label: Binding loop detected for property "height"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:553:5: QML Label: Binding loop detected for property "height"
+file:///usr/share/ksysguard/sensorfaces/org.kde.ksysguard.linechart/contents/ui/LineChart.qml:94:13: Unable to assign [undefined] to int
+file:///usr/share/ksysguard/sensorfaces/org.kde.ksysguard.linechart/contents/ui/LineChart.qml:94:13: Unable to assign [undefined] to int
+file:///usr/share/ksysguard/sensorfaces/org.kde.ksysguard.linechart/contents/ui/LineChart.qml:57:9: Unable to assign [undefined] to int
+trying to show an empty dialog
+trying to show an empty dialog
+file:///usr/share/plasma/plasmoids/org.kde.panel/contents/ui/main.qml:18:1: QML DropArea (parent or ancestor of QQuickLayoutAttached): Binding loop detected for property "minimumWidth"
+Cyclic dependency detected between "file:///usr/share/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/global/Globals.qml" and "file:///usr/share/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/NotificationHeader.qml"
+libkcups: CUPS-Get-Printers last error: 1030 No destinations added.
+libkcups: Get-Jobs last error: 0 successful-ok
+libkcups: Get-Jobs last error: 0 successful-ok
+libkcups: Create-Printer-Subscriptions last error: 0 successful-ok
+file:///usr/share/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ExpandedRepresentation.qml:165:9: QML HiddenItemsView: Binding loop detected for property "implicitHeight"
+Plasma Shell startup completed
+libkcups: 0
+libkcups: 0
+trying to show an empty dialog
+file:///usr/share/plasma/shells/org.kde.plasma.desktop/contents/views/Desktop.qml:118:19: QML Loader: Binding loop detected for property "height"
+file:///usr/share/plasma/shells/org.kde.plasma.desktop/contents/views/Desktop.qml:118:19: QML Loader: Binding loop detected for property "height"
+QFont::setPointSizeF: Point size <= 0 (0.000000), must be greater than 0
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: known incorrect sRGB profile
+libpng warning: profile matches sRGB but writing iCCP instead
+trying to show an empty dialog
+QQmlExpression: Expression file:///usr/share/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ExpandedRepresentation.qml:123:21 depends on non-NOTIFYable properties:
+    QAction::priority
+    QAction::priority
+    QAction::priority
+trying to show an empty dialog
+QQmlExpression: Expression file:///usr/share/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ExpandedRepresentation.qml:123:21 depends on non-NOTIFYable properties:
+    QAction::priority
+    QAction::priority
+kf.bluezqt: PendingCall Error: "br-connection-page-timeout"
+kf.bluezqt: PendingCall Error: "Did not receive a reply. Possible causes include: the remote application did not send a reply, the message bus security policy blocked the reply, the reply timeout expired, or the network connection was broken."
+org.kde.plasma.pulseaudio: No object for name "bluez_sink.21_12_20_08_39_18.a2dp_sink"
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8564, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8565, resource id: 37748891, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8566, resource id: 37748891, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8567, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8568, resource id: 37748893, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8569, resource id: 37748893, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8570, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8571, resource id: 37748895, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8572, resource id: 37748895, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8573, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8574, resource id: 37748897, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8575, resource id: 37748897, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8576, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8577, resource id: 37748899, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8578, resource id: 37748899, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8579, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8580, resource id: 37748901, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8581, resource id: 37748901, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8582, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8583, resource id: 37748903, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8584, resource id: 37748903, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8585, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8586, resource id: 37748905, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8587, resource id: 37748905, major code: 72 (PutImage), minor code: 0
+org.kde.plasma.pulseaudio: No object for name "bluez_sink.21_12_20_08_39_18.a2dp_sink"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/SelectableLabel.qml:37:5: QML TextArea: Binding loop detected for property "implicitHeight"
+libkcups: Renew-Subscription last error: 1030 Subscription #402 does not exist.
+libkcups: Subscription not found
+libkcups: Create-Printer-Subscriptions last error: 1024 notify-events not specified.
+libkcups: Request failed 1024 -1
+libkcups: Create-Printer-Subscriptions last error: 0 successful-ok
+QQmlExpression: Expression file:///usr/share/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ExpandedRepresentation.qml:123:21 depends on non-NOTIFYable properties:
+    QAction::priority
+    QAction::priority
+QQmlExpression: Expression file:///usr/share/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ExpandedRepresentation.qml:123:21 depends on non-NOTIFYable properties:
+    QAction::priority
+    QAction::priority
+org.kde.plasma.pulseaudio: No object for name "bluez_sink.21_12_20_08_39_18.a2dp_sink"
+libkcups: Renew-Subscription last error: 1030 Subscription #403 does not exist.
+libkcups: Subscription not found
+libkcups: Create-Printer-Subscriptions last error: 1024 notify-events not specified.
+libkcups: Request failed 1024 -1
+libkcups: Create-Printer-Subscriptions last error: 0 successful-ok
+QQmlExpression: Expression file:///usr/share/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ExpandedRepresentation.qml:123:21 depends on non-NOTIFYable properties:
+    QAction::priority
+    QAction::priority
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 47890, resource id: 37748895, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 47891, resource id: 37748896, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 47892, resource id: 37748897, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 47893, resource id: 37748898, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 47894, resource id: 37748899, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 47895, resource id: 37748900, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 47896, resource id: 37748901, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 47897, resource id: 37748902, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 47898, resource id: 37748903, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 47899, resource id: 37748904, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 47900, resource id: 37748905, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 47901, resource id: 37748906, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 47902, resource id: 37748891, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 47903, resource id: 37748892, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 47904, resource id: 37748893, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 47905, resource id: 37748894, major code: 60 (FreeGC), minor code: 0
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+QQmlExpression: Expression file:///usr/share/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ExpandedRepresentation.qml:123:21 depends on non-NOTIFYable properties:
+    QAction::priority
+    QAction::priority
+org.kde.plasma.pulseaudio: No object for name "bluez_sink.21_12_20_08_39_18.a2dp_sink"
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 51710, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51711, resource id: 37749148, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51712, resource id: 37749148, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 51713, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51714, resource id: 37749150, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51715, resource id: 37749150, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 51716, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51717, resource id: 37749152, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51718, resource id: 37749152, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 51719, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51720, resource id: 37749154, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51721, resource id: 37749154, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 51722, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51723, resource id: 37749156, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51724, resource id: 37749156, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 51725, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51726, resource id: 37749158, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51727, resource id: 37749158, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 51728, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51729, resource id: 37749160, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51730, resource id: 37749160, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 51731, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51732, resource id: 37749162, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 51733, resource id: 37749162, major code: 72 (PutImage), minor code: 0
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+kf.plasma.quick: Applet preload policy set to 1
+qml: PlasmaExtras.ScrollArea is deprecated. Use PlasmaComponents3.ScrollView instead.
+trying to show an empty dialog
+file:///usr/share/plasma/shells/org.kde.plasma.desktop/contents/views/Desktop.qml:118:19: QML Loader: Binding loop detected for property "height"
+file:///usr/share/plasma/shells/org.kde.plasma.desktop/contents/views/Desktop.qml:118:19: QML Loader: Binding loop detected for property "height"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:531:9: QML Label: Binding loop detected for property "height"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:486:13: QML Label: Binding loop detected for property "height"
+trying to show an empty dialog
+file:///usr/share/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/ui/main.qml:43:5: QML MouseArea: Cannot anchor to an item that isn't a parent or sibling.
+Trying to use rootObject before initialization is completed, whilst using setInitializationDelayed. Forcing completion
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:486:13: QML Label: Binding loop detected for property "height"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:531:9: QML Label: Binding loop detected for property "height"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:553:5: QML Label: Binding loop detected for property "height"
+file:///usr/share/ksysguard/sensorfaces/org.kde.ksysguard.linechart/contents/ui/LineChart.qml:94:13: Unable to assign [undefined] to int
+file:///usr/share/ksysguard/sensorfaces/org.kde.ksysguard.linechart/contents/ui/LineChart.qml:94:13: Unable to assign [undefined] to int
+file:///usr/share/ksysguard/sensorfaces/org.kde.ksysguard.linechart/contents/ui/LineChart.qml:57:9: Unable to assign [undefined] to int
+trying to show an empty dialog
+trying to show an empty dialog
+file:///usr/share/plasma/plasmoids/org.kde.panel/contents/ui/main.qml:18:1: QML DropArea (parent or ancestor of QQuickLayoutAttached): Binding loop detected for property "minimumWidth"
+Cyclic dependency detected between "file:///usr/share/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/global/Globals.qml" and "file:///usr/share/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/NotificationHeader.qml"
+libkcups: CUPS-Get-Printers last error: 1030 No destinations added.
+libkcups: Get-Jobs last error: 0 successful-ok
+libkcups: Get-Jobs last error: 0 successful-ok
+libkcups: Create-Printer-Subscriptions last error: 0 successful-ok
+file:///usr/share/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ExpandedRepresentation.qml:165:9: QML HiddenItemsView: Binding loop detected for property "implicitHeight"
+Plasma Shell startup completed
+libkcups: 0
+libkcups: 0
+trying to show an empty dialog
+file:///usr/share/plasma/shells/org.kde.plasma.desktop/contents/views/Desktop.qml:118:19: QML Loader: Binding loop detected for property "height"
+file:///usr/share/plasma/shells/org.kde.plasma.desktop/contents/views/Desktop.qml:118:19: QML Loader: Binding loop detected for property "height"
+QFont::setPointSizeF: Point size <= 0 (0.000000), must be greater than 0
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: known incorrect sRGB profile
+libpng warning: profile matches sRGB but writing iCCP instead
+trying to show an empty dialog
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 3280, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3281, resource id: 37748802, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3282, resource id: 37748802, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 3283, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3284, resource id: 37748804, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3285, resource id: 37748804, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 3286, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3287, resource id: 37748806, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3288, resource id: 37748806, major code: 72 (PutImage), minor code: 0
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 4659, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 4660, resource id: 37748828, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 4661, resource id: 37748828, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 4662, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 4663, resource id: 37748830, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 4664, resource id: 37748830, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 4665, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 4666, resource id: 37748832, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 4667, resource id: 37748832, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 4668, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 4669, resource id: 37748834, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 4670, resource id: 37748834, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 4671, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 4672, resource id: 37748836, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 4673, resource id: 37748836, major code: 72 (PutImage), minor code: 0
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 8387, resource id: 37748832, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 8388, resource id: 37748833, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 8389, resource id: 37748834, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 8390, resource id: 37748835, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 8391, resource id: 37748836, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 8392, resource id: 37748837, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 8393, resource id: 37748828, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 8394, resource id: 37748829, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 8395, resource id: 37748830, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 8396, resource id: 37748831, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 8401, resource id: 37748802, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 8402, resource id: 37748803, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 8403, resource id: 37748804, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 8404, resource id: 37748805, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 8405, resource id: 37748806, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 8406, resource id: 37748807, major code: 60 (FreeGC), minor code: 0
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 11433, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11434, resource id: 37748888, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11435, resource id: 37748888, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 11436, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11437, resource id: 37748890, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11438, resource id: 37748890, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 11439, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11440, resource id: 37748892, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11441, resource id: 37748892, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 11526, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11527, resource id: 37748898, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11528, resource id: 37748898, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 11529, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11530, resource id: 37748900, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11531, resource id: 37748900, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 11532, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11533, resource id: 37748902, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11534, resource id: 37748902, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 11535, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11536, resource id: 37748904, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11537, resource id: 37748904, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 11538, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11539, resource id: 37748906, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 11540, resource id: 37748906, major code: 72 (PutImage), minor code: 0
+libkcups: Renew-Subscription last error: 1030 Subscription #405 does not exist.
+libkcups: Subscription not found
+libkcups: Create-Printer-Subscriptions last error: 1024 notify-events not specified.
+libkcups: Request failed 1024 -1
+libkcups: Create-Printer-Subscriptions last error: 0 successful-ok
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 16095, resource id: 37748902, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 16096, resource id: 37748903, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 16097, resource id: 37748904, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 16098, resource id: 37748905, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 16099, resource id: 37748906, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 16100, resource id: 37748907, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 16101, resource id: 37748898, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 16102, resource id: 37748899, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 16103, resource id: 37748900, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 16104, resource id: 37748901, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 16109, resource id: 37748888, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 16110, resource id: 37748889, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 16111, resource id: 37748890, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 16112, resource id: 37748891, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 16113, resource id: 37748892, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 16114, resource id: 37748893, major code: 60 (FreeGC), minor code: 0
+kf.sonnet.core: Sonnet: Unable to load plugin "/usr/lib/qt/plugins/kf5/sonnet/sonnet_aspell.so" Error: "Cannot load library /usr/lib/qt/plugins/kf5/sonnet/sonnet_aspell.so: (libaspell.so.15: cannot open shared object file: No such file or directory)"
+kf.sonnet.core: Sonnet: Unable to load plugin "/usr/lib/qt/plugins/kf5/sonnet/sonnet_hspell.so" Error: "Cannot load library /usr/lib/qt/plugins/kf5/sonnet/sonnet_hspell.so: (libhspell.so.0: cannot open shared object file: No such file or directory)"
+kf.sonnet.core: Sonnet: Unable to load plugin "/usr/lib/qt/plugins/kf5/sonnet/sonnet_voikko.so" Error: "Cannot load library /usr/lib/qt/plugins/kf5/sonnet/sonnet_voikko.so: (libvoikko.so.1: cannot open shared object file: No such file or directory)"
+kf.sonnet.core: Sonnet: Unable to load plugin "/usr/lib/qt/plugins/kf5/sonnet/sonnet_aspell.so" Error: "Cannot load library /usr/lib/qt/plugins/kf5/sonnet/sonnet_aspell.so: (libaspell.so.15: cannot open shared object file: No such file or directory)"
+kf.sonnet.core: Sonnet: Unable to load plugin "/usr/lib/qt/plugins/kf5/sonnet/sonnet_hspell.so" Error: "Cannot load library /usr/lib/qt/plugins/kf5/sonnet/sonnet_hspell.so: (libhspell.so.0: cannot open shared object file: No such file or directory)"
+kf.sonnet.core: Sonnet: Unable to load plugin "/usr/lib/qt/plugins/kf5/sonnet/sonnet_voikko.so" Error: "Cannot load library /usr/lib/qt/plugins/kf5/sonnet/sonnet_voikko.so: (libvoikko.so.1: cannot open shared object file: No such file or directory)"
+kf.sonnet.core: No language dictionaries for the language: "en_US" trying to load en_US as default
+kf.sonnet.core: No language dictionaries for the language: "en_US"
+Connecting to deprecated signal QDBusConnectionInterface::serviceOwnerChanged(QString,QString,QString)
+trying to show an empty dialog
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: known incorrect sRGB profile
+libpng warning: profile matches sRGB but writing iCCP instead
+applications:org.kde.elisa.desktop: Progress value -2147483648 is out of bounds!
+file:///usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/ui/ToolTipDelegate.qml:89:9: QML ScrollView: Binding loop detected for property "bottomPadding"
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 33985, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 33986, resource id: 37749011, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 33987, resource id: 37749011, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 33988, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 33989, resource id: 37749013, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 33990, resource id: 37749013, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 33991, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 33992, resource id: 37749015, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 33993, resource id: 37749015, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 34017, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 34018, resource id: 37749019, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 34019, resource id: 37749019, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 34020, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 34021, resource id: 37749021, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 34022, resource id: 37749021, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 34023, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 34024, resource id: 37749023, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 34025, resource id: 37749023, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 34026, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 34027, resource id: 37749025, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 34028, resource id: 37749025, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 34029, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 34030, resource id: 37749027, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 34031, resource id: 37749027, major code: 72 (PutImage), minor code: 0
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 35703, resource id: 37749011, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 35704, resource id: 37749012, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 35705, resource id: 37749013, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 35706, resource id: 37749014, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 35707, resource id: 37749015, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 35708, resource id: 37749016, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 35709, resource id: 37749023, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 35710, resource id: 37749024, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 35711, resource id: 37749025, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 35712, resource id: 37749026, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 35713, resource id: 37749027, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 35714, resource id: 37749028, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 35715, resource id: 37749019, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 35716, resource id: 37749020, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 35717, resource id: 37749021, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 35718, resource id: 37749022, major code: 60 (FreeGC), minor code: 0
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 36736, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36737, resource id: 37749051, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36738, resource id: 37749051, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 36739, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36740, resource id: 37749053, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36741, resource id: 37749053, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 36742, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36743, resource id: 37749055, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36744, resource id: 37749055, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 36768, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36769, resource id: 37749059, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36770, resource id: 37749059, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 36771, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36772, resource id: 37749061, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36773, resource id: 37749061, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 36774, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36775, resource id: 37749063, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36776, resource id: 37749063, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 36777, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36778, resource id: 37749065, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36779, resource id: 37749065, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 36780, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36781, resource id: 37749067, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 36782, resource id: 37749067, major code: 72 (PutImage), minor code: 0
+kf.plasma.quick: Applet preload policy set to 1
+qml: PlasmaExtras.ScrollArea is deprecated. Use PlasmaComponents3.ScrollView instead.
+trying to show an empty dialog
+file:///usr/share/plasma/shells/org.kde.plasma.desktop/contents/views/Desktop.qml:118:19: QML Loader: Binding loop detected for property "height"
+file:///usr/share/plasma/shells/org.kde.plasma.desktop/contents/views/Desktop.qml:118:19: QML Loader: Binding loop detected for property "height"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:531:9: QML Label: Binding loop detected for property "height"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:486:13: QML Label: Binding loop detected for property "height"
+trying to show an empty dialog
+file:///usr/share/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/ui/main.qml:43:5: QML MouseArea: Cannot anchor to an item that isn't a parent or sibling.
+Trying to use rootObject before initialization is completed, whilst using setInitializationDelayed. Forcing completion
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:486:13: QML Label: Binding loop detected for property "height"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:531:9: QML Label: Binding loop detected for property "height"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml:553:5: QML Label: Binding loop detected for property "height"
+file:///usr/share/ksysguard/sensorfaces/org.kde.ksysguard.linechart/contents/ui/LineChart.qml:94:13: Unable to assign [undefined] to int
+file:///usr/share/ksysguard/sensorfaces/org.kde.ksysguard.linechart/contents/ui/LineChart.qml:94:13: Unable to assign [undefined] to int
+file:///usr/share/ksysguard/sensorfaces/org.kde.ksysguard.linechart/contents/ui/LineChart.qml:57:9: Unable to assign [undefined] to int
+trying to show an empty dialog
+trying to show an empty dialog
+file:///usr/share/plasma/plasmoids/org.kde.panel/contents/ui/main.qml:18:1: QML DropArea (parent or ancestor of QQuickLayoutAttached): Binding loop detected for property "minimumWidth"
+Cyclic dependency detected between "file:///usr/share/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/global/Globals.qml" and "file:///usr/share/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/NotificationHeader.qml"
+libkcups: Create-Printer-Subscriptions last error: 0 successful-ok
+libkcups: CUPS-Get-Printers last error: 1030 No destinations added.
+libkcups: Cancel-Subscription last error: 0 successful-ok
+libkcups: Create-Printer-Subscriptions last error: 0 successful-ok
+libkcups: Get-Jobs last error: 0 successful-ok
+libkcups: Get-Jobs last error: 0 successful-ok
+file:///usr/share/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ExpandedRepresentation.qml:165:9: QML HiddenItemsView: Binding loop detected for property "implicitHeight"
+Plasma Shell startup completed
+libkcups: 0
+libkcups: 0
+trying to show an empty dialog
+file:///usr/share/plasma/shells/org.kde.plasma.desktop/contents/views/Desktop.qml:118:19: QML Loader: Binding loop detected for property "height"
+file:///usr/share/plasma/shells/org.kde.plasma.desktop/contents/views/Desktop.qml:118:19: QML Loader: Binding loop detected for property "height"
+QFont::setPointSizeF: Point size <= 0 (0.000000), must be greater than 0
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: known incorrect sRGB profile
+libpng warning: profile matches sRGB but writing iCCP instead
+trying to show an empty dialog
+kf.i18n: "0 instead of 1 arguments to message {Adjust volume for %1} supplied before conversion."
+kf.i18n: "0 instead of 1 arguments to message {Unmute %1} supplied before conversion."
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+kf.i18n: "0 instead of 1 arguments to message {Adjust volume for %1} supplied before conversion."
+kf.i18n: "0 instead of 1 arguments to message {Unmute %1} supplied before conversion."
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 3480, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3481, resource id: 37748809, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3482, resource id: 37748809, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 3483, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3484, resource id: 37748811, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3485, resource id: 37748811, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 3486, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3487, resource id: 37748813, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3488, resource id: 37748813, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 3489, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3490, resource id: 37748815, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3491, resource id: 37748815, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 3492, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3493, resource id: 37748817, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3494, resource id: 37748817, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 3495, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3496, resource id: 37748819, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3497, resource id: 37748819, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 3498, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3499, resource id: 37748821, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3500, resource id: 37748821, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 3501, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3502, resource id: 37748823, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 3503, resource id: 37748823, major code: 72 (PutImage), minor code: 0
+kf.i18n: "0 instead of 1 arguments to message {Mute %1} supplied before conversion."
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 4298, resource id: 37748813, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 4299, resource id: 37748814, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 4300, resource id: 37748815, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 4301, resource id: 37748816, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 4302, resource id: 37748817, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 4303, resource id: 37748818, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 4304, resource id: 37748819, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 4305, resource id: 37748820, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 4306, resource id: 37748821, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 4307, resource id: 37748822, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 4308, resource id: 37748823, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 4309, resource id: 37748824, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 4310, resource id: 37748809, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 4311, resource id: 37748810, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 4312, resource id: 37748811, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 4313, resource id: 37748812, major code: 60 (FreeGC), minor code: 0
+file:///usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/ui/ToolTipDelegate.qml:89:9: QML ScrollView: Binding loop detected for property "bottomPadding"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/ui/ToolTipDelegate.qml:89:9: QML ScrollView: Binding loop detected for property "bottomPadding"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/ui/ToolTipDelegate.qml:89:9: QML ScrollView: Binding loop detected for property "bottomPadding"
+file:///usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/ui/ToolTipDelegate.qml:89:9: QML ScrollView: Binding loop detected for property "bottomPadding"
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8929, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8930, resource id: 37748851, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8931, resource id: 37748851, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8932, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8933, resource id: 37748853, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8934, resource id: 37748853, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8935, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8936, resource id: 37748855, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8937, resource id: 37748855, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8938, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8939, resource id: 37748857, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8940, resource id: 37748857, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8941, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8942, resource id: 37748859, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8943, resource id: 37748859, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8944, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8945, resource id: 37748861, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8946, resource id: 37748861, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8947, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8948, resource id: 37748863, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8949, resource id: 37748863, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 8950, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8951, resource id: 37748865, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 8952, resource id: 37748865, major code: 72 (PutImage), minor code: 0
+kf.i18n: "0 instead of 1 arguments to message {Adjust volume for %1} supplied before conversion."
+kf.i18n: "0 instead of 1 arguments to message {Unmute %1} supplied before conversion."
+trying to show an empty dialog
+kf.i18n: "0 instead of 1 arguments to message {Mute %1} supplied before conversion."
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 9907, resource id: 37748855, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 9908, resource id: 37748856, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 9909, resource id: 37748857, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 9910, resource id: 37748858, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 9911, resource id: 37748859, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 9912, resource id: 37748860, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 9913, resource id: 37748861, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 9914, resource id: 37748862, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 9915, resource id: 37748863, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 9916, resource id: 37748864, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 9917, resource id: 37748865, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 9918, resource id: 37748866, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 9919, resource id: 37748851, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 9920, resource id: 37748852, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 9921, resource id: 37748853, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 9922, resource id: 37748854, major code: 60 (FreeGC), minor code: 0
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+steam.sh[58454]: Running Steam on manjarolinux 21.2.5 64-bit
+steam.sh[58454]: STEAM_RUNTIME is enabled automatically
+setup.sh[58529]: Steam runtime environment up-to-date!
+file:///usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/ui/Task.qml:366: Unable to assign [undefined] to QString
+steam.sh[58454]: Steam client's requirements are satisfied
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Loaded SDL version 2.0.21-7140709
+/usr/share/themes/Breeze/gtk-2.0/widgets/entry:70: error: unexpected identifier 'direction', expected character '}'
+
+(steam:58593): Gtk-WARNING **: 20:04:06.078: Unable to locate theme engine in module_path: "adwaita",
+/usr/share/themes/Breeze/gtk-2.0/widgets/styles:36: error: invalid string constant "combobox_entry", expected valid string constant
+steamwebhelper.sh[58598]: Runtime for steamwebhelper: defaulting to /home/khan/.local/share/Steam/ubuntu12_64/steam-runtime-heavy
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+steamwebhelper.sh[58598]: glibc >= 2.34, partially disabling sandbox until CEF supports clone3()
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+CAppInfoCacheReadFromDiskThread took 73 milliseconds to initialize
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+
+(steam:58593): Gtk-WARNING **: 20:04:07.814: gtk_disable_setlocale() must be called before gtk_init()
+local (potentially out of sync) copy of roaming config loaded - 799 bytes.
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Connectivity test: result=Connected, in progress=0
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+roaming config store loaded successfully - 799 bytes.
+migrating temporary roaming config store
+BRefreshApplicationsInLibrary 1: 7ms
+MESA-INTEL: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
+
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Failed to init SteamVR because it isn't installed
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+ExecCommandLine: "'/home/khan/.local/share/Steam/ubuntu12_32/steam'"
+System startup time: 5.46 seconds
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.609: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.609: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.609: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.609: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.609: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.609: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.610: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.610: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.610: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.610: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.610: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.610: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.610: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.610: Trying to remove a child that doesn't believe we're it's parent.
+
+(steam:58593): LIBDBUSMENU-GLIB-WARNING **: 20:04:10.610: Trying to remove a child that doesn't believe we're it's parent.
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: known incorrect sRGB profile
+libpng warning: profile matches sRGB but writing iCCP instead
+BuildCompleteAppOverviewChange: 205
+RegisterForAppOverview 1: 16ms
+RegisterForAppOverview 2: 16ms
+CAPIJobRequestUserStats - Server response failed 2
+GameAction [AppID 294100, ActionID 1] : LaunchApp changed task to ProcessingInstallScript with ""
+GameAction [AppID 294100, ActionID 1] : LaunchApp changed task to SynchronizingCloud with ""
+GameAction [AppID 294100, ActionID 1] : LaunchApp changed task to SynchronizingControllerConfig with ""
+GameAction [AppID 294100, ActionID 1] : LaunchApp changed task to SiteLicenseSeatCheckout with ""
+GameAction [AppID 294100, ActionID 1] : LaunchApp changed task to CreatingProcess with ""
+GameAction [AppID 294100, ActionID 1] : LaunchApp waiting for user response to CreatingProcess ""
+GameAction [AppID 294100, ActionID 1] : LaunchApp continues with user response "CreatingProcess"
+/bin/sh\0-c\0/home/khan/.local/share/Steam/ubuntu12_32/reaper SteamLaunch AppId=294100 -- '/home/khan/.local/share/Steam/steamapps/common/RimWorld/start_RimWorld.sh'\0
+Game process added : AppID 294100 "/home/khan/.local/share/Steam/ubuntu12_32/reaper SteamLaunch AppId=294100 -- '/home/khan/.local/share/Steam/steamapps/common/RimWorld/start_RimWorld.sh'", ProcID 58865, IP 0.0.0.0:0
+GameAction [AppID 294100, ActionID 1] : LaunchApp changed task to WaitingGameWindow with ""
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+GameAction [AppID 294100, ActionID 1] : LaunchApp changed task to Completed with ""
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS64): ignored.
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+Set current directory to /home/khan/.local/share/Steam/steamapps/common/RimWorld
+Found path: /home/khan/.local/share/Steam/steamapps/common/RimWorld/RimWorldLinux
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Game process updated : AppID 294100 "/home/khan/.local/share/Steam/ubuntu12_32/reaper SteamLaunch AppId=294100 -- '/home/khan/.local/share/Steam/steamapps/common/RimWorld/start_RimWorld.sh'", ProcID 58869, IP 0.0.0.0:0
+Installing breakpad exception handler for appid(gameoverlayui)/version(20220314194902)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 12759, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12760, resource id: 37748906, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12761, resource id: 37748906, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 12762, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12763, resource id: 37748908, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12764, resource id: 37748908, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 12765, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12766, resource id: 37748910, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12767, resource id: 37748910, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 12768, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12769, resource id: 37748912, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12770, resource id: 37748912, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 12771, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12772, resource id: 37748914, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12773, resource id: 37748914, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 12774, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12775, resource id: 37748916, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12776, resource id: 37748916, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 12777, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12778, resource id: 37748918, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12779, resource id: 37748918, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 12780, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12781, resource id: 37748920, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 12782, resource id: 37748920, major code: 72 (PutImage), minor code: 0
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+libkcups: Renew-Subscription last error: 0 successful-ok
+libkcups: Renew-Subscription last error: 0 successful-ok
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 25096, resource id: 37748910, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 25097, resource id: 37748911, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 25098, resource id: 37748912, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 25099, resource id: 37748913, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 25100, resource id: 37748914, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 25101, resource id: 37748915, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 25102, resource id: 37748916, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 25103, resource id: 37748917, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 25104, resource id: 37748918, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 25105, resource id: 37748919, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 25106, resource id: 37748920, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 25107, resource id: 37748921, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 25108, resource id: 37748906, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 25109, resource id: 37748907, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 25110, resource id: 37748908, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 25111, resource id: 37748909, major code: 60 (FreeGC), minor code: 0
+Game process removed: AppID 294100 "/home/khan/.local/share/Steam/ubuntu12_32/reaper SteamLaunch AppId=294100 -- '/home/khan/.local/share/Steam/steamapps/common/RimWorld/start_RimWorld.sh'", ProcID 58869 
+ThreadGetProcessExitCode: no such process 58933
+ThreadGetProcessExitCode: no such process 58869
+ThreadGetProcessExitCode: no such process 58868
+ThreadGetProcessExitCode: no such process 58867
+ThreadGetProcessExitCode: no such process 58866
+Game 294100 created interface STEAMAPPLIST_INTERFACE_VERSION001 / AppList
+Game 294100 created interface STEAMAPPS_INTERFACE_VERSION008 / Apps
+Game 294100 created interface STEAMHTMLSURFACE_INTERFACE_VERSION_005 / HTMLSurface
+Game 294100 created interface STEAMHTTP_INTERFACE_VERSION003 / HTTP
+Game 294100 created interface STEAMINVENTORY_INTERFACE_V003 / Inventory
+Game 294100 created interface STEAMMUSICREMOTE_INTERFACE_VERSION001 / MusicRemote
+Game 294100 created interface STEAMMUSIC_INTERFACE_VERSION001 / Music
+Game 294100 created interface STEAMPARENTALSETTINGS_INTERFACE_VERSION001 / ParentalSettings
+Game 294100 created interface STEAMREMOTEPLAY_INTERFACE_VERSION001 / RemotePlay
+Game 294100 created interface STEAMREMOTESTORAGE_INTERFACE_VERSION014 / RemoteStorage
+Game 294100 created interface STEAMSCREENSHOTS_INTERFACE_VERSION003 / Screenshots
+Game 294100 created interface STEAMUGC_INTERFACE_VERSION013 / UGC
+Game 294100 created interface STEAMUSERSTATS_INTERFACE_VERSION011 / UserStats
+Game 294100 created interface STEAMVIDEO_INTERFACE_V002 / Video
+Game 294100 created interface SteamController007 / Controller
+Game 294100 created interface SteamFriends017 / Friends
+Game 294100 created interface SteamInput001 / Controller
+Game 294100 created interface SteamMatchGameSearch001 / GameSearch
+Game 294100 created interface SteamMatchMaking009 / Matchmaking
+Game 294100 created interface SteamMatchMakingServers002 / MatchmakingServers
+Game 294100 created interface SteamNetworking005 / Networking
+Game 294100 created interface SteamParties002 / Parties
+Game 294100 created interface SteamUser020 / User
+Game 294100 created interface SteamUtils009 / Utils
+Game 294100 method call count for IClientUGC::GetItemInstallInfo : 147
+Game 294100 method call count for IClientUGC::GetSubscribedItems : 1
+Game 294100 method call count for IClientUGC::GetNumSubscribedItems : 1
+Game 294100 method call count for IClientUtils::RecordSteamInterfaceCreation : 29
+Game 294100 method call count for IClientUtils::GetAppID : 31
+Game 294100 method call count for IClientFriends::GetPersonaName : 1
+Game 294100 method call count for IClientUser::GetSteamID : 1
+Uploaded AppInterfaceStats to Steam
+
+(process:58908): GLib-GObject-CRITICAL **: 22:24:09.948: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+[2022-03-23 20:04:04] Startup - updater built Mar 14 2022 19:48:46
+[2022-03-23 20:04:04] Loading cached metrics from disk (/home/khan/.local/share/Steam/package/steam_client_metrics.bin)
+[2022-03-23 20:04:04] Using the following download hosts for Public, Realm steamglobal
+[2022-03-23 20:04:04] 1. https://cdn.cloudflare.steamstatic.com, /client/, Realm 'steamglobal', weight was 100, source = 'update_hosts_cached.vdf'
+[2022-03-23 20:04:04] 2. https://cdn.akamai.steamstatic.com, /client/, Realm 'steamglobal', weight was 100, source = 'update_hosts_cached.vdf'
+[2022-03-23 20:04:04] 3. http://media.steampowered.com, /client/, Realm 'steamglobal', weight was 1, source = 'baked in'
+[2022-03-23 20:04:04] Verifying installation...
+[2022-03-23 20:04:04] Verification complete
+[2022-03-23 20:46:17] Background update loop checking for update. . .
+[2022-03-23 20:46:17] Checking for available updates...
+[2022-03-23 20:46:17] Downloading manifest: https://cdn.cloudflare.steamstatic.com/client/steam_client_ubuntu12
+[2022-03-23 20:46:18] Download skipped: /client/steam_client_ubuntu12 version 1647446817, installed version 1647446817, existing pending version 0
+[2022-03-23 20:46:18] Nothing to do
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 58908 -- gameoverlayui
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+assert_20220323222420_73.dmp[60607]: Uploading dump (out-of-process)
+/tmp/dumps/assert_20220323222420_73.dmp
+assert_20220323222420_73.dmp[60607]: Finished uploading minidump (out-of-process): success = yes
+assert_20220323222420_73.dmp[60607]: response: CrashID=bp-991026dd-7446-4fd2-b2b7-1f11f2220323
+assert_20220323222420_73.dmp[60607]: file ''/tmp/dumps/assert_20220323222420_73.dmp'', upload yes: ''CrashID=bp-991026dd-7446-4fd2-b2b7-1f11f2220323''
+GameAction [AppID 294100, ActionID 2] : LaunchApp changed task to ProcessingInstallScript with ""
+GameAction [AppID 294100, ActionID 2] : LaunchApp changed task to SynchronizingCloud with ""
+GameAction [AppID 294100, ActionID 2] : LaunchApp changed task to SynchronizingControllerConfig with ""
+GameAction [AppID 294100, ActionID 2] : LaunchApp changed task to SiteLicenseSeatCheckout with ""
+GameAction [AppID 294100, ActionID 2] : LaunchApp changed task to CreatingProcess with ""
+GameAction [AppID 294100, ActionID 2] : LaunchApp waiting for user response to CreatingProcess ""
+GameAction [AppID 294100, ActionID 2] : LaunchApp continues with user response "CreatingProcess"
+/bin/sh\0-c\0/home/khan/.local/share/Steam/ubuntu12_32/reaper SteamLaunch AppId=294100 -- '/home/khan/.local/share/Steam/steamapps/common/RimWorld/start_RimWorld.sh'\0
+Game process added : AppID 294100 "/home/khan/.local/share/Steam/ubuntu12_32/reaper SteamLaunch AppId=294100 -- '/home/khan/.local/share/Steam/steamapps/common/RimWorld/start_RimWorld.sh'", ProcID 60751, IP 0.0.0.0:0
+GameAction [AppID 294100, ActionID 2] : LaunchApp changed task to WaitingGameWindow with ""
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+GameAction [AppID 294100, ActionID 2] : LaunchApp changed task to Completed with ""
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS64): ignored.
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+Set current directory to /home/khan/.local/share/Steam/steamapps/common/RimWorld
+Found path: /home/khan/.local/share/Steam/steamapps/common/RimWorld/RimWorldLinux
+Game process updated : AppID 294100 "/home/khan/.local/share/Steam/ubuntu12_32/reaper SteamLaunch AppId=294100 -- '/home/khan/.local/share/Steam/steamapps/common/RimWorld/start_RimWorld.sh'", ProcID 60755, IP 0.0.0.0:0
+Installing breakpad exception handler for appid(gameoverlayui)/version(20220314194902)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 26800, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26801, resource id: 37748942, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26802, resource id: 37748942, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 26803, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26804, resource id: 37748944, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26805, resource id: 37748944, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 26806, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26807, resource id: 37748946, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26808, resource id: 37748946, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 26809, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26810, resource id: 37748948, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26811, resource id: 37748948, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 26812, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26813, resource id: 37748950, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26814, resource id: 37748950, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 26815, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26816, resource id: 37748952, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26817, resource id: 37748952, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 26818, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26819, resource id: 37748954, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26820, resource id: 37748954, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 26821, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26822, resource id: 37748956, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 26823, resource id: 37748956, major code: 72 (PutImage), minor code: 0
+libkcups: Renew-Subscription last error: 0 successful-ok
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 33860, resource id: 37748946, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 33861, resource id: 37748947, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 33862, resource id: 37748948, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 33863, resource id: 37748949, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 33864, resource id: 37748950, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 33865, resource id: 37748951, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 33866, resource id: 37748952, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 33867, resource id: 37748953, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 33868, resource id: 37748954, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 33869, resource id: 37748955, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 33870, resource id: 37748956, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 33871, resource id: 37748957, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 33872, resource id: 37748942, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 33873, resource id: 37748943, major code: 60 (FreeGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 4 (BadPixmap), sequence: 33874, resource id: 37748944, major code: 54 (FreePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 13 (BadGC), sequence: 33875, resource id: 37748945, major code: 60 (FreeGC), minor code: 0
+Game process removed: AppID 294100 "/home/khan/.local/share/Steam/ubuntu12_32/reaper SteamLaunch AppId=294100 -- '/home/khan/.local/share/Steam/steamapps/common/RimWorld/start_RimWorld.sh'", ProcID 60755 
+ThreadGetProcessExitCode: no such process 60852
+ThreadGetProcessExitCode: no such process 60755
+ThreadGetProcessExitCode: no such process 60754
+ThreadGetProcessExitCode: no such process 60753
+ThreadGetProcessExitCode: no such process 60752
+Game 294100 created interface STEAMAPPLIST_INTERFACE_VERSION001 / AppList
+Game 294100 created interface STEAMAPPS_INTERFACE_VERSION008 / Apps
+Game 294100 created interface STEAMHTMLSURFACE_INTERFACE_VERSION_005 / HTMLSurface
+Game 294100 created interface STEAMHTTP_INTERFACE_VERSION003 / HTTP
+Game 294100 created interface STEAMINVENTORY_INTERFACE_V003 / Inventory
+Game 294100 created interface STEAMMUSICREMOTE_INTERFACE_VERSION001 / MusicRemote
+Game 294100 created interface STEAMMUSIC_INTERFACE_VERSION001 / Music
+Game 294100 created interface STEAMPARENTALSETTINGS_INTERFACE_VERSION001 / ParentalSettings
+Game 294100 created interface STEAMREMOTEPLAY_INTERFACE_VERSION001 / RemotePlay
+Game 294100 created interface STEAMREMOTESTORAGE_INTERFACE_VERSION014 / RemoteStorage
+Game 294100 created interface STEAMSCREENSHOTS_INTERFACE_VERSION003 / Screenshots
+Game 294100 created interface STEAMUGC_INTERFACE_VERSION013 / UGC
+Game 294100 created interface STEAMUSERSTATS_INTERFACE_VERSION011 / UserStats
+Game 294100 created interface STEAMVIDEO_INTERFACE_V002 / Video
+Game 294100 created interface SteamController007 / Controller
+Game 294100 created interface SteamFriends017 / Friends
+Game 294100 created interface SteamInput001 / Controller
+Game 294100 created interface SteamMatchGameSearch001 / GameSearch
+Game 294100 created interface SteamMatchMaking009 / Matchmaking
+Game 294100 created interface SteamMatchMakingServers002 / MatchmakingServers
+Game 294100 created interface SteamNetworking005 / Networking
+Game 294100 created interface SteamParties002 / Parties
+Game 294100 created interface SteamUser020 / User
+Game 294100 created interface SteamUtils009 / Utils
+Game 294100 method call count for IClientUGC::GetItemInstallInfo : 147
+Game 294100 method call count for IClientUGC::GetSubscribedItems : 1
+Game 294100 method call count for IClientUGC::GetNumSubscribedItems : 1
+Game 294100 method call count for IClientUtils::RecordSteamInterfaceCreation : 29
+Game 294100 method call count for IClientUtils::GetAppID : 31
+Game 294100 method call count for IClientFriends::GetPersonaName : 1
+Game 294100 method call count for IClientUser::GetSteamID : 1
+Uploaded AppInterfaceStats to Steam
+
+(process:60800): GLib-GObject-CRITICAL **: 23:21:34.710: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 58908 -- gameoverlayui
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 60800 -- gameoverlayui
+GameAction [AppID 291550, ActionID 3] : LaunchApp changed task to ProcessingInstallScript with ""
+fsync: up and running.
+wine: RLIMIT_NICE is <= 20, unable to use setpriority safely
+GameAction [AppID 291550, ActionID 3] : LaunchApp changed task to SynchronizingControllerConfig with ""
+GameAction [AppID 291550, ActionID 3] : LaunchApp changed task to ProcessingShaderCache with ""
+Fossilize INFO: Setting autogroup scheduling.
+Fossilize INFO: Setting autogroup scheduling.
+GameAction [AppID 291550, ActionID 3] : LaunchApp changed task to SiteLicenseSeatCheckout with ""
+GameAction [AppID 291550, ActionID 3] : LaunchApp changed task to CreatingProcess with ""
+GameAction [AppID 291550, ActionID 3] : LaunchApp waiting for user response to CreatingProcess ""
+GameAction [AppID 291550, ActionID 3] : LaunchApp continues with user response "CreatingProcess"
+/bin/sh\0-c\0/home/khan/.local/share/Steam/ubuntu12_32/reaper SteamLaunch AppId=291550 -- '/home/khan/.local/share/Steam/steamapps/common/SteamLinuxRuntime_soldier'/_v2-entry-point --verb=waitforexitandrun -- '/home/khan/.local/share/Steam/steamapps/common/Proton 7.0'/proton waitforexitandrun  '/home/khan/.local/share/Steam/steamapps/common/Brawlhalla/Brawlhalla.exe'\0
+Game process added : AppID 291550 "/home/khan/.local/share/Steam/ubuntu12_32/reaper SteamLaunch AppId=291550 -- '/home/khan/.local/share/Steam/steamapps/common/SteamLinuxRuntime_soldier'/_v2-entry-point --verb=waitforexitandrun -- '/home/khan/.local/share/Steam/steamapps/common/Proton 7.0'/proton waitforexitandrun  '/home/khan/.local/share/Steam/steamapps/common/Brawlhalla/Brawlhalla.exe'", ProcID 61937, IP 0.0.0.0:0
+GameAction [AppID 291550, ActionID 3] : LaunchApp changed task to WaitingGameWindow with ""
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+GameAction [AppID 291550, ActionID 3] : LaunchApp changed task to Completed with ""
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS64): ignored.
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+ERROR: ld.so: object '/home/khan/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS32): ignored.
+pid 61948 != 61938, skipping destruction (fork without exec?)
+Local Device Found
+  type: 046d c21d
+  path: sdl://0
+  serial_number:  - 0
+  Manufacturer: 
+  Product:      Logitech F310 Gamepad (XInput)
+  Release:      4014
+  Interface:    -1
+
+!! Steam controller device opened for index 0.
+fsync: up and running.
+wine: RLIMIT_NICE is <= 20, unable to use setpriority safely
+ThreadGetProcessExitCode: no such process 62121
+ThreadGetProcessExitCode: no such process 62119
+ThreadGetProcessExitCode: no such process 61939
+Game process updated : AppID 291550 "/home/khan/.local/share/Steam/ubuntu12_32/reaper SteamLaunch AppId=291550 -- '/home/khan/.local/share/Steam/steamapps/common/SteamLinuxRuntime_soldier'/_v2-entry-point --verb=waitforexitandrun -- '/home/khan/.local/share/Steam/steamapps/common/Proton 7.0'/proton waitforexitandrun  '/home/khan/.local/share/Steam/steamapps/common/Brawlhalla/Brawlhalla.exe'", ProcID 62120, IP 0.0.0.0:0
+Setting breakpad minidump AppID = 291550
+Steam_SetMinidumpSteamID:  Caching Steam ID:  76561198205502245 [API loaded no]
+ThreadGetProcessExitCode: no such process 62124
+ThreadGetProcessExitCode: no such process 62197
+MESA-INTEL: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
+
+Fossilize INFO: Overriding serialization path: "/home/khan/.local/share/Steam/steamapps/shadercache/291550/fozpipelinesv6/steamapprun_pipeline_cache".
+Installing breakpad exception handler for appid(gameoverlayui)/version(20220314194902)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+MESA-INTEL: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
+
+Fossilize INFO: Overriding serialization path: "/home/khan/.local/share/Steam/steamapps/shadercache/291550/fozpipelinesv6/steamapprun_pipeline_cache".
+Game process updated : AppID 291550 "/home/khan/.local/share/Steam/ubuntu12_32/reaper SteamLaunch AppId=291550 -- '/home/khan/.local/share/Steam/steamapps/common/SteamLinuxRuntime_soldier'/_v2-entry-point --verb=waitforexitandrun -- '/home/khan/.local/share/Steam/steamapps/common/Proton 7.0'/proton waitforexitandrun  '/home/khan/.local/share/Steam/steamapps/common/Brawlhalla/Brawlhalla.exe'", ProcID 62267, IP 0.0.0.0:0
+Setting breakpad minidump AppID = 291550
+SteamInternal_SetMinidumpSteamID:  Caching Steam ID:  76561198205502245 [API loaded no]
+ThreadGetProcessExitCode: no such process 62201
+
+(process:62224): GLib-GObject-CRITICAL **: 23:27:20.088: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+Installing breakpad exception handler for appid(gameoverlayui)/version(20220314194902)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+qt.svg: <input>:303:258: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:463: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:659: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:913: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1049: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1251: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1453: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1631: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1739: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:1980: Could not add child element to parent element because the types are incorrect.
+qt.svg: <input>:303:2223: Could not add child element to parent element because the types are incorrect.
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 39594, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39595, resource id: 37748978, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39596, resource id: 37748978, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 39597, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39598, resource id: 37748980, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39599, resource id: 37748980, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 39600, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39601, resource id: 37748982, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39602, resource id: 37748982, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 39603, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39604, resource id: 37748984, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39605, resource id: 37748984, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 39606, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39607, resource id: 37748986, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39608, resource id: 37748986, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 39609, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39610, resource id: 37748988, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39611, resource id: 37748988, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 39612, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39613, resource id: 37748990, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39614, resource id: 37748990, major code: 72 (PutImage), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 2 (BadValue), sequence: 39615, resource id: 0, major code: 53 (CreatePixmap), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39616, resource id: 37748992, major code: 55 (CreateGC), minor code: 0
+qt.qpa.xcb: QXcbConnection: XCB error: 9 (BadDrawable), sequence: 39617, resource id: 37748992, major code: 72 (PutImage), minor code: 0
+
+(process:62325): GLib-GObject-CRITICAL **: 23:27:25.857: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+Installing breakpad exception handler for appid(gameoverlayui)/version(20220314194902)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 60800 -- gameoverlayui
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 62224 -- gameoverlayui
+
+(process:62387): GLib-GObject-CRITICAL **: 23:27:31.662: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+Installing breakpad exception handler for appid(gameoverlayui)/version(20220314194902)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+
+(process:62411): GLib-GObject-CRITICAL **: 23:27:37.517: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+Installing breakpad exception handler for appid(gameoverlayui)/version(20220314194902)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 62224 -- gameoverlayui
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 62325 -- gameoverlayui
+
+(process:62437): GLib-GObject-CRITICAL **: 23:27:43.298: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+Installing breakpad exception handler for appid(gameoverlayui)/version(20220314194902)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+Installing breakpad exception handler for appid(gameoverlayui)/version(1.0)
+
+(process:62459): GLib-GObject-CRITICAL **: 23:27:49.155: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 62325 -- gameoverlayui
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 62387 -- gameoverlayui
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 62387 -- gameoverlayui
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 62411 -- gameoverlayui
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 62411 -- gameoverlayui
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 62437 -- gameoverlayui
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 62437 -- gameoverlayui
+src/steamexe/main.cpp (253) : Assertion Failed: reaping pid: 62459 -- gameoverlayui
+libkcups: Renew-Subscription last error: 0 successful-ok
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+Installing breakpad exception handler for appid(steam)/version(1647446817)
+pid 62122 != 62121, skipping destruction (fork without exec?)
+libkcups: Renew-Subscription last error: 0 successful-ok

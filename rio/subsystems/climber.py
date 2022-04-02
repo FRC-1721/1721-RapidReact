@@ -33,6 +33,9 @@ class Climber(SubsystemBase):
 
         self.starboardClimber.follow(self.portClimber, True)
 
+        self.starboardClimber.setInverted(False)
+        self.portClimber.setInverted(True)
+
         self.backgroundTimer = wpilib.Timer()
         self.backgroundTimer.start()
 

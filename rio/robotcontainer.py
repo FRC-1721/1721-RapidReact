@@ -117,7 +117,7 @@ class RobotContainer:
         )
 
         # uses the menu and share button
-        commands2.button.JoystickButton(self.driverController, 7).whenPressed(
+        commands2.button.JoystickButton(self.driverController, 7).whileHeld(
             Climb(self.climber, lambda: self.driverController.getRawAxis(5))
         )
 

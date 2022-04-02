@@ -1,6 +1,6 @@
-from turtle import speed
 import typing
 import commands2
+
 from subsystems.climber import Climber
 
 
@@ -17,7 +17,7 @@ class Climb(commands2.CommandBase):
         This kode should work
         """
         # Set the intake speed
-        self.climber.setSpeed(self.speed())
+        self.climber.climb(self.speed())
 
-    def isFinished(self):
-        self.climber.setSpeed(0)
+    def end(self, inturrupted):
+        self.climber.climb(0)
