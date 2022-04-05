@@ -2,6 +2,7 @@
 import * as $ from "jquery";
 import * as d3 from "d3";
 import updateTemp from "./temp-display";
+import updateBuildData from "./build_data-display";
 import { updateValue } from "./utils";
 import { setupPID, receivePIDUpdate } from "./pid-optimizer";
 
@@ -124,6 +125,9 @@ function swerveListener(key, value, isNew) {
 
     if (key.includes("/SmartDashboard/Thermals/")) {
         updateTemp(key, value);
+    }
+    if (key.includes("/SmartDashboard/BuildData/")) {
+        updateBuildData(key, value);
     }
     if (key.includes("/SmartDashboard/PID/")) {
         receivePIDUpdate(key, value);
