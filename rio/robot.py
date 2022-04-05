@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
+import json
 import typing
 import wpilib
 import commands2
 
 from robotcontainer import RobotContainer
 from datetime import datetime
+from wpilib import RobotBase, deployinfo
+from networktables import NetworkTables
 
 
 class BurntToaster(commands2.TimedCommandRobot):
@@ -33,6 +36,15 @@ class BurntToaster(commands2.TimedCommandRobot):
         # Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         # autonomous chooser on the dashboard.
         self.container = RobotContainer()
+
+        # Deploy data, created at deploytime
+        self.deploy_data = self.getDeployData()
+
+        # Configure networktables
+        self.configureNetworktables()
+
+        # Setup our misc/background timer.
+        self.addPeriodic(self.extraInfo, 2.5)
 
     def disabledInit(self) -> None:
         """This function is called once each time the robot enters Disabled mode."""
@@ -79,6 +91,51 @@ class BurntToaster(commands2.TimedCommandRobot):
 
     def testPeriodic(self) -> None:
         """Called every time during test mode"""
+
+    def extraInfo(self) -> None:
+        """
+        Called by a TimedRobot timer, contianing data that should not change much
+        but should be kept current on networktables or other connectors.
+
+        This is kind of a catchall/misc method, runs every 2 or so seconds.
+        """
+
+        data = self.getDeployData()
+
+        for key in data:
+            key_entry = self.build_table.getEntry(str(key))
+            key_entry.setString(str(data[key]))
+
+    def getDeployData(self):
+        """
+        Returns appropriate deploy data.
+        """
+
+        fakedata = {
+            "git-hash": "0000000",
+            "git-branch": "sim/sim",
+            "build-host": "SimulatedLaptop",
+            "builder": "SimUser",
+            "path": "/sim/simulatedrobot",
+            "build-date": "never",
+        }
+
+        if RobotBase.isReal():
+            try:
+                with open("/home/lvuser/py/deploy.json") as fp:
+                    return json.load(fp)
+            except FileNotFoundError:
+                return fakedata
+        else:
+            return fakedata
+
+    def configureNetworktables(self):
+        # Configure networktables
+        self.nt = NetworkTables.getDefault()
+        self.sd = self.nt.getTable("SmartDashboard")
+
+        # Subtables
+        self.build_table = self.sd.getSubTable("BuildData")
 
 
 if __name__ == "__main__":
