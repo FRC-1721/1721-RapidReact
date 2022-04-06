@@ -15,7 +15,7 @@ drivetrain:
     steer_id: 6              # Updated Week 0 by Joe
     drive_inverted: false    # Updated 2/21/22 by Joe
     steer_inverted: false    # Updated 2/21/22 by Joe
-    zeroSwitchID: 0          # Updated Never by Nobody
+    zeroSwitchID: 1          # Updated 4/6/22 by Joe
 
   fs_module: # Fore Starboard
     pose_x: 0.517525        # Updated 2/21/22 by Joe
@@ -24,7 +24,7 @@ drivetrain:
     steer_id: 2             # Updated Week 0 by Joe
     drive_inverted: true    # Updated 2/21/22 by Joe
     steer_inverted: false   # Updated 2/21/22 by Joe
-    zeroSwitchID: 1         # Updated Never by Nobody
+    zeroSwitchID: 2         # Updated 4/6/22 by Joe
 
   ap_module: # Aft Port
     pose_x: -0.517525       # Updated 2/21/22 by Joe
@@ -33,7 +33,7 @@ drivetrain:
     steer_id: 8             # Updated Week 0 by Joe
     drive_inverted: false   # Updated 2/21/22 by Joe
     steer_inverted: false   # Updated 2/21/22 by Joe
-    zeroSwitchID: 2         # Updated Never by Nobody
+    zeroSwitchID: 0         # Updated 4/6/22 by Joe
 
   as_module: # Aft Starboard
     pose_x: -0.517525       # Updated 2/21/22 by Joe
@@ -42,7 +42,7 @@ drivetrain:
     steer_id: 4             # Updated Week 0 by Joe
     drive_inverted: false   # Updated 2/21/22 by Joe
     steer_inverted: false   # Updated 2/21/22 by Joe
-    zeroSwitchID: 3         # Updated Never by Nobody
+    zeroSwitchID: 3         # Updated 4/6/22 by Joe
   
   imu: # IMU Sensor
     can_id: 0
