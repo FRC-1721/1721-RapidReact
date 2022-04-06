@@ -3,10 +3,11 @@
     --mid-gray: #AAA;
     --dark-gray: #333;
 }
+
 .wrapper {
     position: absolute;
     left: 0;
-    top:0;
+    top: 0;
     right: 0;
     bottom: 0;
     height: 100%;
@@ -23,7 +24,8 @@
 }
 
 h2 {
-    margin-top: 0px;margin-top: 0px;
+    margin-top: 0px;
+    margin-top: 0px;
 }
 
 .canvas_wrapper {
@@ -63,6 +65,16 @@ h2 {
     border: 1px solid black;
 }
 
+.data_table {
+    background-color: var(--mid-gray);
+
+}
+
+.data_table td {
+    width: auto;
+    border: 1px solid black;
+}
+
 .pid_table {
     border: 1px solid var(--light-gray);
     border-radius: 4px;
@@ -80,7 +92,7 @@ h2 {
     align-items: stretch;
 }
 
-.input_container + .input_container {
+.input_container+.input_container {
     margin-top: 4px;
 }
 
@@ -111,10 +123,15 @@ h2 {
 
 .canvas_wrapper {
     background-image: url("resources/RobotBody.png");
-    background-color: #cccccc; /* Used if the image is unavailable */
-    height: 375px; /* You must set a specified height */
+    background-color: #cccccc;
+    /* Used if the image is unavailable */
+    height: 375px;
+    /* You must set a specified height */
     width: 400px;
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    /* Resize the background image to cover the entire container */
 }
