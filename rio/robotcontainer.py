@@ -116,9 +116,16 @@ class RobotContainer:
             LimeAuto(self.drivetrain)
         )
 
-        # uses the menu and share button
+        # Use the menu button to enter climb mode
         commands2.button.JoystickButton(self.driverController, 7).whileHeld(
-            Climb(self.climber, lambda: self.driverController.getRawAxis(5))
+            Climb(
+                self.climber,
+                self.drivetrain,
+                lambda: self.driverController.getRawAxis(5),
+                lambda: self.driverController.getRawAxis(
+                    self.controlMode["strafe_axis"]
+                ),
+            )
         )
 
     def enabledInit(self):
