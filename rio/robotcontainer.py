@@ -120,9 +120,7 @@ class RobotContainer:
                 self.climber,
                 self.drivetrain,
                 lambda: self.driverController.getRawAxis(5),
-                lambda: self.driverController.getRawAxis(
-                    self.controlMode["strafe_axis"]
-                ),
+                lambda: self.driverController.getRawAxis(4),
             )
         )
 

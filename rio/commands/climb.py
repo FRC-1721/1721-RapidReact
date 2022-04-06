@@ -32,11 +32,14 @@ class Climb(commands2.CommandBase):
         """
 
         # Operate the climber actions
-        self.climber.climb(self.climbSpeed())
+        if abs(self.climbSpeed()) > 0.1:
+            self.climber.climb(self.climbSpeed())
+        else:
+            self.climber.climb(0)
 
         # Operate the drivetrain
         self.drivetrain.arcadeDrive(
-            self.approachSpeed, 0, 0
+            self.approachSpeed() ** 5, 0, 0
         )  # Only use fwd, driving forward and backward with the approach speed value.
 
     def end(self, inturrupted):
