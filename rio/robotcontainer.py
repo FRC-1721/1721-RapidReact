@@ -19,7 +19,6 @@ from commands.triggers.trigger_trigger import Trigger
 
 # Subsystens
 from subsystems.drivetrain import Drivetrain
-from subsystems.lighting import Lighting
 from subsystems.yoke import Yoke
 
 # Constants
@@ -54,7 +53,6 @@ class RobotContainer:
 
         # The robot's subsystems
         self.drivetrain = Drivetrain()
-        self.lighting = Lighting()
         self.yoke = Yoke()
 
         # Configure button bindings
