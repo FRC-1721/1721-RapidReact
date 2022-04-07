@@ -54,6 +54,9 @@ class RobotContainer:
 
         # The driver's controller
         self.driverController = wpilib.Joystick(self.controlDriver["controller_port"])
+        self.operatorController = wpilib.Joystick(
+            self.controlOperator["controller_port"]
+        )
 
         # The robot's subsystems
         self.drivetrain = Drivetrain()
@@ -90,43 +93,43 @@ class RobotContainer:
         """
 
         commands2.button.JoystickButton(
-            self.driverController, self.controlOperator["kicker_button"]
+            self.operatorController, self.controlOperator["kicker_button"]
         ).whenPressed(Kicker(self.yoke))
 
         commands2.button.JoystickButton(
-            self.driverController, self.controlOperator["intake_button"]
+            self.operatorController, self.controlOperator["intake_button"]
         ).whileHeld(Intake(self.yoke))
 
         # Triggers the catapult command but its low
         commands2.button.JoystickButton(
-            self.driverController, self.controlOperator["catapult_button"]
+            self.operatorController, self.controlOperator["catapult_button"]
         ).whileHeld(Catapult(self.yoke, 85, 0.25))
 
         # Triggers the catapult command but its high
         commands2.button.JoystickButton(
-            self.driverController, self.controlOperator["high_catapult_button"]
+            self.operatorController, self.controlOperator["high_catapult_button"]
         ).whileHeld(Catapult(self.yoke, 80, 0.5))
 
         # Rezero the swerve modules
         commands2.button.JoystickButton(
-            self.driverController, self.controlOperator["rezero_swerve"]
+            self.driverController, self.controlDriver["rezero_swerve"]
         ).whenPressed(ZeroSwerveModules(self.drivetrain, True))
 
-        commands2.button.POVButton(self.driverController, 4).whileHeld(
+        commands2.button.POVButton(self.operatorController, 4).whileHeld(
             LimeAuto(self.drivetrain)
         )
 
         # Use the menu button to enter climb mode
         # while the yaml file has the climb mode button in it
         # don't use it, it breaks the code
-        commands2.button.JoystickButton(self.driverController, 7).whileHeld(
+        commands2.button.JoystickButton(self.operatorController, 7).whileHeld(
             Climb(
                 self.climber,
                 self.drivetrain,
-                lambda: self.driverController.getRawAxis(
+                lambda: self.operatorController.getRawAxis(
                     self.controlOperator["climb_up"]
                 ),
-                lambda: self.driverController.getRawAxis(
+                lambda: self.operatorController.getRawAxis(
                     self.controlOperator["climb_down"]
                 ),
             )
