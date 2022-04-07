@@ -117,12 +117,18 @@ class RobotContainer:
         )
 
         # Use the menu button to enter climb mode
-        commands2.button.JoystickButton(self.driverController, 7).whileHeld(
+        commands2.button.JoystickButton(
+            self.driverController, self.controlOperator["climb_active"]
+        ).whileHeld(
             Climb(
                 self.climber,
                 self.drivetrain,
-                lambda: self.driverController.getRawAxis(5),
-                lambda: self.driverController.getRawAxis(4),
+                lambda: self.driverController.getRawAxis(
+                    self.controlOperator["climb_up"]
+                ),
+                lambda: self.driverController.getRawAxis(
+                    self.controlOperator["climb_down"]
+                ),
             )
         )
 
