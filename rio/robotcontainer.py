@@ -45,13 +45,15 @@ class RobotContainer:
 
         # Configure simulated controls, replacing real controls for alternative
         # mappings when in sim mode.
-        self.controlMode = controlConsts["mode_a"]["driver"]
+        self.controlDriver = controlConsts["mode_a"]["driver"]
+        self.controlOperator = controlConsts["mode_a"]["operator"]
         if not wpilib.RobotBase.isReal():
             # Override the controlMode with simulated controls if we're in the matrix
-            self.controlMode = controlConsts["mode_a"]["sim"]
+            self.controlDriver = controlConsts["mode_a"]["sim"]
+            self.controlOperator = controlConsts["mode_a"]["sim"]
 
         # The driver's controller
-        self.driverController = wpilib.Joystick(self.controlMode["controller_port"])
+        self.driverController = wpilib.Joystick(self.controlDriver["controller_port"])
 
         # The robot's subsystems
         self.drivetrain = Drivetrain()
@@ -69,13 +71,13 @@ class RobotContainer:
             FlyByWire(
                 self.drivetrain,
                 lambda: -self.driverController.getRawAxis(
-                    self.controlMode["forward_axis"]
+                    self.controlDriver["forward_axis"]
                 ),
                 lambda: self.driverController.getRawAxis(
-                    self.controlMode["steer_axis"]
+                    self.controlDriver["steer_axis"]
                 ),
                 lambda: self.driverController.getRawAxis(
-                    self.controlMode["strafe_axis"]
+                    self.controlDriver["strafe_axis"]
                 ),
             )
         )
@@ -88,26 +90,26 @@ class RobotContainer:
         """
 
         commands2.button.JoystickButton(
-            self.driverController, self.controlMode["kicker_button"]
+            self.driverController, self.controlOperator["kicker_button"]
         ).whenPressed(Kicker(self.yoke))
 
         commands2.button.JoystickButton(
-            self.driverController, self.controlMode["intake_button"]
+            self.driverController, self.controlOperator["intake_button"]
         ).whileHeld(Intake(self.yoke))
 
         # Triggers the catapult command but its low
         commands2.button.JoystickButton(
-            self.driverController, self.controlMode["catapult_button"]
+            self.driverController, self.controlOperator["catapult_button"]
         ).whileHeld(Catapult(self.yoke, 85, 0.25))
 
         # Triggers the catapult command but its high
         commands2.button.JoystickButton(
-            self.driverController, self.controlMode["high_catapult_button"]
+            self.driverController, self.controlOperator["high_catapult_button"]
         ).whileHeld(Catapult(self.yoke, 80, 0.5))
 
         # Rezero the swerve modules
         commands2.button.JoystickButton(
-            self.driverController, self.controlMode["rezero_swerve"]
+            self.driverController, self.controlOperator["rezero_swerve"]
         ).whenPressed(ZeroSwerveModules(self.drivetrain, True))
 
         commands2.button.POVButton(self.driverController, 4).whileHeld(

@@ -13,13 +13,17 @@ mode_a:
     strafe_axis: 0         # "Strafe" Axis
     
     # Functions
+    rezero_swerve: 8              # Updated week1 by Joe
+
+  operator:
+    controller_port: 1     # What usb port the operator controller is on
+    
+    # Functions
     kicker_button: 6              # Updated week1 by Joe
     catapult_button: 1            # Updated week1 by Joe
     intake_button: 5              # Updated week1 by Joe
     assisted_shooter_button: 4    # Updated week1 by Joe
     high_catapult_button: 3       # Updated week1 by Joe
-    rezero_swerve: 8              # Updated week1 by Joe
-
 
   sim:
     # The control mappings for use when using the simulator
