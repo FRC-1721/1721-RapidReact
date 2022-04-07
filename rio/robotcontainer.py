@@ -117,9 +117,9 @@ class RobotContainer:
         )
 
         # Use the menu button to enter climb mode
-        commands2.button.JoystickButton(
-            self.driverController, self.controlOperator["climb_active"]
-        ).whileHeld(
+        # while the yaml file has the climb mode button in it
+        # don't use it, it breaks the code
+        commands2.button.JoystickButton(self.driverController, 7).whileHeld(
             Climb(
                 self.climber,
                 self.drivetrain,
