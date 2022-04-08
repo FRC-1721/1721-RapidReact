@@ -42,6 +42,7 @@ class RobotContainer:
     def __init__(self) -> None:
         # Setup constants
         controlConsts = getConstants("robot_controls")
+        hardConsts = getConstants("robot_hardware")
 
         # Configure simulated controls, replacing real controls for alternative
         # mappings when in sim mode.
@@ -57,6 +58,8 @@ class RobotContainer:
         self.operatorController = wpilib.Joystick(
             self.controlOperator["controller_port"]
         )
+
+        self.yokeConsts = hardConsts["yoke"]
 
         # The robot's subsystems
         self.drivetrain = Drivetrain()
@@ -112,12 +115,24 @@ class RobotContainer:
         # Triggers the catapult command but its low
         commands2.button.JoystickButton(
             self.operatorController, self.controlOperator["catapult_button"]
-        ).whileHeld(Catapult(self.yoke, 85, 0.25))
+        ).whileHeld(
+            Catapult(
+                self.yoke,
+                self.yokeConsts["low_target_speed"],
+                self.yokeConsts["low_target_angle"],
+            )
+        )
 
         # Triggers the catapult command but its high
         commands2.button.JoystickButton(
             self.operatorController, self.controlOperator["high_catapult_button"]
-        ).whileHeld(Catapult(self.yoke, 80, 0.5))
+        ).whileHeld(
+            Catapult(
+                self.yoke,
+                self.yokeConsts["high_target_speed"],
+                self.yokeConsts["high_target_angle"],
+            )
+        )
 
         # Rezero the swerve modules
         commands2.button.JoystickButton(

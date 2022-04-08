@@ -75,6 +75,12 @@ yoke:
   aux_yoke_invert: false        # Updated 02/24/22 by Joe
   kicker_invert: true           # Updated 02/24/22 by Joe
 
+  low_target_speed: 85          # Updated Never by Khan
+  low_target_angle: 0.25        # Updated Never by Khan
+
+  high_target_speed: 80         # Updated Never by Khan
+  high_target_angle: 0.5        # Updated Never by Khan
+
 climber:
   port_climber: 17              # Updated 4/2/22 by Khan
   starboard_climber: 18         # Updated 4/2/22 by Khan
