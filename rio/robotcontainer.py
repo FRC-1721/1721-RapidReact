@@ -10,6 +10,7 @@ from commands.kicker_button import Kicker
 from commands.intake import Intake
 from commands.catapult import Catapult
 from commands.zero_swerve import ZeroSwerveModules
+from commands.climb import Climb
 
 # from commands.fake_trigger import FakeTrigger
 from commands.lime_detect import LimeAuto
@@ -20,6 +21,7 @@ from commands.triggers.trigger_trigger import Trigger
 # Subsystens
 from subsystems.drivetrain import Drivetrain
 from subsystems.yoke import Yoke
+from subsystems.climber import Climber
 
 # Constants
 from constants.constants import getConstants
@@ -53,6 +55,7 @@ class RobotContainer:
 
         # The robot's subsystems
         self.drivetrain = Drivetrain()
+        self.climber = Climber()
         self.yoke = Yoke()
 
         # Configure button bindings
@@ -109,6 +112,16 @@ class RobotContainer:
 
         commands2.button.POVButton(self.driverController, 4).whileHeld(
             LimeAuto(self.drivetrain)
+        )
+
+        # Use the menu button to enter climb mode
+        commands2.button.JoystickButton(self.driverController, 7).whileHeld(
+            Climb(
+                self.climber,
+                self.drivetrain,
+                lambda: self.driverController.getRawAxis(5),
+                lambda: self.driverController.getRawAxis(4),
+            )
         )
 
     def enabledInit(self):
