@@ -56,8 +56,8 @@ yoke:
   port_shooter_id: 12           # Updated Week 0 by Joe
 
   # Constants for yoke motors and other sensors
-  primary_motor_id: 9           # Updated Week 0 by Joe
-  auxillary_motor_id: 10        # Updated never by Joe
+  primary_motor_id: 10          # Updated 5/7/22 by Joe
+  auxillary_motor_id: 9         # Updated 5/7/22 by Joe
 
   # Constants for kicker
   kicker_id: 11                 # Updated Week 0 by Joe

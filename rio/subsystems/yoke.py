@@ -138,7 +138,7 @@ class Yoke(SubsystemBase):
         self.backgroundTimer.start()
 
         # TODO: See if this works, add limit switch
-        self.resetYoke(math.pi / 2)
+        self.resetYoke(0.2695240378379822)
 
     def configureNetworkTables(self):
         # Get an instance of networktables
@@ -222,14 +222,18 @@ class Yoke(SubsystemBase):
             f"rotation target:{target_rotations}, current: {self.getPrimaryAngle()} temp:{self.primaryYokeMotor.getMotorTemperature()}"
         )
 
-        if not self.primaryYokeMotor.getMotorTemperature() > 45:
+        if not self.primaryYokeMotor.getMotorTemperature() > 55:
             if not target_rotations < -0.05:
                 # Set a new PID target
                 self.primaryPID.setReference(
                     target_rotations,
                     CANSparkMaxLowLevel.ControlType.kPosition,
                 )
+                print("Set Reference!")
+            else:
+                print(f"Did not set reference, target out of range {target_rotations}")
         else:
+            print(f"Motor was too hot, did not set new.")
             self.primaryYokeMotor.set(0)
 
     # def setAuxillaryYokeAngle(self, angle: geometry.Rotation2d):
@@ -299,6 +303,8 @@ class Yoke(SubsystemBase):
             #     self.auxillaryYokeMotor.getMotorTemperature()
             # )
             self.kicker_temp.setDouble(self.kickerMotor.getMotorTemperature())
+
+        print(self.primaryYokeMotor.getAppliedOutput())
 
     def isExtraBallPresent(self):
         """

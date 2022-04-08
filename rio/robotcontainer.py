@@ -91,6 +91,7 @@ class RobotContainer:
         self.climber.setDefaultCommand(
             Climb(
                 self.climber,
+                self.yoke,
                 lambda: self.operatorController.getRawAxis(
                     self.controlOperator["climb_axis"]
                 ),
