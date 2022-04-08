@@ -45,3 +45,7 @@ mode_a:
     assisted_shooter_button: 3
     high_catapult_button: 2
     rezero_swerve: 1
+    climb_axis: 1
+    climb_up: 0
+    climb_down: 1
+    climb_active: 7
