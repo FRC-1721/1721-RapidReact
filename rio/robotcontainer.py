@@ -85,6 +85,15 @@ class RobotContainer:
             )
         )
 
+        self.climber.setDefaultCommand(
+            Climb(
+                self.climber,
+                lambda: self.operatorController.getRawAxis(
+                    self.controlOperator["climb_axis"]
+                ),
+            )
+        )
+
     def configureButtonBindings(self):
         """
         Use this method to define your button->command mappings. Buttons can be created by
@@ -122,18 +131,18 @@ class RobotContainer:
         # Use the menu button to enter climb mode
         # while the yaml file has the climb mode button in it
         # don't use it, it breaks the code
-        commands2.button.JoystickButton(self.operatorController, 7).whileHeld(
-            Climb(
-                self.climber,
-                self.drivetrain,
-                lambda: self.operatorController.getRawAxis(
-                    self.controlOperator["climb_up"]
-                ),
-                lambda: self.operatorController.getRawAxis(
-                    self.controlOperator["climb_down"]
-                ),
-            )
-        )
+        # commands2.button.JoystickButton(self.operatorController, 7).whileHeld(
+        #     Climb(
+        #         self.climber,
+        #         self.drivetrain,
+        #         lambda: self.operatorController.getRawAxis(
+        #             self.controlOperator["climb_up"]
+        #         ),
+        #         lambda: self.operatorController.getRawAxis(
+        #             self.controlOperator["climb_down"]
+        #         ),
+        #     )
+        # )
 
     def enabledInit(self):
         """

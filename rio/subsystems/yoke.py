@@ -137,8 +137,8 @@ class Yoke(SubsystemBase):
         self.backgroundTimer = wpilib.Timer()
         self.backgroundTimer.start()
 
-        # TODO: REMOVE ME AFTER WEEK 1
-        self.resetYoke(0.268 + 0.08)  # FIX IT IN CODE FIX IT IN CODE
+        # TODO: See if this works, add limit switch
+        self.resetYoke(math.pi / 2)
 
     def configureNetworkTables(self):
         # Get an instance of networktables
