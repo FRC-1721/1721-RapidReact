@@ -222,7 +222,7 @@ class Yoke(SubsystemBase):
             f"rotation target:{target_rotations}, current: {self.getPrimaryAngle()} temp:{self.primaryYokeMotor.getMotorTemperature()}"
         )
 
-        if not self.primaryYokeMotor.getMotorTemperature() > 55:
+        if not self.primaryYokeMotor.getMotorTemperature() > 80:
             if not target_rotations < -0.05:
                 # Set a new PID target
                 self.primaryPID.setReference(
