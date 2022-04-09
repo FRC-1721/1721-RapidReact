@@ -5,6 +5,13 @@ function updateBuildData(key, value) {
         const elem = document.getElementById(id)
         if (elem) {
             elem.innerHTML = value;
+
+            // Check if value is dirty
+            if (value.includes("-dirty")) {
+                elem.style.backgroundColor = "#FFBBBB";
+            } else {
+                elem.style.backgroundColor = "transparent";
+            }
         }
     }
 }
