@@ -124,7 +124,7 @@ class Yoke(SubsystemBase):
         self.backgroundTimer.start()
 
         # TODO: See if this works, add limit switch
-        self.resetYoke(0.2695240378379822)
+        self.resetYoke(0.25)  # This is a number in yoke ROTATIONS not radians!
 
     def configureNetworkTables(self):
         # Get an instance of networktables
@@ -259,6 +259,9 @@ class Yoke(SubsystemBase):
 
         SmartDashboard.putNumber(
             "Yoke/Applied_Output", self.primaryYokeMotor.getAppliedOutput()
+        )
+        SmartDashboard.putNumber(
+            "Yoke/Current Pos", self.primaryYokeMotorEncoder.getPosition()
         )
 
     def isExtraBallPresent(self):
