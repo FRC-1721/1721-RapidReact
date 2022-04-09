@@ -29,15 +29,15 @@ drivetrain:
 
 yoke:
   primary:
-    kp: 2.75                    # Updated Week 1 by Joe
-    ki: 0.0001                  # Updated Week 1 by Joe
-    kd: 0.001                   # Updated Week 1 by Joe
-    ff: 2                       # Updated Week 0 by Joe
+    kp: 0.2                   # Updated Week 6 by Joe
+    ki: 0.000001              # Updated Week 6 by Joe
+    kd: 0.0                   # Updated Week 6 by Joe
+    ff: 0.0001                # Updated Week 6 by Joe
     # Max amount of I that can accumulate
-    maxi: 100                 # Updated never by Joe
+    maxi: 100                 # Updated Week 6 by Joe
     # Max and min values the PID can assign to the motor
-    min_power: -0.4           # Updated never by Joe
-    max_power: 0.6            # Updated never by Joe
+    min_power: -0.8           # Updated Week 6 by Joe
+    max_power: 0.8            # Updated Week 6 by Joe
 
 
   auxillary:
