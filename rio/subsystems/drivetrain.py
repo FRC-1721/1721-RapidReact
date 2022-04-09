@@ -337,7 +337,8 @@ class SwerveModule:
         self.desiredState = kinematics.SwerveModuleState(0, geometry.Rotation2d(0))
 
         # Keeps track of the acrewed angle over time
-        self.angleSum = 0
+        self.angleSum = 0  # TODO: Remove me
+        self.newTargetAngle = 0
 
     def doTestAction(self):
         """
@@ -378,15 +379,13 @@ class SwerveModule:
         )
 
         # newTargetRef is a number of rotations.
-        newTargetRef = self.newTargetAngle / (2 * math.pi)
+        targetRef = self.newTargetAngle / (2 * math.pi)
 
         # Send newTargetRef to the motor controller.
         self.steer_PID.setReference(
-            newTargetRef,
+            targetRef,
             CANSparkMaxLowLevel.ControlType.kPosition,
         )
-
-        print(newTargetRef())
 
         # Send the new velocity reference to the motor controller
         # Only update the wheelspeed if module is zeroed, this should help protect against field 'burnouts'
@@ -405,9 +404,6 @@ class SwerveModule:
         # Current position of the motor encoder (in rotations)
         self.encoder = self.steer_motor_encoder.getPosition()
 
-        # if self.constants["steer_id"] == 1:
-        # print(encoder)
-
         # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
         self.radians = self.encoder * (math.pi * 2)
 
@@ -421,21 +417,6 @@ class SwerveModule:
         # Return
         return current_state
 
-    # def find_zero(self):
-    #     """
-    #     Seeks to the zero.
-    #     """
-
-    #     if not self.isZeroed:
-    #         if not self.opticalZeroSwitch.get():
-    #             self.steer_motor.set(0.165)  # CHANGEME
-    #         else:
-    #             self.steer_motor_encoder.setPosition(0)
-    #             self.isZeroed = True
-    #     else:
-    #         self.steer_motor_encoder.setPosition(0)
-    #         self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
-
     def getTargetHeading(self):
         """
         Returns the current heading of
@@ -446,7 +427,7 @@ class SwerveModule:
         # return self.desiredState.angle.radians()
 
         # Actual reference
-        return self.angleSum
+        return self.newTargetAngle
 
     def lazyZero(self):
         """
@@ -456,7 +437,7 @@ class SwerveModule:
         cur = self.opticalZeroSwitch.get()
 
         # If we went from off, to on
-        if not self._lastZero and cur:
+        if not self._lastZero and cur and self.steer_motor_encoder.getVelocity() > 0:
             self.steer_motor_encoder.setPosition(0)
 
         self._lastZero = cur
