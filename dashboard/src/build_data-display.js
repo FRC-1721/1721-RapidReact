@@ -19,7 +19,7 @@ function updateBuildData(key, value) {
                 elem.style.backgroundColor = JOE;
             } else if (value.includes("khan")) {
                 elem.style.backgroundColor = KHAN;
-            } else if (value.includes("keegan")) {
+            } else if (value.includes("kredcool")) {
                 elem.style.backgroundColor = KEEGAN;
             } else if (value.includes("jack")) {
                 elem.style.backgroundColor = JACK;
