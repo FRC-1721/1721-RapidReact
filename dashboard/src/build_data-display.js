@@ -1,8 +1,8 @@
 const RED = "#FFBBBB"
-const KHAN = "#fcec03"
-const JOE = "#03fce3"
-const KEEGAN = "#1c03fc"
-const JACK = "#fc03c6"
+const KHAN = "#fff985"
+const JOE = "#85e0ff"
+const KEEGAN = "#89ff85"
+const JACK = "#ff85f9"
 
 function updateBuildData(key, value) {
     const splitKey = key.split("/");
