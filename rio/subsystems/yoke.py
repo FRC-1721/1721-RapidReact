@@ -87,7 +87,7 @@ class Yoke(SubsystemBase):
         self.primaryPID.setP(self.pid_const["primary"]["kp"])
         self.primaryPID.setI(self.pid_const["primary"]["ki"])
         self.primaryPID.setD(self.pid_const["primary"]["kd"])
-        # self.primaryPID.setFF(1)
+        self.primaryPID.setFF(self.pid_const["primary"]["ff"])
         self.primaryPID.setIMaxAccum(self.pid_const["primary"]["maxi"])
         self.primaryPID.setOutputRange(
             self.pid_const["primary"]["min_power"],

@@ -112,12 +112,12 @@ class BurntToaster(commands2.TimedCommandRobot):
         """
 
         fakedata = {
-            "git-hash": "0000000",
+            "git-desc": "week0-69-g42096-dirty",
             "git-branch": "sim/sim",
-            "build-host": "SimulatedLaptop",
-            "builder": "SimUser",
-            "path": "/sim/simulatedrobot",
-            "build-date": "never",
+            "deploy-host": "SimulatedLaptop",
+            "deploy-user": "SimUser",
+            "code-path": "/sim/simulatedrobot",
+            "deploy-date": "never",
         }
 
         if RobotBase.isReal():
