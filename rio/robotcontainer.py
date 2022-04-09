@@ -166,8 +166,8 @@ class RobotContainer:
         we move to enabled.
         """
 
-        if not self.drivetrain.all_zeroed():
-            ZeroSwerveModules(self.drivetrain).schedule()
+        # if not self.drivetrain.all_zeroed():
+        #     ZeroSwerveModules(self.drivetrain).schedule()
 
     def configureAutonomous(self):
         # Create a sendable chooser

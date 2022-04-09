@@ -210,11 +210,11 @@ class Drivetrain(SubsystemBase):
         self.fp_module.isZeroed = False
         self.ap_module.isZeroed = False
 
-    def zero_swerve_modules(self):
-        self.fs_module.find_zero()
-        self.as_module.find_zero()
-        self.fp_module.find_zero()
-        self.ap_module.find_zero()
+    # def zero_swerve_modules(self):
+    #     self.fs_module.find_zero()
+    #     self.as_module.find_zero()
+    #     self.fp_module.find_zero()
+    #     self.ap_module.find_zero()
 
     def all_zeroed(self):
         return (
@@ -371,19 +371,22 @@ class SwerveModule:
             newState, self.getCurrentState().angle
         )
 
-        # The change from the old angle, to the new angle
-        deltaAngle = newState.angle - self.desiredState.angle
-
-        # The sum of all the previous movements up to this point
-        self.angleSum = self.angleSum + deltaAngle.radians()
-
-        # The new reference point (in rotations)
-        newReference = self.angleSum / (2 * math.pi)
-
-        # Send the new reference to the motor controller
-        self.steer_PID.setReference(
-            newReference, CANSparkMaxLowLevel.ControlType.kPosition
+        # newTargetAngle is an angle in radians.
+        self.newTargetAngle = self.reboundValue(
+            optimizedState.angle.radians(),
+            self.getCurrentState().angle.radians(),
         )
+
+        # newTargetRef is a number of rotations.
+        newTargetRef = self.newTargetAngle / (2 * math.pi)
+
+        # Send newTargetRef to the motor controller.
+        self.steer_PID.setReference(
+            newTargetRef,
+            CANSparkMaxLowLevel.ControlType.kPosition,
+        )
+
+        print(newTargetRef())
 
         # Send the new velocity reference to the motor controller
         # Only update the wheelspeed if module is zeroed, this should help protect against field 'burnouts'
@@ -418,20 +421,20 @@ class SwerveModule:
         # Return
         return current_state
 
-    def find_zero(self):
-        """
-        Seeks to the zero.
-        """
+    # def find_zero(self):
+    #     """
+    #     Seeks to the zero.
+    #     """
 
-        if not self.isZeroed:
-            if not self.opticalZeroSwitch.get():
-                self.steer_motor.set(0.165)  # CHANGEME
-            else:
-                self.steer_motor_encoder.setPosition(0)
-                self.isZeroed = True
-        else:
-            self.steer_motor_encoder.setPosition(0)
-            self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
+    #     if not self.isZeroed:
+    #         if not self.opticalZeroSwitch.get():
+    #             self.steer_motor.set(0.165)  # CHANGEME
+    #         else:
+    #             self.steer_motor_encoder.setPosition(0)
+    #             self.isZeroed = True
+    #     else:
+    #         self.steer_motor_encoder.setPosition(0)
+    #         self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
 
     def getTargetHeading(self):
         """
@@ -457,3 +460,19 @@ class SwerveModule:
             self.steer_motor_encoder.setPosition(0)
 
         self._lastZero = cur
+
+    def reboundValue(self, target, datum) -> float:
+        """
+        https://www.chiefdelphi.com/t/wrap-around-with-rev-spark-maxes/403608/17
+        Made with help from JohnGilb on Chief Delphi
+        """
+
+        lowerDatum = datum - math.pi  # 180 behind
+        upperDatum = datum + math.pi  # 180 ahead
+
+        if target < lowerDatum:
+            target = upperDatum + ((target - lowerDatum) % (upperDatum - lowerDatum))
+        elif target > upperDatum:
+            target = lowerDatum + ((target - upperDatum) % (upperDatum - lowerDatum))
+
+        return target
