@@ -11,6 +11,7 @@ from commands.intake import Intake
 from commands.catapult import Catapult
 from commands.zero_swerve import ZeroSwerveModules
 from commands.climb import Climb
+from commands.swing import Swing
 
 # from commands.fake_trigger import FakeTrigger
 from commands.lime_detect import LimeAuto
@@ -142,6 +143,10 @@ class RobotContainer:
 
         commands2.button.POVButton(self.operatorController, 4).whileHeld(
             LimeAuto(self.drivetrain)
+        )
+
+        commands2.button.JoystickButton(self.operatorController, 2).whenHeld(
+            Swing(self.yoke)
         )
 
         # Use the menu button to enter climb mode
