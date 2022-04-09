@@ -11,7 +11,7 @@ from commands2 import SubsystemBase
 from ctre import TalonFX, ControlMode
 from networktables import NetworkTables
 from rev import CANSparkMax, CANSparkMaxLowLevel
-from wpilib import RobotBase
+from wpilib import RobotBase, SmartDashboard
 import wpilib
 from wpimath import geometry
 
@@ -257,7 +257,9 @@ class Yoke(SubsystemBase):
             # )
             self.kicker_temp.setDouble(self.kickerMotor.getMotorTemperature())
 
-        print(self.primaryYokeMotor.getAppliedOutput())
+        SmartDashboard.putNumber(
+            "Yoke/Applied_Output", self.primaryYokeMotor.getAppliedOutput()
+        )
 
     def isExtraBallPresent(self):
         """
