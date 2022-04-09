@@ -10,6 +10,7 @@ from subsystems.drivetrain import Drivetrain
 from commands.kicker_button import Kicker
 from commands.catapult import Catapult
 from commands.flybywire import FlyByWire
+from autonomous.flywithwires import FlyWithWires
 from commands.zero_swerve import ZeroSwerveModules
 
 
