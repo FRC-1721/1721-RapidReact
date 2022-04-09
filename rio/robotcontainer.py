@@ -31,6 +31,7 @@ from autonomous.conversion_test import ConversionTest
 from commands.nullauto import NullAuto
 from autonomous.botchauto import BotchAuto
 from autonomous.highBotchAuto import HighBotchAuto
+from autonomous.driveauto import DriveAuto
 
 
 class RobotContainer:
@@ -185,7 +186,7 @@ class RobotContainer:
         self.autoChooser.addOption(
             "(Dev) Conversion Test", ConversionTest(self.drivetrain)
         )
-
+        self.autoChooser.addOption("Drive Auto", DriveAuto(self.drivetrain))
         # Put the chooser on the dashboard
         wpilib.SmartDashboard.putData("Autonomous", self.autoChooser)
 
