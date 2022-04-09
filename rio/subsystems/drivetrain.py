@@ -132,6 +132,12 @@ class Drivetrain(SubsystemBase):
 
             self.backgroundTimer.reset()
 
+        # Lazy re-zeroing
+        self.fs_module.lazyZero()
+        self.as_module.lazyZero()
+        self.ap_module.lazyZero()
+        self.fp_module.lazyZero()
+
     def arcadeDrive(self, fwd, srf, rot):
         """
         Generates a chassis speeds using the joystick commands
@@ -324,6 +330,9 @@ class SwerveModule:
         self.isZeroed = False
         self.opticalZeroSwitch = wpilib.DigitalInput(self.constants["zeroSwitchID"])
 
+        # Lazy zeroing
+        self._lastZero = False  # For lazy zeroing
+
         # By default: 0 speed, and 0 rotation
         self.desiredState = kinematics.SwerveModuleState(0, geometry.Rotation2d(0))
 
@@ -377,6 +386,7 @@ class SwerveModule:
         )
 
         # Send the new velocity reference to the motor controller
+        # Only update the wheelspeed if module is zeroed, this should help protect against field 'burnouts'
         if self.isZeroed:
             self.drive_PID.setReference(
                 newState.speed, CANSparkMaxLowLevel.ControlType.kVelocity
@@ -434,3 +444,16 @@ class SwerveModule:
 
         # Actual reference
         return self.angleSum
+
+    def lazyZero(self):
+        """
+        Rezero on every rising edge.
+        """
+
+        cur = self.opticalZeroSwitch.get()
+
+        # If we went from off, to on
+        if not self._lastZero and cur:
+            self.steer_motor_encoder.setPosition(0)
+
+        self._lastZero = cur
