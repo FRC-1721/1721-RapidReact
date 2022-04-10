@@ -8,6 +8,7 @@ robotpy = {extras = ["rev", "ctre", "commands2"], version = "*"}
 wpilib = {extras = ["all"], version = "*"}
 pyyaml = "*"
 black = "*"
+roslibpy = "*"
 
 [dev-packages]
 black = "*"
