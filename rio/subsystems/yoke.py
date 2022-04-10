@@ -11,7 +11,7 @@ from commands2 import SubsystemBase
 from ctre import TalonFX, ControlMode
 from networktables import NetworkTables
 from rev import CANSparkMax, CANSparkMaxLowLevel
-from wpilib import RobotBase
+from wpilib import RobotBase, SmartDashboard
 import wpilib
 from wpimath import geometry
 
@@ -53,33 +53,33 @@ class Yoke(SubsystemBase):
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
-        self.auxillaryYokeMotor = CANSparkMax(
-            self.yoke_const["auxillary_motor_id"],
-            CANSparkMaxLowLevel.MotorType.kBrushless,
-        )
-
         # Configure Kicker motor
         self.kickerMotor = CANSparkMax(
             self.yoke_const["kicker_id"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
 
+        # Initialize motors
+        self.starShooter.restoreFactoryDefaults()
+        self.portShooter.restoreFactoryDefaults()
+        self.primaryYokeMotor.restoreFactoryDefaults()
+
         # Set motor inversions
         self.starShooter.setInverted(self.yoke_const["star_shooter_invert"])
         self.portShooter.setInverted(self.yoke_const["port_shooter_invert"])
         self.primaryYokeMotor.setInverted(self.yoke_const["primary_yoke_invert"])
-        self.auxillaryYokeMotor.setInverted(self.yoke_const["aux_yoke_invert"])
+        # self.auxillaryYokeMotor.setInverted(self.yoke_const["aux_yoke_invert"])
         self.kickerMotor.setInverted(self.yoke_const["kicker_invert"])
 
         # Get PID controller objects
         self.primaryPID = self.primaryYokeMotor.getPIDController()
-        self.auxillaryPID = self.auxillaryYokeMotor.getPIDController()
+        # self.auxillaryPID = self.auxillaryYokeMotor.getPIDController()
         self.starPID = self.starShooter.getPIDController()
         self.portPID = self.portShooter.getPIDController()
 
         # Get encoders and sensors
         self.primaryYokeMotorEncoder = self.primaryYokeMotor.getEncoder()
-        self.auxillaryYokeMotorEncoder = self.auxillaryYokeMotor.getEncoder()
+        # self.auxillaryYokeMotorEncoder = self.auxillaryYokeMotor.getEncoder()
         self.kickerMotorEncoder = self.kickerMotor.getEncoder()
 
         # Configure PID
@@ -87,22 +87,11 @@ class Yoke(SubsystemBase):
         self.primaryPID.setP(self.pid_const["primary"]["kp"])
         self.primaryPID.setI(self.pid_const["primary"]["ki"])
         self.primaryPID.setD(self.pid_const["primary"]["kd"])
-        # self.primaryPID.setFF(1)
+        self.primaryPID.setFF(self.pid_const["primary"]["ff"])
         self.primaryPID.setIMaxAccum(self.pid_const["primary"]["maxi"])
         self.primaryPID.setOutputRange(
             self.pid_const["primary"]["min_power"],
             self.pid_const["primary"]["max_power"],
-        )
-
-        # Aux Yoke PID
-        self.auxillaryPID.setP(self.pid_const["auxillary"]["kp"])
-        self.auxillaryPID.setI(self.pid_const["auxillary"]["ki"])
-        self.auxillaryPID.setD(self.pid_const["auxillary"]["kd"])
-        # self.auxillaryPID.setFF(1)
-        self.auxillaryPID.setIMaxAccum(self.pid_const["auxillary"]["maxi"])
-        self.auxillaryPID.setOutputRange(
-            self.pid_const["auxillary"]["min_power"],
-            self.pid_const["auxillary"]["max_power"],
         )
 
         # Shooter pid
@@ -129,16 +118,13 @@ class Yoke(SubsystemBase):
         self.primaryYokeMotorEncoder.setPositionConversionFactor(
             self.pid_const["ratio"]
         )
-        self.auxillaryYokeMotorEncoder.setPositionConversionFactor(
-            self.pid_const["ratio"]
-        )
 
         # A handy background timer
         self.backgroundTimer = wpilib.Timer()
         self.backgroundTimer.start()
 
-        # TODO: REMOVE ME AFTER WEEK 1
-        self.resetYoke(0.268 + 0.08)  # FIX IT IN CODE FIX IT IN CODE
+        # TODO: See if this works, add limit switch
+        self.resetYoke(0.25)  # This is a number in yoke ROTATIONS not radians!
 
     def configureNetworkTables(self):
         # Get an instance of networktables
@@ -153,7 +139,7 @@ class Yoke(SubsystemBase):
 
         # Setup all of the networktable entries
         self.primary_yoke_temp = self.thermal_table.getEntry("primary_yoke_temp")
-        self.auxillary_yoke_temp = self.thermal_table.getEntry("auxillary_yoke_temp")
+        # self.auxillary_yoke_temp = self.thermal_table.getEntry("auxillary_yoke_temp")
         self.kicker_temp = self.thermal_table.getEntry("kicker_temp")
 
         self.primary_yoke_kp = self.pid_NT.getEntry("primary_yoke_kp")
@@ -201,9 +187,6 @@ class Yoke(SubsystemBase):
     def getPrimaryAngle(self):
         return self.primaryYokeMotorEncoder.getPosition()
 
-    def getAuxillaryAngle(self):
-        return self.auxillaryYokeMotorEncoder.getPosition()
-
     def setPrimaryYokeAngle(self, angle: geometry.Rotation2d):
         """
         Method to update the target angle
@@ -222,44 +205,18 @@ class Yoke(SubsystemBase):
             f"rotation target:{target_rotations}, current: {self.getPrimaryAngle()} temp:{self.primaryYokeMotor.getMotorTemperature()}"
         )
 
-        if not self.primaryYokeMotor.getMotorTemperature() > 45:
+        if not self.primaryYokeMotor.getMotorTemperature() > 80:
             if not target_rotations < -0.05:
                 # Set a new PID target
                 self.primaryPID.setReference(
                     target_rotations,
                     CANSparkMaxLowLevel.ControlType.kPosition,
                 )
+                print("Set Reference!")
+            else:
+                print(f"Did not set reference, target out of range {target_rotations}")
         else:
-            self.primaryYokeMotor.set(0)
-
-    def setAuxillaryYokeAngle(self, angle: geometry.Rotation2d):
-        """
-        Method to update the target angle
-        for the aux.
-        """
-        # sets auxillary yoke angle
-        self.setAuxillaryYokeAngle(angle)
-
-        # Convert rotation2d to radians
-        target_radians = angle.radians()
-
-        # Convert radians to motor rotations
-        target_rotations = target_radians / (2 * math.pi)
-
-        actual_rotations = self.primaryYokeMotorEncoder.getPosition()
-
-        print(
-            f"rotation target:{target_rotations}, current: {self.getPrimaryAngle()} temp:{self.primaryYokeMotor.getMotorTemperature()}"
-        )
-
-        if not self.primaryYokeMotor.getMotorTemperature() > 45:
-            if not target_rotations > 0.05:
-                # Set a new PID target
-                self.auxillaryPID.setReference(
-                    target_rotations,
-                    CANSparkMaxLowLevel.ControlType.kPosition,
-                )
-        else:
+            print(f"Motor was too hot, did not set new.")
             self.primaryYokeMotor.set(0)
 
     def kick(self, kickspeed):
@@ -278,7 +235,7 @@ class Yoke(SubsystemBase):
         """
 
         self.primaryYokeMotorEncoder.setPosition(angle)
-        self.auxillaryYokeMotorEncoder.setPosition(angle)
+        # self.auxillaryYokeMotorEncoder.setPosition(angle)
 
     def periodic(self):
         """
@@ -295,10 +252,17 @@ class Yoke(SubsystemBase):
             self.primary_yoke_temp.setDouble(
                 self.primaryYokeMotor.getMotorTemperature()
             )
-            self.auxillary_yoke_temp.setDouble(
-                self.auxillaryYokeMotor.getMotorTemperature()
-            )
+            # self.auxillary_yoke_temp.setDouble(
+            #     self.auxillaryYokeMotor.getMotorTemperature()
+            # )
             self.kicker_temp.setDouble(self.kickerMotor.getMotorTemperature())
+
+        SmartDashboard.putNumber(
+            "Yoke/Applied_Output", self.primaryYokeMotor.getAppliedOutput()
+        )
+        SmartDashboard.putNumber(
+            "Yoke/Current Pos", self.primaryYokeMotorEncoder.getPosition()
+        )
 
     def isExtraBallPresent(self):
         """

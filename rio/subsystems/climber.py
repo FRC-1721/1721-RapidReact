@@ -36,9 +36,6 @@ class Climber(SubsystemBase):
         self.starboardClimber.setInverted(False)
         self.portClimber.setInverted(True)
 
-        self.backgroundTimer = wpilib.Timer()
-        self.backgroundTimer.start()
-
     def climb(self, speed):
         """
         The main purpose of the climber

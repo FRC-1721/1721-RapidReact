@@ -11,6 +11,7 @@ from commands.intake import Intake
 from commands.catapult import Catapult
 from commands.zero_swerve import ZeroSwerveModules
 from commands.climb import Climb
+from commands.swing import Swing
 
 # from commands.fake_trigger import FakeTrigger
 from commands.lime_detect import LimeAuto
@@ -42,16 +43,24 @@ class RobotContainer:
     def __init__(self) -> None:
         # Setup constants
         controlConsts = getConstants("robot_controls")
+        hardConsts = getConstants("robot_hardware")
 
         # Configure simulated controls, replacing real controls for alternative
         # mappings when in sim mode.
-        self.controlMode = controlConsts["mode_a"]["driver"]
+        self.controlDriver = controlConsts["mode_a"]["driver"]
+        self.controlOperator = controlConsts["mode_a"]["operator"]
         if not wpilib.RobotBase.isReal():
             # Override the controlMode with simulated controls if we're in the matrix
-            self.controlMode = controlConsts["mode_a"]["sim"]
+            self.controlDriver = controlConsts["mode_a"]["sim"]
+            self.controlOperator = controlConsts["mode_a"]["sim"]
 
         # The driver's controller
-        self.driverController = wpilib.Joystick(self.controlMode["controller_port"])
+        self.driverController = wpilib.Joystick(self.controlDriver["controller_port"])
+        self.operatorController = wpilib.Joystick(
+            self.controlOperator["controller_port"]
+        )
+
+        self.yokeConsts = hardConsts["yoke"]
 
         # The robot's subsystems
         self.drivetrain = Drivetrain()
@@ -69,13 +78,23 @@ class RobotContainer:
             FlyByWire(
                 self.drivetrain,
                 lambda: -self.driverController.getRawAxis(
-                    self.controlMode["forward_axis"]
+                    self.controlDriver["forward_axis"]
                 ),
                 lambda: self.driverController.getRawAxis(
-                    self.controlMode["steer_axis"]
+                    self.controlDriver["steer_axis"]
                 ),
                 lambda: self.driverController.getRawAxis(
-                    self.controlMode["strafe_axis"]
+                    self.controlDriver["strafe_axis"]
+                ),
+            )
+        )
+
+        self.climber.setDefaultCommand(
+            Climb(
+                self.climber,
+                self.yoke,
+                lambda: self.operatorController.getRawAxis(
+                    self.controlOperator["climb_axis"]
                 ),
             )
         )
@@ -88,41 +107,63 @@ class RobotContainer:
         """
 
         commands2.button.JoystickButton(
-            self.driverController, self.controlMode["kicker_button"]
+            self.operatorController, self.controlOperator["kicker_button"]
         ).whenPressed(Kicker(self.yoke))
 
         commands2.button.JoystickButton(
-            self.driverController, self.controlMode["intake_button"]
+            self.operatorController, self.controlOperator["intake_button"]
         ).whileHeld(Intake(self.yoke))
 
         # Triggers the catapult command but its low
         commands2.button.JoystickButton(
-            self.driverController, self.controlMode["catapult_button"]
-        ).whileHeld(Catapult(self.yoke, 85, 0.25))
+            self.operatorController, self.controlOperator["catapult_button"]
+        ).whileHeld(
+            Catapult(
+                self.yoke,
+                self.yokeConsts["low_target_speed"],
+                self.yokeConsts["low_target_angle"],
+            )
+        )
 
         # Triggers the catapult command but its high
         commands2.button.JoystickButton(
-            self.driverController, self.controlMode["high_catapult_button"]
-        ).whileHeld(Catapult(self.yoke, 80, 0.5))
+            self.operatorController, self.controlOperator["high_catapult_button"]
+        ).whileHeld(
+            Catapult(
+                self.yoke,
+                self.yokeConsts["high_target_speed"],
+                self.yokeConsts["high_target_angle"],
+            )
+        )
 
         # Rezero the swerve modules
         commands2.button.JoystickButton(
-            self.driverController, self.controlMode["rezero_swerve"]
+            self.driverController, self.controlDriver["rezero_swerve"]
         ).whenPressed(ZeroSwerveModules(self.drivetrain, True))
 
-        commands2.button.POVButton(self.driverController, 4).whileHeld(
+        commands2.button.POVButton(self.operatorController, 4).whileHeld(
             LimeAuto(self.drivetrain)
         )
 
-        # Use the menu button to enter climb mode
-        commands2.button.JoystickButton(self.driverController, 7).whileHeld(
-            Climb(
-                self.climber,
-                self.drivetrain,
-                lambda: self.driverController.getRawAxis(5),
-                lambda: self.driverController.getRawAxis(4),
-            )
+        commands2.button.JoystickButton(self.operatorController, 2).whenHeld(
+            Swing(self.yoke)
         )
+
+        # Use the menu button to enter climb mode
+        # while the yaml file has the climb mode button in it
+        # don't use it, it breaks the code
+        # commands2.button.JoystickButton(self.operatorController, 7).whileHeld(
+        #     Climb(
+        #         self.climber,
+        #         self.drivetrain,
+        #         lambda: self.operatorController.getRawAxis(
+        #             self.controlOperator["climb_up"]
+        #         ),
+        #         lambda: self.operatorController.getRawAxis(
+        #             self.controlOperator["climb_down"]
+        #         ),
+        #     )
+        # )
 
     def enabledInit(self):
         """

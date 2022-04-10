@@ -377,9 +377,10 @@ class SwerveModule:
         )
 
         # Send the new velocity reference to the motor controller
-        self.drive_PID.setReference(
-            newState.speed, CANSparkMaxLowLevel.ControlType.kVelocity
-        )
+        if self.isZeroed:
+            self.drive_PID.setReference(
+                newState.speed, CANSparkMaxLowLevel.ControlType.kVelocity
+            )
 
         # The desired state is now the newState
         self.desiredState = newState

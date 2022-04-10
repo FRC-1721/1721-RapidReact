@@ -17,3 +17,4 @@ _staging
 .SysId/
 .OutlineViewer/
 *.out
+sysid_data*
