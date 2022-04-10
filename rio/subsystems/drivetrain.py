@@ -132,6 +132,12 @@ class Drivetrain(SubsystemBase):
 
             self.backgroundTimer.reset()
 
+        # Lazy re-zeroing
+        self.fs_module.lazyZero()
+        self.as_module.lazyZero()
+        self.ap_module.lazyZero()
+        self.fp_module.lazyZero()
+
     def arcadeDrive(self, fwd, srf, rot):
         """
         Generates a chassis speeds using the joystick commands
@@ -324,11 +330,15 @@ class SwerveModule:
         self.isZeroed = False
         self.opticalZeroSwitch = wpilib.DigitalInput(self.constants["zeroSwitchID"])
 
+        # Lazy zeroing
+        self._lastZero = False  # For lazy zeroing
+
         # By default: 0 speed, and 0 rotation
         self.desiredState = kinematics.SwerveModuleState(0, geometry.Rotation2d(0))
 
         # Keeps track of the acrewed angle over time
-        self.angleSum = 0
+        self.angleSum = 0  # TODO: Remove me
+        self.newTargetAngle = 0
 
     def doTestAction(self):
         """
@@ -362,21 +372,23 @@ class SwerveModule:
             newState, self.getCurrentState().angle
         )
 
-        # The change from the old angle, to the new angle
-        deltaAngle = newState.angle - self.desiredState.angle
+        # newTargetAngle is an angle in radians.
+        self.newTargetAngle = self.reboundValue(
+            newState.angle.radians(),
+            self.getCurrentState().angle.radians(),
+        )
 
-        # The sum of all the previous movements up to this point
-        self.angleSum = self.angleSum + deltaAngle.radians()
+        # newTargetRef is a number of rotations.
+        targetRef = self.newTargetAngle / (2 * math.pi)
 
-        # The new reference point (in rotations)
-        newReference = self.angleSum / (2 * math.pi)
-
-        # Send the new reference to the motor controller
+        # Send newTargetRef to the motor controller.
         self.steer_PID.setReference(
-            newReference, CANSparkMaxLowLevel.ControlType.kPosition
+            targetRef,
+            CANSparkMaxLowLevel.ControlType.kPosition,
         )
 
         # Send the new velocity reference to the motor controller
+        # Only update the wheelspeed if module is zeroed, this should help protect against field 'burnouts'
         if self.isZeroed:
             self.drive_PID.setReference(
                 newState.speed, CANSparkMaxLowLevel.ControlType.kVelocity
@@ -391,9 +403,6 @@ class SwerveModule:
         """
         # Current position of the motor encoder (in rotations)
         self.encoder = self.steer_motor_encoder.getPosition()
-
-        # if self.constants["steer_id"] == 1:
-        # print(encoder)
 
         # Divide encoder by ratio of encoder rotations to wheel rotations, times 2pi
         self.radians = self.encoder * (math.pi * 2)
@@ -414,14 +423,7 @@ class SwerveModule:
         """
 
         if not self.isZeroed:
-            if not self.opticalZeroSwitch.get():
-                self.steer_motor.set(0.165)  # CHANGEME
-            else:
-                self.steer_motor_encoder.setPosition(0)
-                self.isZeroed = True
-        else:
-            self.steer_motor_encoder.setPosition(0)
-            self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
+            self.steer_motor.set(0.165)  # CHANGEME
 
     def getTargetHeading(self):
         """
@@ -433,4 +435,35 @@ class SwerveModule:
         # return self.desiredState.angle.radians()
 
         # Actual reference
-        return self.angleSum
+        return self.newTargetAngle
+
+    def lazyZero(self):
+        """
+        Rezero on every rising edge.
+        """
+
+        cur = self.opticalZeroSwitch.get()
+
+        # If we went from off, to on
+        if not self._lastZero and cur and self.steer_motor_encoder.getVelocity() > 0:
+            # self.steer_motor_encoder.setPosition(0)
+            # self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
+            print(f"Re-Zeroed module: {self.constants['steer_id']}")
+
+        self._lastZero = cur
+
+    def reboundValue(self, target, datum) -> float:
+        """
+        https://www.chiefdelphi.com/t/wrap-around-with-rev-spark-maxes/403608/17
+        Made with help from JohnGilb on Chief Delphi
+        """
+
+        lowerDatum = datum - math.pi  # 180 behind
+        upperDatum = datum + math.pi  # 180 ahead
+
+        if target < lowerDatum:
+            target = upperDatum + ((target - lowerDatum) % (upperDatum - lowerDatum))
+        elif target > upperDatum:
+            target = lowerDatum + ((target - upperDatum) % (upperDatum - lowerDatum))
+
+        return target
