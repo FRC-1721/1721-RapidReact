@@ -374,7 +374,7 @@ class SwerveModule:
 
         # newTargetAngle is an angle in radians.
         self.newTargetAngle = self.reboundValue(
-            optimizedState.angle.radians(),
+            newState.angle.radians(),
             self.getCurrentState().angle.radians(),
         )
 
@@ -446,8 +446,9 @@ class SwerveModule:
 
         # If we went from off, to on
         if not self._lastZero and cur and self.steer_motor_encoder.getVelocity() > 0:
-            self.steer_motor_encoder.setPosition(0)
-            self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
+            # self.steer_motor_encoder.setPosition(0)
+            # self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
+            print(f"Re-Zeroed module: {self.constants['steer_id']}")
 
         self._lastZero = cur
 
