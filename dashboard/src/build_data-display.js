@@ -1,4 +1,5 @@
 const RED = "#FFBBBB"
+const GREEN = "#abfc8d"
 const KHAN = "#fff985"
 const JOE = "#85e0ff"
 const KEEGAN = "#89ff85"
@@ -23,6 +24,8 @@ function updateBuildData(key, value) {
                 elem.style.backgroundColor = KEEGAN;
             } else if (value.includes("jack")) {
                 elem.style.backgroundColor = JACK;
+            } else if (value.includes("HEAD")) {
+                elem.style.backgroundColor = GREEN;
             } else {
                 elem.style.backgroundColor = "transparent";
             }
