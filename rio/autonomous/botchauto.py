@@ -18,9 +18,6 @@ class BotchAuto(commands2.SequentialCommandGroup):
         """
         AHH
         """
-
-        self.addRequirements([drivetrain])
-
         super().__init__(
             ZeroSwerveModules(drivetrain, True),
             WaitCommand(2),
