@@ -4,18 +4,18 @@
 # of arms, and similar should go here.
 
 drivetrain:
-  max_velocity: 1.5          # Updated 2/19/22 by Joe
-  min_velocity: 0.075        # Updated 2/19/22 by Joe
+  max_velocity: 1.5         # Updated 2/19/22 by Joe
+  min_velocity: 0.075       # Updated 2/19/22 by Joe
 
   # All pose coordinates are in meters.
   fp_module: # Fore Port
-    pose_x: 0.517525         # Updated 2/21/22 by Joe
-    pose_y: 0.3048           # Updated 2/21/22 by Joe
-    drive_id: 5              # Updated Week 0 by Joe
-    steer_id: 6              # Updated Week 0 by Joe
-    drive_inverted: false    # Updated 2/21/22 by Joe
-    steer_inverted: false    # Updated 2/21/22 by Joe
-    zeroSwitchID: 1          # Updated 4/6/22 by Joe
+    pose_x: 0.517525        # Updated 2/21/22 by Joe
+    pose_y: 0.3048          # Updated 2/21/22 by Joe
+    drive_id: 5             # Updated Week 0 by Joe
+    steer_id: 6             # Updated Week 0 by Joe
+    drive_inverted: false   # Updated 2/21/22 by Joe
+    steer_inverted: false   # Updated 2/21/22 by Joe
+    zeroSwitchID: 1         # Updated 4/6/22 by Joe
 
   fs_module: # Fore Starboard
     pose_x: 0.517525        # Updated 2/21/22 by Joe
@@ -56,8 +56,8 @@ yoke:
   port_shooter_id: 12           # Updated Week 0 by Joe
 
   # Constants for yoke motors and other sensors
-  primary_motor_id: 9           # Updated Week 0 by Joe
-  auxillary_motor_id: 10        # Updated never by Joe
+  primary_motor_id: 10          # Updated 5/7/22 by Joe
+  auxillary_motor_id: 9         # Updated 5/7/22 by Joe
 
   # Constants for kicker
   kicker_id: 11                 # Updated Week 0 by Joe
@@ -75,18 +75,24 @@ yoke:
   aux_yoke_invert: false        # Updated 02/24/22 by Joe
   kicker_invert: true           # Updated 02/24/22 by Joe
 
+  low_target_speed: 85          # Updated Never by Khan
+  low_target_angle: 0.25        # Updated Never by Khan
+
+  high_target_speed: 80         # Updated Never by Khan
+  high_target_angle: 0.5        # Updated Never by Khan
+
 climber:
   port_climber: 17              # Updated 4/2/22 by Khan
   starboard_climber: 18         # Updated 4/2/22 by Khan
   
   pid:
-    kp: 1 # updated 2/17/22 by keegan
-    ki: 1 # updated 2/17/22 by keegan
-    kd: 1 # updated 2/17/22 by keegan
-    maxi: 1 # updated 2/17/22 by keegan
-    min_power: -0.85 # updated 2/17/22 by keegan
-    max_power: 0.85 # updated 2/17/22 by keegan
-    ratio: 0.033 # updated 2/17/22 by keegan
+    kp: 1                       # updated 2/17/22 by keegan
+    ki: 1                       # updated 2/17/22 by keegan
+    kd: 1                       # updated 2/17/22 by keegan
+    maxi: 1                     # updated 2/17/22 by keegan
+    min_power: -0.85            # updated 2/17/22 by keegan
+    max_power: 0.85             # updated 2/17/22 by keegan
+    ratio: 0.033                # updated 2/17/22 by keegan
 
 
 misc:
