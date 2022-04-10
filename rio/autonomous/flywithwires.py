@@ -20,7 +20,7 @@ class FlyWithWires(commands2.CommandBase):
         self.srf = srf
         self.rot = rot
 
-        self.addRequirements([drivetrain])
+        # self.addRequirements([drivetrain])
 
         # Timer
         self.backgroundTimer = wpilib.Timer()
