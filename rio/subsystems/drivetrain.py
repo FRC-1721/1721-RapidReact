@@ -210,11 +210,11 @@ class Drivetrain(SubsystemBase):
         self.fp_module.isZeroed = False
         self.ap_module.isZeroed = False
 
-    # def zero_swerve_modules(self):
-    #     self.fs_module.find_zero()
-    #     self.as_module.find_zero()
-    #     self.fp_module.find_zero()
-    #     self.ap_module.find_zero()
+    def zero_swerve_modules(self):
+        self.fs_module.find_zero()
+        self.as_module.find_zero()
+        self.fp_module.find_zero()
+        self.ap_module.find_zero()
 
     def all_zeroed(self):
         return (
@@ -417,6 +417,14 @@ class SwerveModule:
         # Return
         return current_state
 
+    def find_zero(self):
+        """
+        Seeks to the zero.
+        """
+
+        if not self.isZeroed:
+            self.steer_motor.set(0.165)  # CHANGEME
+
     def getTargetHeading(self):
         """
         Returns the current heading of
@@ -439,6 +447,7 @@ class SwerveModule:
         # If we went from off, to on
         if not self._lastZero and cur and self.steer_motor_encoder.getVelocity() > 0:
             self.steer_motor_encoder.setPosition(0)
+            self.steer_PID.setReference(0, CANSparkMaxLowLevel.ControlType.kPosition)
 
         self._lastZero = cur
 
