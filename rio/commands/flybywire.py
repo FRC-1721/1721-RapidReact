@@ -40,4 +40,4 @@ class FlyByWire(commands2.CommandBase):
         user input.
         """
 
-        return (x**3 * -1) * 0.5
+        return (x**3 * -1) * 0.25
