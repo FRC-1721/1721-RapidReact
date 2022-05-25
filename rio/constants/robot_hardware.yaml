@@ -4,7 +4,7 @@
 # of arms, and similar should go here.
 
 drivetrain:
-  max_velocity: 1.5         # Updated 2/19/22 by Joe
+  max_velocity: 0.1         # Updated 5/25/22 by Joe
   min_velocity: 0.075       # Updated 2/19/22 by Joe
 
   # All pose coordinates are in meters.

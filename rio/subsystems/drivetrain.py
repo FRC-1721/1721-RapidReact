@@ -141,10 +141,11 @@ class Drivetrain(SubsystemBase):
 
         fwd_velocity = fwd * self.drive_const["max_velocity"]
         srf_velocity = srf * self.drive_const["max_velocity"]
+        rot_velocity = rot * self.drive_const["max_velocity"]
 
         # Get wheel speeds and angles from Kinematics, given desired chassis speed and angle
         arcade_chassis_speeds = kinematics.ChassisSpeeds(
-            fwd_velocity, srf_velocity, rot
+            fwd_velocity, srf_velocity, rot_velocity
         )
 
         _fp, _fs, _ap, _as = self.swerveKinematics.toSwerveModuleStates(
