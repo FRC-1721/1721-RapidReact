@@ -19,7 +19,7 @@ class Kicker(commands2.CommandBase):
         self.backgroundTimer.start()
 
     def initialize(self) -> None:
-        self.yoke.kick(0.55)
+        self.yoke.kick(0.6)
         self.backgroundTimer.reset()
 
     def isFinished(self) -> bool:
