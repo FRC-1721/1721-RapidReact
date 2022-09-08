@@ -5,7 +5,7 @@
 mode_a:
   # Mode A is a driver-centric control mode
   driver:
-    controller_port: 0     # What usb port the driver controller is on
+    controller_port: 1     # What usb port the driver controller is on
     
     # Driving
     forward_axis: 1        # "Forward" Axis
@@ -16,7 +16,7 @@ mode_a:
     rezero_swerve: 8              # Updated week1 by Joe
 
   operator:
-    controller_port: 1     # What usb port the operator controller is on
+    controller_port: 0     # What usb port the operator controller is on
     
     # Functions
     kicker_button: 6              # Updated week1 by Joe
